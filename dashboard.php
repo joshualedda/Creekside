@@ -406,13 +406,11 @@
 
 
 
-
-
- <script>
+  <script>
   document.addEventListener("DOMContentLoaded", () => {
-    // Define initial empty data arrays
-    const highestData = [];
-    const lowestData = [];
+    // Initialize empty arrays for all months
+    const highestData = Array(12).fill(0);
+    const lowestData = Array(12).fill(0);
 
     // Create the Chart instance
     const barChart = new Chart(document.querySelector('#barChart'), {
@@ -454,9 +452,11 @@
         dataType: 'json',
         success: function(response) {
           if (response.success) {
-            // Update highestData and lowestData arrays with fetched data
-            highestData.push(response.data.max_quantity);
-            lowestData.push(response.data.min_quantity);
+            // Update highestData and lowestData arrays with fetched data for each month
+            response.data.forEach((item, index) => {
+              highestData[index + 1] = item.max_quantity;
+              lowestData[index + 1] = item.min_quantity;
+            });
 
             // Update the chart with the new data
             barChart.update();
