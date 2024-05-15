@@ -1,0 +1,8 @@
+/* print-styles.css */
+
+/* Hide buttons and unnecessary elements */
+#main .row {
+    display: none;
+}
+
+/* Customize other print styles as needed */
