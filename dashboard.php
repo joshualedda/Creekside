@@ -1,3 +1,17 @@
+<?php
+session_start();
+include "controllers/Index.php";
+$db = new db;
+$conn = $db->con;
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+$totalSales = $db->totalSales();
+$totalGrossSalesThisMonth = $db->totalGrossSalesThisMonth();
+$totalDishedSold = $db->totalDishedSold();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +20,6 @@
   include 'includes/links.php';
   include 'includes/header.php';
   include 'includes/sidebar.php';
-  include ('connection.php');
   ?>
 </head>
 
@@ -46,14 +59,14 @@
             </div>
 
             <div class="card-body">
-              <h5 class="card-title">Total Transactions <span>| This Year</span></h5>
+              <h5 class="card-title">Total Transactions <span>| This Month</span></h5>
 
               <div class="d-flex align-items-center">
                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                   <i class="bi bi-cart3"></i>
                 </div>
                 <div class="ps-3" id="transactions">
-                  <h6>1244</h6>
+                  <h6><?=$totalSales ?></h6>
 
                 </div>
               </div>
@@ -87,7 +100,7 @@
                   <i class="bi bi-cash-coin"></i>
                 </div>
                 <div class="ps-3" id="sales">
-                  <h6>₱3,264</h6>
+                  <h6>₱<?=$totalGrossSalesThisMonth ?></h6>
 
                 </div>
               </div>
@@ -114,14 +127,14 @@
             </div>
 
             <div class="card-body">
-              <h5 class="card-title">Dishes Sold <span>| Today</span></h5>
+              <h5 class="card-title">Dishes Sold <span>| This Month</span></h5>
 
               <div class="d-flex align-items-center">
                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                   <i class="ri ri-restaurant-2-line"></i>
                 </div>
                 <div class="ps-3" id="dishes">
-                  <h6>145</h6>
+                  <h6><?=$totalDishedSold?></h6>
 
                 </div>
               </div>
@@ -133,8 +146,8 @@
 
 
         <div class="col-lg-6">
-          <div class="card">
-            <div class="card-body">
+          <div class="card ">
+            <div class="card-body my-1">
 
 
               <div class="row">
@@ -201,7 +214,7 @@
 <!-- barchart -->
         <div class="col-lg-6">
           <div class="card">
-            <div class="card-body">
+            <div class="card-body my-3">
               <div class="row">
                 <div class="col-lg-4">
                   <h5 class="card-title">Dished Ordered</h5>
@@ -253,54 +266,34 @@
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title">Recent Sales <span>| Today</span></h5>
+                  <h5 class="card-title">Recent Sales <span>| This Week</span></h5>
 
                   <table class="table table-borderless datatable">
                     <thead>
                       <tr>
                         <th scope="col">#</th>
                         <th scope="col">Customer</th>
-                        <th scope="col">Product</th>
-                        <th scope="col">Price</th>
+                        <th scope="col">Total Price</th>
                         <th scope="col">Status</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th scope="row"><a href="#">#2457</a></th>
-                        <td>Brandon Jacob</td>
-                        <td><a href="#" class="text-primary">At praesentium minu</a></td>
-                        <td>$64</td>
-                        <td><span class="badge bg-success">Approved</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#2147</a></th>
-                        <td>Bridie Kessler</td>
-                        <td><a href="#" class="text-primary">Blanditiis dolor omnis similique</a></td>
-                        <td>$47</td>
-                        <td><span class="badge bg-warning">Pending</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#2049</a></th>
-                        <td>Ashleigh Langosh</td>
-                        <td><a href="#" class="text-primary">At recusandae consectetur</a></td>
-                        <td>$147</td>
-                        <td><span class="badge bg-success">Approved</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#2644</a></th>
-                        <td>Angus Grady</td>
-                        <td><a href="#" class="text-primar">Ut voluptatem id earum et</a></td>
-                        <td>$67</td>
-                        <td><span class="badge bg-danger">Rejected</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#2644</a></th>
-                        <td>Raheem Lehner</td>
-                        <td><a href="#" class="text-primary">Sunt similique distinctio</a></td>
-                        <td>$165</td>
-                        <td><span class="badge bg-success">Approved</span></td>
-                      </tr>
+                    <?php
+    $result = $db->transactionsThisWeek();
+    if ($result) {
+        $counter = 1;
+        while ($row = mysqli_fetch_array($result)) {
+            echo '<tr>';
+            echo '<td>' . $counter++ . '</td>';
+            echo '<td>' . $row['customer'] . '</td>';
+            echo '<td>' . $row['total_price'] . '</td>';
+            echo '<td>' . $row['status'] . '</td>';
+            echo '</tr>';
+        }
+    } else {
+        echo '<tr><td colspan="4">No transactions found for this week.</td></tr>';
+    }
+    ?>
                     </tbody>
                   </table>
 
@@ -402,7 +395,6 @@
   </main><!-- End #main -->
 
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script>
         document.addEventListener("DOMContentLoaded", () => {
             // Initialize empty arrays for all months
@@ -478,11 +470,6 @@
             fetchDataAndUpdateChart();
         });
     </script>
-
-
-
-
-
 
   <script src="assets/js/piechart.js"></script>
   <?php include 'includes/footer.php'; ?>
