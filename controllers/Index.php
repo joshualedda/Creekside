@@ -8,7 +8,7 @@ class db
 
     public function __construct()
     {
-        $this->con = mysqli_connect('localhost', 'root', '', 'creekside') or die (mysqli_error());
+        $this->con = mysqli_connect('localhost', 'root', '', 'creekside') or die(mysqli_error($this->con));
     }
-
 }
+?>

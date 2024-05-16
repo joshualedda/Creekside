@@ -204,7 +204,7 @@
             <div class="card-body">
               <div class="row">
                 <div class="col-lg-4">
-                  <h5 class="card-title">Monthly Cases</h5>
+                  <h5 class="card-title">Dished Ordered</h5>
                 </div>
                 <div class="col-lg-3 ms-auto my-3">
 
@@ -403,84 +403,88 @@
 
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-
-
   <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    // Initialize empty arrays for all months
-    const highestData = Array(12).fill(0);
-    const lowestData = Array(12).fill(0);
+        document.addEventListener("DOMContentLoaded", () => {
+            // Initialize empty arrays for all months
+            const highestData = Array(12).fill(0);
+            const lowestData = Array(12).fill(0);
 
-    // Create the Chart instance
-    const barChart = new Chart(document.querySelector('#barChart'), {
-      type: 'bar',
-      data: {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-        datasets: [
-          {
-            label: 'Highest',
-            data: highestData, // Use the highestData array
-            backgroundColor: 'rgba(54, 162, 235, 0.2)', 
-            borderColor: 'rgb(54, 162, 235)', 
-            borderWidth: 1
-          },
-          {
-            label: 'Lowest',
-            data: lowestData, // Use the lowestData array
-            backgroundColor: 'rgba(255, 159, 64, 0.2)', 
-            borderColor: 'rgb(255, 159, 64)',
-            borderWidth: 1
-          }
-        ]
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        }
-      }
-    });
-
-    // Function to fetch highest and lowest quantities from backend and update chart
-    function fetchDataAndUpdateChart() {
-      // Make an AJAX request to the PHP script
-      $.ajax({
-        url: "charts/barchart.php", // Replace "your_backend_script.php" with the actual path to your backend script
-        method: "GET",
-        dataType: 'json',
-        success: function(response) {
-          if (response.success) {
-            // Update highestData and lowestData arrays with fetched data for each month
-            response.data.forEach((item, index) => {
-              highestData[index + 1] = item.max_quantity;
-              lowestData[index + 1] = item.min_quantity;
+            // Create the Chart instance
+            const barChart = new Chart(document.querySelector('#barChart'), {
+                type: 'bar',
+                data: {
+                    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                    datasets: [
+                        {
+                            label: 'Highest',
+                            data: highestData, // Use the highestData array
+                            backgroundColor: 'rgba(54, 162, 235, 0.2)', 
+                            borderColor: 'rgb(54, 162, 235)', 
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Lowest',
+                            data: lowestData, // Use the lowestData array
+                            backgroundColor: 'rgba(255, 159, 64, 0.2)', 
+                            borderColor: 'rgb(255, 159, 64)',
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
             });
 
-            // Update the chart with the new data
-            barChart.update();
-          } else {
-            console.error('Error fetching data:', response.message);
-          }
-        },
-        error: function(xhr, status, error) {
-          console.error('AJAX Error:', status, error);
-        }
-      });
-    }
+            // Function to fetch highest and lowest quantities from backend and update chart
+            function fetchDataAndUpdateChart() {
+                $.ajax({
+                    url: 'charts/barchart.php', // The path to your PHP script
+                    method: 'GET',
+                    dataType: 'json', // Ensure we expect JSON
+                    success: function(response) {
+                        if(response.success) {
+                            const data = response.data;
 
-    // Call the function to fetch data and update chart on page load
-    fetchDataAndUpdateChart();
-  });
-</script>
+                            for (let i = 0; i < 12; i++) {
+                                const monthIndex = i + 1;
+                                if(data[monthIndex]) {
+                                    highestData[i] = data[monthIndex].max_quantity;
+                                    lowestData[i] = data[monthIndex].min_quantity;
+                                } else {
+                                    highestData[i] = 0;
+                                    lowestData[i] = 0;
+                                }
+                            }
+
+                            barChart.update(); // Update the chart with new data
+                        } else {
+                            console.error('Error in response:', response.message);
+
+                            
+                        }
+                    },
+                    error: function(error) {
+                        console.error('Error fetching data:', error);
+                    }
+                });
+            }
+
+            // Fetch data and update chart on page load
+            fetchDataAndUpdateChart();
+        });
+    </script>
+
+
+
+
 
 
   <script src="assets/js/piechart.js"></script>
-
-
-
-
   <?php include 'includes/footer.php'; ?>
 
 </body>

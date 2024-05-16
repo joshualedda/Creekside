@@ -1,22 +1,28 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 include "../controllers/Index.php";
 $conn = new db;
 
 // Use a prepared statement to prevent SQL injection
-$sql = "SELECT MAX(quantity) AS max_quantity, MIN(quantity) AS min_quantity, MONTH(transactions.delivery_date) AS month
-        FROM (
-            SELECT SUM(quantity) AS quantity, dishes_ordered.dish_id, transactions.delivery_date
-            FROM dishes_ordered
-            JOIN transactions ON dishes_ordered.trans_id = transactions.trans_id
-            GROUP BY dishes_ordered.dish_id, MONTH(transactions.delivery_date)
-        ) AS aggregated_data
-        GROUP BY month";
+$sql = "SELECT 
+MONTH(t.delivery_date) AS month,
+MAX(d.quantity) AS max_quantity,
+MIN(d.quantity) AS min_quantity
+FROM 
+transactions t
+JOIN 
+dishes_ordered d ON d.trans_id = t.trans_id
+GROUP BY 
+MONTH(t.delivery_date)
+";
 
-$stmt = $conn->prepare($sql);
+$stmt = $conn->con->prepare($sql);
 
 // Check for errors in preparing the statement
 if ($stmt === false) {
-    echo json_encode(array('success' => false, 'message' => 'Error preparing statement: ' . $conn->error));
+    echo json_encode(array('success' => false, 'message' => 'Error preparing statement: ' . $conn->con->error));
     exit();
 }
 
@@ -44,7 +50,7 @@ while ($row = $resultSet->fetch_assoc()) {
     );
 }
 
-// Debugging: Echo the fetched data to check if it's correct
+// Output the JSON response
 echo json_encode(array('success' => true, 'data' => $data));
 
 // Close the statement
