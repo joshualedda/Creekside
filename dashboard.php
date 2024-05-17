@@ -245,7 +245,7 @@ $totalDishedSold = $db->totalDishedSold();
 
 
         <!-- Left side columns -->
-        <div class="col-lg-7">
+        <div class="col-lg-6">
           <div class="row">
 
             <!-- Recent Sales -->
@@ -308,86 +308,66 @@ $totalDishedSold = $db->totalDishedSold();
         </div><!-- End Left side columns -->
 
         <!-- Right side columns -->
-        <div class="col-lg-5">
+        <div class="col-lg-6">
+          <div class="row">
 
-          <!-- Top Selling -->
-          <div class="col-12">
-            <div class="card top-selling overflow-auto">
+            <!-- Recent Sales -->
+            <div class="col-12">
+              <div class="card recent-sales overflow-auto">
 
-              <div class="filter">
-                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                  <li class="dropdown-header text-start">
-                    <h6>Filter</h6>
-                  </li>
+                <div class="filter">
+                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                    <li class="dropdown-header text-start">
+                      <h6>Filter</h6>
+                    </li>
 
-                  <li><a class="dropdown-item" href="#">Today</a></li>
-                  <li><a class="dropdown-item" href="#">This Month</a></li>
-                  <li><a class="dropdown-item" href="#">This Year</a></li>
-                </ul>
-              </div>
+                    <li><a class="dropdown-item" href="#">Today</a></li>
+                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                  </ul>
+                </div>
 
-              <div class="card-body pb-0">
-                <h5 class="card-title">Top Selling <span>| This Month</span></h5>
+                <div class="card-body">
+                  <h5 class="card-title">Top Selling <span>| This Week</span></h5>
 
-                <table class="table table-borderless">
+                  <table class="table table-borderless datatable">
                   <thead>
-                    <tr>
-                      <th scope="col">Preview</th>
-                      <th scope="col">Product</th>
-                      <th scope="col">Price</th>
-                      <th scope="col">Sold</th>
-                      <th scope="col">Revenue</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row"><a href="#"><img src="assets/img/adobo.jpg" alt="" style="height: 70px;"></a></th>
-                      <td><a href="#" class="text-primary fw-bold">Adobo</a></td>
-                      <td>₱255</td>
-                      <td class="fw-bold">124</td>
-                      <td>₱31,620</td>
-                    </tr>
-                    <tr>
-                      <th scope="row"><a href="#"><img src="assets/img/sinigang.png" alt="" style="height: 70px;"></a>
-                      </th>
-                      <td><a href="#" class="text-primary fw-bold">Sinigang Bangus</a></td>
-                      <td>₱285</td>
-                      <td class="fw-bold">98</td>
-                      <td>₱27,930</td>
-                    </tr>
-                    <tr>
-                      <th scope="row"><a href="#"><img src="assets/img/tinola.jpg" alt="" style="height: 70px;"></a>
-                      </th>
-                      <td><a href="#" class="text-primary fw-bold">Tinola</a></td>
-                      <td>₱265</td>
-                      <td class="fw-bold">74</td>
-                      <td>₱19,610</td>
-                    </tr>
-                    <tr>
-                      <th scope="row"><a href="#"><img src="assets/img/curry.jpg" alt="" style="height: 70px;"></a></th>
-                      <td><a href="#" class="text-primary fw-bold">Chicken Curry</a></td>
-                      <td>₱275</td>
-                      <td class="fw-bold">63</td>
-                      <td>₱17,325</td>
-                    </tr>
-                    <tr>
-                      <th scope="row"><a href="#"><img src="assets/img/fried.webp" alt="" style="height: 70px;"></a>
-                      </th>
-                      <td><a href="#" class="text-primary fw-bold">Fried Chicken (Half)</a></td>
-                      <td>₱240</td>
-                      <td class="fw-bold">41</td>
-                      <td>₱9,840</td>
-                    </tr>
-                  </tbody>
-                </table>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Dish Name</th>
+        <th scope="col">Total Quantity</th>
+    </tr>
+</thead>
+<tbody>
+<?php
+$result = $db->topSellingDishes();
+if ($result) {
+    $counter = 1;
+    foreach ($result as $row) {
+        echo '<tr>';
+        echo '<td>' . $counter++ . '</td>';
+        echo '<td>' . $row['dish_name'] . '</td>';
+        echo '<td>' . $row['total_quantity'] . '</td>';
+        echo '</tr>';
+    }
+} else {
+    echo '<tr><td colspan="3">No data found.</td></tr>';
+}
+?>
+</tbody>
+
+                  </table>
+
+                </div>
 
               </div>
+            </div><!-- End Recent Sales -->
 
-            </div>
-          </div><!-- End Top Selling -->
 
-        </div><!-- End Right side columns -->
+
+          </div>
+        </div><!-- End Left side columns -->
 
       </div>
     </section>

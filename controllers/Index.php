@@ -112,7 +112,36 @@ class db
 }
 
 
-    
+public function topSellingDishes($limit = 5)
+{
+    // Construct the SQL query to get the top selling dishes
+    $sql = "SELECT dishes.dish_name, SUM(dishes_ordered.quantity) AS total_quantity
+            FROM dishes_ordered
+            JOIN dishes ON dishes_ordered.dish_id = dishes.dish_id
+            JOIN transactions ON dishes_ordered.trans_id = transactions.trans_id
+            WHERE transactions.status = 'Paid' OR transactions.status = 'Completed'
+            GROUP BY dishes_ordered.dish_id
+            ORDER BY total_quantity DESC
+            LIMIT $limit";
+
+    // Execute the query
+    $result = mysqli_query($this->con, $sql);
+
+    // Check if the query was successful
+    if ($result) {
+        // Fetch the result as an associative array
+        $topSellingDishes = [];
+        while ($row = mysqli_fetch_assoc($result)) {
+            $topSellingDishes[] = $row;
+        }
+        // Return the top selling dishes
+        return $topSellingDishes;
+    } else {
+        // Return false if there was an error executing the query
+        return false;
+    }
+}
+
     
    
 }

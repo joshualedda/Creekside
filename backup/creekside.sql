@@ -3348,64 +3348,71 @@ INSERT INTO dishes VALUES("24","Afritada","Chicken","250","229.00","Unavailable"
 
 
 CREATE TABLE `dishes_ordered` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `trans_id` int(11) NOT NULL,
   `dish_id` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
   `price` decimal(10,2) NOT NULL,
-  `subtotal` decimal(10,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `subtotal` decimal(10,2) NOT NULL,
+  `created_by` date NOT NULL DEFAULT current_timestamp(),
+  `updated_by` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO dishes_ordered VALUES("2","16","2","269.00","538.00");
-INSERT INTO dishes_ordered VALUES("2","7","1","619.00","619.00");
-INSERT INTO dishes_ordered VALUES("2","15","1","249.00","249.00");
-INSERT INTO dishes_ordered VALUES("2","6","3","569.00","1707.00");
-INSERT INTO dishes_ordered VALUES("1","10","1","205.00","205.00");
-INSERT INTO dishes_ordered VALUES("1","18","2","289.00","578.00");
-INSERT INTO dishes_ordered VALUES("1","15","1","249.00","249.00");
-INSERT INTO dishes_ordered VALUES("1","7","3","619.00","1857.00");
-INSERT INTO dishes_ordered VALUES("4","11","1","219.00","219.00");
-INSERT INTO dishes_ordered VALUES("4","5","2","249.00","498.00");
-INSERT INTO dishes_ordered VALUES("4","16","1","269.00","269.00");
-INSERT INTO dishes_ordered VALUES("4","6","3","569.00","1707.00");
-INSERT INTO dishes_ordered VALUES("4","18","2","289.00","578.00");
-INSERT INTO dishes_ordered VALUES("5","13","1","219.00","219.00");
-INSERT INTO dishes_ordered VALUES("7","10","1","205.00","205.00");
-INSERT INTO dishes_ordered VALUES("7","18","3","289.00","867.00");
-INSERT INTO dishes_ordered VALUES("7","15","2","249.00","498.00");
-INSERT INTO dishes_ordered VALUES("9","10","3","205.00","615.00");
-INSERT INTO dishes_ordered VALUES("9","18","1","289.00","289.00");
-INSERT INTO dishes_ordered VALUES("9","15","4","249.00","996.00");
-INSERT INTO dishes_ordered VALUES("9","6","1","569.00","569.00");
-INSERT INTO dishes_ordered VALUES("9","13","2","219.00","438.00");
-INSERT INTO dishes_ordered VALUES("9","7","1","619.00","619.00");
-INSERT INTO dishes_ordered VALUES("9","5","3","249.00","747.00");
-INSERT INTO dishes_ordered VALUES("9","11","1","219.00","219.00");
-INSERT INTO dishes_ordered VALUES("9","16","2","269.00","538.00");
-INSERT INTO dishes_ordered VALUES("3","10","1","205.00","205.00");
-INSERT INTO dishes_ordered VALUES("3","18","2","289.00","578.00");
-INSERT INTO dishes_ordered VALUES("3","15","2","249.00","498.00");
-INSERT INTO dishes_ordered VALUES("3","6","2","569.00","1138.00");
-INSERT INTO dishes_ordered VALUES("3","7","3","619.00","1857.00");
-INSERT INTO dishes_ordered VALUES("11","15","1","249.00","249.00");
-INSERT INTO dishes_ordered VALUES("11","13","4","219.00","876.00");
-INSERT INTO dishes_ordered VALUES("11","7","2","619.00","1238.00");
-INSERT INTO dishes_ordered VALUES("11","5","1","249.00","249.00");
-INSERT INTO dishes_ordered VALUES("11","11","2","219.00","438.00");
-INSERT INTO dishes_ordered VALUES("12","10","1","205.00","205.00");
-INSERT INTO dishes_ordered VALUES("12","18","2","350.00","700.00");
-INSERT INTO dishes_ordered VALUES("12","15","1","249.00","249.00");
-INSERT INTO dishes_ordered VALUES("12","6","2","569.00","1138.00");
-INSERT INTO dishes_ordered VALUES("12","13","1","219.00","219.00");
-INSERT INTO dishes_ordered VALUES("13","10","1","205.00","205.00");
-INSERT INTO dishes_ordered VALUES("13","18","2","350.00","700.00");
-INSERT INTO dishes_ordered VALUES("13","15","1","249.00","249.00");
-INSERT INTO dishes_ordered VALUES("13","13","2","219.00","438.00");
-INSERT INTO dishes_ordered VALUES("13","6","1","569.00","569.00");
-INSERT INTO dishes_ordered VALUES("14","10","1","205.00","205.00");
-INSERT INTO dishes_ordered VALUES("14","15","2","249.00","498.00");
-INSERT INTO dishes_ordered VALUES("16","10","1","205.00","205.00");
-INSERT INTO dishes_ordered VALUES("16","18","2","350.00","700.00");
-INSERT INTO dishes_ordered VALUES("16","13","1","219.00","219.00");
+INSERT INTO dishes_ordered VALUES("1","1","16","2","269.00","538.00","2024-05-15","");
+INSERT INTO dishes_ordered VALUES("2","1","7","1","619.00","619.00","2024-05-15","");
+INSERT INTO dishes_ordered VALUES("3","2","15","1","249.00","249.00","2024-05-15","");
+INSERT INTO dishes_ordered VALUES("4","2","6","3","569.00","1707.00","2024-05-15","");
+INSERT INTO dishes_ordered VALUES("5","1","10","1","205.00","205.00","2024-05-15","");
+INSERT INTO dishes_ordered VALUES("6","1","18","2","289.00","578.00","0000-00-00","");
+INSERT INTO dishes_ordered VALUES("7","1","15","1","249.00","249.00","0000-00-00","");
+INSERT INTO dishes_ordered VALUES("8","1","7","3","619.00","1857.00","0000-00-00","");
+INSERT INTO dishes_ordered VALUES("9","4","11","1","219.00","219.00","0000-00-00","");
+INSERT INTO dishes_ordered VALUES("10","4","5","2","249.00","498.00","2024-01-15","");
+INSERT INTO dishes_ordered VALUES("11","4","16","1","269.00","269.00","2024-01-15","");
+INSERT INTO dishes_ordered VALUES("12","4","6","3","569.00","1707.00","2024-03-15","");
+INSERT INTO dishes_ordered VALUES("13","4","18","2","289.00","578.00","0000-00-00","");
+INSERT INTO dishes_ordered VALUES("14","5","13","1","219.00","219.00","0000-00-00","");
+INSERT INTO dishes_ordered VALUES("15","7","10","1","205.00","205.00","0000-00-00","");
+INSERT INTO dishes_ordered VALUES("16","7","18","3","289.00","867.00","0000-00-00","");
+INSERT INTO dishes_ordered VALUES("17","7","15","2","249.00","498.00","0000-00-00","");
+INSERT INTO dishes_ordered VALUES("18","9","10","3","205.00","615.00","0000-00-00","");
+INSERT INTO dishes_ordered VALUES("19","9","18","1","289.00","289.00","0000-00-00","");
+INSERT INTO dishes_ordered VALUES("20","9","15","4","249.00","996.00","0000-00-00","");
+INSERT INTO dishes_ordered VALUES("21","9","6","1","569.00","569.00","0000-00-00","");
+INSERT INTO dishes_ordered VALUES("22","9","13","2","219.00","438.00","0000-00-00","");
+INSERT INTO dishes_ordered VALUES("23","9","7","1","619.00","619.00","0000-00-00","");
+INSERT INTO dishes_ordered VALUES("24","9","5","3","249.00","747.00","0000-00-00","");
+INSERT INTO dishes_ordered VALUES("25","9","11","1","219.00","219.00","0000-00-00","");
+INSERT INTO dishes_ordered VALUES("26","9","16","2","269.00","538.00","0000-00-00","");
+INSERT INTO dishes_ordered VALUES("27","3","10","1","205.00","205.00","0000-00-00","");
+INSERT INTO dishes_ordered VALUES("28","3","18","2","289.00","578.00","0000-00-00","");
+INSERT INTO dishes_ordered VALUES("29","3","15","2","249.00","498.00","0000-00-00","");
+INSERT INTO dishes_ordered VALUES("30","3","6","2","569.00","1138.00","0000-00-00","");
+INSERT INTO dishes_ordered VALUES("31","3","7","3","619.00","1857.00","0000-00-00","");
+INSERT INTO dishes_ordered VALUES("32","11","15","1","249.00","249.00","0000-00-00","");
+INSERT INTO dishes_ordered VALUES("33","11","13","4","219.00","876.00","0000-00-00","");
+INSERT INTO dishes_ordered VALUES("34","11","7","2","619.00","1238.00","0000-00-00","");
+INSERT INTO dishes_ordered VALUES("35","11","5","1","249.00","249.00","0000-00-00","");
+INSERT INTO dishes_ordered VALUES("36","11","11","2","219.00","438.00","0000-00-00","");
+INSERT INTO dishes_ordered VALUES("37","12","10","1","205.00","205.00","0000-00-00","");
+INSERT INTO dishes_ordered VALUES("38","12","18","2","350.00","700.00","0000-00-00","");
+INSERT INTO dishes_ordered VALUES("39","12","15","1","249.00","249.00","0000-00-00","");
+INSERT INTO dishes_ordered VALUES("40","12","6","2","569.00","1138.00","0000-00-00","");
+INSERT INTO dishes_ordered VALUES("41","12","13","1","219.00","219.00","0000-00-00","");
+INSERT INTO dishes_ordered VALUES("42","13","10","1","205.00","205.00","0000-00-00","");
+INSERT INTO dishes_ordered VALUES("43","13","18","2","350.00","700.00","0000-00-00","");
+INSERT INTO dishes_ordered VALUES("44","13","15","1","249.00","249.00","0000-00-00","");
+INSERT INTO dishes_ordered VALUES("45","13","13","2","219.00","438.00","0000-00-00","");
+INSERT INTO dishes_ordered VALUES("46","13","6","1","569.00","569.00","0000-00-00","");
+INSERT INTO dishes_ordered VALUES("47","14","10","1","205.00","205.00","0000-00-00","");
+INSERT INTO dishes_ordered VALUES("48","14","15","2","249.00","498.00","0000-00-00","");
+INSERT INTO dishes_ordered VALUES("49","16","10","1","205.00","205.00","0000-00-00","");
+INSERT INTO dishes_ordered VALUES("50","16","18","2","350.00","700.00","0000-00-00","");
+INSERT INTO dishes_ordered VALUES("51","16","13","1","219.00","219.00","0000-00-00","");
+INSERT INTO dishes_ordered VALUES("54","17","10","1","205.00","205.00","2024-05-17","");
+INSERT INTO dishes_ordered VALUES("55","17","18","1","350.00","350.00","2024-05-17","");
+INSERT INTO dishes_ordered VALUES("56","17","13","1","219.00","219.00","2024-05-17","");
 
 
 
@@ -3451,7 +3458,7 @@ CREATE TABLE `logs` (
   `action` varchar(20) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=532 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=542 DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO logs VALUES("1","2023-08-31 23:07:14","1","Rodelio Is-isa","Login","Login session started");
 INSERT INTO logs VALUES("2","2023-08-31 23:08:23","1","Rodelio Is-isa","Log out","Login session ended");
@@ -3984,6 +3991,16 @@ INSERT INTO logs VALUES("528","2024-05-14 21:24:10","1","Rodelio Is-isa","New Tr
 INSERT INTO logs VALUES("529","2024-05-14 21:24:34","1","Rodelio Is-isa","Take Order","Listed dishes ordered by CJ and updated transaction details");
 INSERT INTO logs VALUES("530","2024-05-14 21:24:40","1","Rodelio Is-isa","Confirm Payment","Received payment from CJ with the amount ₱1124.00");
 INSERT INTO logs VALUES("531","2024-05-14 21:24:45","1","Rodelio Is-isa","Complete Transaction","Confirmed completion of transaction with CJ");
+INSERT INTO logs VALUES("532","2024-05-15 21:45:25","1","Rodelio Is-isa","Log In","Logged into their account");
+INSERT INTO logs VALUES("533","2024-05-16 20:40:29","1","Rodelio Is-isa","Log In","Logged into their account");
+INSERT INTO logs VALUES("534","2024-05-16 21:02:51","1","Rodelio Is-isa","New Transaction","Listed new transaction with Jsohua");
+INSERT INTO logs VALUES("535","2024-05-16 21:03:18","1","Rodelio Is-isa","Take Order","Listed dishes ordered by Jsohua and updated transaction details");
+INSERT INTO logs VALUES("536","2024-05-17 08:43:02","1","Rodelio Is-isa","Log In","Logged into their account");
+INSERT INTO logs VALUES("537","2024-05-17 08:44:58","1","Rodelio Is-isa","Take Order","Listed dishes ordered by Jsohua and updated transaction details");
+INSERT INTO logs VALUES("538","2024-05-17 08:45:20","1","Rodelio Is-isa","Confirm Payment","Received payment from Jsohua with the amount ₱774.00");
+INSERT INTO logs VALUES("539","2024-05-17 08:45:31","1","Rodelio Is-isa","Complete Transaction","Confirmed completion of transaction with Jsohua");
+INSERT INTO logs VALUES("540","2024-05-17 08:46:14","1","Rodelio Is-isa","Update Dish","Updated Adobo details in food menu");
+INSERT INTO logs VALUES("541","2024-05-17 08:46:21","1","Rodelio Is-isa","Update Dish","Updated Adobo details in food menu");
 
 
 
@@ -4165,24 +4182,25 @@ CREATE TABLE `transactions` (
   `date_delivered` datetime NOT NULL,
   `date_cancelled` datetime NOT NULL,
   PRIMARY KEY (`trans_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO transactions VALUES("1","2023-11-26 12:52:04","Carl Justin Arciaga","2889.00","1","Paid","For Pickup","2023-11-28","2023-11-28 08:47:48","0000-00-00 00:00:00","0000-00-00 00:00:00");
-INSERT INTO transactions VALUES("2","2023-11-26 12:53:53","Bryan Ordoño","3113.00","1","Completed","For Delivery","2023-11-30","2023-11-26 12:55:20","2023-11-26 13:00:36","0000-00-00 00:00:00");
+INSERT INTO transactions VALUES("2","2023-11-26 12:53:53","Bryan Ordoño","3113.00","1","Completed","For Delivery","2023-08-03","2023-11-26 12:55:20","2023-11-26 13:00:36","0000-00-00 00:00:00");
 INSERT INTO transactions VALUES("3","2023-11-26 12:54:43","Jade Russel Nones","4276.00","1","Paid","For Delivery","2023-11-30","2023-11-28 08:56:12","0000-00-00 00:00:00","0000-00-00 00:00:00");
-INSERT INTO transactions VALUES("4","2023-11-26 12:55:11","Randy Dangle","3271.00","1","Paid","For Delivery","2023-11-30","2023-11-26 13:00:20","0000-00-00 00:00:00","0000-00-00 00:00:00");
-INSERT INTO transactions VALUES("5","2023-11-26 13:05:33","Bernard John Laron","219.00","1","Cancelled","For Pickup","2023-11-28","0000-00-00 00:00:00","0000-00-00 00:00:00","0000-00-00 00:00:00");
-INSERT INTO transactions VALUES("6","2023-11-26 13:06:33","John Paul Aquino","0.00","1","Cancelled","","0000-00-00","0000-00-00 00:00:00","0000-00-00 00:00:00","0000-00-00 00:00:00");
+INSERT INTO transactions VALUES("4","2023-11-26 12:55:11","Randy Dangle","3271.00","1","Paid","For Delivery","2025-11-30","2023-11-26 13:00:20","0000-00-00 00:00:00","0000-00-00 00:00:00");
+INSERT INTO transactions VALUES("5","2023-11-26 13:05:33","Bernard John Laron","219.00","1","Cancelled","For Pickup","2023-11-28","2024-05-15 23:47:27","0000-00-00 00:00:00","0000-00-00 00:00:00");
+INSERT INTO transactions VALUES("6","2023-11-26 13:06:33","John Paul Aquino","0.00","1","Cancelled","","0000-00-00","2024-05-28 23:47:46","0000-00-00 00:00:00","0000-00-00 00:00:00");
 INSERT INTO transactions VALUES("7","2023-11-27 21:47:18","Edgie Alturas","1570.00","1","Completed","For Delivery","2023-11-29","2023-11-27 22:17:19","2023-11-27 22:19:06","0000-00-00 00:00:00");
-INSERT INTO transactions VALUES("8","2023-11-27 22:19:41","Ezekiel Griel Tejada","0.00","1","Cancelled","","0000-00-00","0000-00-00 00:00:00","0000-00-00 00:00:00","0000-00-00 00:00:00");
-INSERT INTO transactions VALUES("9","2023-11-28 07:47:21","Rufo Baro","5030.00","1","Completed","For Delivery","2023-12-01","2023-11-28 07:48:19","2023-11-30 09:49:51","0000-00-00 00:00:00");
-INSERT INTO transactions VALUES("10","2023-11-28 08:59:00","Jessie","4980.00","1","Cancelled","For Delivery","2023-11-30","0000-00-00 00:00:00","0000-00-00 00:00:00","0000-00-00 00:00:00");
-INSERT INTO transactions VALUES("11","2023-11-28 09:13:32","Genesis","3050.00","2","Completed","For Pickup","2023-11-30","2023-11-28 09:15:39","2023-11-28 09:17:19","0000-00-00 00:00:00");
-INSERT INTO transactions VALUES("12","2023-11-30 09:50:30","Edelita","2511.00","1","Pending","For Delivery","2023-12-06","0000-00-00 00:00:00","0000-00-00 00:00:00","0000-00-00 00:00:00");
-INSERT INTO transactions VALUES("13","2023-12-05 14:30:55","Timothy John Pulido","2161.00","1","Pending","For Pickup","2023-12-14","0000-00-00 00:00:00","0000-00-00 00:00:00","0000-00-00 00:00:00");
+INSERT INTO transactions VALUES("8","2023-11-27 22:19:41","Ezekiel Griel Tejada","0.00","1","Cancelled","","0000-00-00","2024-05-23 23:47:49","0000-00-00 00:00:00","0000-00-00 00:00:00");
+INSERT INTO transactions VALUES("9","2023-11-28 07:47:21","Rufo Baro","5030.00","1","Completed","For Delivery","2023-12-01","2023-11-08 07:48:19","2023-11-30 09:49:51","0000-00-00 00:00:00");
+INSERT INTO transactions VALUES("10","2023-11-28 08:59:00","Jessie","4980.00","1","Cancelled","For Delivery","2027-12-30","2024-05-17 23:47:43","0000-00-00 00:00:00","0000-00-00 00:00:00");
+INSERT INTO transactions VALUES("11","2023-11-28 09:13:32","Genesis","3050.00","2","Completed","For Pickup","2026-11-30","2023-11-28 09:15:39","2023-11-28 09:17:19","0000-00-00 00:00:00");
+INSERT INTO transactions VALUES("12","2023-11-30 09:50:30","Edelita","2511.00","1","Pending","For Delivery","2023-12-06","2024-05-08 23:47:35","0000-00-00 00:00:00","0000-00-00 00:00:00");
+INSERT INTO transactions VALUES("13","2023-12-05 14:30:55","Timothy John Pulido","2161.00","1","Pending","For Pickup","2023-12-14","2024-05-23 23:47:39","0000-00-00 00:00:00","0000-00-00 00:00:00");
 INSERT INTO transactions VALUES("14","2023-12-06 13:24:37","Reychelle Oler","703.00","1","Completed","For Delivery","2023-12-07","2023-12-06 13:25:21","2023-12-06 13:25:38","0000-00-00 00:00:00");
 INSERT INTO transactions VALUES("15","2023-12-30 19:54:04","Kelvin Jade Barrogo","2581.00","1","Paid","For Delivery","2023-12-31","2023-12-30 19:55:58","0000-00-00 00:00:00","0000-00-00 00:00:00");
-INSERT INTO transactions VALUES("16","2024-05-14 21:24:10","CJ","1124.00","1","Completed","For Pickup","2024-05-23","2024-05-14 21:24:40","2024-05-14 21:24:45","0000-00-00 00:00:00");
+INSERT INTO transactions VALUES("16","2024-05-14 21:24:10","CJ","1124.00","1","Paid","For Pickup","2024-05-23","2024-05-14 21:24:40","2024-05-14 21:24:45","0000-00-00 00:00:00");
+INSERT INTO transactions VALUES("17","2024-05-16 21:02:51","Jsohua","774.00","1","Completed","For Pickup","2024-05-17","2024-05-17 08:45:20","2024-05-17 08:45:31","0000-00-00 00:00:00");
 
 
 
