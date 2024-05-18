@@ -232,14 +232,67 @@ public function topYearlySellingDishes($limit = 5)
     }
 }
 
+// Delivery after 3 days
+public function forDelivery()
+{
+    $today = date('Y-m-d');
+    $threeDaysAfterToday = date('Y-m-d', strtotime('+3 days'));
+   
+    $sql = "SELECT COUNT(*) AS totalForDelivery FROM transactions
+     WHERE status = 'Pending' AND delivery_method = 'For Delivery' AND delivery_date >= '$today' AND delivery_date <= '$threeDaysAfterToday'";
+    $result = mysqli_query($this->con, $sql);
+    if ($result) {
+        $row = mysqli_fetch_assoc($result);
+        return $row['totalForDelivery'];
+    } else {
+        return "Test";
+    }
+}
 
 
 
 
+public function forPickup()
+{
+    $today = date('Y-m-d');
+    $threeDaysAfterToday = date('Y-m-d', strtotime('+3 days'));
+   
+    $sql = "SELECT COUNT(*) AS totalForPickUp FROM transactions
+     WHERE status = 'Pending' AND delivery_method = 'For Pickup' AND delivery_date >= '$today' AND delivery_date <= '$threeDaysAfterToday'";
+    $result = mysqli_query($this->con, $sql);
+    if ($result) {
+        $row = mysqli_fetch_assoc($result);
+        return $row['totalForPickUp'];
+    } else {
+        return "Test";
+    }
+}
 
 
+public function forDeliveryData()
+{
+    $today = date('Y-m-d');
+    $threeDaysAfterToday = date('Y-m-d', strtotime('+3 days'));
+
+    $sql = "SELECT * FROM transactions 
+    WHERE status = 'Pending' AND delivery_method = 'For Delivery' AND delivery_date >= '$today' AND delivery_date <= '$threeDaysAfterToday'
+    LIMIT 3";
+    $result = mysqli_query($this->con, $sql);
+    return $result;
+}
 
 
+public function forPickUpData()
+{
+    $today = date('Y-m-d');
+    $threeDaysAfterToday = date('Y-m-d', strtotime('+3 days'));
+
+    $sql = "SELECT * FROM transactions 
+    WHERE status = 'Pending' AND delivery_method = 'For Pickup' AND delivery_date >= '$today' AND delivery_date <= '$threeDaysAfterToday'
+    LIMIT 3";
+    $result = mysqli_query($this->con, $sql);
+    return $result;
+}
 
 
 
