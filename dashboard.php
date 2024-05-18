@@ -346,6 +346,33 @@ $totalDishedSoldYearly = $db->totalDishedSoldYearly();
           </div>
         </div>
 
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Bar Chart</h5>
+
+              <!-- Bar Chart -->
+              <div id="barChartDishes"></div>
+
+             
+
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         <div class="col-lg-6">
           <div class="card">
@@ -655,6 +682,57 @@ $totalDishedSoldYearly = $db->totalDishedSoldYearly();
     </section>
 
   </main><!-- End #main -->
+
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      $.ajax({
+        url: 'charts/barChartSale.php',
+        method: 'GET',
+        dataType: 'json',
+        success: function(response) {
+          const categories = response.map(dish => dish.dish_name);
+          const data = response.map(dish => parseInt(dish.total_quantity));
+
+          new ApexCharts(document.querySelector("#barChartDishes"), {
+            series: [{
+              data: data
+            }],
+            chart: {
+              type: 'bar',
+              height: 350
+            },
+            plotOptions: {
+              bar: {
+                borderRadius: 4,
+                horizontal: true,
+              }
+            },
+            dataLabels: {
+              enabled: false
+            },
+            xaxis: {
+              categories: categories,
+            }
+          }).render();
+        },
+        error: function(error) {
+          console.error("Error fetching data", error);
+        }
+      });
+    });
+  </script>
+
+
+
+
+
+
+
+
+
+
+
 
 <script>
   // Function to hide all cards and tables
