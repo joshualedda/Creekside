@@ -27,6 +27,10 @@
 
     <section class="section dish">
 
+    <div class="row">
+      <div class="col-md-6">
+
+    
           <div class="card">
             <div class="card-body">
               <div class="row">
@@ -180,6 +184,25 @@
                     </tbody>
                   </table>              
                 </div>
+               
+              
+              </div>
+              </div>
+              </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+<div class="col-md-6">
+                <div class="card">
+            <div class="card-body">
 
                 <div class="col"> <!--Condiments-->
                   <h5 class="card-title">Condiments</h5>
@@ -333,6 +356,12 @@
                 </div>
               </div>
             </div>
+          </div>
+
+          </div>
+          </div>
+
+          <!-- for col-6 -->
           </div>
 
 

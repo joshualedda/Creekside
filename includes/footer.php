@@ -4,11 +4,7 @@
       Copyright &copy; 2023 <strong><span>The Creekside Café</span></strong>. All Rights Reserved
     </div>
     <div class="credits">
-      <!-- All the links in the footer should remain intact. -->
-      <!-- You can delete the links only if you purchased the pro version. -->
-      <!-- Licensing information: https://bootstrapmade.com/license/ -->
-      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-      <b>Developers</b>: Carl Justin B. Arciaga | Bryan O. Ordoño
+   <b>Developers</b>: Carl Justin B. Arciaga | Bryan O. Ordoño
     </div>
   </footer><!-- End Footer -->
 
@@ -16,7 +12,10 @@
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+  
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
   <script src="assets/vendor/chart.js/chart.umd.js"></script>
   <script src="assets/vendor/echarts/echarts.min.js"></script>
   <script src="assets/vendor/quill/quill.min.js"></script>

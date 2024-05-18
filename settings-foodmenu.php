@@ -138,7 +138,7 @@
                     <td><a style="text-transform: capitalize;"><?php echo $name ?></a></td>
                     <td><?php echo $main_ ?></td>
                     <td><?php echo $weight ?></td>
-                    <td><?php echo $price ?></td>
+                    <td>₱ <?php echo number_format($price) ?></td>
             <?php if ($status === 'Available') { ?>
                     <td><font class="badge bg-success rounded-pill"><b><?php echo $status ?></b></font></td> <?php
             } elseif ($status === 'Unavailable') { ?>

@@ -11,7 +11,8 @@ class db
         $this->con = mysqli_connect('localhost', 'root', '', 'creekside') or die(mysqli_error($this->con));
     }
 
-    public function totalSales()
+    // Monthly
+    public function totalTransactionSales()
     {
         // Get the current month
         $currentMonth = date('m');
@@ -63,7 +64,7 @@ class db
     }
 
 
-    public function totalDishedSold()
+    public function totalDishedSoldMonth()
     {
         // Get the current month
         $currentMonth = date('m');
@@ -143,6 +144,180 @@ public function topSellingDishes($limit = 5)
 }
 
     
-   
+
+
+// Weekly
+public function totalTransactionSalesWeekly()
+{
+    // Get the start and end date of the current week
+    $startOfWeek = date('Y-m-d', strtotime('monday this week'));
+    $endOfWeek = date('Y-m-d', strtotime('sunday this week'));
+
+    // Construct the SQL query to count transactions from the current week with status 'Paid' or 'Completed'
+    $sql = "SELECT COUNT(*) AS totalSales FROM transactions WHERE
+        (status = 'Paid' OR status = 'Completed') AND delivery_date BETWEEN '$startOfWeek' AND '$endOfWeek'";
+
+    // Execute the query
+    $result = mysqli_query($this->con, $sql);
+
+    // Check if the query was successful
+    if ($result) {
+        // Fetch the result as an associative array
+        $row = mysqli_fetch_assoc($result);
+        // Return the total sales count
+        return $row['totalSales'];
+    } else {
+        // Return false if there was an error executing the query
+        return false;
+    }
+}
+
+public function totalGrossSalesThisWeek()
+{
+    // Get the start and end date of the current week
+    $startOfWeek = date('Y-m-d', strtotime('monday this week'));
+    $endOfWeek = date('Y-m-d', strtotime('sunday this week'));
+
+    // Construct the SQL query to sum total_price from transactions for the current week with status 'Paid'
+    $sql = "SELECT SUM(total_price) AS totalGrossSales
+        FROM transactions WHERE status = 'Paid' AND delivery_date BETWEEN '$startOfWeek' AND '$endOfWeek'";
+
+    // Execute the query
+    $result = mysqli_query($this->con, $sql);
+
+    // Check if the query was successful
+    if ($result) {
+        // Fetch the result as an associative array
+        $row = mysqli_fetch_assoc($result);
+        // Format the total gross sales to have 2 decimal places
+        $totalGrossSales = number_format($row['totalGrossSales'], 2);
+        // Return the total gross sales
+        return $totalGrossSales;
+    } else {
+        // Return false if there was an error executing the query
+        return false;
+    }
+}
+
+public function totalDishedSoldWeekly()
+{
+    // Get the start and end date of the current week
+    $startOfWeek = date('Y-m-d', strtotime('monday this week'));
+    $endOfWeek = date('Y-m-d', strtotime('sunday this week'));
+
+    // Construct the SQL query to count dishes ordered from the current week with status 'Paid' or 'Completed'
+    $sql = "SELECT COUNT(*) AS totalDishes FROM dishes_ordered 
+            LEFT JOIN transactions ON transactions.trans_id = dishes_ordered.trans_id
+            WHERE (status = 'Paid' OR status = 'Completed') AND delivery_date BETWEEN '$startOfWeek' AND '$endOfWeek'";
+
+    // Execute the query
+    $result = mysqli_query($this->con, $sql);
+
+    // Check if the query was successful
+    if ($result) {
+        // Fetch the result as an associative array
+        $row = mysqli_fetch_assoc($result);
+        // Return the total dishes count
+        return $row['totalDishes'];
+    } else {
+        // Return false if there was an error executing the query
+        return false;
+    }
+}
+
+
+
+// yearly
+
+public function totalTransactionSalesYearly()
+{
+    // Get the current year
+    $currentYear = date('Y');
+
+    // Construct the SQL query to count transactions from the current year with status 'Paid' or 'Completed'
+    $sql = "SELECT COUNT(*) AS totalSales FROM transactions WHERE
+        (status = 'Paid' OR status = 'Completed') AND YEAR(delivery_date) = $currentYear";
+
+    // Execute the query
+    $result = mysqli_query($this->con, $sql);
+
+    // Check if the query was successful
+    if ($result) {
+        // Fetch the result as an associative array
+        $row = mysqli_fetch_assoc($result);
+        // Return the total sales count
+        return $row['totalSales'];
+    } else {
+        // Return false if there was an error executing the query
+        return false;
+    }
+}
+
+public function totalGrossSalesThisYear()
+{
+    // Get the current year
+    $currentYear = date('Y');
+
+    // Construct the SQL query to sum total_price from transactions for the current year with status 'Paid'
+    $sql = "SELECT SUM(total_price) AS totalGrossSales
+        FROM transactions WHERE status = 'Paid' AND YEAR(delivery_date) = $currentYear";
+
+    // Execute the query
+    $result = mysqli_query($this->con, $sql);
+
+    // Check if the query was successful
+    if ($result) {
+        // Fetch the result as an associative array
+        $row = mysqli_fetch_assoc($result);
+        // Format the total gross sales to have 2 decimal places
+        $totalGrossSales = number_format($row['totalGrossSales'], 2);
+        // Return the total gross sales
+        return $totalGrossSales;
+    } else {
+        // Return false if there was an error executing the query
+        return false;
+    }
+}
+
+public function totalDishedSoldYearly()
+{
+    // Get the current year
+    $currentYear = date('Y');
+
+    // Construct the SQL query to count dishes ordered from the current year with status 'Paid' or 'Completed'
+    $sql = "SELECT COUNT(*) AS totalDishes FROM dishes_ordered 
+            LEFT JOIN transactions ON transactions.trans_id = dishes_ordered.trans_id
+            WHERE (status = 'Paid' OR status = 'Completed') AND YEAR(delivery_date) = $currentYear";
+
+    // Execute the query
+    $result = mysqli_query($this->con, $sql);
+
+    // Check if the query was successful
+    if ($result) {
+        // Fetch the result as an associative array
+        $row = mysqli_fetch_assoc($result);
+        // Return the total dishes count
+        return $row['totalDishes'];
+    } else {
+        // Return false if there was an error executing the query
+        return false;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 ?>

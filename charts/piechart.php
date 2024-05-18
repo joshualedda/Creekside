@@ -5,6 +5,7 @@ $conn = new db;
 // Get the selected year and month from the AJAX request
 $startYear = isset($_GET['startYear']) ? intval($_GET['startYear']) : null;
 $endYear = isset($_GET['endYear']) ? intval($_GET['endYear']) : null;
+
 $selectedMonth = isset($_GET['month']) ? intval($_GET['month']) : null;
 
 

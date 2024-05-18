@@ -4,21 +4,21 @@ document.addEventListener("DOMContentLoaded", () => {
   
   async function fetchDataAndUpdateChart() {
     try {
-      const selectedYear = document.getElementById('yearOffense').value;
-      const selectedMonth = document.getElementById('monthlyTransaction').value;
+        const selectedYear = document.getElementById('yearOffense').value;
+        const selectedMonth = document.getElementById('monthlyTransaction').value;
 
-  
-      const startYear = parseInt(selectedYear.split('-')[0]);
-      const endYear = startYear + 1;
-  
-      const response = await fetch(`charts/piechart.php?startYear=${startYear}&endYear=${endYear}&month=${selectedMonth}`);
-      const data = await response.json();
-  
-      updatePieChart(data);
+        const startYear = parseInt(selectedYear.split('-')[0]);
+        const endYear = startYear + 1;
+
+        const response = await fetch(`charts/piechart.php?startYear=${startYear}&endYear=${endYear}&month=${selectedMonth}`);
+        const data = await response.json();
+
+        updatePieChart(data);
     } catch (error) {
-      console.error('Error fetching data:', error);
+        console.error('Error fetching data:', error);
     }
-  }
+}
+
   function updatePieChart(data) {
     const existingChart = Chart.getChart('pieChartOffense');
   

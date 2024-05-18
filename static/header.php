@@ -1,7 +1,6 @@
 
-
   <!-- ======= Header ======= -->
-  <header id="header" class="header fixed-top d-flex align-items-center">
+<header id="header" class="header fixed-top d-flex align-items-center">
     <title>The Creekside Cafè</title>
     <div class="d-flex align-items-center justify-content-between">
       <a href="dashboard.php" class="logo d-flex align-items-center">
