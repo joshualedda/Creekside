@@ -71,7 +71,7 @@
                 <thead>
                   <tr>
                     <!-- <th scope="col">#</th> -->
-                    <th scope="col">Date & Time</th>
+                    <th scope="col">Date</th>
                     <th scope="col">Customer Name</th>
                     <th scope="col">Transaction Attendant</th>
                     <th scope="col">Total Price (₱)</th>
@@ -85,7 +85,8 @@
 
     $username = $_SESSION['username'];
     $user_id = $_SESSION['user_id'];
-    $query = "SELECT transactions.*, concat(users.fname,' ',users.lname) as attendant FROM `transactions` LEFT JOIN `users` ON transactions.user_id = users.user_id ORDER BY date DESC";
+    $query = "SELECT transactions.*, concat(users.fname,' ',users.lname) as attendant FROM `transactions` LEFT JOIN `users` ON
+     transactions.user_id = users.user_id ORDER BY date DESC";
     $result = $con->query($query);
     // $x = 1;
 
@@ -99,10 +100,15 @@
         $status = $row['status'];?>
                   <tr>
                     <!-- <td><?php echo $x++ ?></td> -->
-                    <td><?php echo $date ?></td>
+                  <td><?php echo date('F j, Y', strtotime($date)); ?></td>
+
                     <td><?php echo $customer ?></td>
                     <td><?php echo $attendant ?></td>
-                    <td style="text-align: right;"><?php echo $total_price ?></td>
+
+                    <td>₱ <?php echo number_format($total_price, 2); ?></td>
+
+
+
             <?php if ($status === 'Completed') { ?>
                     <td><font class="badge bg-success rounded-pill"><b><?php echo $status ?></b></font></td>
             <?php

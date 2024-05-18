@@ -488,7 +488,7 @@ $totalDishedSoldYearly = $db->totalDishedSoldYearly();
                         </thead>
                         <tbody>
                           <?php
-                          $result = $db->transactionsThisWeek();
+                          $result = $db->transactionsThisMonth();
                           if ($result) {
                             $counter = 1;
                             while ($row = mysqli_fetch_array($result)) {
@@ -529,7 +529,7 @@ $totalDishedSoldYearly = $db->totalDishedSoldYearly();
                         </thead>
                         <tbody>
                           <?php
-                          $result = $db->topWeeklySellingDishes();
+                          $result = $db->topMonthlySellingDishes();
                           if ($result) {
                             $counter = 1;
                             foreach ($result as $row) {
@@ -582,7 +582,7 @@ $totalDishedSoldYearly = $db->totalDishedSoldYearly();
                         </thead>
                         <tbody>
                           <?php
-                          $result = $db->transactionsThisWeek();
+                          $result = $db->transactionsThisYear();
                           if ($result) {
                             $counter = 1;
                             while ($row = mysqli_fetch_array($result)) {
@@ -623,7 +623,7 @@ $totalDishedSoldYearly = $db->totalDishedSoldYearly();
                         </thead>
                         <tbody>
                           <?php
-                          $result = $db->topWeeklySellingDishes();
+                          $result = $db->topYearlySellingDishes();
                           if ($result) {
                             $counter = 1;
                             foreach ($result as $row) {

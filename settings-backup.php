@@ -108,7 +108,7 @@ if (isset($_POST['restore'])) {
         <h1>Back Up</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="../admin/dashboard.php">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
                 <li class="breadcrumb-item">Back Up</li>
             </ol>
         </nav>

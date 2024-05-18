@@ -107,15 +107,21 @@ $formattedDate = $newDate->format("M. j, Y");
 ?>
                   <tr>
                     <!-- <td><?php echo $x++ ?></td> -->
-                    <td><?php echo $date ?></td>
+                    <td><?php echo date('F j, Y', strtotime($date)); ?></td>
+
+
                     <td><?php echo $customer ?></td>
                     <td><?php echo $attendant ?></td>
-                    <!-- <td><?php echo $total_price ?></td> -->
+               
+
+
                     <?php if ($total_price == '0.00') { ?>
                       <td></td>
                     <?php } else { ?>
-                    <td><?php echo $total_price ?></td>
+                    <td>₱ <?php echo $total_price ?></td>
                     <?php } ?>
+
+
                     <?php if ($delivery_date == '0000-00-00' || $delivery_date == NULL) { ?>
                       <td></td>
                     <?php } else { ?>

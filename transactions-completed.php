@@ -103,10 +103,13 @@
         $status = $row['status'];?>
                   <tr>
                     <!-- <td><?php echo $x++ ?></td> -->
-                    <td><?php echo $date ?></td>
+                    <td><?php echo date('F j, Y', strtotime($date)); ?></td>
+
+
                     <td><?php echo $customer ?></td>
                     <td><?php echo $attendant ?></td>
-                    <td><?php echo $total_price ?></td>
+                    <td>₱ <?php echo number_format($total_price, 2); ?></td>
+
                     <!-- <td><b><?php echo $delivery_method ?></b> on <?php echo $delivery_date ?></td> -->
                     <td><?php echo $date_delivered ?></td>
                     <td><font class="badge bg-success rounded-pill"><b><?php echo $status ?></b></font></td>
