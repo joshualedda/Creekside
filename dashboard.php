@@ -751,7 +751,7 @@ $forPickup = $db->forPickup();
                   <div class="card recent-sales overflow-auto">
                     <div class="card-body">
                       <h5 class="card-title">For Delivery</h5>
-                      <table class="table table-borderless datatable">
+                      <table class="table table-borderless ">
                         <thead>
                           <tr>
                             <th scope="col">#</th>
