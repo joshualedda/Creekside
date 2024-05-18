@@ -61,12 +61,6 @@ $totalDishedSoldYearly = $db->totalDishedSoldYearly();
 
 <div class="row">
 
-      
-
-
-
-
-
         
 <div id="weekly">
 
@@ -106,9 +100,8 @@ $totalDishedSoldYearly = $db->totalDishedSoldYearly();
       </div>
     </div>
   </div>
-</div><!-- End Sales Card -->
+</div>
 
-<!-- Dishes Card -->
 <div class="col-xxl-4 col-md-4">
   <div class="card info-card sales-card">
     <div class="card-body">
