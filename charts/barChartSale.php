@@ -1,19 +1,40 @@
 <?php
-include "../controllers/Index.php";
-$conn = new db();
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-$sql = "SELECT dish_name, SUM(quantity) as total_quantity FROM dishes_ordered GROUP BY dish_name ORDER BY total_quantity DESC LIMIT 10";
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "creekside";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Assuming you have a `dish_name` column. Adjust the query if needed.
+$sql = "SELECT dish_id, SUM(quantity) as total_quantity, SUM(subtotal) as total_subtotal 
+        FROM dishes_ordered 
+        GROUP BY dish_id 
+        ORDER BY total_subtotal DESC 
+        LIMIT 10";
 $result = $conn->query($sql);
 
 $data = array();
 
-if ($result->num_rows > 0) {
-    while ($row = mysqli_fetch_assoc($result)) {
-        $data[] = $row;
+if ($result) {
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $data[] = $row;
+        }
+    } else {
+        $data = ["message" => "No results found"];
     }
 } else {
-    echo json_encode(["message" => "0 results"]);
-    exit;
+    $data = ["message" => "Query failed: " . $conn->error];
 }
 
 $conn->close();

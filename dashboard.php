@@ -684,13 +684,19 @@ $totalDishedSoldYearly = $db->totalDishedSoldYearly();
   </main><!-- End #main -->
 
 
+  
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       $.ajax({
-        url: 'charts/barChartSale.php',
+        url: 'charts/barChartSale.php', // Adjust the path if needed
         method: 'GET',
         dataType: 'json',
         success: function(response) {
+          if (response.message) {
+            console.error(response.message);
+            return;
+          }
+
           const categories = response.map(dish => dish.dish_name);
           const data = response.map(dish => parseInt(dish.total_quantity));
 
@@ -722,6 +728,7 @@ $totalDishedSoldYearly = $db->totalDishedSoldYearly();
       });
     });
   </script>
+  
 
 
 
@@ -731,7 +738,7 @@ $totalDishedSoldYearly = $db->totalDishedSoldYearly();
 
 
 
-
+</body>
 
 
 <script>
