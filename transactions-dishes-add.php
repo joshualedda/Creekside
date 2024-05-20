@@ -4,6 +4,9 @@ include('connection.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Retrieve data from the form
+
+
+    $address = $_POST['address'];
     $trans_id = $_POST['trans_id'];
     $order_details_json = $_POST['order_details'];
     $delivery_method = $_POST['delivery_method'];
@@ -24,7 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $transactionQuery = "UPDATE transactions 
                          SET delivery_method = '$delivery_method', 
                              delivery_date = '$delivery_date',
-                             total_price = '$total_price'
+                             total_price = '$total_price',
+                             address = '$address'
                          WHERE trans_id = $trans_id";
 
 //for transation logs

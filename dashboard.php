@@ -19,6 +19,10 @@ $totalDishedSoldWeekly = $db->totalDishedSoldWeekly();
 $totalTransactionSalesYearly = $db->totalTransactionSalesYearly();
 $totalGrossSalesThisYear = $db->totalGrossSalesThisYear();
 $totalDishedSoldYearly = $db->totalDishedSoldYearly();
+
+//Deliver
+$forDelivery = $db->forDelivery();
+$forPickup = $db->forPickup();
 ?>
 
 
@@ -48,7 +52,23 @@ $totalDishedSoldYearly = $db->totalDishedSoldYearly();
     </div><!-- End Page Title -->
 
     <section class="section dashboard">
+    <div class="alert alert-primary" role="alert">
+ <table>
+  <tbody>
 
+  <tr>
+    <td>
+      sample
+    </td>
+    <td>sample</td>
+    <td>sample</td>
+    <td>sample</td>
+    <td>sample</td>
+  </tr>
+  </tbody>
+
+ </table>
+</div>
 
       <div class="col-md-2 my-2">
         <select class="form-select" id="cardSelector" aria-label="Time selection">
@@ -57,6 +77,52 @@ $totalDishedSoldYearly = $db->totalDishedSoldYearly();
           <option value="yearly">Yearly</option>
         </select>
       </div>
+
+
+
+
+
+      <div class="row">
+
+<div class="col-xxl-6 col-md-6">
+  <div class="card info-card orders-card">
+    <div class="card-body">
+      <h5 class="card-title">For Delivery </h5>
+
+      <div class="d-flex align-items-center">
+        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+          <i class="bi bi-cart3"></i>
+        </div>
+        <div class="ps-3" id="transactions">
+          <h6><?= $forDelivery ?></h6>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="col-xxl-6 col-md-6">
+  <div class="card info-card orders-card">
+    <div class="card-body">
+      <h5 class="card-title">For Pick Up</h5>
+
+      <div class="d-flex align-items-center">
+        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+          <i class="bi bi-cart3"></i>
+        </div>
+        <div class="ps-3" id="transactions">
+          <h6><?= $forPickup ?></h6>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      </div>
+
+
+
+
 
 
       <div class="row">
@@ -82,6 +148,7 @@ $totalDishedSoldYearly = $db->totalDishedSoldYearly();
                 </div>
               </div>
             </div>
+
 
             <!-- Sales Card -->
             <div class="col-xxl-4 col-md-4">
@@ -345,6 +412,33 @@ $totalDishedSoldYearly = $db->totalDishedSoldYearly();
             </div>
           </div>
         </div>
+
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Bar Chart</h5>
+
+              <!-- Bar Chart -->
+              <div id="barChartDishes"></div>
+
+             
+
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -716,6 +810,104 @@ $totalDishedSoldYearly = $db->totalDishedSoldYearly();
 
         </div>
 
+
+<!-- for pick up -->
+            <div class="col-lg-6">
+              <div class="row">
+                <div class="col-12">
+                  <div class="card recent-sales overflow-auto">
+                    <div class="card-body">
+                      <h5 class="card-title">For Delivery</h5>
+                      <table class="table table-borderless ">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Customer</th>
+                            <th scope="col">Total Price</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Manage</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <?php
+                          $result = $db->forDeliveryData();
+                          if ($result) {
+                            $counter = 1;
+                            while ($row = mysqli_fetch_array($result)) {
+                              echo '<tr>';
+                              echo '<td>' . $counter++ . '</td>';
+                              echo '<td>' . $row['customer'] . '</td>';
+                              echo '<td>' . $row['total_price'] . '</td>';
+                              echo '<td>' . $row['delivery_method'] . '</td>';
+                              echo '<td><button type="button" class="btn btn-2 btn-sm">View</button></td>';
+                              echo '</tr>';
+                            }
+                          } else {
+                            echo '<tr><td colspan="4">No transactions found for this week.</td></tr>';
+                          }
+                          ?>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+            <div class="col-lg-6">
+              <div class="row">
+                <div class="col-12">
+                  <div class="card recent-sales overflow-auto">
+                    <div class="card-body">
+                      <h5 class="card-title">For Pick Up</h5>
+                      <table class="table table-borderless ">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Customer</th>
+                            <th scope="col">Total Price</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Manage</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <?php
+                          $result = $db->forPickUpData();
+                          if ($result) {
+                            $counter = 1;
+                            while ($row = mysqli_fetch_array($result)) {
+                              echo '<tr>';
+                              echo '<td>' . $counter++ . '</td>';
+                              echo '<td>' . $row['customer'] . '</td>';
+                              echo '<td>' . $row['total_price'] . '</td>';
+                              echo '<td>' . $row['delivery_method'] . '</td>';
+                              echo '<td><button type="button" class="btn btn-2 btn-sm">View</button></td>';
+
+                              echo '</tr>';
+                            }
+                          } else {
+                            echo '<tr><td colspan="4">No transactions found for this week.</td></tr>';
+                          }
+                          ?>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+
+
+
+
+
       </div>
 
 
@@ -817,6 +1009,64 @@ function updateProductPieChart(data) {
 
 
   
+
+
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      $.ajax({
+        url: 'charts/barChartSale.php', // Adjust the path if needed
+        method: 'GET',
+        dataType: 'json',
+        success: function(response) {
+          if (response.message) {
+            console.error(response.message);
+            return;
+          }
+
+          const categories = response.map(dish => dish.dish_name);
+          const data = response.map(dish => parseInt(dish.total_quantity));
+
+          new ApexCharts(document.querySelector("#barChartDishes"), {
+            series: [{
+              data: data
+            }],
+            chart: {
+              type: 'bar',
+              height: 350
+            },
+            plotOptions: {
+              bar: {
+                borderRadius: 4,
+                horizontal: true,
+              }
+            },
+            dataLabels: {
+              enabled: false
+            },
+            xaxis: {
+              categories: categories,
+            }
+          }).render();
+        },
+        error: function(error) {
+          console.error("Error fetching data", error);
+        }
+      });
+    });
+  </script>
+  
+
+
+
+
+
+
+
+
+
+</body>
+
 
 <script>
   // Function to hide all cards and tables

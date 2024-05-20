@@ -13,7 +13,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.js"></script>
 </head>
-
+<style>
+.subtotal-cell {
+    text-align: right !important;
+    margin-right: 50px !important;
+}
+</style>
 <body>
 
     <main id="main" class="main">
@@ -293,9 +298,11 @@
 
                 cell1.innerHTML = data[i].date;
                 cell2.innerHTML = data[i].dish_name;
-                cell3.innerHTML = "₱ " + parseFloat(data[i].price).toFixed(2); // Include peso sign for price
+                cell3.innerHTML = "₱" + parseFloat(data[i].price).toFixed(2); // Include peso sign for price
                 cell4.innerHTML = data[i].quantity;
-                cell5.innerHTML = "₱ " + parseFloat(data[i].subtotal).toFixed(2);
+                cell5.innerHTML = "₱" + parseFloat(data[i].subtotal).toFixed(2);
+
+                cell5.classList.add('subtotal-cell');
 
                 totalQuantity += parseInt(data[i].quantity);
                 totalSubtotal += parseFloat(data[i].subtotal);

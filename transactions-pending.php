@@ -76,6 +76,8 @@
                     <th scope="col">Attendant</th>
                     <th scope="col">Total Price (₱)</th>
                     <th scope="col">Delivery Method</th>
+                    <th scope="col">Delivery Address</th>
+
                     <th scope="col">Status</th>
                     <th scope="col">Actions</th>
                   </tr>
@@ -98,6 +100,8 @@
         $date = $row['date'];
         $delivery_date = $row['delivery_date'];
         $delivery_method = $row['delivery_method'];
+
+        $address = $row['address'];
         $status = $row['status'];?>
 
 <?php
@@ -127,6 +131,8 @@ $formattedDate = $newDate->format("M. j, Y");
                     <?php } else { ?>
                     <td><?php echo $delivery_method; echo ' on '; echo $formattedDate ?></td>
                     <?php } ?>
+
+                    <td><?=$address  ?></td>
                     <?php if ($status == 'Pending') { ?>
                     <td><font class="badge bg-warning rounded-pill"><b><?php echo $status ?></b></font></td> 
                     <?php
@@ -254,7 +260,8 @@ $formattedDate = $newDate->format("M. j, Y");
                                                   $subtotal = $row['subtotal'];
                                                   $total_price = $row['total_price'];
                                                   $delivery_method = $row['delivery_method'];
-                                                  $delivery_date = $row['delivery_date']; ?>
+                                                  $delivery_date = $row['delivery_date']; 
+                                                  $address = $row['address']; ?>
 
                                                   <tr data-dish-id="<?php echo $dish_id ?>">
                                                     <td><button class="badge btn btn-danger removeRow"><i class="bi bi-x-square"></i></button></td>
@@ -283,25 +290,55 @@ $formattedDate = $newDate->format("M. j, Y");
                                           </div>
                                         </div>
                                         <hr>
+
+
+
                                         <div class="row">
-                                          <div class="col">
-                                            <select name="delivery_method" id="delivery_method" class="form-select" required>
-                                              <option value="" selected disabled>Select method</option>
-                                              <option value="For Pickup">For Pickup</option>
-                                              <option value="For Delivery">For Delivery</option>
-                                            </select>
+                                <div class="col">
+                                  <label for="delivery_method">Delivery Method</label>
+                                  <select name="delivery_method" id="delivery_method" class="form-select" required>
+                                    <option value="" <?php if(empty($delivery_method)) echo 'selected disabled'; ?>>Select method</option>
+                                    <option value="For Pickup" <?php if($delivery_method === "For Pickup") echo 'selected'; ?>>For Pickup</option>
+                                    <option value="For Delivery" <?php if($delivery_method === "For Delivery") echo 'selected'; ?>>For Delivery</option>
+                                  </select>
+                                </div>
+                              </div>
+
+
+
+                              <div class="col" id="address" style="display: none;">
+                                  <label for="">Address</label>
+                                            <input type="text" class="form-control" name="address" value="<?=$address ?>"/>
                                           </div>
+
+
+
+
+                                   
+
+
+
+
+
+
+
+
                                           <div class="col"></div>
                                           <div class="col-auto">
                                             <label class="col-form-label">Pickup/Delivery Date:</label>
                                           </div>
                                           <div class="col-3">
-                                            <input name="delivery_date" type="date" class="form-control" value="<?php echo $delivery_date ?>" required>
+                                          <input name="delivery_date" type="date" class="form-control" value="<?php echo $delivery_date ?>" min="<?php echo date('Y-m-d'); ?>" required>
+
                                           </div>
                                         </div>
                                       </div>
-                                    </div>
-                                  </div>
+                             
+
+
+                          
+
+                                          </div>
                                 </div>
 
                               </div>
@@ -375,7 +412,7 @@ $formattedDate = $newDate->format("M. j, Y");
                                   <div class="col-auto">
                                     <label class="col-form-label"><b>Total Price (₱):</b></label>
                                   </div>
-                                  <div class="col-auto">
+                                  <div class-auto">
                                     <label class="col-form-label"><?php echo $total_price ?></label>
                                   </div>
                                   <div class="col-auto"></div>
@@ -483,6 +520,40 @@ $formattedDate = $newDate->format("M. j, Y");
   </main><!-- End #main -->
 
 <?php include 'includes/footer.php'; ?>
+
+
+
+
+
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const deliveryMethodSelect = document.getElementById('delivery_method');
+    const addressInputDiv = document.getElementById('address');
+
+    // Function to show or hide the address input based on the selected delivery method
+    function toggleAddressInput() {
+      if (deliveryMethodSelect.value === 'For Delivery') {
+        addressInputDiv.style.display = 'block';
+      } else {
+        addressInputDiv.style.display = 'none';
+      }
+    }
+
+    // Execute the function on page load
+    toggleAddressInput();
+
+    // Event listener for the change event on the delivery method select
+    deliveryMethodSelect.addEventListener('change', toggleAddressInput);
+  });
+</script>
+
+
+
+
+
+
 
 <!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> -->
 <script src="assets/js/jquery.min.js"></script>
