@@ -347,6 +347,73 @@ $totalDishedSoldYearly = $db->totalDishedSoldYearly();
         </div>
 
 
+
+        <div class="col-lg-6">
+          <div class="card ">
+            <div class="card-body my-1">
+
+
+              <div class="row">
+                <div class="col-lg-4">
+                  <h5 class="card-title">Product Usage</h5>
+                </div>
+                <div class="col-lg-8 d-flex align-items-center justify-content-end my-3">
+                  <div class="me-3">
+                    <select class="form-select" id="yearProduct" aria-label="Year selection" onchange="fetchDataAndUpdateProductChart()">
+                      <?php
+                      $currentYear = date('Y');
+                      $startYear = 2023;
+                      $endYear = 2030;
+
+                      $years = range($startYear, $endYear);
+
+                      foreach ($years as $year) {
+                        $selected = ($year == $currentYear) ? 'selected' : '';
+                        echo "<option value=\"$year\" $selected>$year</option>";
+                      }
+                      ?>
+                    </select>
+
+                  </div>
+                  <div>
+                    <select class="form-select monthly-select" id="monthlyProduct" aria-label="Month selection" onchange="fetchDataAndUpdateProductChart()">
+                      <?php
+                      $currentMonth = date('m');
+                      $months = [
+                        'January' => '01',
+                        'February' => '02',
+                        'March' => '03',
+                        'April' => '04',
+                        'May' => '05',
+                        'June' => '06',
+                        'July' => '07',
+                        'August' => '08',
+                        'September' => '09',
+                        'October' => '10',
+                        'November' => '11',
+                        'December' => '12'
+                      ];
+
+                      foreach ($months as $month => $value) {
+                        $selected = ($value === $currentMonth) ? 'selected' : '';
+                        echo "<option value=\"$value\" $selected>$month</option>";
+                      }
+                      ?>
+                    </select>
+
+
+                  </div>
+                </div>
+              </div>
+
+              <canvas id="pieChartProduct" style="max-height: 350px;"></canvas>
+
+
+            </div>
+          </div>
+        </div>
+
+
         <div class="col-lg-6">
           <div class="card">
             <div class="card-body">
@@ -654,7 +721,102 @@ $totalDishedSoldYearly = $db->totalDishedSoldYearly();
 
     </section>
 
-  </main><!-- End #main -->
+  </main>
+
+
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+  fetchDataAndUpdateProductChart();
+});
+
+async function fetchDataAndUpdateProductChart() {
+  try {
+    const selectedYear = document.getElementById('yearProduct').value;
+    const selectedMonth = document.getElementById('monthlyProduct').value;
+
+    const startYear = parseInt(selectedYear.split('-')[0]);
+    const endYear = startYear + 1;
+
+    const response = await fetch(`charts/productPieChart.php?startYear=${startYear}&endYear=${endYear}&month=${selectedMonth}`);
+    const data = await response.json();
+
+    updateProductPieChart(data);
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+}
+
+function updateProductPieChart(data) {
+  const existingChartProduct = Chart.getChart('pieChartProduct');
+
+  if (existingChartProduct) {
+    existingChartProduct.destroy();
+  }
+
+  if (!data.data || !Array.isArray(data.data)) {
+    console.error('Invalid data format:', data);
+    return;
+  }
+
+  const colors = [
+    'rgba(255, 99, 132, 0.6)',
+    'rgba(54, 162, 235, 0.6)',
+    'rgba(255, 206, 86, 0.6)',
+    'rgba(75, 192, 192, 0.6)',
+    'rgba(153, 102, 255, 0.6)',
+    'rgba(255, 159, 64, 0.6)',
+    'rgba(255, 0, 255, 0.6)',
+    'rgba(0, 255, 0, 0.6)',
+    'rgba(128, 128, 128, 0.6)',
+    'rgba(0, 0, 255, 0.6)',
+    'rgba(255, 0, 0, 0.6)',
+    'rgba(0, 255, 255, 0.6)',
+    'rgba(255, 255, 0, 0.6)',
+    'rgba(128, 0, 128, 0.6)',
+    'rgba(0, 128, 128, 0.6)'
+  ];
+
+  const total = data.data.reduce((sum, item) => sum + item.value, 0);
+
+  new Chart(document.querySelector('#pieChartProduct'), {
+    type: 'pie',
+    data: {
+      labels: data.data.map(item => item.label),
+      datasets: [{
+        label: 'Products',
+        data: data.data.map(item => item.value),
+        backgroundColor: colors,
+        hoverOffset: 4
+      }]
+    },
+    options: {
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              const label = context.label || '';
+              const value = context.raw || 0;
+              const percentage = ((value / total) * 100).toFixed(2);
+              return `${label}: ${value} (${percentage}%)`;
+            }
+          }
+        }
+      }
+    }
+  });
+}
+</script>
+
+</script>
+
+
+
+
+
+
+  
 
 <script>
   // Function to hide all cards and tables
@@ -687,9 +849,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 </script>
-
-
-
 
 
 
