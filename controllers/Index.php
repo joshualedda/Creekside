@@ -57,7 +57,7 @@ class db
     {
         $startOfWeek = date('Y-m-d', strtotime('monday this week'));
         $endOfWeek = date('Y-m-d', strtotime('sunday this week'));
-        $sql = "SELECT * FROM transactions WHERE delivery_date BETWEEN '$startOfWeek' AND '$endOfWeek'";
+        $sql = "SELECT * FROM transactions WHERE date BETWEEN '$startOfWeek' AND '$endOfWeek' ORDER BY date DESC LIMIT 5";
         $result = mysqli_query($this->con, $sql);
         return $result;
     }
@@ -65,10 +65,12 @@ class db
     public function topWeeklySellingDishes($limit = 5)
     {
         $sql = "SELECT dishes.dish_name, SUM(dishes_ordered.subtotal) AS total_sales 
-                FROM dishes_ordered JOIN dishes ON dishes_ordered.dish_id = dishes.dish_id 
+                FROM dishes_ordered 
+                JOIN dishes ON dishes_ordered.dish_id = dishes.dish_id 
                 JOIN transactions ON dishes_ordered.trans_id = transactions.trans_id 
                 WHERE transactions.status IN ('Paid', 'Completed') 
-                GROUP BY dishes_ordered.dish_id, WEEK(transactions.date_paid) 
+                AND WEEK(transactions.date_paid) = WEEK(CURDATE()) -- Filter transactions within current week
+                GROUP BY dishes_ordered.dish_id
                 ORDER BY total_sales DESC LIMIT $limit";
         $result = mysqli_query($this->con, $sql);
         if ($result) {
@@ -81,6 +83,7 @@ class db
             return false;
         }
     }
+
 
     // Weekly
     public function totalTransactionSalesWeekly()
@@ -176,21 +179,21 @@ class db
         $currentDate = date('Y-m-d');
         $startOfMonth = date('Y-m-01');
         $endOfMonth = date('Y-m-t');
-        $sql = "SELECT * FROM transactions WHERE delivery_date BETWEEN '$startOfMonth' AND '$endOfMonth'";
+        $sql = "SELECT * FROM transactions WHERE date BETWEEN '$startOfMonth' AND '$endOfMonth' ORDER BY date DESC LIMIT 5";
         $result = mysqli_query($this->con, $sql);
         return $result;
     }
 
     public function topMonthlySellingDishes($limit = 5)
     {
-        $sql = "SELECT dishes.dish_name, SUM(dishes_ordered.subtotal) AS total_sales
-            FROM dishes_ordered
-            JOIN dishes ON dishes_ordered.dish_id = dishes.dish_id
-            JOIN transactions ON dishes_ordered.trans_id = transactions.trans_id
-            WHERE transactions.status = 'Paid' OR transactions.status = 'Completed'
-            GROUP BY YEAR(transactions.delivery_date), MONTH(transactions.delivery_date)
-            ORDER BY total_sales DESC
-            LIMIT $limit";
+        $sql = "SELECT dishes.dish_name, SUM(dishes_ordered.subtotal) AS total_sales 
+                FROM dishes_ordered 
+                JOIN dishes ON dishes_ordered.dish_id = dishes.dish_id 
+                JOIN transactions ON dishes_ordered.trans_id = transactions.trans_id 
+                WHERE transactions.status IN ('Paid', 'Completed') 
+                AND MONTH(transactions.date_paid) = MONTH(CURDATE()) -- Filter transactions within current week
+                GROUP BY dishes_ordered.dish_id
+                ORDER BY total_sales DESC LIMIT $limit";
         $result = mysqli_query($this->con, $sql);
         if ($result) {
             $topSellingDishes = [];
@@ -210,21 +213,22 @@ class db
         $currentYear = date('Y');
         $startOfYear = date('Y-01-01');
         $endOfYear = date('Y-12-31');
-        $sql = "SELECT * FROM transactions WHERE delivery_date BETWEEN '$startOfYear' AND '$endOfYear'";
+        $sql = "SELECT * FROM transactions WHERE date BETWEEN '$startOfYear' AND '$endOfYear' ORDER BY date DESC LIMIT 5";
         $result = mysqli_query($this->con, $sql);
         return $result;
     }
 
     public function topYearlySellingDishes($limit = 5)
     {
-        $sql = "SELECT dishes.dish_name, SUM(dishes_ordered.quantity) AS total_quantity
-            FROM dishes_ordered
-            JOIN dishes ON dishes_ordered.dish_id = dishes.dish_id
-            JOIN transactions ON dishes_ordered.trans_id = transactions.trans_id
-            WHERE transactions.status = 'Paid' OR transactions.status = 'Completed'
-            GROUP BY YEAR(transactions.delivery_date)
-            ORDER BY total_quantity DESC
-            LIMIT $limit";
+        $sql = "SELECT dishes.dish_name, SUM(dishes_ordered.subtotal) AS total_sales 
+                FROM dishes_ordered 
+                JOIN dishes ON dishes_ordered.dish_id = dishes.dish_id 
+                JOIN transactions ON dishes_ordered.trans_id = transactions.trans_id 
+                WHERE transactions.status IN ('Paid', 'Completed') 
+                AND YEAR(transactions.date_paid) = YEAR(CURDATE()) -- Filter transactions within current week
+                GROUP BY dishes_ordered.dish_id
+                ORDER BY total_sales DESC LIMIT $limit";
+
         $result = mysqli_query($this->con, $sql);
         if ($result) {
             $topSellingDishes = [];

@@ -574,8 +574,8 @@ $forPickup = $db->forPickup();
           <div class="card">
             <div class="card-body">
               <div class="row">
-                <div class="col-lg-4">
-                  <h5 class="card-title">Highest to Lowest</h5>
+                <div class="card-body">
+                  <h5 class="card-title">Highest Sales <span>| This Week</span></h5>
                 </div>
 
               </div>
@@ -590,8 +590,8 @@ $forPickup = $db->forPickup();
           <div class="card">
             <div class="card-body">
               <div class="row">
-                <div class="col-lg-4">
-                  <h5 class="card-title">Lowest to Highest</h5>
+                <div class="card-body">
+                  <h5 class="card-title">Lowest Sales <span>| This Week</span></h5>
                 </div>
 
               </div>
@@ -632,7 +632,7 @@ $forPickup = $db->forPickup();
                 <div class="card recent-sales overflow-auto">
                   <div class="card-body">
                     <h5 class="card-title">Recent Sales <span>| This Week</span></h5>
-                    <table class="table table-borderless datatable">
+                    <table class="table table-borderless table-hover ">
                       <thead>
                         <tr>
                           <th scope="col">#</th>
@@ -674,12 +674,12 @@ $forPickup = $db->forPickup();
                 <div class="card recent-sales overflow-auto">
                   <div class="card-body">
                     <h5 class="card-title">Top Selling <span>| This Week</span></h5>
-                    <table class="table table-borderless datatable">
+                    <table class="table table-borderless table-hover ">
                       <thead>
                         <tr>
                           <th scope="col">#</th>
                           <th scope="col">Dish Name</th>
-                          <th scope="col">Total Quantity</th>
+                          <th scope="col">Total Sales</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -719,7 +719,7 @@ $forPickup = $db->forPickup();
                 <div class="card recent-sales overflow-auto">
                   <div class="card-body">
                     <h5 class="card-title">Recent Sales <span>| This Month</span></h5>
-                    <table class="table table-borderless datatable">
+                    <table class="table table-borderless  table-hover">
                       <thead>
                         <tr>
                           <th scope="col">#</th>
@@ -761,7 +761,7 @@ $forPickup = $db->forPickup();
                 <div class="card recent-sales overflow-auto">
                   <div class="card-body">
                     <h5 class="card-title">Top Selling <span>| This Month</span></h5>
-                    <table class="table table-borderless datatable">
+                    <table class="table table-borderless table-hover ">
                       <thead>
                         <tr>
                           <th scope="col">#</th>
@@ -813,7 +813,7 @@ $forPickup = $db->forPickup();
                 <div class="card recent-sales overflow-auto">
                   <div class="card-body">
                     <h5 class="card-title">Recent Sales <span>| This Year</span></h5>
-                    <table class="table table-borderless datatable">
+                    <table class="table table-borderless table-hover ">
                       <thead>
                         <tr>
                           <th scope="col">#</th>
@@ -855,12 +855,12 @@ $forPickup = $db->forPickup();
                 <div class="card recent-sales overflow-auto">
                   <div class="card-body">
                     <h5 class="card-title">Top Selling <span>| This Year</span></h5>
-                    <table class="table table-borderless datatable">
+                    <table class="table table-borderless table-hover ">
                       <thead>
                         <tr>
                           <th scope="col">#</th>
                           <th scope="col">Dish Name</th>
-                          <th scope="col">Total Quantity</th>
+                          <th scope="col">Total Sales</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -872,7 +872,7 @@ $forPickup = $db->forPickup();
                             echo '<tr>';
                             echo '<td>' . $counter++ . '</td>';
                             echo '<td>' . $row['dish_name'] . '</td>';
-                            echo '<td>' . $row['total_quantity'] . '</td>';
+                            echo '<td>₱' . $row['total_sales'] . '</td>';
                             echo '</tr>';
                           }
                         } else {
@@ -962,6 +962,11 @@ $forPickup = $db->forPickup();
                 y: {
                   beginAtZero: true
                 }
+              },
+              plugins: {
+                legend: {
+                  display: false // Hide the legend
+                }
               }
             }
           });
@@ -972,6 +977,7 @@ $forPickup = $db->forPickup();
       });
     });
   </script>
+
 
 
 
