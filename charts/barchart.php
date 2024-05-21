@@ -1,58 +1,31 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
+// Include your database connection or any necessary files here
 include "../controllers/Index.php";
 $conn = new db;
 
-// Corrected SQL query
-$sql = "SELECT 
-            d.dish_id, 
-            dishes.name AS dish_name, 
-            SUM(d.quantity_ordered) AS quantity_ordered
-        FROM 
-            dishes_ordered d
-        LEFT JOIN 
-            dishes ON d.dish_id = dishes.id
-        GROUP BY 
-            d.dish_id, dishes.name
-        ORDER BY 
-            quantity_ordered DESC
-        LIMIT 5";
 
-$stmt = $conn->con->prepare($sql);
+$query = "SELECT dishes.dish_name AS label, SUM(dishes_ordered.quantity) AS value
+          FROM transactions
+          LEFT JOIN dishes_ordered ON transactions.trans_id = dishes_ordered.trans_id
+          LEFT JOIN dishes ON dishes_ordered.dish_id = dishes.dish_id
+          GROUP BY dishes.dish_id LIMIT 5";
 
-// Check for errors in preparing the statement
-if ($stmt === false) {
-    echo json_encode(array('success' => false, 'message' => 'Error preparing statement: ' . $conn->con->error));
-    exit();
+$result = mysqli_query($conn->con, $query);
+
+$data = [];
+
+while ($row = $result->fetch_assoc()) {
+    $data[] = [
+        'label' => $row['label'],
+        'value' => $row['value'],
+    ];
 }
 
-// Execute the statement
-$result = $stmt->execute();
+// Sort the data based on the count in descending order
+usort($data, function ($a, $b) {
+    return $b['value'] - $a['value'];
+});
 
-// Check for errors in executing the statement
-if ($result === false) {
-    echo json_encode(array('success' => false, 'message' => 'Error executing query: ' . $stmt->error));
-    exit();
-}
-
-// Get the result set
-$resultSet = $stmt->get_result();
-
-// Initialize data array
-$data = array();
-
-// Fetch the top 5 dishes
-while ($row = $resultSet->fetch_assoc()) {
-    $data[] = array(
-        'dish_name' => $row['dish_name'],
-        'quantity_ordered' => $row['quantity_ordered']
-    );
-}
-
-// Output the JSON response
-echo json_encode(array('success' => true, 'data' => $data));
-
-// Close the statement
-$stmt->close();
+// Encode the final data array as JSON and return it
+header('Content-Type: application/json');
+echo json_encode(['data' => $data]);

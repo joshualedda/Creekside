@@ -12,10 +12,10 @@ class db
     }
 
     // Montly
-    public function totalTransactionSales()
+    public function totalTransactionSalesMonth()
     {
         $currentMonth = date('m');
-        $sql = "SELECT COUNT(*) AS totalSales FROM transactions WHERE (status = 'Paid' OR status = 'Completed') AND MONTH(delivery_date) = $currentMonth";
+        $sql = "SELECT COUNT(*) AS totalSales FROM transactions WHERE (status <> 'Cancelled') AND MONTH(delivery_date) = $currentMonth";
         $result = mysqli_query($this->con, $sql);
         if ($result) {
             $row = mysqli_fetch_assoc($result);
@@ -28,7 +28,7 @@ class db
     public function totalGrossSalesThisMonth()
     {
         $currentMonth = date('m');
-        $sql = "SELECT SUM(total_price) AS totalGrossSales FROM transactions WHERE status = 'Paid' AND MONTH(delivery_date) = $currentMonth";
+        $sql = "SELECT SUM(total_price) AS totalGrossSales FROM transactions WHERE status IN ('Paid', 'Completed') AND MONTH(delivery_date) = $currentMonth";
         $result = mysqli_query($this->con, $sql);
         if ($result) {
             $row = mysqli_fetch_assoc($result);
@@ -64,7 +64,7 @@ class db
 
     public function topWeeklySellingDishes($limit = 5)
     {
-        $sql = "SELECT dishes.dish_name, SUM(dishes_ordered.quantity) AS total_quantity FROM dishes_ordered JOIN dishes ON dishes_ordered.dish_id = dishes.dish_id JOIN transactions ON dishes_ordered.trans_id = transactions.trans_id WHERE transactions.status = 'Paid' OR transactions.status = 'Completed' GROUP BY WEEK(transactions.delivery_date) ORDER BY total_quantity DESC LIMIT $limit";
+        $sql = "SELECT dishes.dish_name, SUM(dishes_ordered.quantity) AS total_quantity FROM dishes_ordered JOIN dishes ON dishes_ordered.dish_id = dishes.dish_id JOIN transactions ON dishes_ordered.trans_id = transactions.trans_id WHERE transactions.status <> 'Cancelled' GROUP BY WEEK(transactions.delivery_date) ORDER BY total_quantity DESC LIMIT $limit";
         $result = mysqli_query($this->con, $sql);
         if ($result) {
             $topSellingDishes = [];
