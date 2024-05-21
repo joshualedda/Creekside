@@ -6,19 +6,20 @@
     include 'includes/links.php';
     include 'includes/header.php';
     include 'includes/sidebar.php';
-    include ('connection.php');
+    include 'connection.php';
     ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.js"></script>
 </head>
-<style>
+<!-- <style>
 .subtotal-cell {
     text-align: right !important;
     margin-right: 50px !important;
 }
-</style>
+</style> -->
+
 <body>
 
     <main id="main" class="main">
@@ -82,13 +83,12 @@
                                 </div>
                             </div>
                         </div>
-                      
+
                     </div>
                     <br>
                     <div class="row">
                         <div class="col"></div>
-                        <div class="col-auto"><button class="btn btn2" onclick="generatePDF()"><i
-                                    class="bi bi-printer"></i> Print</button></div>
+                        <div class="col-auto"><button class="btn btn2" onclick="generatePDF()"><i class="bi bi-printer"></i> Print</button></div>
                     </div>
                     <!-- Table with hoverable rows -->
                     <div id="pdfTable">
@@ -131,7 +131,7 @@
                     filterType: filterType,
                     limit: limit
                 },
-                success: function (data) {
+                success: function(data) {
                     var resultTable = document.getElementById('resultTable');
                     resultTable.innerHTML = ''; // Clear existing content
 
@@ -153,7 +153,7 @@
                         console.error(jsonData.error);
                     }
                 },
-                error: function (error) {
+                error: function(error) {
                     console.error("Error fetching data: ", error);
                 }
             });
@@ -205,7 +205,7 @@
 
                 cell1.innerHTML = i + 1;
                 cell2.innerHTML = data[i].name;
-                cell3.innerHTML = "₱ " + parseFloat(data[i].sales).toFixed(2); // Include peso sign for sales
+                cell3.innerHTML = "₱" + parseFloat(data[i].sales).toFixed(2); // Include peso sign for sales
 
                 totalSales += parseFloat(data[i].sales);
             }
@@ -218,7 +218,7 @@
 
             totalCell1.innerHTML = "<b>Grand Total</b>";
             totalCell2.innerHTML = "";
-            totalCell3.innerHTML = "<b>₱ " + totalSales.toFixed(2) + "</b>"; // Assuming 2 decimal places for sales
+            totalCell3.innerHTML = "<b>₱" + totalSales.toFixed(2) + "</b>"; // Assuming 2 decimal places for sales
         }
 
 
@@ -247,7 +247,7 @@
 
                 cell1.innerHTML = i + 1;
                 cell2.innerHTML = data[i].name;
-                cell3.innerHTML = "₱ " + parseFloat(data[i].sales).toFixed(2); // Include peso sign for sales
+                cell3.innerHTML = "₱" + parseFloat(data[i].sales).toFixed(2); // Include peso sign for sales
 
                 totalSales += parseFloat(data[i].sales);
             }
@@ -260,7 +260,7 @@
 
             totalCell1.innerHTML = "<b>Grand Total</b>";
             totalCell2.innerHTML = "";
-            totalCell3.innerHTML = "<b>₱ " + totalSales.toFixed(2) + "</b>"; // Assuming 2 decimal places for sales
+            totalCell3.innerHTML = "<b>₱" + totalSales.toFixed(2) + "</b>"; // Assuming 2 decimal places for sales
         }
 
 
@@ -320,7 +320,7 @@
             totalCell2.innerHTML = ""; // Leave blank for the dish name column
             totalCell3.innerHTML = ""; // Leave blank for the quantity column
             totalCell4.innerHTML = ""; // Leave blank for the price column
-            totalCell5.innerHTML = "<b>₱ " + totalSubtotal.toFixed(2) + "</b>"; // Assuming 2 decimal places for subtotal
+            totalCell5.innerHTML = "<b>₱" + totalSubtotal.toFixed(2) + "</b>"; // Assuming 2 decimal places for subtotal
         }
 
 
@@ -329,10 +329,21 @@
             var pdfOptions = {
                 margin: 15,
                 filename: 'report.pdf', // Default filename
-                image: { type: 'jpeg', quality: 1.00 },
-                html2canvas: { scale: 3 },
-                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-                pagebreak: { mode: 'avoid-all' }, // Avoid page breaks within the table
+                image: {
+                    type: 'jpeg',
+                    quality: 1.00
+                },
+                html2canvas: {
+                    scale: 3
+                },
+                jsPDF: {
+                    unit: 'mm',
+                    format: 'a4',
+                    orientation: 'portrait'
+                },
+                pagebreak: {
+                    mode: 'avoid-all'
+                }, // Avoid page breaks within the table
             };
 
             var title = document.getElementById('pageTitle');
@@ -365,13 +376,13 @@
 
                 // Adjust the font size for the table headers in the PDF
                 var tableHeaders = clonedPdfElement.querySelectorAll('#tableHeader b');
-                tableHeaders.forEach(function (header) {
+                tableHeaders.forEach(function(header) {
                     header.style.fontSize = '12px';
                 });
 
                 // Adjust the font size for the table cells in the PDF
                 var tableCells = clonedPdfElement.querySelectorAll('#resultTable td, #resultTable th');
-                tableCells.forEach(function (cell) {
+                tableCells.forEach(function(cell) {
                     cell.style.fontSize = '12px';
                 });
 
@@ -379,8 +390,6 @@
                 html2pdf(clonedPdfElement, pdfOptions);
             }
         }
-
-
     </script>
 
 </body>

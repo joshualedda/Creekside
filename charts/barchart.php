@@ -5,18 +5,20 @@ ini_set('display_errors', 1);
 include "../controllers/Index.php";
 $conn = new db;
 
-// Use a prepared statement to prevent SQL injection
+// Corrected SQL query
 $sql = "SELECT 
-MONTH(t.delivery_date) AS month,
-MAX(d.quantity) AS max_quantity,
-MIN(d.quantity) AS min_quantity
-FROM 
-transactions t
-JOIN 
-dishes_ordered d ON d.trans_id = t.trans_id
-GROUP BY 
-MONTH(t.delivery_date)
-";
+            d.dish_id, 
+            dishes.name AS dish_name, 
+            SUM(d.quantity_ordered) AS quantity_ordered
+        FROM 
+            dishes_ordered d
+        LEFT JOIN 
+            dishes ON d.dish_id = dishes.id
+        GROUP BY 
+            d.dish_id, dishes.name
+        ORDER BY 
+            quantity_ordered DESC
+        LIMIT 5";
 
 $stmt = $conn->con->prepare($sql);
 
@@ -38,15 +40,14 @@ if ($result === false) {
 // Get the result set
 $resultSet = $stmt->get_result();
 
-// Initialize data array with default values for all months
-$data = array_fill(1, 12, array('max_quantity' => 0, 'min_quantity' => 0));
+// Initialize data array
+$data = array();
 
-// Fetch the highest and lowest quantity for each month
+// Fetch the top 5 dishes
 while ($row = $resultSet->fetch_assoc()) {
-    $month = $row['month'];
-    $data[$month] = array(
-        'max_quantity' => $row['max_quantity'],
-        'min_quantity' => $row['min_quantity']
+    $data[] = array(
+        'dish_name' => $row['dish_name'],
+        'quantity_ordered' => $row['quantity_ordered']
     );
 }
 
@@ -55,4 +56,3 @@ echo json_encode(array('success' => true, 'data' => $data));
 
 // Close the statement
 $stmt->close();
-?>

@@ -1,73 +1,79 @@
- document.addEventListener("DOMContentLoaded", () => {
-      // Initialize empty arrays for all months
-      const highestData = Array(12).fill(0);
-      const lowestData = Array(12).fill(0);
+document.addEventListener("DOMContentLoaded", () => {
+  fetchDataAndUpdateChart();
+});
 
-      // Create the Chart instance
-      const barChart = new Chart(document.querySelector('#barChart'), {
-        type: 'bar',
-        data: {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-          datasets: [
-            {
-              label: 'Highest',
-              data: highestData, // Use the highestData array
-              backgroundColor: 'rgba(54, 162, 235, 0.2)',
-              borderColor: 'rgb(54, 162, 235)',
-              borderWidth: 1
-            },
-            {
-              label: 'Lowest',
-              data: lowestData, // Use the lowestData array
-              backgroundColor: 'rgba(255, 159, 64, 0.2)',
-              borderColor: 'rgb(255, 159, 64)',
-              borderWidth: 1
-            }
-          ]
-        },
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true
-            }
+async function fetchDataAndUpdateChart() {
+  try {
+      const selectedYear = document.getElementById('yearOffense').value;
+      const selectedMonth = document.getElementById('monthlyTransaction').value;
+
+      const startYear = parseInt(selectedYear.split('-')[0]);
+      const endYear = startYear + 1;
+
+      const response = await fetch(`charts/piechart.php?startYear=${startYear}&endYear=${endYear}&month=${selectedMonth}`);
+      const data = await response.json();
+
+      updatePieChart(data);
+  } catch (error) {
+      console.error('Error fetching data:', error);
+  }
+}
+
+function updatePieChart(data) {
+  const existingChart = Chart.getChart('pieChartOffense');
+
+
+  if (existingChart) {
+    existingChart.destroy();
+  }
+
+  if (!data.data || !Array.isArray(data.data)) {
+    console.error('Invalid data format:', data);
+    return;
+  }
+
+  const colors = [
+    'rgba(255, 99, 132, 0.6)',
+    'rgba(54, 162, 235, 0.6)',
+    'rgba(255, 206, 86, 0.6)',
+    'rgba(75, 192, 192, 0.6)',
+    'rgba(153, 102, 255, 0.6)',
+    'rgba(255, 159, 64, 0.6)',
+    'rgba(255, 0, 255, 0.6)',
+    'rgba(0, 255, 0, 0.6)',
+    'rgba(128, 128, 128, 0.6)',
+    'rgba(0, 0, 255, 0.6)',
+    'rgba(255, 0, 0, 0.6)',
+    'rgba(0, 255, 255, 0.6)',
+    'rgba(255, 255, 0, 0.6)',
+    'rgba(128, 0, 128, 0.6)',
+    'rgba(0, 128, 128, 0.6)'
+  ];
+
+  const total = data.data.reduce((sum, item) => sum + item.value, 0);
+
+  new Chart(document.querySelector('#pieChartOffense'), {
+    type: 'pie',
+    data: {
+      labels: data.data.map(item => item.label),
+      datasets: [{
+        label: 'Total',
+        data: data.data.map(item => item.value),
+        backgroundColor: colors,
+        hoverOffset: 4
+      }]
+    },
+    options: {
+      tooltips: {
+        callbacks: {
+          label: function(context) {
+            const label = context.label || '';
+            const value = context.raw || 0;
+            const percentage = ((value / total) * 100).toFixed(2);
+            return `${label}: ${value} (${percentage}%)`;
           }
         }
-      });
-
-      // Function to fetch highest and lowest quantities from backend and update chart
-      function fetchDataAndUpdateChart() {
-        $.ajax({
-          url: 'charts/barchart.php', // The path to your PHP script
-          method: 'GET',
-          dataType: 'json', // Ensure we expect JSON
-          success: function (response) {
-            if (response.success) {
-              const data = response.data;
-
-              for (let i = 0; i < 12; i++) {
-                const monthIndex = i + 1;
-                if (data[monthIndex]) {
-                  highestData[i] = data[monthIndex].max_quantity;
-                  lowestData[i] = data[monthIndex].min_quantity;
-                } else {
-                  highestData[i] = 0;
-                  lowestData[i] = 0;
-                }
-              }
-
-              barChart.update(); // Update the chart with new data
-            } else {
-              console.error('Error in response:', response.message);
-
-
-            }
-          },
-          error: function (error) {
-            console.error('Error fetching data:', error);
-          }
-        });
       }
-
-      // Fetch data and update chart on page load
-      fetchDataAndUpdateChart();
-    });
+    }
+  });
+}
