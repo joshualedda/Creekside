@@ -434,8 +434,8 @@ $forPickup = $db->forPickup();
                     <select class="form-select" id="yearOffense" aria-label="Year selection" onchange="fetchDataAndUpdateChart()">
                       <?php
                       $currentYear = date('Y');
-                      $startYear = 2023;
-                      $endYear = 2030;
+                      $startYear = $currentYear - 3;
+                      $endYear = $currentYear + 6;
 
                       $years = range($startYear, $endYear);
 
@@ -518,8 +518,8 @@ $forPickup = $db->forPickup();
                     <select class="form-select" id="yearProduct" aria-label="Year selection" onchange="fetchDataAndUpdateProductChart()">
                       <?php
                       $currentYear = date('Y');
-                      $startYear = 2023;
-                      $endYear = 2030;
+                      $startYear = $currentYear - 3;
+                      $endYear = $currentYear + 6;
 
                       $years = range($startYear, $endYear);
 
@@ -570,12 +570,12 @@ $forPickup = $db->forPickup();
         </div>
 
 
-        <div class="col-lg-12">
+        <div class="col-lg-6">
           <div class="card">
             <div class="card-body">
               <div class="row">
                 <div class="col-lg-4">
-                  <h5 class="card-title">Highest and Lowest Salesdsadadsa</h5>
+                  <h5 class="card-title">Highest to Lowest</h5>
                 </div>
 
               </div>
@@ -583,6 +583,40 @@ $forPickup = $db->forPickup();
             <canvas id="barChartSales"></canvas>
           </div>
         </div>
+
+
+
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-lg-4">
+                  <h5 class="card-title">Lowest to Highest</h5>
+                </div>
+
+              </div>
+            </div>
+            <canvas id="barChartSalesLowHigh"></canvas>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       </div>
 
 
@@ -657,7 +691,7 @@ $forPickup = $db->forPickup();
                             echo '<tr>';
                             echo '<td>' . $counter++ . '</td>';
                             echo '<td>' . $row['dish_name'] . '</td>';
-                            echo '<td>' . $row['total_quantity'] . '</td>';
+                            echo '<td>₱' . $row['total_sales'] . '</td>';
                             echo '</tr>';
                           }
                         } else {
@@ -881,6 +915,88 @@ $forPickup = $db->forPickup();
 
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- Low to high -->
+  <script>
+    $(document).ready(function() {
+      $.ajax({
+        url: "charts/barchartLowHigh.php",
+        method: "GET",
+        data: {},
+        success: function(response) {
+          var labels = [];
+          var values = [];
+
+          $.each(response.data, function(index, item) {
+            labels.push(item.label);
+            values.push(item.value);
+          });
+
+          var ctx = $('#barChartSalesLowHigh');
+
+          var myBarChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: labels,
+              datasets: [{
+                label: 'Total',
+                data: values,
+                backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(255, 159, 64, 0.2)',
+                  'rgba(255, 205, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(54, 162, 235, 0.2)'
+                ],
+                borderColor: [
+                  'rgb(255, 99, 132)',
+                  'rgb(255, 159, 64)',
+                  'rgb(255, 205, 86)',
+                  'rgb(75, 192, 192)',
+                  'rgb(54, 162, 235)'
+                ],
+                borderWidth: 1
+              }]
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
+              }
+            }
+          });
+        },
+        error: function(xhr, status, error) {
+          console.error("Error fetching data:", error);
+        }
+      });
+    });
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   <script>
     $(document).ready(function() {
@@ -942,8 +1058,6 @@ $forPickup = $db->forPickup();
       });
     });
   </script>
-
-
 
 
 

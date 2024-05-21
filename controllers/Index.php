@@ -64,7 +64,12 @@ class db
 
     public function topWeeklySellingDishes($limit = 5)
     {
-        $sql = "SELECT dishes.dish_name, SUM(dishes_ordered.quantity) AS total_quantity FROM dishes_ordered JOIN dishes ON dishes_ordered.dish_id = dishes.dish_id JOIN transactions ON dishes_ordered.trans_id = transactions.trans_id WHERE transactions.status <> 'Cancelled' GROUP BY WEEK(transactions.delivery_date) ORDER BY total_quantity DESC LIMIT $limit";
+        $sql = "SELECT dishes.dish_name, SUM(dishes_ordered.subtotal) AS total_sales 
+                FROM dishes_ordered JOIN dishes ON dishes_ordered.dish_id = dishes.dish_id 
+                JOIN transactions ON dishes_ordered.trans_id = transactions.trans_id 
+                WHERE transactions.status IN ('Paid', 'Completed') 
+                GROUP BY dishes_ordered.dish_id, WEEK(transactions.date_paid) 
+                ORDER BY total_sales DESC LIMIT $limit";
         $result = mysqli_query($this->con, $sql);
         if ($result) {
             $topSellingDishes = [];
@@ -82,7 +87,7 @@ class db
     {
         $startOfWeek = date('Y-m-d', strtotime('monday this week'));
         $endOfWeek = date('Y-m-d', strtotime('sunday this week'));
-        $sql = "SELECT COUNT(*) AS totalSales FROM transactions WHERE (status = 'Paid' OR status = 'Completed') AND delivery_date BETWEEN '$startOfWeek' AND '$endOfWeek'";
+        $sql = "SELECT COUNT(*) AS totalSales FROM transactions WHERE (status <> 'Cancelled') AND delivery_date BETWEEN '$startOfWeek' AND '$endOfWeek'";
         $result = mysqli_query($this->con, $sql);
         if ($result) {
             $row = mysqli_fetch_assoc($result);
@@ -96,7 +101,7 @@ class db
     {
         $startOfWeek = date('Y-m-d', strtotime('monday this week'));
         $endOfWeek = date('Y-m-d', strtotime('sunday this week'));
-        $sql = "SELECT SUM(total_price) AS totalGrossSales FROM transactions WHERE status = 'Paid' AND delivery_date BETWEEN '$startOfWeek' AND '$endOfWeek'";
+        $sql = "SELECT SUM(total_price) AS totalGrossSales FROM transactions WHERE status IN ('Paid', 'Completed') AND delivery_date BETWEEN '$startOfWeek' AND '$endOfWeek'";
         $result = mysqli_query($this->con, $sql);
         if ($result) {
             $row = mysqli_fetch_assoc($result);
@@ -125,7 +130,7 @@ class db
     public function totalTransactionSalesYearly()
     {
         $currentYear = date('Y');
-        $sql = "SELECT COUNT(*) AS totalSales FROM transactions WHERE (status = 'Paid' OR status = 'Completed') AND YEAR(delivery_date) = $currentYear";
+        $sql = "SELECT COUNT(*) AS totalSales FROM transactions WHERE (status <> 'Cancelled') AND YEAR(delivery_date) = $currentYear";
         $result = mysqli_query($this->con, $sql);
         if ($result) {
             $row = mysqli_fetch_assoc($result);
@@ -138,7 +143,7 @@ class db
     public function totalGrossSalesThisYear()
     {
         $currentYear = date('Y');
-        $sql = "SELECT SUM(total_price) AS totalGrossSales FROM transactions WHERE status = 'Paid' AND YEAR(delivery_date) = $currentYear";
+        $sql = "SELECT SUM(total_price) AS totalGrossSales FROM transactions WHERE status IN ('Paid', 'Completed') AND YEAR(delivery_date) = $currentYear";
         $result = mysqli_query($this->con, $sql);
         if ($result) {
             $row = mysqli_fetch_assoc($result);

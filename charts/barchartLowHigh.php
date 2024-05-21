@@ -9,8 +9,9 @@ $query = "SELECT dishes.dish_name AS label, SUM(dishes_ordered.quantity) AS valu
           LEFT JOIN dishes_ordered ON transactions.trans_id = dishes_ordered.trans_id
           LEFT JOIN dishes ON dishes_ordered.dish_id = dishes.dish_id
           GROUP BY dishes.dish_id 
-          ORDER BY value DESC 
+          ORDER BY value ASC 
           LIMIT 5";
+
 
 $result = mysqli_query($conn->con, $query);
 
