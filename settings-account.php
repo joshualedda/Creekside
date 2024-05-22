@@ -58,6 +58,7 @@
           $sex = $row['sex'];
           $name = $row['fname'] . " " . $row['lname'];
           $role = $row['role'];
+          $status = $row['activity'];
           $fullname = $row['fname'] . " " . $row['mname'] . " " . $row['lname'];
           $bdate = $row['bdate'];
           $address = $row['barangay'] . ", " . $row['municipality'] . ", " . $row['province'];
@@ -82,7 +83,7 @@
                   }
                   ?>
                   <h2><?php echo $name ?></h2>
-                  <h3><?php echo $role ?></h3>
+                  <h3><b><?php echo $role ?></b> | <?php echo $status ?></h3>
                 </div>
               </div>
 
@@ -154,6 +155,11 @@
                         <div class="col-lg-9 col-md-8"><?php echo $role ?></div>
                       </div>
 
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Status</div>
+                        <div class="col-lg-9 col-md-8"><?php echo $status ?></div>
+                      </div>
+
                     </div>
 
                     <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
@@ -204,8 +210,8 @@
                           <div class="col-md-8 col-lg-9">
                             <select class="form-select" aria-label="Default select example" name="sex" id="sex" required>
                               <option value="" selected disabled>Select Sex</option>
-                              <option value="Male">Male</option>
-                              <option value="Female">Female</option>
+                              <option value="Male" <?php if ($sex === "Male") echo 'selected'; ?>>Male</option>
+                              <option value="Female <?php if ($sex === "Female") echo 'selected'; ?>">Female</option>
                             </select>
                             <div class="invalid-feedback">Please select sex.</div>
                           </div>

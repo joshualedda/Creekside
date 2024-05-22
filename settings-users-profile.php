@@ -44,6 +44,9 @@
             $email = $row['email'];
             $username = $row['username'];
             $password = $row['password'];
+            $status = $row['activity'];
+            $id = $row['user_id'];
+            $name = $row['fname'] . " " . $row['lname'];
       ?>
 
             <div class="row">
@@ -59,7 +62,7 @@
                     }
                     ?>
                     <h2><?php echo $row['fname'] . " " . $row['lname'] ?></h2>
-                    <h3><?php echo $row['role'] ?></h3>
+                    <h3><b><?php echo $role ?></b> | <?php echo $status ?></h3>
                   </div>
                 </div>
 
@@ -135,6 +138,11 @@
                           <div class="col-lg-9 col-md-8"><?php echo $row['role'] ?></div>
                         </div>
 
+                        <div class="row">
+                          <div class="col-lg-3 col-md-4 label">Status</div>
+                          <div class="col-lg-9 col-md-8"><?php echo $row['activity'] ?></div>
+                        </div>
+
                       </div>
 
                       <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
@@ -158,6 +166,16 @@
                               <select class="form-select" aria-label="Default select example" name="role" id="role" required>
                                 <option value="Staff" selected>Staff</option>
                                 <option value="Admin">Admin</option>
+                              </select>
+                            </div>
+                          </div>
+
+                          <div class="row mb-3">
+                            <label for="role" class="col-md-4 col-lg-3 col-form-label">Status</label>
+                            <div class="col-md-8 col-lg-9">
+                              <select class="form-select" aria-label="Default select example" name="status" id="status" required>
+                                <option value="Active" selected>Active</option>
+                                <option value="Inactive">Inactive</option>
                               </select>
                             </div>
                           </div>
@@ -195,8 +213,8 @@
                             <div class="col-md-8 col-lg-9">
                               <select class="form-select" aria-label="Default select example" name="sex" id="sex" required>
                                 <option value="" selected disabled>Select Sex</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
+                                <option value="Male" <?php if ($sex === "Male") echo 'selected'; ?>>Male</option>
+                                <option value="Female <?php if ($sex === "Female") echo 'selected'; ?>">Female</option>
                               </select>
                               <div class="invalid-feedback">Please select sex.</div>
                             </div>
@@ -268,38 +286,51 @@
 
                       <div class="tab-pane fade pt-3" id="profile-change-password">
                         <!-- Change Password Form -->
-                        <form class="needs-validation" novalidate action="settings-account-password-update.php" method="POST">
-
+                        <form class="needs-validation" novalidate action="settings-users-profile-password-update.php" method="POST">
+                          <input name="name" type="text" class="form-control" id="name" value="<?php echo $name ?>" hidden>
+                          <input name="id" type="text" class="form-control" id="id" value="<?php echo $id ?>" hidden>
                           <div class="row mb-3">
                             <label for="username" class="col-md-4 col-lg-3 col-form-label">Username</label>
                             <div class="col-md-8 col-lg-9">
-                              <input name="username" type="text" class="form-control" id="username" value="<?php echo $username ?>">
+                              <input name="username" type="text" class="form-control" id="username" value="<?php echo $username ?>" required>
                             </div>
                           </div>
 
-                          <!-- <div class="row mb-3">
-                            <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
-                            <div class="col-md-8 col-lg-9">
-                              <input name="currentPassword" type="password" class="form-control" id="currentPassword" value="<?php echo $_SESSION['password'] ?>">
-                            </div>
-                          </div> -->
+
 
                           <div class="row mb-3">
                             <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New Password</label>
                             <div class="col-md-8 col-lg-9">
-                              <input name="newPassword" type="password" class="form-control" id="newPassword" minlength="8">
+                              <div class="input-group">
+                                <div class="input-group-append col">
+                                  <input name="newPassword" type="password" class="form-control" id="newPassword" minlength="8" required autofocus>
+                                </div>
+                                <div id="show-new" style="padding: 0px 5px 0px 10px;">
+                                  <font size="5px" color="#6c757d"><i class="bi bi-eye"></i></font>
+                                </div class="input-group-append">
+                              </div>
+                              <div class="invalid-feedback">Please enter an 8-character long password.</div>
                             </div>
                           </div>
 
                           <div class="row mb-3">
                             <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter New Password</label>
                             <div class="col-md-8 col-lg-9">
-                              <input name="renewPassword" type="password" class="form-control" id="renewPassword" minlength="8">
+                              <div class="input-group">
+                                <div class="input-group-append col">
+                                  <input name="renewPassword" type="password" class="form-control" id="renewPassword" minlength="8" required>
+                                </div>
+                                <div id="show-renew" style="padding: 0px 5px 0px 10px;">
+                                  <font size="5px" color="#6c757d"><i class="bi bi-eye"></i></font>
+                                </div class="input-group-append">
+                              </div>
+                              <div class="invalid-feedback">Please re-enter your new password.</div>
                             </div>
                           </div>
 
                           <div class="text-center">
-                            <button name="submit" type="submit" class="button">Change Password</button>
+                            <button type="button" class="btn btn-secondary" onclick="location.reload()">Cancel</button>
+                            <button type="submit" class="btn button" name="submit">Confirm</button>
                           </div>
                         </form><!-- End Change Password Form -->
 
@@ -375,6 +406,33 @@
         });
       }
     });
+  });
+</script>
+<script>
+  const showNew = document.getElementById("show-new");
+  const passwordNew = document.getElementById("newPassword");
+
+  showNew.addEventListener("click", function newpass() {
+    if (passwordNew.type === "password") {
+      passwordNew.type = "text";
+      showNew.innerHTML = '<font size="5px" color="#6c757d"><i class="bi bi-eye-slash"></i></font>';
+    } else {
+      passwordNew.type = "password";
+      showNew.innerHTML = '<font size="5px" color="#6c757d"><i class="bi bi-eye"></i></font>';
+    }
+  });
+
+  const showRenew = document.getElementById("show-renew");
+  const passwordRenew = document.getElementById("renewPassword");
+
+  showRenew.addEventListener("click", function newpass() {
+    if (passwordRenew.type === "password") {
+      passwordRenew.type = "text";
+      showRenew.innerHTML = '<font size="5px" color="#6c757d"><i class="bi bi-eye-slash"></i></font>';
+    } else {
+      passwordRenew.type = "password";
+      showRenew.innerHTML = '<font size="5px" color="#6c757d"><i class="bi bi-eye"></i></font>';
+    }
   });
 </script>
 

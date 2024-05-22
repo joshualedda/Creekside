@@ -1,7 +1,7 @@
 <!-- ======= Footer ======= -->
 <footer id="footer" class="footer">
   <div class="copyright">
-    Copyright &copy; 2023 <strong><span>The Creekside Café</span></strong>. All Rights Reserved
+    Copyright &copy; 2024 <strong><span>The Creekside Café</span></strong>. All Rights Reserved
   </div>
   <div class="credits">
     <b>Developers</b>: Carl Justin B. Arciaga | Bryan O. Ordoño

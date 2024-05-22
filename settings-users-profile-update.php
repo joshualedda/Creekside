@@ -5,6 +5,7 @@ if (isset($_POST['submit'])) {
 
   $id = $_POST['id'];
   $role = $_POST['role'];
+  $status = $_POST['status'];
   $fname = $_POST['fname'];
   $mname = $_POST['mname'];
   $lname = $_POST['lname'];
@@ -39,7 +40,8 @@ if (isset($_POST['submit'])) {
 
   $sql = "UPDATE users
 				SET role = '$role',
-					fname = '$fname',
+          activity = '$status',
+          fname = '$fname',
 					mname = '$mname',
 					lname = '$lname',
 					bdate = '$bdate',
