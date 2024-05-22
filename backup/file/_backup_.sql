@@ -3461,7 +3461,7 @@ CREATE TABLE `logs` (
   `action` varchar(20) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=562 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=567 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 INSERT INTO logs VALUES("1","2023-08-31 23:07:14","1","Rodelio Is-isa","Login","Login session started");
 INSERT INTO logs VALUES("2","2023-08-31 23:08:23","1","Rodelio Is-isa","Log out","Login session ended");
@@ -4024,6 +4024,11 @@ INSERT INTO logs VALUES("558","2024-05-22 20:23:46","1","Rodelio Is-isa","Log In
 INSERT INTO logs VALUES("559","2024-05-22 20:24:21","1","Rodelio Is-isa","Change Password","Changed their username or password");
 INSERT INTO logs VALUES("560","2024-05-22 20:46:25","1","Rodelio Is-isa","Backup Restoration","Restored backup database");
 INSERT INTO logs VALUES("561","2024-05-22 20:47:53","1","Rodelio Is-isa","System Backup","Created a system backup");
+INSERT INTO logs VALUES("562","2024-05-23 00:15:35","1","Rodelio Is-isa","Backup Restoration","Restored backup database");
+INSERT INTO logs VALUES("563","2024-05-23 00:22:48","1","Rodelio Is-isa","Add User","Added a new user profile");
+INSERT INTO logs VALUES("564","2024-05-23 00:26:38","1","Rodelio Is-isa","Edit Profile","Edited a user profile");
+INSERT INTO logs VALUES("565","2024-05-23 00:29:49","1","Rodelio Is-isa","New Transaction","Listed new transaction with Jayson");
+INSERT INTO logs VALUES("566","2024-05-23 00:30:15","1","Rodelio Is-isa","System Backup","Created a system backup");
 
 
 
@@ -4206,7 +4211,7 @@ CREATE TABLE `transactions` (
   `date_delivered` datetime NOT NULL,
   `date_cancelled` datetime NOT NULL,
   PRIMARY KEY (`trans_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 INSERT INTO transactions VALUES("1","2023-11-26 12:52:04","Carl Justin Arciaga","2889.00","1","Pending","For Pickup","","2024-05-20","2023-11-28 08:47:48","0000-00-00 00:00:00","2024-05-22 13:52:56");
 INSERT INTO transactions VALUES("2","2023-11-26 12:53:53","Bryan Ordoño","3113.00","1","Pending","For Delivery","","2024-05-18","2023-11-26 12:55:20","2023-11-26 13:00:36","2024-05-22 13:52:56");
@@ -4231,12 +4236,14 @@ INSERT INTO transactions VALUES("20","2024-05-22 14:09:14","Me","2270.00","1","P
 INSERT INTO transactions VALUES("21","2024-05-22 15:23:29","Mangaser","0.00","2","Pending","","","0000-00-00","0000-00-00 00:00:00","0000-00-00 00:00:00","0000-00-00 00:00:00");
 INSERT INTO transactions VALUES("22","2024-05-22 15:25:04","ggggg","887.00","2","Completed","For Pickup","","2024-05-24","2024-05-22 15:30:09","2024-05-22 15:30:31","0000-00-00 00:00:00");
 INSERT INTO transactions VALUES("23","2024-05-22 16:09:01","Jessie","0.00","1","Pending","","","0000-00-00","0000-00-00 00:00:00","0000-00-00 00:00:00","0000-00-00 00:00:00");
+INSERT INTO transactions VALUES("24","2024-05-23 00:29:49","Jayson","0.00","1","Pending","","","","0000-00-00 00:00:00","0000-00-00 00:00:00","0000-00-00 00:00:00");
 
 
 
 CREATE TABLE `users` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `role` varchar(5) DEFAULT NULL,
+  `activity` varchar(11) NOT NULL DEFAULT 'Active',
   `fname` varchar(30) DEFAULT NULL,
   `mname` varchar(30) DEFAULT NULL,
   `lname` varchar(30) DEFAULT NULL,
@@ -4250,11 +4257,12 @@ CREATE TABLE `users` (
   `username` varchar(50) DEFAULT NULL,
   `password` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO users VALUES("1","Admin","Rodelio","M.","Is-isa","1996-08-23","Male","La Union","Balaoan","Calliat","09123456789","carljustin.arciaga@student.dmmmsu.edu.ph","admin123","25d55ad283aa400af464c76d713c07ad");
-INSERT INTO users VALUES("2","Staff","Carl Justin","Bulagay","Arciaga","2001-12-05","Male","La Union","Balaoan","Masupe","09385949676","carljustin.arciaga@gmail.com","carl123","25d55ad283aa400af464c76d713c07ad");
-INSERT INTO users VALUES("3","Staff","Bryan","Ocampo","Ordoño","2001-09-14","Male","La Union","Balaoan","Camiling","09100028299","example@example.com","bryan123","25d55ad283aa400af464c76d713c07ad");
-INSERT INTO users VALUES("4","Staff","Jasmine","Navalta","Ilagan","1995-12-02","Female","La Union","Bacnotan","Casiaman","09123456789","example@example.com","jasmine123","25d55ad283aa400af464c76d713c07ad");
-INSERT INTO users VALUES("5","Staff","Adrian","Navalta","Asis","2001-12-12","Male","La Union","Santol","Paagan","09123456789","example@example.com","adrian123","25d55ad283aa400af464c76d713c07ad");
+INSERT INTO users VALUES("1","Admin","Active","Rodelio","M.","Is-isa","1996-08-23","Male","La Union","Balaoan","Calliat","09123456789","carljustin.arciaga@student.dmmmsu.edu.ph","admin123","25d55ad283aa400af464c76d713c07ad");
+INSERT INTO users VALUES("2","Staff","Active","Carl Justin","Bulagay","Arciaga","2001-12-05","Male","La Union","Balaoan","Masupe","09385949676","carljustin.arciaga@gmail.com","carl123","25d55ad283aa400af464c76d713c07ad");
+INSERT INTO users VALUES("3","Staff","Active","Bryan","Ocampo","Ordoño","2001-09-14","Male","La Union","Balaoan","Camiling","09100028299","example@example.com","bryan123","25d55ad283aa400af464c76d713c07ad");
+INSERT INTO users VALUES("4","Staff","Active","Janina Mae","Omo","Buenaventura","1995-12-02","Female","La Union","Bacnotan","Casiaman","09123456789","example@example.com","jasmine123","25d55ad283aa400af464c76d713c07ad");
+INSERT INTO users VALUES("5","Staff","Active","Adrian","Navalta","Asis","2001-12-12","Male","La Union","Santol","Paagan","09123456789","example@example.com","adrian123","25d55ad283aa400af464c76d713c07ad");
+INSERT INTO users VALUES("8","Staff","Active","Kyla Clarisse","Bulagay","Arciaga","2004-04-08","Female","La Union","Balaoan","Masupe","09876543210","kylaclarisse08@gmail.com","fernando123","25d55ad283aa400af464c76d713c07ad");
 

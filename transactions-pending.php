@@ -422,7 +422,7 @@
                                   <div class="col-auto">
                                     <label class="col-form-label"><b>Total Price (₱):</b></label>
                                   </div>
-                                  <div class-auto">
+                                  <div class="col-auto">
                                     <label class="col-form-label"><?php echo $total_price ?></label>
                                   </div>
                                   <div class="col-auto"></div>

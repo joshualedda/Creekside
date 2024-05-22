@@ -13,12 +13,27 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.js"></script>
 </head>
-<!-- <style>
+<style>
+    .sales-cell {
+        text-align: right !important;
+    }
+
+    .price-cell {
+        text-align: right !important;
+    }
+    
+    .quantity-cell {
+        text-align: right !important;
+    }
+    
     .subtotal-cell {
         text-align: right !important;
-        margin: auto !important;
     }
-</style> -->
+
+    .grandtotal-cell {
+        text-align: right !important;
+    }
+</style>
 
 <body>
 
@@ -69,7 +84,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col">
+                        <div class="col" hidden>
                             <div class="row">
                                 <div class="col-auto"><label for="limit" class="col-form-label"><b>Show:</b></label>
                                 </div>
@@ -194,6 +209,8 @@
             headerCell2.innerHTML = "<b>Staff Name</b>";
             headerCell3.innerHTML = "<b>Sales (₱)</b>";
 
+            headerCell3.classList.add('sales-cell');
+
             var totalSales = 0;
 
             // Populate table with data
@@ -207,6 +224,8 @@
                 cell2.innerHTML = data[i].name;
                 cell3.innerHTML = "₱" + parseFloat(data[i].sales).toFixed(2); // Include peso sign for sales
 
+                cell3.classList.add('sales-cell');
+
                 totalSales += parseFloat(data[i].sales);
             }
 
@@ -219,6 +238,9 @@
             totalCell1.innerHTML = "<b>Grand Total</b>";
             totalCell2.innerHTML = "";
             totalCell3.innerHTML = "<b>₱" + totalSales.toFixed(2) + "</b>"; // Assuming 2 decimal places for sales
+
+            totalCell3.classList.add('grandtotal-cell');
+
         }
 
 
@@ -236,6 +258,8 @@
             headerCell2.innerHTML = "<b>Dish Name</b>";
             headerCell3.innerHTML = "<b>Sales (₱)</b>";
 
+            headerCell3.classList.add('sales-cell');
+
             var totalSales = 0;
 
             // Populate table with data
@@ -249,6 +273,8 @@
                 cell2.innerHTML = data[i].name;
                 cell3.innerHTML = "₱" + parseFloat(data[i].sales).toFixed(2); // Include peso sign for sales
 
+                cell3.classList.add('sales-cell');
+
                 totalSales += parseFloat(data[i].sales);
             }
 
@@ -261,6 +287,8 @@
             totalCell1.innerHTML = "<b>Grand Total</b>";
             totalCell2.innerHTML = "";
             totalCell3.innerHTML = "<b>₱" + totalSales.toFixed(2) + "</b>"; // Assuming 2 decimal places for sales
+
+            totalCell3.classList.add('grandtotal-cell');
         }
 
 
@@ -284,6 +312,10 @@
             headerCell4.innerHTML = "<b>Quantity</b>";
             headerCell5.innerHTML = "<b>Subtotal</b>";
 
+            headerCell3.classList.add('price-cell');
+            headerCell4.classList.add('quantity-cell');
+            headerCell5.classList.add('subtotal-cell');
+
             var totalQuantity = 0;
             var totalSubtotal = 0;
 
@@ -302,6 +334,8 @@
                 cell4.innerHTML = data[i].quantity;
                 cell5.innerHTML = "₱" + parseFloat(data[i].subtotal).toFixed(2);
 
+                cell3.classList.add('price-cell');
+                cell4.classList.add('quantity-cell');
                 cell5.classList.add('subtotal-cell');
 
                 totalQuantity += parseInt(data[i].quantity);
@@ -321,13 +355,15 @@
             totalCell3.innerHTML = ""; // Leave blank for the quantity column
             totalCell4.innerHTML = ""; // Leave blank for the price column
             totalCell5.innerHTML = "<b>₱" + totalSubtotal.toFixed(2) + "</b>"; // Assuming 2 decimal places for subtotal
+            
+            totalCell5.classList.add('grandtotal-cell');
         }
 
 
         function generatePDF() {
             var pdfElement = document.getElementById('pdfTable');
             var pdfOptions = {
-                margin: 15,
+                margin: 25,
                 filename: 'report.pdf', // Default filename
                 image: {
                     type: 'jpeg',

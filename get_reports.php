@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                   LEFT JOIN dishes ON dishes.dish_id = dishes_ordered.dish_id
                   WHERE $whereClause AND transactions.status <> 'Cancelled'
                   GROUP BY transactions.date, dishes_ordered.dish_id
-                  ORDER BY transactions.date DESC, dishes.dish_name ASC
+                  ORDER BY transactions.date ASC, dishes.dish_name ASC
                   $limitClause";
     }
 

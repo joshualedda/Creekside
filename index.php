@@ -140,7 +140,7 @@
               </div>
 
               <div class="copyright" style="text-align: center;">
-                Copyright &copy; 2023 <strong><span>The Creekside Café</span></strong>.
+                Copyright &copy; 2024 <strong><span>The Creekside Café</span></strong>.
               </div>
               <div class="copyright" style="text-align: center;">
                 All Rights Reserved
@@ -299,7 +299,7 @@
               </div>
 
               <div class="copyright" style="text-align: center;">
-                Copyright &copy; 2023 <strong><span>The Creekside Café</span></strong>.
+                Copyright &copy; 2024 <strong><span>The Creekside Café</span></strong>.
               </div>
               <div class="copyright" style="text-align: center;">
                 All Rights Reserved
