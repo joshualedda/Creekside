@@ -1,4 +1,14 @@
 <?php
+include 'includes/links.php';
+include 'includes/header.php';
+include 'includes/sidebar.php';
+?>
+
+<?php
+
+session_start();
+error_reporting(0);
+
 include "controllers/Index.php";
 $db = new db;
 $conn = $db->con;
@@ -8,6 +18,20 @@ ini_set('display_errors', 1);
 $con = $db->con;
 
 if (isset($_POST['backup'])) {
+    //for transation logs
+    date_default_timezone_set('Asia/Manila');
+    $timestamp = date('Y-m-d H:i:s');
+    $user_id = $_SESSION['user_id'];
+    $name = $_SESSION['name'];
+    $logsql = "INSERT INTO logs (timestamp, user_id, name, action, description) VALUES
+            ('$timestamp', $user_id, '$name', 'System Backup', 'Created a system backup')";
+
+    if (mysqli_query($conn, $logsql)) {
+    } else {
+        echo "Error: " . $logsql . "<br>" . mysqli_error($conn);
+    }
+    //end log
+
     $tables = array();
     $sql = "SHOW TABLES";
     $result = mysqli_query($con, $sql);
@@ -43,11 +67,11 @@ if (isset($_POST['backup'])) {
         $sqlScript .= "\n";
     }
     if (!empty($sqlScript)) {
-        $backup_file_name = __DIR__ . '/backup/file/_backup_.sql'; 
+        $backup_file_name = __DIR__ . '/backup/file/_backup_.sql';
         $fileHandler = fopen($backup_file_name, 'w+');
         $number_of_lines = fwrite($fileHandler, $sqlScript);
         fclose($fileHandler);
-        $message = "Backup Created Successfully";
+        $message = "Back up created successfully!";
     }
 }
 
@@ -88,20 +112,31 @@ if (isset($_POST['restore'])) {
         if ($error) {
             $message1 = $error;
         } else {
-            $message1 = "Database restored successfully";
+            $message1 = "Database restored successfully!";
+
+            //for transation logs
+            date_default_timezone_set('Asia/Manila');
+            $timestamp = date('Y-m-d H:i:s');
+            $user_id = $_SESSION['user_id'];
+            $name = $_SESSION['name'];
+            $logsql = "INSERT INTO logs (timestamp, user_id, name, action, description) VALUES
+            ('$timestamp', $user_id, '$name', 'Backup Restoration', 'Restored backup database')";
+
+            if (mysqli_query($conn, $logsql)) {
+            } else {
+                echo "Error: " . $logsql . "<br>" . mysqli_error($conn);
+            }
+            //end log
+
         }
     } else {
-        $messageRed = "No backup file found from the backup.";
+        $messageRed = "No backup file found from the system directory.";
     }
 }
 ?>
 
 
-<?php
-  include 'includes/links.php';
-  include 'includes/header.php';
-  include 'includes/sidebar.php';
-  ?>
+
 <main id="main" class="main">
 
     <div class="pagetitle">
@@ -137,7 +172,7 @@ if (isset($_POST['restore'])) {
                         </p>
                         <p>
 
-                            <li>Click the "Perform System Backup" button below.</li>
+                            <li>Click the "Backup" button below.</li>
                             <li>Wait for the backup process to complete.</li>
                             <li>A notification will be show once complete.</li>
                         </p>
@@ -145,7 +180,7 @@ if (isset($_POST['restore'])) {
 
                         <div class="d-flex justify-content-end mx-2 ">
 
-                            <button name="backup" class="btn2 btn-md mx-2">
+                            <button name="backup" class="btn btn2 btn-md mx-2">
                                 Backup
                             </button>
 
@@ -194,7 +229,7 @@ if (isset($_POST['restore'])) {
 
 
                         <div class="d-flex justify-content-end mx-2 ">
-                            <button type="button" class="btn2 btn-md mx-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <button type="button" class="btn btn2 btn-md mx-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 Restore
                             </button>
 
@@ -212,8 +247,8 @@ if (isset($_POST['restore'])) {
                                         Are you sure you want restore?
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn2 btn-md mx-2" data-bs-dismiss="modal">Cancel</button>
-                                        <button type="submit" name="restore" class="btn2 btn-md mx-2">Confirm</button>
+                                        <button type="button" class="btn btn-secondary btn-md mx-2" data-bs-dismiss="modal">Cancel</button>
+                                        <button type="submit" name="restore" class="btn button btn-md mx-2">Confirm</button>
                                     </div>
                                 </div>
                             </div>

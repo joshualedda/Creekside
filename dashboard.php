@@ -53,7 +53,7 @@ $forPickup = $db->forPickup();
 
     <div class="row">
       <!-- for pick up -->
-      <div class="col-lg-6">
+      <!-- <div class="col-lg-6">
         <div class="row">
           <div class="col-12">
             <div class="card recent-sales overflow-auto">
@@ -93,10 +93,10 @@ $forPickup = $db->forPickup();
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
 
 
-      <div class="col-lg-6">
+      <!-- <div class="col-lg-6">
         <div class="row">
           <div class="col-12">
             <div class="card recent-sales overflow-auto">
@@ -137,7 +137,7 @@ $forPickup = $db->forPickup();
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
 
     <hr>
@@ -511,7 +511,7 @@ $forPickup = $db->forPickup();
 
               <div class="row">
                 <div class="col-lg-4">
-                  <h5 class="card-title">Product Usage</h5>
+                  <h5 class="card-title">Top Dishes</h5>
                 </div>
                 <div class="col-lg-8 d-flex align-items-center justify-content-end my-3">
                   <div class="me-3">
@@ -575,7 +575,7 @@ $forPickup = $db->forPickup();
             <div class="card-body">
               <div class="row">
                 <div class="card-body">
-                  <h5 class="card-title">Highest Sales <span>| This Week</span></h5>
+                  <h5 class="card-title">Highest Sales <span>| This Year</span></h5>
                 </div>
 
               </div>
@@ -591,7 +591,7 @@ $forPickup = $db->forPickup();
             <div class="card-body">
               <div class="row">
                 <div class="card-body">
-                  <h5 class="card-title">Lowest Sales <span>| This Week</span></h5>
+                  <h5 class="card-title">Lowest Sales <span>| This Year</span></h5>
                 </div>
 
               </div>
@@ -941,26 +941,44 @@ $forPickup = $db->forPickup();
                 label: 'Total',
                 data: values,
                 backgroundColor: [
-                  'rgba(255, 99, 132, 0.2)',
-                  'rgba(255, 159, 64, 0.2)',
-                  'rgba(255, 205, 86, 0.2)',
-                  'rgba(75, 192, 192, 0.2)',
-                  'rgba(54, 162, 235, 0.2)'
-                ],
-                borderColor: [
-                  'rgb(255, 99, 132)',
-                  'rgb(255, 159, 64)',
-                  'rgb(255, 205, 86)',
-                  'rgb(75, 192, 192)',
-                  'rgb(54, 162, 235)'
-                ],
-                borderWidth: 1
+                  'rgba(255, 99, 132, 0.6)',
+                  'rgba(54, 162, 235, 0.6)',
+                  'rgba(255, 206, 86, 0.6)',
+                  'rgba(75, 192, 192, 0.6)',
+                  'rgba(153, 102, 255, 0.6)',
+                  'rgba(255, 159, 64, 0.6)',
+                  'rgba(255, 0, 255, 0.6)',
+                  'rgba(0, 255, 0, 0.6)',
+                  'rgba(128, 128, 128, 0.6)',
+                  'rgba(0, 0, 255, 0.6)',
+                  'rgba(255, 0, 0, 0.6)',
+                  'rgba(0, 255, 255, 0.6)',
+                  'rgba(255, 255, 0, 0.6)',
+                  'rgba(128, 0, 128, 0.6)',
+                  'rgba(0, 128, 128, 0.6)'
+                ]
               }]
             },
             options: {
               scales: {
                 y: {
-                  beginAtZero: true
+                  beginAtZero: true,
+                  title: {
+                    display: true,
+                    text: 'Sales (₱)', // Title for Y-axis
+                    font: {
+                      weight: 'bold' // Make the Y-axis title bold
+                    }
+                  }
+                },
+                x: {
+                  title: {
+                    display: true,
+                    text: 'Dishes', // Title for X-axis
+                    font: {
+                      weight: 'bold' // Make the Y-axis title bold
+                    }
+                  }
                 }
               },
               plugins: {
@@ -977,6 +995,7 @@ $forPickup = $db->forPickup();
       });
     });
   </script>
+
 
 
 
@@ -1029,30 +1048,44 @@ $forPickup = $db->forPickup();
                 label: 'Total',
                 data: values,
                 backgroundColor: [
-                  'rgba(255, 99, 132, 0.2)',
-                  'rgba(255, 159, 64, 0.2)',
-                  'rgba(255, 205, 86, 0.2)',
-                  'rgba(75, 192, 192, 0.2)',
-                  'rgba(54, 162, 235, 0.2)',
-                  'rgba(153, 102, 255, 0.2)',
-                  'rgba(201, 203, 207, 0.2)'
-                ],
-                borderColor: [
-                  'rgb(255, 99, 132)',
-                  'rgb(255, 159, 64)',
-                  'rgb(255, 205, 86)',
-                  'rgb(75, 192, 192)',
-                  'rgb(54, 162, 235)',
-                  'rgb(153, 102, 255)',
-                  'rgb(201, 203, 207)'
-                ],
-                borderWidth: 1
+                  'rgba(255, 99, 132, 0.6)',
+                  'rgba(54, 162, 235, 0.6)',
+                  'rgba(255, 206, 86, 0.6)',
+                  'rgba(75, 192, 192, 0.6)',
+                  'rgba(153, 102, 255, 0.6)',
+                  'rgba(255, 159, 64, 0.6)',
+                  'rgba(255, 0, 255, 0.6)',
+                  'rgba(0, 255, 0, 0.6)',
+                  'rgba(128, 128, 128, 0.6)',
+                  'rgba(0, 0, 255, 0.6)',
+                  'rgba(255, 0, 0, 0.6)',
+                  'rgba(0, 255, 255, 0.6)',
+                  'rgba(255, 255, 0, 0.6)',
+                  'rgba(128, 0, 128, 0.6)',
+                  'rgba(0, 128, 128, 0.6)'
+                ]
               }]
             },
             options: {
               scales: {
                 y: {
-                  beginAtZero: true
+                  beginAtZero: true,
+                  title: {
+                    display: true,
+                    text: 'Sales (₱)', // Title for Y-axis
+                    font: {
+                      weight: 'bold' // Make the Y-axis title bold
+                    }
+                  }
+                },
+                x: {
+                  title: {
+                    display: true,
+                    text: 'Dishes', // Title for X-axis
+                    font: {
+                      weight: 'bold' // Make the Y-axis title bold
+                    }
+                  }
                 }
               },
               plugins: {

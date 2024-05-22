@@ -40,18 +40,13 @@ while ($row = $result->fetch_assoc()) {
 }
 
 // Sort the data based on the count in descending order
-usort($data, function($a, $b) {
+usort($data, function ($a, $b) {
     return $b['value'] - $a['value'];
 });
 
-// Keep only the top 5 dishes, and aggregate the rest
-$top5 = array_slice($data, 0, 5);
-$otherTotal = array_sum(array_column(array_slice($data, 5), 'value'));
-
-$finalData = $top5;
-$finalData[] = ['label' => 'Other', 'value' => $otherTotal];
+// Keep only the top 5 dishes
+$finalData = array_slice($data, 0, 5);
 
 // Encode the final data array as JSON and return it
 header('Content-Type: application/json');
 echo json_encode(['data' => $finalData]);
-?>

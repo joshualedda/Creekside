@@ -24,7 +24,7 @@ $endYearDate = date('Y-m-d', mktime(0, 0, 0, $selectedMonth, $daysInMonth, $endY
 $query = "SELECT transactions.delivery_method AS label, COUNT(transactions.trans_id) AS value
           FROM transactions
           WHERE transactions.date >= '$startYearDate' AND transactions.date <= '$endYearDate'
-                AND transactions.status <> 'Cancelled'
+                AND transactions.status <> 'Cancelled' AND transactions.delivery_method IS NOT NULL
           GROUP BY transactions.delivery_method";
 
 $result = mysqli_query($conn->con, $query);

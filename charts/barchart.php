@@ -4,7 +4,7 @@ include "../controllers/Index.php";
 $conn = new db;
 
 
-$query = "SELECT dishes.dish_name AS label, SUM(dishes_ordered.quantity) AS value
+$query = "SELECT dishes.dish_name AS label, SUM(dishes_ordered.subtotal) AS value
           FROM transactions
           LEFT JOIN dishes_ordered ON transactions.trans_id = dishes_ordered.trans_id
           LEFT JOIN dishes ON dishes_ordered.dish_id = dishes.dish_id

@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $query = "SELECT DATE(transactions.date) as date, dishes.dish_name, SUM(dishes_ordered.quantity) as quantity, dishes_ordered.price, SUM(dishes_ordered.subtotal) as subtotal, transactions.status
                   FROM transactions LEFT JOIN dishes_ordered ON dishes_ordered.trans_id = transactions.trans_id
                                   LEFT JOIN dishes ON dishes.dish_id = dishes_ordered.dish_id
-                  WHERE $whereClause 
+                  WHERE $whereClause AND transactions.status <> 'Cancelled'
                   GROUP BY transactions.date, dishes_ordered.dish_id
                   ORDER BY transactions.date DESC, dishes.dish_name ASC
                   $limitClause";

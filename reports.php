@@ -14,10 +14,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.js"></script>
 </head>
 <!-- <style>
-.subtotal-cell {
-    text-align: right !important;
-    margin-right: 50px !important;
-}
+    .subtotal-cell {
+        text-align: right !important;
+        margin: auto !important;
+    }
 </style> -->
 
 <body>

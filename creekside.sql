@@ -1,4121 +1,4358 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: May 22, 2024 at 10:26 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.0.30
 
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `creekside`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `audit_trail`
+--
 
 CREATE TABLE `audit_trail` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `timestamp` datetime DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   `action` varchar(255) DEFAULT NULL,
-  `object` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `object` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO audit_trail VALUES("1","2023-08-31 13:30:53","1","Login","User login page");
-INSERT INTO audit_trail VALUES("2","2023-08-31 13:31:41","4","Login","User login page");
-INSERT INTO audit_trail VALUES("3","2023-08-31 13:36:30","1","Login","User login page");
-INSERT INTO audit_trail VALUES("4","2023-08-31 13:45:48","1","Login","User login page");
-INSERT INTO audit_trail VALUES("5","2023-08-31 13:49:04","1","Login","User login page");
-INSERT INTO audit_trail VALUES("6","2023-08-31 13:52:23","1","Login","User login page");
-INSERT INTO audit_trail VALUES("7","2023-08-31 13:54:24","1","Login","User login page");
-INSERT INTO audit_trail VALUES("8","2023-08-31 20:12:20","1","Login","User login page");
-INSERT INTO audit_trail VALUES("9","0000-00-00 00:00:00","1","Login","User login page");
-INSERT INTO audit_trail VALUES("10","0000-00-00 00:00:00","1","Login","User login page");
-INSERT INTO audit_trail VALUES("11","2023-08-31 20:15:41","1","Login","User login page");
-INSERT INTO audit_trail VALUES("12","2023-08-31 21:11:00","0","Login","User login page");
-INSERT INTO audit_trail VALUES("13","2023-08-31 21:11:58","1","Login","User login page");
-INSERT INTO audit_trail VALUES("14","2023-08-31 21:32:46","2","Login","User login page");
-INSERT INTO audit_trail VALUES("15","2023-08-31 21:33:47","2","Login","User login page");
+--
+-- Dumping data for table `audit_trail`
+--
 
+INSERT INTO `audit_trail` (`id`, `timestamp`, `user_id`, `action`, `object`) VALUES
+(1, '2023-08-31 13:30:53', 1, 'Login', 'User login page'),
+(2, '2023-08-31 13:31:41', 4, 'Login', 'User login page'),
+(3, '2023-08-31 13:36:30', 1, 'Login', 'User login page'),
+(4, '2023-08-31 13:45:48', 1, 'Login', 'User login page'),
+(5, '2023-08-31 13:49:04', 1, 'Login', 'User login page'),
+(6, '2023-08-31 13:52:23', 1, 'Login', 'User login page'),
+(7, '2023-08-31 13:54:24', 1, 'Login', 'User login page'),
+(8, '2023-08-31 20:12:20', 1, 'Login', 'User login page'),
+(9, '0000-00-00 00:00:00', 1, 'Login', 'User login page'),
+(10, '0000-00-00 00:00:00', 1, 'Login', 'User login page'),
+(11, '2023-08-31 20:15:41', 1, 'Login', 'User login page'),
+(12, '2023-08-31 21:11:00', 0, 'Login', 'User login page'),
+(13, '2023-08-31 21:11:58', 1, 'Login', 'User login page'),
+(14, '2023-08-31 21:32:46', 2, 'Login', 'User login page'),
+(15, '2023-08-31 21:33:47', 2, 'Login', 'User login page');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `barangay`
+--
 
 CREATE TABLE `barangay` (
-  `barangay_id` int(11) NOT NULL AUTO_INCREMENT,
+  `barangay_id` int(11) NOT NULL,
   `brgyCode` varchar(255) DEFAULT NULL,
   `brgyDesc` text DEFAULT NULL,
   `regCode` varchar(255) DEFAULT NULL,
   `provCode` varchar(255) DEFAULT NULL,
-  `citymunCode` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`barangay_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=42030 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `citymunCode` varchar(255) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
-INSERT INTO barangay VALUES("1","012801001","Adams (Pob.)","01","0128","012801");
-INSERT INTO barangay VALUES("2","012802001","Bani","01","0128","012802");
-INSERT INTO barangay VALUES("3","012802002","Buyon","01","0128","012802");
-INSERT INTO barangay VALUES("4","012802003","Cabaruan","01","0128","012802");
-INSERT INTO barangay VALUES("5","012802004","Cabulalaan","01","0128","012802");
-INSERT INTO barangay VALUES("6","012802005","Cabusligan","01","0128","012802");
-INSERT INTO barangay VALUES("7","012802006","Cadaratan","01","0128","012802");
-INSERT INTO barangay VALUES("8","012802007","Calioet-Libong","01","0128","012802");
-INSERT INTO barangay VALUES("9","012802008","Casilian","01","0128","012802");
-INSERT INTO barangay VALUES("10","012802009","Corocor","01","0128","012802");
-INSERT INTO barangay VALUES("11","012802011","Duripes","01","0128","012802");
-INSERT INTO barangay VALUES("12","012802012","Ganagan","01","0128","012802");
-INSERT INTO barangay VALUES("13","012802013","Libtong","01","0128","012802");
-INSERT INTO barangay VALUES("14","012802014","Macupit","01","0128","012802");
-INSERT INTO barangay VALUES("15","012802015","Nambaran","01","0128","012802");
-INSERT INTO barangay VALUES("16","012802016","Natba","01","0128","012802");
-INSERT INTO barangay VALUES("17","012802017","Paninaan","01","0128","012802");
-INSERT INTO barangay VALUES("18","012802018","Pasiocan","01","0128","012802");
-INSERT INTO barangay VALUES("19","012802019","Pasngal","01","0128","012802");
-INSERT INTO barangay VALUES("20","012802020","Pipias","01","0128","012802");
-INSERT INTO barangay VALUES("21","012802021","Pulangi","01","0128","012802");
-INSERT INTO barangay VALUES("22","012802022","Pungto","01","0128","012802");
-INSERT INTO barangay VALUES("23","012802024","San Agustin I (Pob.)","01","0128","012802");
-INSERT INTO barangay VALUES("24","012802025","San Agustin II (Pob.)","01","0128","012802");
-INSERT INTO barangay VALUES("25","012802027","San Andres I (Pob.)","01","0128","012802");
-INSERT INTO barangay VALUES("26","012802028","San Andres II (Pob.)","01","0128","012802");
-INSERT INTO barangay VALUES("27","012802030","San Gabriel I (Pob.)","01","0128","012802");
-INSERT INTO barangay VALUES("28","012802031","San Gabriel II (Pob.)","01","0128","012802");
-INSERT INTO barangay VALUES("29","012802033","San Pedro I (Pob.)","01","0128","012802");
-INSERT INTO barangay VALUES("30","012802034","San Pedro II (Pob.)","01","0128","012802");
-INSERT INTO barangay VALUES("31","012802036","San Roque I (Pob.)","01","0128","012802");
-INSERT INTO barangay VALUES("32","012802037","San Roque II (Pob.)","01","0128","012802");
-INSERT INTO barangay VALUES("33","012802039","San Simon I (Pob.)","01","0128","012802");
-INSERT INTO barangay VALUES("34","012802040","San Simon II (Pob.)","01","0128","012802");
-INSERT INTO barangay VALUES("35","012802041","San Vicente (Pob.)","01","0128","012802");
-INSERT INTO barangay VALUES("36","012802042","Sangil","01","0128","012802");
-INSERT INTO barangay VALUES("37","012802044","Santa Filomena I (Pob.)","01","0128","012802");
-INSERT INTO barangay VALUES("38","012802045","Santa Filomena II (Pob.)","01","0128","012802");
-INSERT INTO barangay VALUES("39","012802046","Santa Rita (Pob.)","01","0128","012802");
-INSERT INTO barangay VALUES("40","012802047","Santo Cristo I (Pob.)","01","0128","012802");
-INSERT INTO barangay VALUES("41","012802048","Santo Cristo II (Pob.)","01","0128","012802");
-INSERT INTO barangay VALUES("42","012802050","Tambidao","01","0128","012802");
-INSERT INTO barangay VALUES("43","012802051","Teppang","01","0128","012802");
-INSERT INTO barangay VALUES("44","012802052","Tubburan","01","0128","012802");
-INSERT INTO barangay VALUES("45","012803001","Alay-Nangbabaan (Alay 15-B)","01","0128","012803");
-INSERT INTO barangay VALUES("46","012803002","Alogoog","01","0128","012803");
-INSERT INTO barangay VALUES("47","012803003","Ar-arusip","01","0128","012803");
-INSERT INTO barangay VALUES("48","012803004","Aring","01","0128","012803");
-INSERT INTO barangay VALUES("49","012803005","Balbaldez","01","0128","012803");
-INSERT INTO barangay VALUES("50","012803006","Bato","01","0128","012803");
-INSERT INTO barangay VALUES("51","012803007","Camanga","01","0128","012803");
-INSERT INTO barangay VALUES("52","012803008","Canaan (Pob.)","01","0128","012803");
-INSERT INTO barangay VALUES("53","012803009","Caraitan","01","0128","012803");
-INSERT INTO barangay VALUES("54","012803011","Gabut Norte","01","0128","012803");
-INSERT INTO barangay VALUES("55","012803012","Gabut Sur","01","0128","012803");
-INSERT INTO barangay VALUES("56","012803013","Garreta (Pob.)","01","0128","012803");
-INSERT INTO barangay VALUES("57","012803016","Labut","01","0128","012803");
-INSERT INTO barangay VALUES("58","012803017","Lacuben","01","0128","012803");
-INSERT INTO barangay VALUES("59","012803018","Lubigan","01","0128","012803");
-INSERT INTO barangay VALUES("60","012803020","Mabusag Norte","01","0128","012803");
-INSERT INTO barangay VALUES("61","012803021","Mabusag Sur","01","0128","012803");
-INSERT INTO barangay VALUES("62","012803022","Madupayas","01","0128","012803");
-INSERT INTO barangay VALUES("63","012803023","Morong","01","0128","012803");
-INSERT INTO barangay VALUES("64","012803025","Nagrebcan","01","0128","012803");
-INSERT INTO barangay VALUES("65","012803026","Napu","01","0128","012803");
-INSERT INTO barangay VALUES("66","012803027","La Virgen Milagrosa (Paguetpet)","01","0128","012803");
-INSERT INTO barangay VALUES("67","012803028","Pagsanahan Norte","01","0128","012803");
-INSERT INTO barangay VALUES("68","012803029","Pagsanahan Sur","01","0128","012803");
-INSERT INTO barangay VALUES("69","012803030","Paltit","01","0128","012803");
-INSERT INTO barangay VALUES("70","012803031","Parang","01","0128","012803");
-INSERT INTO barangay VALUES("71","012803032","Pasuc","01","0128","012803");
-INSERT INTO barangay VALUES("72","012803034","Santa Cruz Norte","01","0128","012803");
-INSERT INTO barangay VALUES("73","012803035","Santa Cruz Sur","01","0128","012803");
-INSERT INTO barangay VALUES("74","012803036","Saud","01","0128","012803");
-INSERT INTO barangay VALUES("75","012803037","Turod","01","0128","012803");
-INSERT INTO barangay VALUES("76","012804001","Abaca","01","0128","012804");
-INSERT INTO barangay VALUES("77","012804002","Bacsil","01","0128","012804");
-INSERT INTO barangay VALUES("78","012804003","Banban","01","0128","012804");
-INSERT INTO barangay VALUES("79","012804004","Baruyen","01","0128","012804");
-INSERT INTO barangay VALUES("80","012804005","Dadaor","01","0128","012804");
-INSERT INTO barangay VALUES("81","012804006","Lanao","01","0128","012804");
-INSERT INTO barangay VALUES("82","012804007","Malasin","01","0128","012804");
-INSERT INTO barangay VALUES("83","012804008","Manayon","01","0128","012804");
-INSERT INTO barangay VALUES("84","012804009","Masikil","01","0128","012804");
-INSERT INTO barangay VALUES("85","012804010","Nagbalagan","01","0128","012804");
-INSERT INTO barangay VALUES("86","012804011","Payac","01","0128","012804");
-INSERT INTO barangay VALUES("87","012804012","San Lorenzo (Pob.)","01","0128","012804");
-INSERT INTO barangay VALUES("88","012804014","Taguiporo","01","0128","012804");
-INSERT INTO barangay VALUES("89","012804015","Utol","01","0128","012804");
-INSERT INTO barangay VALUES("90","012805001","Aglipay (Pob.)","01","0128","012805");
-INSERT INTO barangay VALUES("91","012805002","Baay","01","0128","012805");
-INSERT INTO barangay VALUES("92","012805003","Baligat","01","0128","012805");
-INSERT INTO barangay VALUES("93","012805004","Bungon","01","0128","012805");
-INSERT INTO barangay VALUES("94","012805005","Baoa East","01","0128","012805");
-INSERT INTO barangay VALUES("95","012805006","Baoa West","01","0128","012805");
-INSERT INTO barangay VALUES("96","012805007","Barani (Pob.)","01","0128","012805");
-INSERT INTO barangay VALUES("97","012805009","Ben-agan (Pob.)","01","0128","012805");
-INSERT INTO barangay VALUES("98","012805010","Bil-loca","01","0128","012805");
-INSERT INTO barangay VALUES("99","012805011","Biningan","01","0128","012805");
-INSERT INTO barangay VALUES("100","012805012","Callaguip (Pob.)","01","0128","012805");
-INSERT INTO barangay VALUES("101","012805013","Camandingan","01","0128","012805");
-INSERT INTO barangay VALUES("102","012805014","Camguidan","01","0128","012805");
-INSERT INTO barangay VALUES("103","012805015","Cangrunaan (Pob.)","01","0128","012805");
-INSERT INTO barangay VALUES("104","012805016","Capacuan","01","0128","012805");
-INSERT INTO barangay VALUES("105","012805017","Caunayan (Pob.)","01","0128","012805");
-INSERT INTO barangay VALUES("106","012805018","Valdez Pob. (Caoayan)","01","0128","012805");
-INSERT INTO barangay VALUES("107","012805019","Colo","01","0128","012805");
-INSERT INTO barangay VALUES("108","012805020","Pimentel (Cubol)","01","0128","012805");
-INSERT INTO barangay VALUES("109","012805021","Dariwdiw","01","0128","012805");
-INSERT INTO barangay VALUES("110","012805022","Acosta Pob. (Iloilo)","01","0128","012805");
-INSERT INTO barangay VALUES("111","012805023","Ablan Pob. (Labucao)","01","0128","012805");
-INSERT INTO barangay VALUES("112","012805024","Lacub (Pob.)","01","0128","012805");
-INSERT INTO barangay VALUES("113","012805025","Mabaleng","01","0128","012805");
-INSERT INTO barangay VALUES("114","012805026","Magnuang","01","0128","012805");
-INSERT INTO barangay VALUES("115","012805027","Maipalig","01","0128","012805");
-INSERT INTO barangay VALUES("116","012805028","Nagbacalan","01","0128","012805");
-INSERT INTO barangay VALUES("117","012805029","Naguirangan","01","0128","012805");
-INSERT INTO barangay VALUES("118","012805030","Ricarte Pob. (Nalasin)","01","0128","012805");
-INSERT INTO barangay VALUES("119","012805031","Palongpong","01","0128","012805");
-INSERT INTO barangay VALUES("120","012805032","Palpalicong (Pob.)","01","0128","012805");
-INSERT INTO barangay VALUES("121","012805033","Parangopong","01","0128","012805");
-INSERT INTO barangay VALUES("122","012805034","Payao","01","0128","012805");
-INSERT INTO barangay VALUES("123","012805035","Quiling Norte","01","0128","012805");
-INSERT INTO barangay VALUES("124","012805036","Quiling Sur","01","0128","012805");
-INSERT INTO barangay VALUES("125","012805037","Quiom","01","0128","012805");
-INSERT INTO barangay VALUES("126","012805038","Rayuray","01","0128","012805");
-INSERT INTO barangay VALUES("127","012805039","San Julian (Pob.)","01","0128","012805");
-INSERT INTO barangay VALUES("128","012805040","San Mateo","01","0128","012805");
-INSERT INTO barangay VALUES("129","012805041","San Pedro","01","0128","012805");
-INSERT INTO barangay VALUES("130","012805042","Suabit (Pob.)","01","0128","012805");
-INSERT INTO barangay VALUES("131","012805043","Sumader","01","0128","012805");
-INSERT INTO barangay VALUES("132","012805044","Tabug","01","0128","012805");
-INSERT INTO barangay VALUES("133","012806001","Ablan Sarat","01","0128","012806");
-INSERT INTO barangay VALUES("134","012806002","Agaga","01","0128","012806");
-INSERT INTO barangay VALUES("135","012806005","Bayog","01","0128","012806");
-INSERT INTO barangay VALUES("136","012806006","Bobon","01","0128","012806");
-INSERT INTO barangay VALUES("137","012806007","Buduan (Malituek)","01","0128","012806");
-INSERT INTO barangay VALUES("138","012806008","Nagsurot","01","0128","012806");
-INSERT INTO barangay VALUES("139","012806009","Paayas","01","0128","012806");
-INSERT INTO barangay VALUES("140","012806010","Pagali","01","0128","012806");
-INSERT INTO barangay VALUES("141","012806011","Poblacion","01","0128","012806");
-INSERT INTO barangay VALUES("142","012806013","Saoit","01","0128","012806");
-INSERT INTO barangay VALUES("143","012806014","Tanap","01","0128","012806");
-INSERT INTO barangay VALUES("144","012807001","Angset","01","0128","012807");
-INSERT INTO barangay VALUES("145","012807003","Barbaqueso (Pob.)","01","0128","012807");
-INSERT INTO barangay VALUES("146","012807004","Virbira","01","0128","012807");
-INSERT INTO barangay VALUES("147","012808001","Anggapang Norte","01","0128","012808");
-INSERT INTO barangay VALUES("148","012808002","Anggapang Sur","01","0128","012808");
-INSERT INTO barangay VALUES("149","012808003","Bimmanga","01","0128","012808");
-INSERT INTO barangay VALUES("150","012808004","Cabuusan","01","0128","012808");
-INSERT INTO barangay VALUES("151","012808005","Comcomloong","01","0128","012808");
-INSERT INTO barangay VALUES("152","012808006","Gaang","01","0128","012808");
-INSERT INTO barangay VALUES("153","012808007","Lang-ayan-Baramban","01","0128","012808");
-INSERT INTO barangay VALUES("154","012808008","Lioes","01","0128","012808");
-INSERT INTO barangay VALUES("155","012808009","Maglaoi Centro","01","0128","012808");
-INSERT INTO barangay VALUES("156","012808010","Maglaoi Norte","01","0128","012808");
-INSERT INTO barangay VALUES("157","012808011","Maglaoi Sur","01","0128","012808");
-INSERT INTO barangay VALUES("158","012808013","Paguludan-Salindeg","01","0128","012808");
-INSERT INTO barangay VALUES("159","012808014","Pangil","01","0128","012808");
-INSERT INTO barangay VALUES("160","012808015","Pias Norte","01","0128","012808");
-INSERT INTO barangay VALUES("161","012808016","Pias Sur","01","0128","012808");
-INSERT INTO barangay VALUES("162","012808017","Poblacion I","01","0128","012808");
-INSERT INTO barangay VALUES("163","012808018","Poblacion II","01","0128","012808");
-INSERT INTO barangay VALUES("164","012808019","Salugan","01","0128","012808");
-INSERT INTO barangay VALUES("165","012808020","San Simeon","01","0128","012808");
-INSERT INTO barangay VALUES("166","012808021","Santa Cruz","01","0128","012808");
-INSERT INTO barangay VALUES("167","012808022","Tapao-Tigue","01","0128","012808");
-INSERT INTO barangay VALUES("168","012808023","Torre","01","0128","012808");
-INSERT INTO barangay VALUES("169","012808024","Victoria","01","0128","012808");
-INSERT INTO barangay VALUES("170","012809001","Albano (Pob.)","01","0128","012809");
-INSERT INTO barangay VALUES("171","012809002","Bacsil","01","0128","012809");
-INSERT INTO barangay VALUES("172","012809003","Bagut","01","0128","012809");
-INSERT INTO barangay VALUES("173","012809004","Parado (Bangay)","01","0128","012809");
-INSERT INTO barangay VALUES("174","012809005","Baresbes","01","0128","012809");
-INSERT INTO barangay VALUES("175","012809006","Barong","01","0128","012809");
-INSERT INTO barangay VALUES("176","012809007","Bungcag","01","0128","012809");
-INSERT INTO barangay VALUES("177","012809009","Cali","01","0128","012809");
-INSERT INTO barangay VALUES("178","012809010","Capasan","01","0128","012809");
-INSERT INTO barangay VALUES("179","012809011","Dancel (Pob.)","01","0128","012809");
-INSERT INTO barangay VALUES("180","012809012","Foz","01","0128","012809");
-INSERT INTO barangay VALUES("181","012809013","Guerrero (Pob.)","01","0128","012809");
-INSERT INTO barangay VALUES("182","012809014","Lanas","01","0128","012809");
-INSERT INTO barangay VALUES("183","012809015","Lumbad","01","0128","012809");
-INSERT INTO barangay VALUES("184","012809016","Madamba (Pob.)","01","0128","012809");
-INSERT INTO barangay VALUES("185","012809017","Mandaloque","01","0128","012809");
-INSERT INTO barangay VALUES("186","012809018","Medina","01","0128","012809");
-INSERT INTO barangay VALUES("187","012809019","Ver (Naglayaan)","01","0128","012809");
-INSERT INTO barangay VALUES("188","012809020","San Marcelino (Padong)","01","0128","012809");
-INSERT INTO barangay VALUES("189","012809021","Puruganan (Pob.)","01","0128","012809");
-INSERT INTO barangay VALUES("190","012809022","Peralta (Pob.)","01","0128","012809");
-INSERT INTO barangay VALUES("191","012809023","Root (Baldias)","01","0128","012809");
-INSERT INTO barangay VALUES("192","012809024","Sagpatan","01","0128","012809");
-INSERT INTO barangay VALUES("193","012809025","Saludares","01","0128","012809");
-INSERT INTO barangay VALUES("194","012809026","San Esteban","01","0128","012809");
-INSERT INTO barangay VALUES("195","012809027","Espiritu","01","0128","012809");
-INSERT INTO barangay VALUES("196","012809028","Sulquiano (Sidiran)","01","0128","012809");
-INSERT INTO barangay VALUES("197","012809029","San Francisco (Surrate)","01","0128","012809");
-INSERT INTO barangay VALUES("198","012809030","Suyo","01","0128","012809");
-INSERT INTO barangay VALUES("199","012809031","San Marcos","01","0128","012809");
-INSERT INTO barangay VALUES("200","012809032","Elizabeth","01","0128","012809");
-INSERT INTO barangay VALUES("201","012810001","Dumalneg","01","0128","012810");
-INSERT INTO barangay VALUES("202","012810002","San Isidro","01","0128","012810");
-INSERT INTO barangay VALUES("203","012811001","Balioeg","01","0128","012811");
-INSERT INTO barangay VALUES("204","012811002","Bangsar","01","0128","012811");
-INSERT INTO barangay VALUES("205","012811003","Barbarangay","01","0128","012811");
-INSERT INTO barangay VALUES("206","012811004","Bomitog","01","0128","012811");
-INSERT INTO barangay VALUES("207","012811005","Bugasi","01","0128","012811");
-INSERT INTO barangay VALUES("208","012811006","Caestebanan","01","0128","012811");
-INSERT INTO barangay VALUES("209","012811008","Caribquib","01","0128","012811");
-INSERT INTO barangay VALUES("210","012811009","Catagtaguen","01","0128","012811");
-INSERT INTO barangay VALUES("211","012811011","Crispina","01","0128","012811");
-INSERT INTO barangay VALUES("212","012811012","Hilario (Pob.)","01","0128","012811");
-INSERT INTO barangay VALUES("213","012811013","Imelda","01","0128","012811");
-INSERT INTO barangay VALUES("214","012811014","Lorenzo (Pob.)","01","0128","012811");
-INSERT INTO barangay VALUES("215","012811015","Macayepyep","01","0128","012811");
-INSERT INTO barangay VALUES("216","012811016","Marcos (Pob.)","01","0128","012811");
-INSERT INTO barangay VALUES("217","012811017","Nagpatayan","01","0128","012811");
-INSERT INTO barangay VALUES("218","012811018","Valdez","01","0128","012811");
-INSERT INTO barangay VALUES("219","012811019","Sinamar","01","0128","012811");
-INSERT INTO barangay VALUES("220","012811020","Tabtabagan","01","0128","012811");
-INSERT INTO barangay VALUES("221","012811021","Valenciano (Pob.)","01","0128","012811");
-INSERT INTO barangay VALUES("222","012811022","Binacag","01","0128","012811");
-INSERT INTO barangay VALUES("223","012812001","Bgy. No. 42, Apaya","01","0128","012812");
-INSERT INTO barangay VALUES("224","012812002","Bgy. No. 36, Araniw","01","0128","012812");
-INSERT INTO barangay VALUES("225","012812003","Bgy. No. 56-A, Bacsil North","01","0128","012812");
-INSERT INTO barangay VALUES("226","012812004","Bgy. No. 56-B, Bacsil South","01","0128","012812");
-INSERT INTO barangay VALUES("227","012812005","Bgy. No. 41, Balacad","01","0128","012812");
-INSERT INTO barangay VALUES("228","012812006","Bgy. No. 40, Balatong","01","0128","012812");
-INSERT INTO barangay VALUES("229","012812007","Bgy. No. 55-A, Barit-Pandan","01","0128","012812");
-INSERT INTO barangay VALUES("230","012812008","Bgy. No. 47, Bengcag","01","0128","012812");
-INSERT INTO barangay VALUES("231","012812009","Bgy. No. 50, Buttong","01","0128","012812");
-INSERT INTO barangay VALUES("232","012812010","Bgy. No. 60-A, Caaoacan","01","0128","012812");
-INSERT INTO barangay VALUES("233","012812011","Bry. No. 48-A, Cabungaan North","01","0128","012812");
-INSERT INTO barangay VALUES("234","012812012","Bgy. No. 48-B, Cabungaan South","01","0128","012812");
-INSERT INTO barangay VALUES("235","012812013","Bgy. No. 37, Calayab","01","0128","012812");
-INSERT INTO barangay VALUES("236","012812014","Bgy. No. 54-B, Camangaan","01","0128","012812");
-INSERT INTO barangay VALUES("237","012812015","Bgy. No. 58, Casili","01","0128","012812");
-INSERT INTO barangay VALUES("238","012812016","Bgy. No. 61, Cataban","01","0128","012812");
-INSERT INTO barangay VALUES("239","012812017","Bgy. No. 43, Cavit","01","0128","012812");
-INSERT INTO barangay VALUES("240","012812019","Bgy. No. 49-A, Darayday","01","0128","012812");
-INSERT INTO barangay VALUES("241","012812020","Bgy. No. 59-B, Dibua North","01","0128","012812");
-INSERT INTO barangay VALUES("242","012812021","Bgy. No. 59-A, Dibua South","01","0128","012812");
-INSERT INTO barangay VALUES("243","012812022","Bgy. No. 34-B, Gabu Norte East","01","0128","012812");
-INSERT INTO barangay VALUES("244","012812023","Bgy. No. 34-A, Gabu Norte West","01","0128","012812");
-INSERT INTO barangay VALUES("245","012812024","Bgy. No. 35, Gabu Sur","01","0128","012812");
-INSERT INTO barangay VALUES("246","012812026","Bgy. No. 32-C La Paz East","01","0128","012812");
-INSERT INTO barangay VALUES("247","012812027","Bgy. No. 33-B, La Paz Proper","01","0128","012812");
-INSERT INTO barangay VALUES("248","012812028","Bgy. No. 32-B, La Paz West","01","0128","012812");
-INSERT INTO barangay VALUES("249","012812029","Bgy. No. 54-A, Lagui-Sail","01","0128","012812");
-INSERT INTO barangay VALUES("250","012812030","Bgy. No. 32-A, La Paz East","01","0128","012812");
-INSERT INTO barangay VALUES("251","012812031","Bgy. No. 33-A, La Paz Proper","01","0128","012812");
-INSERT INTO barangay VALUES("252","012812032","Bgy. No. 52-B, Lataag","01","0128","012812");
-INSERT INTO barangay VALUES("253","012812033","Bgy. No. 60-B, Madiladig","01","0128","012812");
-INSERT INTO barangay VALUES("254","012812034","Bgy. No. 38-A, Mangato East","01","0128","012812");
-INSERT INTO barangay VALUES("255","012812035","Bgy. No. 38-B, Mangato West","01","0128","012812");
-INSERT INTO barangay VALUES("256","012812036","Bgy. No. 62-A, Navotas North","01","0128","012812");
-INSERT INTO barangay VALUES("257","012812037","Bgy. No. 62-B, Navotas South","01","0128","012812");
-INSERT INTO barangay VALUES("258","012812038","Bgy. No. 46, Nalbo","01","0128","012812");
-INSERT INTO barangay VALUES("259","012812039","Bgy. No. 51-A, Nangalisan East","01","0128","012812");
-INSERT INTO barangay VALUES("260","012812040","Bgy. No. 51-B, Nangalisan West","01","0128","012812");
-INSERT INTO barangay VALUES("261","012812041","Bgy. No. 24, Nstra. Sra. De Consolacion (Pob.)","01","0128","012812");
-INSERT INTO barangay VALUES("262","012812042","Bgy. No. 7-A, Nstra. Sra. De Natividad (Pob.)","01","0128","012812");
-INSERT INTO barangay VALUES("263","012812043","Bgy. No. 7-B, Nstra. Sra. De Natividad (Pob.)","01","0128","012812");
-INSERT INTO barangay VALUES("264","012812044","Bgy. No. 27, Nstra. Sra. De Soledad (Pob.)","01","0128","012812");
-INSERT INTO barangay VALUES("265","012812045","Bgy. No. 13, Nstra. Sra. De Visitacion (Pob.)","01","0128","012812");
-INSERT INTO barangay VALUES("266","012812046","Bgy. No. 3, Nstra. Sra. Del Rosario (Pob.)","01","0128","012812");
-INSERT INTO barangay VALUES("267","012812047","Bgy. No. 57, Pila","01","0128","012812");
-INSERT INTO barangay VALUES("268","012812048","Bgy. No. 49-B, Raraburan","01","0128","012812");
-INSERT INTO barangay VALUES("269","012812049","Bgy. No. 53, Rioeng","01","0128","012812");
-INSERT INTO barangay VALUES("270","012812050","Bgy. No. 55-B, Salet-Bulangon","01","0128","012812");
-INSERT INTO barangay VALUES("271","012812053","Bgy. No. 6, San Agustin (Pob.)","01","0128","012812");
-INSERT INTO barangay VALUES("272","012812054","Bgy. No. 22, San Andres (Pob.)","01","0128","012812");
-INSERT INTO barangay VALUES("273","012812055","Bgy. No. 28, San Bernardo (Pob.)","01","0128","012812");
-INSERT INTO barangay VALUES("274","012812056","Bgy. No. 17, San Francisco (Pob.)","01","0128","012812");
-INSERT INTO barangay VALUES("275","012812057","Bgy. No. 4, San Guillermo (Pob.)","01","0128","012812");
-INSERT INTO barangay VALUES("276","012812058","Bgy. No. 15, San Guillermo (Pob.)","01","0128","012812");
-INSERT INTO barangay VALUES("277","012812059","Bgy. No. 12, San Isidro (Pob.)","01","0128","012812");
-INSERT INTO barangay VALUES("278","012812060","Bgy. No. 16, San Jacinto (Pob.)","01","0128","012812");
-INSERT INTO barangay VALUES("279","012812061","Bgy. No. 10, San Jose (Pob.)","01","0128","012812");
-INSERT INTO barangay VALUES("280","012812062","Bgy. No. 1, San Lorenzo (Pob.)","01","0128","012812");
-INSERT INTO barangay VALUES("281","012812063","Bgy. No. 26, San Marcelino (Pob.)","01","0128","012812");
-INSERT INTO barangay VALUES("282","012812064","Bgy. No. 52-A, San Mateo","01","0128","012812");
-INSERT INTO barangay VALUES("283","012812065","Bgy. No. 23, San Matias (Pob.)","01","0128","012812");
-INSERT INTO barangay VALUES("284","012812066","Bgy. No. 20, San Miguel (Pob.)","01","0128","012812");
-INSERT INTO barangay VALUES("285","012812067","Bgy. No. 21, San Pedro (Pob.)","01","0128","012812");
-INSERT INTO barangay VALUES("286","012812068","Bgy. No. 5, San Pedro (Pob.)","01","0128","012812");
-INSERT INTO barangay VALUES("287","012812069","Bry. No. 18, San Quirino (Pob.)","01","0128","012812");
-INSERT INTO barangay VALUES("288","012812070","Bgy. No. 8, San Vicente (Pob.)","01","0128","012812");
-INSERT INTO barangay VALUES("289","012812071","Bgy. No. 9, Santa Angela (Pob.)","01","0128","012812");
-INSERT INTO barangay VALUES("290","012812072","Bgy. No. 11, Santa Balbina (Pob.)","01","0128","012812");
-INSERT INTO barangay VALUES("291","012812073","Bgy. No. 25, Santa Cayetana (Pob.)","01","0128","012812");
-INSERT INTO barangay VALUES("292","012812074","Bgy. No. 2, Santa Joaquina (Pob.)","01","0128","012812");
-INSERT INTO barangay VALUES("293","012812075","Bgy. No. 19, Santa Marcela (Pob.)","01","0128","012812");
-INSERT INTO barangay VALUES("294","012812076","Bgy. No. 30-B, Santa Maria","01","0128","012812");
-INSERT INTO barangay VALUES("295","012812077","Bgy. No. 39, Santa Rosa","01","0128","012812");
-INSERT INTO barangay VALUES("296","012812078","Bgy. No. 14, Santo Tomas (Pob.)","01","0128","012812");
-INSERT INTO barangay VALUES("297","012812079","Bgy. No. 29, Santo Tomas (Pob.)","01","0128","012812");
-INSERT INTO barangay VALUES("298","012812080","Bgy. No. 30-A, Suyo","01","0128","012812");
-INSERT INTO barangay VALUES("299","012812081","Bgy. No. 31, Talingaan","01","0128","012812");
-INSERT INTO barangay VALUES("300","012812082","Bgy. No. 45, Tangid","01","0128","012812");
-INSERT INTO barangay VALUES("301","012812083","Bgy. No. 55-C, Vira","01","0128","012812");
-INSERT INTO barangay VALUES("302","012812084","Bgy. No. 44, Zamboanga","01","0128","012812");
-INSERT INTO barangay VALUES("303","012813001","Pacifico (Agunit)","01","0128","012813");
-INSERT INTO barangay VALUES("304","012813003","Imelda (Capariaan)","01","0128","012813");
-INSERT INTO barangay VALUES("305","012813004","Elizabeth (Culao)","01","0128","012813");
-INSERT INTO barangay VALUES("306","012813005","Daquioag","01","0128","012813");
-INSERT INTO barangay VALUES("307","012813006","Escoda","01","0128","012813");
-INSERT INTO barangay VALUES("308","012813007","Ferdinand","01","0128","012813");
-INSERT INTO barangay VALUES("309","012813008","Fortuna","01","0128","012813");
-INSERT INTO barangay VALUES("310","012813009","Lydia (Pob.)","01","0128","012813");
-INSERT INTO barangay VALUES("311","012813010","Mabuti","01","0128","012813");
-INSERT INTO barangay VALUES("312","012813011","Valdez (Biding)","01","0128","012813");
-INSERT INTO barangay VALUES("313","012813012","Tabucbuc (Ragas)","01","0128","012813");
-INSERT INTO barangay VALUES("314","012813013","Santiago","01","0128","012813");
-INSERT INTO barangay VALUES("315","012813014","Cacafean","01","0128","012813");
-INSERT INTO barangay VALUES("316","012814001","Acnam","01","0128","012814");
-INSERT INTO barangay VALUES("317","012814002","Barangobong","01","0128","012814");
-INSERT INTO barangay VALUES("318","012814003","Barikir","01","0128","012814");
-INSERT INTO barangay VALUES("319","012814004","Bugayong","01","0128","012814");
-INSERT INTO barangay VALUES("320","012814005","Cabittauran","01","0128","012814");
-INSERT INTO barangay VALUES("321","012814006","Caray","01","0128","012814");
-INSERT INTO barangay VALUES("322","012814007","Garnaden","01","0128","012814");
-INSERT INTO barangay VALUES("323","012814008","Naguillan (Pagpag-ong)","01","0128","012814");
-INSERT INTO barangay VALUES("324","012814009","Poblacion","01","0128","012814");
-INSERT INTO barangay VALUES("325","012814010","Santo Niño","01","0128","012814");
-INSERT INTO barangay VALUES("326","012814011","Uguis","01","0128","012814");
-INSERT INTO barangay VALUES("327","012815001","Aggasi","01","0128","012815");
-INSERT INTO barangay VALUES("328","012815003","Baduang","01","0128","012815");
-INSERT INTO barangay VALUES("329","012815004","Balaoi","01","0128","012815");
-INSERT INTO barangay VALUES("330","012815005","Burayoc","01","0128","012815");
-INSERT INTO barangay VALUES("331","012815006","Caunayan","01","0128","012815");
-INSERT INTO barangay VALUES("332","012815007","Dampig","01","0128","012815");
-INSERT INTO barangay VALUES("333","012815008","Ligaya","01","0128","012815");
-INSERT INTO barangay VALUES("334","012815010","Pancian","01","0128","012815");
-INSERT INTO barangay VALUES("335","012815011","Pasaleng","01","0128","012815");
-INSERT INTO barangay VALUES("336","012815012","Poblacion 1","01","0128","012815");
-INSERT INTO barangay VALUES("337","012815013","Poblacion 2","01","0128","012815");
-INSERT INTO barangay VALUES("338","012815014","Saguigui","01","0128","012815");
-INSERT INTO barangay VALUES("339","012815015","Saud","01","0128","012815");
-INSERT INTO barangay VALUES("340","012815016","Subec","01","0128","012815");
-INSERT INTO barangay VALUES("341","012815017","Tarrag","01","0128","012815");
-INSERT INTO barangay VALUES("342","012815018","Caparispisan","01","0128","012815");
-INSERT INTO barangay VALUES("343","012816001","Bacsil","01","0128","012816");
-INSERT INTO barangay VALUES("344","012816002","Cabagoan","01","0128","012816");
-INSERT INTO barangay VALUES("345","012816003","Cabangaran","01","0128","012816");
-INSERT INTO barangay VALUES("346","012816004","Callaguip","01","0128","012816");
-INSERT INTO barangay VALUES("347","012816005","Cayubog","01","0128","012816");
-INSERT INTO barangay VALUES("348","012816006","Dolores","01","0128","012816");
-INSERT INTO barangay VALUES("349","012816007","Laoa","01","0128","012816");
-INSERT INTO barangay VALUES("350","012816008","Masintoc","01","0128","012816");
-INSERT INTO barangay VALUES("351","012816009","Monte","01","0128","012816");
-INSERT INTO barangay VALUES("352","012816010","Mumulaan","01","0128","012816");
-INSERT INTO barangay VALUES("353","012816011","Nagbacalan","01","0128","012816");
-INSERT INTO barangay VALUES("354","012816012","Nalasin","01","0128","012816");
-INSERT INTO barangay VALUES("355","012816013","Nanguyudan","01","0128","012816");
-INSERT INTO barangay VALUES("356","012816014","Oaig-Upay-Abulao","01","0128","012816");
-INSERT INTO barangay VALUES("357","012816015","Pambaran","01","0128","012816");
-INSERT INTO barangay VALUES("358","012816016","Pannaratan (Pob.)","01","0128","012816");
-INSERT INTO barangay VALUES("359","012816017","Paratong","01","0128","012816");
-INSERT INTO barangay VALUES("360","012816018","Pasil","01","0128","012816");
-INSERT INTO barangay VALUES("361","012816019","Salbang (Pob.)","01","0128","012816");
-INSERT INTO barangay VALUES("362","012816020","San Agustin","01","0128","012816");
-INSERT INTO barangay VALUES("363","012816021","San Blas (Pob.)","01","0128","012816");
-INSERT INTO barangay VALUES("364","012816022","San Juan","01","0128","012816");
-INSERT INTO barangay VALUES("365","012816025","San Pedro","01","0128","012816");
-INSERT INTO barangay VALUES("366","012816028","San Roque (Pob.)","01","0128","012816");
-INSERT INTO barangay VALUES("367","012816029","Sangladan Pob. (Nalbuan)","01","0128","012816");
-INSERT INTO barangay VALUES("368","012816030","Santa Rita (Pob.)","01","0128","012816");
-INSERT INTO barangay VALUES("369","012816031","Sideg","01","0128","012816");
-INSERT INTO barangay VALUES("370","012816032","Suba","01","0128","012816");
-INSERT INTO barangay VALUES("371","012816033","Sungadan","01","0128","012816");
-INSERT INTO barangay VALUES("372","012816034","Surgui","01","0128","012816");
-INSERT INTO barangay VALUES("373","012816035","Veronica","01","0128","012816");
-INSERT INTO barangay VALUES("374","012817001","Batuli","01","0128","012817");
-INSERT INTO barangay VALUES("375","012817002","Binsang","01","0128","012817");
-INSERT INTO barangay VALUES("376","012817003","Nalvo (Cababaan-Nalvo)","01","0128","012817");
-INSERT INTO barangay VALUES("377","012817004","Caruan","01","0128","012817");
-INSERT INTO barangay VALUES("378","012817005","Carusikis","01","0128","012817");
-INSERT INTO barangay VALUES("379","012817006","Carusipan","01","0128","012817");
-INSERT INTO barangay VALUES("380","012817007","Dadaeman","01","0128","012817");
-INSERT INTO barangay VALUES("381","012817008","Darupidip","01","0128","012817");
-INSERT INTO barangay VALUES("382","012817009","Davila","01","0128","012817");
-INSERT INTO barangay VALUES("383","012817010","Dilanis","01","0128","012817");
-INSERT INTO barangay VALUES("384","012817011","Dilavo","01","0128","012817");
-INSERT INTO barangay VALUES("385","012817012","Estancia","01","0128","012817");
-INSERT INTO barangay VALUES("386","012817014","Naglicuan","01","0128","012817");
-INSERT INTO barangay VALUES("387","012817015","Nagsanga","01","0128","012817");
-INSERT INTO barangay VALUES("388","012817016","Ngabangab","01","0128","012817");
-INSERT INTO barangay VALUES("389","012817017","Pangil","01","0128","012817");
-INSERT INTO barangay VALUES("390","012817018","Poblacion 1","01","0128","012817");
-INSERT INTO barangay VALUES("391","012817019","Poblacion 2","01","0128","012817");
-INSERT INTO barangay VALUES("392","012817020","Poblacion 3","01","0128","012817");
-INSERT INTO barangay VALUES("393","012817021","Poblacion 4","01","0128","012817");
-INSERT INTO barangay VALUES("394","012817022","Pragata (Pragata-Bungro)","01","0128","012817");
-INSERT INTO barangay VALUES("395","012817023","Puyupuyan","01","0128","012817");
-INSERT INTO barangay VALUES("396","012817024","Sulongan","01","0128","012817");
-INSERT INTO barangay VALUES("397","012817025","Salpad","01","0128","012817");
-INSERT INTO barangay VALUES("398","012817026","San Juan","01","0128","012817");
-INSERT INTO barangay VALUES("399","012817027","Santa Catalina","01","0128","012817");
-INSERT INTO barangay VALUES("400","012817028","Santa Matilde","01","0128","012817");
-INSERT INTO barangay VALUES("401","012817029","Sapat","01","0128","012817");
-INSERT INTO barangay VALUES("402","012817030","Sulbec","01","0128","012817");
-INSERT INTO barangay VALUES("403","012817031","Surong","01","0128","012817");
-INSERT INTO barangay VALUES("404","012817032","Susugaen","01","0128","012817");
-INSERT INTO barangay VALUES("405","012817033","Tabungao","01","0128","012817");
-INSERT INTO barangay VALUES("406","012817034","Tadao","01","0128","012817");
-INSERT INTO barangay VALUES("407","012818001","Ab-abut","01","0128","012818");
-INSERT INTO barangay VALUES("408","012818002","Abucay","01","0128","012818");
-INSERT INTO barangay VALUES("409","012818003","Anao (Pob.)","01","0128","012818");
-INSERT INTO barangay VALUES("410","012818004","Arua-ay","01","0128","012818");
-INSERT INTO barangay VALUES("411","012818005","Bimmanga","01","0128","012818");
-INSERT INTO barangay VALUES("412","012818006","Boyboy","01","0128","012818");
-INSERT INTO barangay VALUES("413","012818007","Cabaroan (Pob.)","01","0128","012818");
-INSERT INTO barangay VALUES("414","012818008","Calambeg","01","0128","012818");
-INSERT INTO barangay VALUES("415","012818009","Callusa","01","0128","012818");
-INSERT INTO barangay VALUES("416","012818010","Dupitac","01","0128","012818");
-INSERT INTO barangay VALUES("417","012818011","Estancia","01","0128","012818");
-INSERT INTO barangay VALUES("418","012818012","Gayamat","01","0128","012818");
-INSERT INTO barangay VALUES("419","012818013","Lagandit","01","0128","012818");
-INSERT INTO barangay VALUES("420","012818014","Libnaoan","01","0128","012818");
-INSERT INTO barangay VALUES("421","012818015","Loing (Pob.)","01","0128","012818");
-INSERT INTO barangay VALUES("422","012818016","Maab-abaca","01","0128","012818");
-INSERT INTO barangay VALUES("423","012818017","Mangitayag","01","0128","012818");
-INSERT INTO barangay VALUES("424","012818018","Maruaya","01","0128","012818");
-INSERT INTO barangay VALUES("425","012818019","San Antonio","01","0128","012818");
-INSERT INTO barangay VALUES("426","012818020","Santa Maria","01","0128","012818");
-INSERT INTO barangay VALUES("427","012818021","Sucsuquen","01","0128","012818");
-INSERT INTO barangay VALUES("428","012818022","Tangaoan","01","0128","012818");
-INSERT INTO barangay VALUES("429","012818023","Tonoton","01","0128","012818");
-INSERT INTO barangay VALUES("430","012819001","Aglipay","01","0128","012819");
-INSERT INTO barangay VALUES("431","012819002","Apatut-Lubong","01","0128","012819");
-INSERT INTO barangay VALUES("432","012819003","Badio","01","0128","012819");
-INSERT INTO barangay VALUES("433","012819004","Barbar","01","0128","012819");
-INSERT INTO barangay VALUES("434","012819005","Buanga","01","0128","012819");
-INSERT INTO barangay VALUES("435","012819006","Bulbulala","01","0128","012819");
-INSERT INTO barangay VALUES("436","012819007","Bungro","01","0128","012819");
-INSERT INTO barangay VALUES("437","012819008","Cabaroan","01","0128","012819");
-INSERT INTO barangay VALUES("438","012819009","Capangdanan","01","0128","012819");
-INSERT INTO barangay VALUES("439","012819010","Dalayap","01","0128","012819");
-INSERT INTO barangay VALUES("440","012819011","Darat","01","0128","012819");
-INSERT INTO barangay VALUES("441","012819012","Gulpeng","01","0128","012819");
-INSERT INTO barangay VALUES("442","012819013","Liliputen","01","0128","012819");
-INSERT INTO barangay VALUES("443","012819014","Lumbaan-Bicbica","01","0128","012819");
-INSERT INTO barangay VALUES("444","012819015","Nagtrigoan","01","0128","012819");
-INSERT INTO barangay VALUES("445","012819016","Pagdilao (Pob.)","01","0128","012819");
-INSERT INTO barangay VALUES("446","012819017","Pugaoan","01","0128","012819");
-INSERT INTO barangay VALUES("447","012819018","Puritac","01","0128","012819");
-INSERT INTO barangay VALUES("448","012819019","Sacritan","01","0128","012819");
-INSERT INTO barangay VALUES("449","012819020","Salanap","01","0128","012819");
-INSERT INTO barangay VALUES("450","012819021","Santo Tomas","01","0128","012819");
-INSERT INTO barangay VALUES("451","012819022","Tartarabang","01","0128","012819");
-INSERT INTO barangay VALUES("452","012819023","Puzol","01","0128","012819");
-INSERT INTO barangay VALUES("453","012819024","Upon","01","0128","012819");
-INSERT INTO barangay VALUES("454","012819025","Valbuena (Pob.)","01","0128","012819");
-INSERT INTO barangay VALUES("455","012820001","San Francisco (Pob.)","01","0128","012820");
-INSERT INTO barangay VALUES("456","012820002","San Ildefonso (Pob.)","01","0128","012820");
-INSERT INTO barangay VALUES("457","012820003","San Agustin","01","0128","012820");
-INSERT INTO barangay VALUES("458","012820004","San Baltazar (Pob.)","01","0128","012820");
-INSERT INTO barangay VALUES("459","012820005","San Bartolome (Pob.)","01","0128","012820");
-INSERT INTO barangay VALUES("460","012820006","San Cayetano (Pob.)","01","0128","012820");
-INSERT INTO barangay VALUES("461","012820007","San Eugenio (Pob.)","01","0128","012820");
-INSERT INTO barangay VALUES("462","012820008","San Fernando (Pob.)","01","0128","012820");
-INSERT INTO barangay VALUES("463","012820009","San Gregorio (Pob.)","01","0128","012820");
-INSERT INTO barangay VALUES("464","012820010","San Guillermo","01","0128","012820");
-INSERT INTO barangay VALUES("465","012820011","San Jose (Pob.)","01","0128","012820");
-INSERT INTO barangay VALUES("466","012820012","San Juan Bautista (Pob.)","01","0128","012820");
-INSERT INTO barangay VALUES("467","012820013","San Lorenzo","01","0128","012820");
-INSERT INTO barangay VALUES("468","012820014","San Lucas (Pob.)","01","0128","012820");
-INSERT INTO barangay VALUES("469","012820015","San Marcos (Payas)","01","0128","012820");
-INSERT INTO barangay VALUES("470","012820016","San Miguel (Pob.)","01","0128","012820");
-INSERT INTO barangay VALUES("471","012820017","San Pablo","01","0128","012820");
-INSERT INTO barangay VALUES("472","012820018","San Paulo (Pob.)","01","0128","012820");
-INSERT INTO barangay VALUES("473","012820019","San Pedro (Bingao)","01","0128","012820");
-INSERT INTO barangay VALUES("474","012820020","San Rufino (Pob.)","01","0128","012820");
-INSERT INTO barangay VALUES("475","012820021","San Silvestre (Pob.)","01","0128","012820");
-INSERT INTO barangay VALUES("476","012820022","Santa Asuncion (Samac)","01","0128","012820");
-INSERT INTO barangay VALUES("477","012820023","Santa Cecilia (Barabar)","01","0128","012820");
-INSERT INTO barangay VALUES("478","012820024","Santa Monica (Nagrebcan)","01","0128","012820");
-INSERT INTO barangay VALUES("479","012821001","San Agustin (Pob.)","01","0128","012821");
-INSERT INTO barangay VALUES("480","012821002","San Andres","01","0128","012821");
-INSERT INTO barangay VALUES("481","012821003","San Antonio","01","0128","012821");
-INSERT INTO barangay VALUES("482","012821004","San Bernabe","01","0128","012821");
-INSERT INTO barangay VALUES("483","012821005","San Cristobal","01","0128","012821");
-INSERT INTO barangay VALUES("484","012821006","San Felipe","01","0128","012821");
-INSERT INTO barangay VALUES("485","012821007","San Francisco (Pob.)","01","0128","012821");
-INSERT INTO barangay VALUES("486","012821008","San Isidro","01","0128","012821");
-INSERT INTO barangay VALUES("487","012821009","San Joaquin (Pob.)","01","0128","012821");
-INSERT INTO barangay VALUES("488","012821010","San Jose","01","0128","012821");
-INSERT INTO barangay VALUES("489","012821011","San Juan","01","0128","012821");
-INSERT INTO barangay VALUES("490","012821012","San Leandro (Pob.)","01","0128","012821");
-INSERT INTO barangay VALUES("491","012821014","San Lorenzo","01","0128","012821");
-INSERT INTO barangay VALUES("492","012821015","San Manuel","01","0128","012821");
-INSERT INTO barangay VALUES("493","012821016","San Marcos","01","0128","012821");
-INSERT INTO barangay VALUES("494","012821017","San Nicolas","01","0128","012821");
-INSERT INTO barangay VALUES("495","012821018","San Pedro","01","0128","012821");
-INSERT INTO barangay VALUES("496","012821019","San Roque","01","0128","012821");
-INSERT INTO barangay VALUES("497","012821020","San Vicente (Pob.)","01","0128","012821");
-INSERT INTO barangay VALUES("498","012821021","Santa Barbara (Pob.)","01","0128","012821");
-INSERT INTO barangay VALUES("499","012821022","Santa Magdalena","01","0128","012821");
-INSERT INTO barangay VALUES("500","012821023","Santa Rosa","01","0128","012821");
-INSERT INTO barangay VALUES("501","012821024","Santo Santiago","01","0128","012821");
-INSERT INTO barangay VALUES("502","012821025","Santo Tomas","01","0128","012821");
-INSERT INTO barangay VALUES("503","012822001","Aguitap","01","0128","012822");
-INSERT INTO barangay VALUES("504","012822002","Bagbag","01","0128","012822");
-INSERT INTO barangay VALUES("505","012822003","Bagbago","01","0128","012822");
-INSERT INTO barangay VALUES("506","012822004","Barcelona","01","0128","012822");
-INSERT INTO barangay VALUES("507","012822005","Bubuos","01","0128","012822");
-INSERT INTO barangay VALUES("508","012822006","Capurictan","01","0128","012822");
-INSERT INTO barangay VALUES("509","012822007","Catangraran","01","0128","012822");
-INSERT INTO barangay VALUES("510","012822008","Darasdas","01","0128","012822");
-INSERT INTO barangay VALUES("511","012822009","Juan (Pob.)","01","0128","012822");
-INSERT INTO barangay VALUES("512","012822010","Laureta (Pob.)","01","0128","012822");
-INSERT INTO barangay VALUES("513","012822011","Lipay","01","0128","012822");
-INSERT INTO barangay VALUES("514","012822012","Maananteng","01","0128","012822");
-INSERT INTO barangay VALUES("515","012822013","Manalpac","01","0128","012822");
-INSERT INTO barangay VALUES("516","012822014","Mariquet","01","0128","012822");
-INSERT INTO barangay VALUES("517","012822015","Nagpatpatan","01","0128","012822");
-INSERT INTO barangay VALUES("518","012822016","Nalasin","01","0128","012822");
-INSERT INTO barangay VALUES("519","012822017","Puttao","01","0128","012822");
-INSERT INTO barangay VALUES("520","012822018","San Juan","01","0128","012822");
-INSERT INTO barangay VALUES("521","012822019","San Julian","01","0128","012822");
-INSERT INTO barangay VALUES("522","012822020","Santa Ana","01","0128","012822");
-INSERT INTO barangay VALUES("523","012822021","Santiago","01","0128","012822");
-INSERT INTO barangay VALUES("524","012822022","Talugtog","01","0128","012822");
-INSERT INTO barangay VALUES("525","012823001","Abkir","01","0128","012823");
-INSERT INTO barangay VALUES("526","012823003","Alsem","01","0128","012823");
-INSERT INTO barangay VALUES("527","012823005","Bago","01","0128","012823");
-INSERT INTO barangay VALUES("528","012823010","Bulbulala","01","0128","012823");
-INSERT INTO barangay VALUES("529","012823011","Cabangaran","01","0128","012823");
-INSERT INTO barangay VALUES("530","012823012","Cabayo","01","0128","012823");
-INSERT INTO barangay VALUES("531","012823013","Cabisocolan","01","0128","012823");
-INSERT INTO barangay VALUES("532","012823014","Canaam","01","0128","012823");
-INSERT INTO barangay VALUES("533","012823015","Columbia","01","0128","012823");
-INSERT INTO barangay VALUES("534","012823016","Dagupan","01","0128","012823");
-INSERT INTO barangay VALUES("535","012823017","Pedro F. Alviar (Diaton)","01","0128","012823");
-INSERT INTO barangay VALUES("536","012823019","Dipilat","01","0128","012823");
-INSERT INTO barangay VALUES("537","012823022","Esperanza","01","0128","012823");
-INSERT INTO barangay VALUES("538","012823023","Ester","01","0128","012823");
-INSERT INTO barangay VALUES("539","012823024","Isic Isic","01","0128","012823");
-INSERT INTO barangay VALUES("540","012823027","Lubnac","01","0128","012823");
-INSERT INTO barangay VALUES("541","012823028","Mabanbanag","01","0128","012823");
-INSERT INTO barangay VALUES("542","012823030","Alejo Malasig","01","0128","012823");
-INSERT INTO barangay VALUES("543","012823031","Manarang","01","0128","012823");
-INSERT INTO barangay VALUES("544","012823033","Margaay","01","0128","012823");
-INSERT INTO barangay VALUES("545","012823035","Namoroc","01","0128","012823");
-INSERT INTO barangay VALUES("546","012823038","Malampa (Peninaan-Malampa)","01","0128","012823");
-INSERT INTO barangay VALUES("547","012823039","Parparoroc","01","0128","012823");
-INSERT INTO barangay VALUES("548","012823040","Parut","01","0128","012823");
-INSERT INTO barangay VALUES("549","012823047","Salsalamagui","01","0128","012823");
-INSERT INTO barangay VALUES("550","012823049","San Jose (Lipay)","01","0128","012823");
-INSERT INTO barangay VALUES("551","012823050","San Nicolas (Pob.)","01","0128","012823");
-INSERT INTO barangay VALUES("552","012823051","San Pedro (Pob.)","01","0128","012823");
-INSERT INTO barangay VALUES("553","012823052","San Ramon (Pob.)","01","0128","012823");
-INSERT INTO barangay VALUES("554","012823053","San Roque (Pob.)","01","0128","012823");
-INSERT INTO barangay VALUES("555","012823054","Santa Maria (Pob.)","01","0128","012823");
-INSERT INTO barangay VALUES("556","012823056","Tamdagan","01","0128","012823");
-INSERT INTO barangay VALUES("557","012823058","Visaya","01","0128","012823");
-INSERT INTO barangay VALUES("558","012901001","Alilem Daya (Pob.)","01","0129","012901");
-INSERT INTO barangay VALUES("559","012901002","Amilongan","01","0129","012901");
-INSERT INTO barangay VALUES("560","012901003","Anaao","01","0129","012901");
-INSERT INTO barangay VALUES("561","012901004","Apang","01","0129","012901");
-INSERT INTO barangay VALUES("562","012901005","Apaya","01","0129","012901");
-INSERT INTO barangay VALUES("563","012901006","Batbato","01","0129","012901");
-INSERT INTO barangay VALUES("564","012901010","Daddaay","01","0129","012901");
-INSERT INTO barangay VALUES("565","012901011","Dalawa","01","0129","012901");
-INSERT INTO barangay VALUES("566","012901013","Kiat","01","0129","012901");
-INSERT INTO barangay VALUES("567","012902001","Bagbagotot","01","0129","012902");
-INSERT INTO barangay VALUES("568","012902002","Banbanaal","01","0129","012902");
-INSERT INTO barangay VALUES("569","012902004","Bisangol","01","0129","012902");
-INSERT INTO barangay VALUES("570","012902005","Cadanglaan","01","0129","012902");
-INSERT INTO barangay VALUES("571","012902006","Casilagan Norte","01","0129","012902");
-INSERT INTO barangay VALUES("572","012902007","Casilagan Sur","01","0129","012902");
-INSERT INTO barangay VALUES("573","012902008","Elefante","01","0129","012902");
-INSERT INTO barangay VALUES("574","012902009","Guardia","01","0129","012902");
-INSERT INTO barangay VALUES("575","012902010","Lintic","01","0129","012902");
-INSERT INTO barangay VALUES("576","012902011","Lopez","01","0129","012902");
-INSERT INTO barangay VALUES("577","012902012","Montero","01","0129","012902");
-INSERT INTO barangay VALUES("578","012902013","Naguimba","01","0129","012902");
-INSERT INTO barangay VALUES("579","012902014","Pila","01","0129","012902");
-INSERT INTO barangay VALUES("580","012902015","Poblacion","01","0129","012902");
-INSERT INTO barangay VALUES("581","012903001","Aggay","01","0129","012903");
-INSERT INTO barangay VALUES("582","012903002","An-annam","01","0129","012903");
-INSERT INTO barangay VALUES("583","012903003","Balaleng","01","0129","012903");
-INSERT INTO barangay VALUES("584","012903004","Banaoang","01","0129","012903");
-INSERT INTO barangay VALUES("585","012903005","Bulag","01","0129","012903");
-INSERT INTO barangay VALUES("586","012903006","Buquig","01","0129","012903");
-INSERT INTO barangay VALUES("587","012903007","Cabalanggan","01","0129","012903");
-INSERT INTO barangay VALUES("588","012903008","Cabaroan","01","0129","012903");
-INSERT INTO barangay VALUES("589","012903009","Cabusligan","01","0129","012903");
-INSERT INTO barangay VALUES("590","012903010","Capangdanan","01","0129","012903");
-INSERT INTO barangay VALUES("591","012903011","Guimod","01","0129","012903");
-INSERT INTO barangay VALUES("592","012903012","Lingsat","01","0129","012903");
-INSERT INTO barangay VALUES("593","012903013","Malingeb","01","0129","012903");
-INSERT INTO barangay VALUES("594","012903014","Mira","01","0129","012903");
-INSERT INTO barangay VALUES("595","012903015","Naguiddayan","01","0129","012903");
-INSERT INTO barangay VALUES("596","012903016","Ora","01","0129","012903");
-INSERT INTO barangay VALUES("597","012903017","Paing","01","0129","012903");
-INSERT INTO barangay VALUES("598","012903018","Puspus","01","0129","012903");
-INSERT INTO barangay VALUES("599","012903019","Quimmarayan","01","0129","012903");
-INSERT INTO barangay VALUES("600","012903020","Sagneb","01","0129","012903");
-INSERT INTO barangay VALUES("601","012903021","Sagpat","01","0129","012903");
-INSERT INTO barangay VALUES("602","012903022","San Mariano (Sallacong)","01","0129","012903");
-INSERT INTO barangay VALUES("603","012903023","San Isidro","01","0129","012903");
-INSERT INTO barangay VALUES("604","012903024","San Julian","01","0129","012903");
-INSERT INTO barangay VALUES("605","012903026","Sinabaan","01","0129","012903");
-INSERT INTO barangay VALUES("606","012903027","Taguiporo","01","0129","012903");
-INSERT INTO barangay VALUES("607","012903028","Taleb","01","0129","012903");
-INSERT INTO barangay VALUES("608","012903029","Tay-ac","01","0129","012903");
-INSERT INTO barangay VALUES("609","012903030","Barangay 1 (Pob.)","01","0129","012903");
-INSERT INTO barangay VALUES("610","012903031","Barangay 2 (Pob.)","01","0129","012903");
-INSERT INTO barangay VALUES("611","012903032","Barangay 3 (Pob.)","01","0129","012903");
-INSERT INTO barangay VALUES("612","012903033","Barangay 4 (Pob.)","01","0129","012903");
-INSERT INTO barangay VALUES("613","012903034","Barangay 5 (Pob.)","01","0129","012903");
-INSERT INTO barangay VALUES("614","012903035","Barangay 6 (Pob.)","01","0129","012903");
-INSERT INTO barangay VALUES("615","012904001","Ambugat","01","0129","012904");
-INSERT INTO barangay VALUES("616","012904002","Balugang","01","0129","012904");
-INSERT INTO barangay VALUES("617","012904003","Bangbangar","01","0129","012904");
-INSERT INTO barangay VALUES("618","012904005","Bessang","01","0129","012904");
-INSERT INTO barangay VALUES("619","012904006","Cabcaburao","01","0129","012904");
-INSERT INTO barangay VALUES("620","012904007","Cadacad","01","0129","012904");
-INSERT INTO barangay VALUES("621","012904008","Callitong","01","0129","012904");
-INSERT INTO barangay VALUES("622","012904009","Dayanki","01","0129","012904");
-INSERT INTO barangay VALUES("623","012904010","Lesseb","01","0129","012904");
-INSERT INTO barangay VALUES("624","012904011","Lubing","01","0129","012904");
-INSERT INTO barangay VALUES("625","012904012","Lucaban","01","0129","012904");
-INSERT INTO barangay VALUES("626","012904013","Luna","01","0129","012904");
-INSERT INTO barangay VALUES("627","012904014","Macaoayan","01","0129","012904");
-INSERT INTO barangay VALUES("628","012904015","Mambug","01","0129","012904");
-INSERT INTO barangay VALUES("629","012904016","Manaboc","01","0129","012904");
-INSERT INTO barangay VALUES("630","012904017","Mapanit","01","0129","012904");
-INSERT INTO barangay VALUES("631","012904018","Poblacion Sur (Masingit)","01","0129","012904");
-INSERT INTO barangay VALUES("632","012904019","Nagpanaoan","01","0129","012904");
-INSERT INTO barangay VALUES("633","012904020","Dirdirig (Dirdirig-Paday)","01","0129","012904");
-INSERT INTO barangay VALUES("634","012904022","Paduros","01","0129","012904");
-INSERT INTO barangay VALUES("635","012904023","Patac","01","0129","012904");
-INSERT INTO barangay VALUES("636","012904024","Poblacion Norte (Bato)","01","0129","012904");
-INSERT INTO barangay VALUES("637","012904026","Sabangan Pinggan","01","0129","012904");
-INSERT INTO barangay VALUES("638","012904027","Subadi Norte","01","0129","012904");
-INSERT INTO barangay VALUES("639","012904028","Subadi Sur","01","0129","012904");
-INSERT INTO barangay VALUES("640","012904029","Taliao","01","0129","012904");
-INSERT INTO barangay VALUES("641","012905001","Alinaay","01","0129","012905");
-INSERT INTO barangay VALUES("642","012905002","Aragan","01","0129","012905");
-INSERT INTO barangay VALUES("643","012905003","Arnap","01","0129","012905");
-INSERT INTO barangay VALUES("644","012905004","Baclig (Pob.)","01","0129","012905");
-INSERT INTO barangay VALUES("645","012905005","Bato","01","0129","012905");
-INSERT INTO barangay VALUES("646","012905006","Bonifacio (Pob.)","01","0129","012905");
-INSERT INTO barangay VALUES("647","012905007","Bungro","01","0129","012905");
-INSERT INTO barangay VALUES("648","012905008","Cacadiran","01","0129","012905");
-INSERT INTO barangay VALUES("649","012905009","Caellayan","01","0129","012905");
-INSERT INTO barangay VALUES("650","012905010","Carusipan","01","0129","012905");
-INSERT INTO barangay VALUES("651","012905011","Catucdaan","01","0129","012905");
-INSERT INTO barangay VALUES("652","012905012","Cuancabal","01","0129","012905");
-INSERT INTO barangay VALUES("653","012905013","Cuantacla","01","0129","012905");
-INSERT INTO barangay VALUES("654","012905014","Daclapan","01","0129","012905");
-INSERT INTO barangay VALUES("655","012905015","Dardarat","01","0129","012905");
-INSERT INTO barangay VALUES("656","012905016","Lipit","01","0129","012905");
-INSERT INTO barangay VALUES("657","012905017","Maradodon","01","0129","012905");
-INSERT INTO barangay VALUES("658","012905018","Margaay","01","0129","012905");
-INSERT INTO barangay VALUES("659","012905019","Nagsantaan","01","0129","012905");
-INSERT INTO barangay VALUES("660","012905020","Nagsincaoan","01","0129","012905");
-INSERT INTO barangay VALUES("661","012905021","Namruangan","01","0129","012905");
-INSERT INTO barangay VALUES("662","012905022","Pila","01","0129","012905");
-INSERT INTO barangay VALUES("663","012905023","Pug-os","01","0129","012905");
-INSERT INTO barangay VALUES("664","012905024","Quezon (Pob.)","01","0129","012905");
-INSERT INTO barangay VALUES("665","012905025","Reppaac","01","0129","012905");
-INSERT INTO barangay VALUES("666","012905026","Rizal (Pob.)","01","0129","012905");
-INSERT INTO barangay VALUES("667","012905027","Sabang","01","0129","012905");
-INSERT INTO barangay VALUES("668","012905028","Sagayaden","01","0129","012905");
-INSERT INTO barangay VALUES("669","012905029","Salapasap","01","0129","012905");
-INSERT INTO barangay VALUES("670","012905030","Salomague","01","0129","012905");
-INSERT INTO barangay VALUES("671","012905031","Sisim","01","0129","012905");
-INSERT INTO barangay VALUES("672","012905032","Turod","01","0129","012905");
-INSERT INTO barangay VALUES("673","012905033","Turod-Patac","01","0129","012905");
-INSERT INTO barangay VALUES("674","012906001","Allangigan Primero","01","0129","012906");
-INSERT INTO barangay VALUES("675","012906002","Allangigan Segundo","01","0129","012906");
-INSERT INTO barangay VALUES("676","012906003","Amguid","01","0129","012906");
-INSERT INTO barangay VALUES("677","012906004","Ayudante","01","0129","012906");
-INSERT INTO barangay VALUES("678","012906005","Bagani Camposanto","01","0129","012906");
-INSERT INTO barangay VALUES("679","012906006","Bagani Gabor","01","0129","012906");
-INSERT INTO barangay VALUES("680","012906007","Bagani Tocgo","01","0129","012906");
-INSERT INTO barangay VALUES("681","012906008","Bagani Ubbog","01","0129","012906");
-INSERT INTO barangay VALUES("682","012906009","Bagar","01","0129","012906");
-INSERT INTO barangay VALUES("683","012906010","Balingaoan","01","0129","012906");
-INSERT INTO barangay VALUES("684","012906015","Bugnay","01","0129","012906");
-INSERT INTO barangay VALUES("685","012906016","Calaoaan","01","0129","012906");
-INSERT INTO barangay VALUES("686","012906017","Calongbuyan","01","0129","012906");
-INSERT INTO barangay VALUES("687","012906018","Caterman","01","0129","012906");
-INSERT INTO barangay VALUES("688","012906019","Cubcubboot","01","0129","012906");
-INSERT INTO barangay VALUES("689","012906020","Darapidap","01","0129","012906");
-INSERT INTO barangay VALUES("690","012906022","Langlangca Primero","01","0129","012906");
-INSERT INTO barangay VALUES("691","012906023","Langlangca Segundo","01","0129","012906");
-INSERT INTO barangay VALUES("692","012906024","Oaig-Daya","01","0129","012906");
-INSERT INTO barangay VALUES("693","012906025","Palacapac","01","0129","012906");
-INSERT INTO barangay VALUES("694","012906026","Paras","01","0129","012906");
-INSERT INTO barangay VALUES("695","012906027","Parioc Primero","01","0129","012906");
-INSERT INTO barangay VALUES("696","012906028","Parioc Segundo","01","0129","012906");
-INSERT INTO barangay VALUES("697","012906029","Patpata Primero","01","0129","012906");
-INSERT INTO barangay VALUES("698","012906030","Patpata Segundo","01","0129","012906");
-INSERT INTO barangay VALUES("699","012906031","Paypayad","01","0129","012906");
-INSERT INTO barangay VALUES("700","012906032","Salvador Primero","01","0129","012906");
-INSERT INTO barangay VALUES("701","012906033","Salvador Segundo","01","0129","012906");
-INSERT INTO barangay VALUES("702","012906034","San Agustin","01","0129","012906");
-INSERT INTO barangay VALUES("703","012906035","San Andres","01","0129","012906");
-INSERT INTO barangay VALUES("704","012906036","San Antonio (Pob.)","01","0129","012906");
-INSERT INTO barangay VALUES("705","012906037","San Isidro (Pob.)","01","0129","012906");
-INSERT INTO barangay VALUES("706","012906038","San Jose (Pob.)","01","0129","012906");
-INSERT INTO barangay VALUES("707","012906039","San Juan (Pob.)","01","0129","012906");
-INSERT INTO barangay VALUES("708","012906040","San Nicolas","01","0129","012906");
-INSERT INTO barangay VALUES("709","012906041","San Pedro","01","0129","012906");
-INSERT INTO barangay VALUES("710","012906042","Santo Tomas","01","0129","012906");
-INSERT INTO barangay VALUES("711","012906043","Tablac","01","0129","012906");
-INSERT INTO barangay VALUES("712","012906044","Talogtog","01","0129","012906");
-INSERT INTO barangay VALUES("713","012906045","Tamurong Primero","01","0129","012906");
-INSERT INTO barangay VALUES("714","012906046","Tamurong Segundo","01","0129","012906");
-INSERT INTO barangay VALUES("715","012906048","Villarica","01","0129","012906");
-INSERT INTO barangay VALUES("716","012907001","Anonang Mayor","01","0129","012907");
-INSERT INTO barangay VALUES("717","012907002","Anonang Menor","01","0129","012907");
-INSERT INTO barangay VALUES("718","012907003","Baggoc","01","0129","012907");
-INSERT INTO barangay VALUES("719","012907004","Callaguip","01","0129","012907");
-INSERT INTO barangay VALUES("720","012907005","Caparacadan","01","0129","012907");
-INSERT INTO barangay VALUES("721","012907006","Fuerte","01","0129","012907");
-INSERT INTO barangay VALUES("722","012907007","Manangat","01","0129","012907");
-INSERT INTO barangay VALUES("723","012907008","Naguilian","01","0129","012907");
-INSERT INTO barangay VALUES("724","012907009","Nansuagao","01","0129","012907");
-INSERT INTO barangay VALUES("725","012907010","Pandan","01","0129","012907");
-INSERT INTO barangay VALUES("726","012907011","Pantay-Quitiquit","01","0129","012907");
-INSERT INTO barangay VALUES("727","012907012","Don Dimas Querubin (Pob.)","01","0129","012907");
-INSERT INTO barangay VALUES("728","012907013","Puro","01","0129","012907");
-INSERT INTO barangay VALUES("729","012907014","Pantay Tamurong","01","0129","012907");
-INSERT INTO barangay VALUES("730","012907015","Villamar","01","0129","012907");
-INSERT INTO barangay VALUES("731","012907016","Don Alejandro Quirolgico (Pob.)","01","0129","012907");
-INSERT INTO barangay VALUES("732","012907017","Don Lorenzo Querubin (Pob.)","01","0129","012907");
-INSERT INTO barangay VALUES("733","012908001","Aluling","01","0129","012908");
-INSERT INTO barangay VALUES("734","012908002","Comillas North","01","0129","012908");
-INSERT INTO barangay VALUES("735","012908003","Comillas South","01","0129","012908");
-INSERT INTO barangay VALUES("736","012908004","Concepcion (Pob.)","01","0129","012908");
-INSERT INTO barangay VALUES("737","012908005","Dinwede East","01","0129","012908");
-INSERT INTO barangay VALUES("738","012908006","Dinwede West","01","0129","012908");
-INSERT INTO barangay VALUES("739","012908007","Libang","01","0129","012908");
-INSERT INTO barangay VALUES("740","012908010","Pilipil","01","0129","012908");
-INSERT INTO barangay VALUES("741","012908013","Remedios","01","0129","012908");
-INSERT INTO barangay VALUES("742","012908014","Rosario (Pob.)","01","0129","012908");
-INSERT INTO barangay VALUES("743","012908015","San Juan","01","0129","012908");
-INSERT INTO barangay VALUES("744","012908016","San Luis","01","0129","012908");
-INSERT INTO barangay VALUES("745","012908017","Malaya","01","0129","012908");
-INSERT INTO barangay VALUES("746","012909001","Abaya","01","0129","012909");
-INSERT INTO barangay VALUES("747","012909002","Baracbac","01","0129","012909");
-INSERT INTO barangay VALUES("748","012909003","Bidbiday","01","0129","012909");
-INSERT INTO barangay VALUES("749","012909004","Bitong","01","0129","012909");
-INSERT INTO barangay VALUES("750","012909005","Borobor","01","0129","012909");
-INSERT INTO barangay VALUES("751","012909006","Calimugtong","01","0129","012909");
-INSERT INTO barangay VALUES("752","012909007","Calongbuyan","01","0129","012909");
-INSERT INTO barangay VALUES("753","012909008","Calumbaya","01","0129","012909");
-INSERT INTO barangay VALUES("754","012909009","Daldagan","01","0129","012909");
-INSERT INTO barangay VALUES("755","012909010","Kilang","01","0129","012909");
-INSERT INTO barangay VALUES("756","012909011","Legaspi","01","0129","012909");
-INSERT INTO barangay VALUES("757","012909012","Mabayag","01","0129","012909");
-INSERT INTO barangay VALUES("758","012909013","Matanubong","01","0129","012909");
-INSERT INTO barangay VALUES("759","012909014","Mckinley","01","0129","012909");
-INSERT INTO barangay VALUES("760","012909015","Nagsingcaoan","01","0129","012909");
-INSERT INTO barangay VALUES("761","012909016","Oaig-Daya","01","0129","012909");
-INSERT INTO barangay VALUES("762","012909017","Pagangpang","01","0129","012909");
-INSERT INTO barangay VALUES("763","012909018","Patac","01","0129","012909");
-INSERT INTO barangay VALUES("764","012909019","Poblacion","01","0129","012909");
-INSERT INTO barangay VALUES("765","012909020","Rubio","01","0129","012909");
-INSERT INTO barangay VALUES("766","012909021","Sabangan-Bato","01","0129","012909");
-INSERT INTO barangay VALUES("767","012909022","Sacaang","01","0129","012909");
-INSERT INTO barangay VALUES("768","012909023","San Vicente","01","0129","012909");
-INSERT INTO barangay VALUES("769","012909024","Sapang","01","0129","012909");
-INSERT INTO barangay VALUES("770","012910001","Alfonso (Tangaoan)","01","0129","012910");
-INSERT INTO barangay VALUES("771","012910002","Bussot","01","0129","012910");
-INSERT INTO barangay VALUES("772","012910003","Concepcion","01","0129","012910");
-INSERT INTO barangay VALUES("773","012910004","Dapdappig","01","0129","012910");
-INSERT INTO barangay VALUES("774","012910005","Matue-Butarag","01","0129","012910");
-INSERT INTO barangay VALUES("775","012910007","Poblacion Norte","01","0129","012910");
-INSERT INTO barangay VALUES("776","012910008","Poblacion Sur","01","0129","012910");
-INSERT INTO barangay VALUES("777","012911001","Banucal","01","0129","012911");
-INSERT INTO barangay VALUES("778","012911002","Bequi-Walin","01","0129","012911");
-INSERT INTO barangay VALUES("779","012911003","Bugui","01","0129","012911");
-INSERT INTO barangay VALUES("780","012911004","Calungbuyan","01","0129","012911");
-INSERT INTO barangay VALUES("781","012911005","Carcarabasa","01","0129","012911");
-INSERT INTO barangay VALUES("782","012911006","Labut","01","0129","012911");
-INSERT INTO barangay VALUES("783","012911007","Poblacion Norte","01","0129","012911");
-INSERT INTO barangay VALUES("784","012911008","Poblacion Sur","01","0129","012911");
-INSERT INTO barangay VALUES("785","012911009","San Vicente","01","0129","012911");
-INSERT INTO barangay VALUES("786","012911010","Suysuyan","01","0129","012911");
-INSERT INTO barangay VALUES("787","012911011","Tay-ac","01","0129","012911");
-INSERT INTO barangay VALUES("788","012912001","Alangan","01","0129","012912");
-INSERT INTO barangay VALUES("789","012912002","Bacar","01","0129","012912");
-INSERT INTO barangay VALUES("790","012912006","Barbarit","01","0129","012912");
-INSERT INTO barangay VALUES("791","012912007","Bungro","01","0129","012912");
-INSERT INTO barangay VALUES("792","012912008","Cabaroan","01","0129","012912");
-INSERT INTO barangay VALUES("793","012912010","Cadanglaan","01","0129","012912");
-INSERT INTO barangay VALUES("794","012912011","Caraisan","01","0129","012912");
-INSERT INTO barangay VALUES("795","012912014","Dacutan","01","0129","012912");
-INSERT INTO barangay VALUES("796","012912015","Labut","01","0129","012912");
-INSERT INTO barangay VALUES("797","012912017","Maas-asin","01","0129","012912");
-INSERT INTO barangay VALUES("798","012912018","Macatcatud","01","0129","012912");
-INSERT INTO barangay VALUES("799","012912019","Namalpalan","01","0129","012912");
-INSERT INTO barangay VALUES("800","012912020","Manzante","01","0129","012912");
-INSERT INTO barangay VALUES("801","012912022","Maratudo","01","0129","012912");
-INSERT INTO barangay VALUES("802","012912023","Miramar","01","0129","012912");
-INSERT INTO barangay VALUES("803","012912025","Napo","01","0129","012912");
-INSERT INTO barangay VALUES("804","012912026","Pagsanaan Norte","01","0129","012912");
-INSERT INTO barangay VALUES("805","012912027","Pagsanaan Sur","01","0129","012912");
-INSERT INTO barangay VALUES("806","012912028","Panay Norte","01","0129","012912");
-INSERT INTO barangay VALUES("807","012912029","Panay Sur","01","0129","012912");
-INSERT INTO barangay VALUES("808","012912030","Patong","01","0129","012912");
-INSERT INTO barangay VALUES("809","012912031","Puro","01","0129","012912");
-INSERT INTO barangay VALUES("810","012912032","San Basilio (Pob.)","01","0129","012912");
-INSERT INTO barangay VALUES("811","012912033","San Clemente (Pob.)","01","0129","012912");
-INSERT INTO barangay VALUES("812","012912034","San Julian (Pob.)","01","0129","012912");
-INSERT INTO barangay VALUES("813","012912035","San Lucas (Pob.)","01","0129","012912");
-INSERT INTO barangay VALUES("814","012912036","San Ramon (Pob.)","01","0129","012912");
-INSERT INTO barangay VALUES("815","012912037","San Vicente (Pob.)","01","0129","012912");
-INSERT INTO barangay VALUES("816","012912038","Santa Monica","01","0129","012912");
-INSERT INTO barangay VALUES("817","012912039","Sarsaracat","01","0129","012912");
-INSERT INTO barangay VALUES("818","012913001","Balaweg","01","0129","012913");
-INSERT INTO barangay VALUES("819","012913002","Bandril","01","0129","012913");
-INSERT INTO barangay VALUES("820","012913003","Bantugo","01","0129","012913");
-INSERT INTO barangay VALUES("821","012913004","Cadacad","01","0129","012913");
-INSERT INTO barangay VALUES("822","012913005","Casilagan","01","0129","012913");
-INSERT INTO barangay VALUES("823","012913006","Casocos","01","0129","012913");
-INSERT INTO barangay VALUES("824","012913007","Lapting","01","0129","012913");
-INSERT INTO barangay VALUES("825","012913008","Mapisi","01","0129","012913");
-INSERT INTO barangay VALUES("826","012913009","Mission","01","0129","012913");
-INSERT INTO barangay VALUES("827","012913010","Poblacion East","01","0129","012913");
-INSERT INTO barangay VALUES("828","012913011","Poblacion West","01","0129","012913");
-INSERT INTO barangay VALUES("829","012913012","Taleb","01","0129","012913");
-INSERT INTO barangay VALUES("830","012914001","Abuor","01","0129","012914");
-INSERT INTO barangay VALUES("831","012914002","Ambulogan","01","0129","012914");
-INSERT INTO barangay VALUES("832","012914004","Aquib","01","0129","012914");
-INSERT INTO barangay VALUES("833","012914005","Banglayan","01","0129","012914");
-INSERT INTO barangay VALUES("834","012914006","Bulanos","01","0129","012914");
-INSERT INTO barangay VALUES("835","012914007","Cadacad","01","0129","012914");
-INSERT INTO barangay VALUES("836","012914008","Cagayungan","01","0129","012914");
-INSERT INTO barangay VALUES("837","012914009","Camarao","01","0129","012914");
-INSERT INTO barangay VALUES("838","012914010","Casilagan","01","0129","012914");
-INSERT INTO barangay VALUES("839","012914011","Codoog","01","0129","012914");
-INSERT INTO barangay VALUES("840","012914012","Dasay","01","0129","012914");
-INSERT INTO barangay VALUES("841","012914013","Dinalaoan","01","0129","012914");
-INSERT INTO barangay VALUES("842","012914014","Estancia","01","0129","012914");
-INSERT INTO barangay VALUES("843","012914015","Lanipao","01","0129","012914");
-INSERT INTO barangay VALUES("844","012914016","Lungog","01","0129","012914");
-INSERT INTO barangay VALUES("845","012914017","Margaay","01","0129","012914");
-INSERT INTO barangay VALUES("846","012914018","Marozo","01","0129","012914");
-INSERT INTO barangay VALUES("847","012914019","Naguneg","01","0129","012914");
-INSERT INTO barangay VALUES("848","012914020","Orence","01","0129","012914");
-INSERT INTO barangay VALUES("849","012914021","Pantoc","01","0129","012914");
-INSERT INTO barangay VALUES("850","012914022","Paratong","01","0129","012914");
-INSERT INTO barangay VALUES("851","012914023","Parparia","01","0129","012914");
-INSERT INTO barangay VALUES("852","012914024","Quinarayan","01","0129","012914");
-INSERT INTO barangay VALUES("853","012914025","Rivadavia","01","0129","012914");
-INSERT INTO barangay VALUES("854","012914026","San Antonio","01","0129","012914");
-INSERT INTO barangay VALUES("855","012914027","San Jose (Pob.)","01","0129","012914");
-INSERT INTO barangay VALUES("856","012914028","San Pablo","01","0129","012914");
-INSERT INTO barangay VALUES("857","012914029","San Pedro","01","0129","012914");
-INSERT INTO barangay VALUES("858","012914030","Santa Lucia (Pob.)","01","0129","012914");
-INSERT INTO barangay VALUES("859","012914031","Sarmingan","01","0129","012914");
-INSERT INTO barangay VALUES("860","012914032","Sucoc","01","0129","012914");
-INSERT INTO barangay VALUES("861","012914033","Sulvec","01","0129","012914");
-INSERT INTO barangay VALUES("862","012914034","Turod","01","0129","012914");
-INSERT INTO barangay VALUES("863","012914035","Bantay Abot","01","0129","012914");
-INSERT INTO barangay VALUES("864","012915001","Banoen","01","0129","012915");
-INSERT INTO barangay VALUES("865","012915002","Cayus","01","0129","012915");
-INSERT INTO barangay VALUES("866","012915003","Patungcaleo (Lamag)","01","0129","012915");
-INSERT INTO barangay VALUES("867","012915004","Malideg","01","0129","012915");
-INSERT INTO barangay VALUES("868","012915005","Namitpit","01","0129","012915");
-INSERT INTO barangay VALUES("869","012915006","Patiacan","01","0129","012915");
-INSERT INTO barangay VALUES("870","012915007","Legleg (Pob.)","01","0129","012915");
-INSERT INTO barangay VALUES("871","012915008","Suagayan","01","0129","012915");
-INSERT INTO barangay VALUES("872","012915009","Lamag (Tubtuba)","01","0129","012915");
-INSERT INTO barangay VALUES("873","012916001","Atabay","01","0129","012916");
-INSERT INTO barangay VALUES("874","012916002","Calangcuasan","01","0129","012916");
-INSERT INTO barangay VALUES("875","012916003","Balidbid","01","0129","012916");
-INSERT INTO barangay VALUES("876","012916004","Baluarte","01","0129","012916");
-INSERT INTO barangay VALUES("877","012916005","Baybayading","01","0129","012916");
-INSERT INTO barangay VALUES("878","012916006","Boguibog","01","0129","012916");
-INSERT INTO barangay VALUES("879","012916007","Bulala-Leguey","01","0129","012916");
-INSERT INTO barangay VALUES("880","012916008","Kaliwakiw","01","0129","012916");
-INSERT INTO barangay VALUES("881","012916010","Culiong","01","0129","012916");
-INSERT INTO barangay VALUES("882","012916011","Dinaratan","01","0129","012916");
-INSERT INTO barangay VALUES("883","012916012","Kinmarin","01","0129","012916");
-INSERT INTO barangay VALUES("884","012916013","Lucbuban","01","0129","012916");
-INSERT INTO barangay VALUES("885","012916014","Madarang","01","0129","012916");
-INSERT INTO barangay VALUES("886","012916015","Maligcong","01","0129","012916");
-INSERT INTO barangay VALUES("887","012916016","Pias","01","0129","012916");
-INSERT INTO barangay VALUES("888","012916017","Poblacion Norte","01","0129","012916");
-INSERT INTO barangay VALUES("889","012916018","Poblacion Sur","01","0129","012916");
-INSERT INTO barangay VALUES("890","012916019","San Gaspar","01","0129","012916");
-INSERT INTO barangay VALUES("891","012916020","San Tiburcio","01","0129","012916");
-INSERT INTO barangay VALUES("892","012916021","Sorioan","01","0129","012916");
-INSERT INTO barangay VALUES("893","012916022","Ubbog","01","0129","012916");
-INSERT INTO barangay VALUES("894","012917001","Cabaroan (Pob.)","01","0129","012917");
-INSERT INTO barangay VALUES("895","012917002","Kalumsing","01","0129","012917");
-INSERT INTO barangay VALUES("896","012917003","Lancuas","01","0129","012917");
-INSERT INTO barangay VALUES("897","012917004","Matibuey","01","0129","012917");
-INSERT INTO barangay VALUES("898","012917005","Paltoc","01","0129","012917");
-INSERT INTO barangay VALUES("899","012917006","Sibsibbu","01","0129","012917");
-INSERT INTO barangay VALUES("900","012917007","Tiagan","01","0129","012917");
-INSERT INTO barangay VALUES("901","012917008","San Miliano","01","0129","012917");
-INSERT INTO barangay VALUES("902","012918001","Ansad","01","0129","012918");
-INSERT INTO barangay VALUES("903","012918002","Apatot","01","0129","012918");
-INSERT INTO barangay VALUES("904","012918003","Bateria","01","0129","012918");
-INSERT INTO barangay VALUES("905","012918004","Cabaroan","01","0129","012918");
-INSERT INTO barangay VALUES("906","012918005","Cappa-cappa","01","0129","012918");
-INSERT INTO barangay VALUES("907","012918006","Poblacion","01","0129","012918");
-INSERT INTO barangay VALUES("908","012918007","San Nicolas","01","0129","012918");
-INSERT INTO barangay VALUES("909","012918008","San Pablo","01","0129","012918");
-INSERT INTO barangay VALUES("910","012918009","San Rafael","01","0129","012918");
-INSERT INTO barangay VALUES("911","012918010","Villa Quirino","01","0129","012918");
-INSERT INTO barangay VALUES("912","012919001","Arnap","01","0129","012919");
-INSERT INTO barangay VALUES("913","012919002","Bahet","01","0129","012919");
-INSERT INTO barangay VALUES("914","012919003","Belen","01","0129","012919");
-INSERT INTO barangay VALUES("915","012919004","Bungro","01","0129","012919");
-INSERT INTO barangay VALUES("916","012919006","Busiing Sur","01","0129","012919");
-INSERT INTO barangay VALUES("917","012919007","Busiing Norte","01","0129","012919");
-INSERT INTO barangay VALUES("918","012919009","Dongalo","01","0129","012919");
-INSERT INTO barangay VALUES("919","012919010","Gongogong","01","0129","012919");
-INSERT INTO barangay VALUES("920","012919011","Iboy","01","0129","012919");
-INSERT INTO barangay VALUES("921","012919013","Otol-Patac","01","0129","012919");
-INSERT INTO barangay VALUES("922","012919014","Poblacion East","01","0129","012919");
-INSERT INTO barangay VALUES("923","012919015","Poblacion West","01","0129","012919");
-INSERT INTO barangay VALUES("924","012919016","Kinamantirisan","01","0129","012919");
-INSERT INTO barangay VALUES("925","012919017","Sagneb","01","0129","012919");
-INSERT INTO barangay VALUES("926","012919018","Sagsagat","01","0129","012919");
-INSERT INTO barangay VALUES("927","012920001","Bacsil","01","0129","012920");
-INSERT INTO barangay VALUES("928","012920002","Baliw","01","0129","012920");
-INSERT INTO barangay VALUES("929","012920003","Bannuar (Pob.)","01","0129","012920");
-INSERT INTO barangay VALUES("930","012920004","Barbar","01","0129","012920");
-INSERT INTO barangay VALUES("931","012920005","Cabanglotan","01","0129","012920");
-INSERT INTO barangay VALUES("932","012920006","Cacandongan","01","0129","012920");
-INSERT INTO barangay VALUES("933","012920007","Camanggaan","01","0129","012920");
-INSERT INTO barangay VALUES("934","012920008","Camindoroan","01","0129","012920");
-INSERT INTO barangay VALUES("935","012920009","Caronoan","01","0129","012920");
-INSERT INTO barangay VALUES("936","012920010","Darao","01","0129","012920");
-INSERT INTO barangay VALUES("937","012920012","Dardarat","01","0129","012920");
-INSERT INTO barangay VALUES("938","012920013","Guimod Norte","01","0129","012920");
-INSERT INTO barangay VALUES("939","012920014","Guimod Sur","01","0129","012920");
-INSERT INTO barangay VALUES("940","012920015","Immayos Norte","01","0129","012920");
-INSERT INTO barangay VALUES("941","012920016","Immayos Sur","01","0129","012920");
-INSERT INTO barangay VALUES("942","012920017","Labnig","01","0129","012920");
-INSERT INTO barangay VALUES("943","012920018","Lapting","01","0129","012920");
-INSERT INTO barangay VALUES("944","012920019","Lira (Pob.)","01","0129","012920");
-INSERT INTO barangay VALUES("945","012920020","Malamin","01","0129","012920");
-INSERT INTO barangay VALUES("946","012920021","Muraya","01","0129","012920");
-INSERT INTO barangay VALUES("947","012920022","Nagsabaran","01","0129","012920");
-INSERT INTO barangay VALUES("948","012920023","Nagsupotan","01","0129","012920");
-INSERT INTO barangay VALUES("949","012920025","Pandayan (Pob.)","01","0129","012920");
-INSERT INTO barangay VALUES("950","012920027","Refaro","01","0129","012920");
-INSERT INTO barangay VALUES("951","012920028","Resurreccion (Pob.)","01","0129","012920");
-INSERT INTO barangay VALUES("952","012920029","Sabangan","01","0129","012920");
-INSERT INTO barangay VALUES("953","012920031","San Isidro","01","0129","012920");
-INSERT INTO barangay VALUES("954","012920035","Saoang","01","0129","012920");
-INSERT INTO barangay VALUES("955","012920037","Solotsolot","01","0129","012920");
-INSERT INTO barangay VALUES("956","012920038","Sunggiam","01","0129","012920");
-INSERT INTO barangay VALUES("957","012920039","Surngit","01","0129","012920");
-INSERT INTO barangay VALUES("958","012920040","Asilang","01","0129","012920");
-INSERT INTO barangay VALUES("959","012921001","Bantaoay","01","0129","012921");
-INSERT INTO barangay VALUES("960","012921002","Bayubay Norte","01","0129","012921");
-INSERT INTO barangay VALUES("961","012921003","Bayubay Sur","01","0129","012921");
-INSERT INTO barangay VALUES("962","012921004","Lubong","01","0129","012921");
-INSERT INTO barangay VALUES("963","012921005","Poblacion","01","0129","012921");
-INSERT INTO barangay VALUES("964","012921006","Pudoc","01","0129","012921");
-INSERT INTO barangay VALUES("965","012921007","San Sebastian","01","0129","012921");
-INSERT INTO barangay VALUES("966","012922001","Ampandula","01","0129","012922");
-INSERT INTO barangay VALUES("967","012922002","Banaoang","01","0129","012922");
-INSERT INTO barangay VALUES("968","012922003","Basug","01","0129","012922");
-INSERT INTO barangay VALUES("969","012922004","Bucalag","01","0129","012922");
-INSERT INTO barangay VALUES("970","012922005","Cabangaran","01","0129","012922");
-INSERT INTO barangay VALUES("971","012922006","Calungboyan","01","0129","012922");
-INSERT INTO barangay VALUES("972","012922008","Casiber","01","0129","012922");
-INSERT INTO barangay VALUES("973","012922009","Dammay","01","0129","012922");
-INSERT INTO barangay VALUES("974","012922010","Labut Norte","01","0129","012922");
-INSERT INTO barangay VALUES("975","012922011","Labut Sur","01","0129","012922");
-INSERT INTO barangay VALUES("976","012922012","Mabilbila Sur","01","0129","012922");
-INSERT INTO barangay VALUES("977","012922013","Mabilbila Norte","01","0129","012922");
-INSERT INTO barangay VALUES("978","012922014","Magsaysay District (Pob.)","01","0129","012922");
-INSERT INTO barangay VALUES("979","012922015","Manueva","01","0129","012922");
-INSERT INTO barangay VALUES("980","012922016","Marcos (Pob.)","01","0129","012922");
-INSERT INTO barangay VALUES("981","012922017","Nagpanaoan","01","0129","012922");
-INSERT INTO barangay VALUES("982","012922018","Namalangan","01","0129","012922");
-INSERT INTO barangay VALUES("983","012922019","Oribi","01","0129","012922");
-INSERT INTO barangay VALUES("984","012922020","Pasungol","01","0129","012922");
-INSERT INTO barangay VALUES("985","012922022","Quezon (Pob.)","01","0129","012922");
-INSERT INTO barangay VALUES("986","012922023","Quirino (Pob.)","01","0129","012922");
-INSERT INTO barangay VALUES("987","012922024","Rancho","01","0129","012922");
-INSERT INTO barangay VALUES("988","012922025","Rizal","01","0129","012922");
-INSERT INTO barangay VALUES("989","012922026","Sacuyya Norte","01","0129","012922");
-INSERT INTO barangay VALUES("990","012922027","Sacuyya Sur","01","0129","012922");
-INSERT INTO barangay VALUES("991","012922028","Tabucolan","01","0129","012922");
-INSERT INTO barangay VALUES("992","012923001","Cabaroan","01","0129","012923");
-INSERT INTO barangay VALUES("993","012923002","Cabittaogan","01","0129","012923");
-INSERT INTO barangay VALUES("994","012923003","Cabuloan","01","0129","012923");
-INSERT INTO barangay VALUES("995","012923004","Pangada","01","0129","012923");
-INSERT INTO barangay VALUES("996","012923005","Paratong","01","0129","012923");
-INSERT INTO barangay VALUES("997","012923006","Poblacion","01","0129","012923");
-INSERT INTO barangay VALUES("998","012923007","Sinabaan","01","0129","012923");
-INSERT INTO barangay VALUES("999","012923008","Subec","01","0129","012923");
-INSERT INTO barangay VALUES("1000","012923009","Tamorong","01","0129","012923");
-INSERT INTO barangay VALUES("1001","012924001","Amarao","01","0129","012924");
-INSERT INTO barangay VALUES("1002","012924002","Babayoan","01","0129","012924");
-INSERT INTO barangay VALUES("1003","012924003","Bacsayan","01","0129","012924");
-INSERT INTO barangay VALUES("1004","012924004","Banay","01","0129","012924");
-INSERT INTO barangay VALUES("1005","012924005","Bayugao Este","01","0129","012924");
-INSERT INTO barangay VALUES("1006","012924006","Bayugao Oeste","01","0129","012924");
-INSERT INTO barangay VALUES("1007","012924007","Besalan","01","0129","012924");
-INSERT INTO barangay VALUES("1008","012924008","Bugbuga","01","0129","012924");
-INSERT INTO barangay VALUES("1009","012924009","Calaoaan","01","0129","012924");
-INSERT INTO barangay VALUES("1010","012924010","Camanggaan","01","0129","012924");
-INSERT INTO barangay VALUES("1011","012924011","Candalican","01","0129","012924");
-INSERT INTO barangay VALUES("1012","012924012","Capariaan","01","0129","012924");
-INSERT INTO barangay VALUES("1013","012924013","Casilagan","01","0129","012924");
-INSERT INTO barangay VALUES("1014","012924014","Coscosnong","01","0129","012924");
-INSERT INTO barangay VALUES("1015","012924015","Daligan","01","0129","012924");
-INSERT INTO barangay VALUES("1016","012924016","Dili","01","0129","012924");
-INSERT INTO barangay VALUES("1017","012924017","Gabor Norte","01","0129","012924");
-INSERT INTO barangay VALUES("1018","012924018","Gabor Sur","01","0129","012924");
-INSERT INTO barangay VALUES("1019","012924019","Lalong","01","0129","012924");
-INSERT INTO barangay VALUES("1020","012924020","Lantag","01","0129","012924");
-INSERT INTO barangay VALUES("1021","012924021","Las-ud","01","0129","012924");
-INSERT INTO barangay VALUES("1022","012924022","Mambog","01","0129","012924");
-INSERT INTO barangay VALUES("1023","012924023","Mantanas","01","0129","012924");
-INSERT INTO barangay VALUES("1024","012924024","Nagtengnga","01","0129","012924");
-INSERT INTO barangay VALUES("1025","012924025","Padaoil","01","0129","012924");
-INSERT INTO barangay VALUES("1026","012924026","Paratong","01","0129","012924");
-INSERT INTO barangay VALUES("1027","012924027","Pattiqui","01","0129","012924");
-INSERT INTO barangay VALUES("1028","012924028","Pidpid","01","0129","012924");
-INSERT INTO barangay VALUES("1029","012924029","Pilar","01","0129","012924");
-INSERT INTO barangay VALUES("1030","012924030","Pinipin","01","0129","012924");
-INSERT INTO barangay VALUES("1031","012924031","Poblacion Este","01","0129","012924");
-INSERT INTO barangay VALUES("1032","012924032","Poblacion Norte","01","0129","012924");
-INSERT INTO barangay VALUES("1033","012924033","Poblacion Weste","01","0129","012924");
-INSERT INTO barangay VALUES("1034","012924034","Poblacion Sur","01","0129","012924");
-INSERT INTO barangay VALUES("1035","012924035","Quinfermin","01","0129","012924");
-INSERT INTO barangay VALUES("1036","012924036","Quinsoriano","01","0129","012924");
-INSERT INTO barangay VALUES("1037","012924037","Sagat","01","0129","012924");
-INSERT INTO barangay VALUES("1038","012924038","San Antonio","01","0129","012924");
-INSERT INTO barangay VALUES("1039","012924039","San Jose","01","0129","012924");
-INSERT INTO barangay VALUES("1040","012924040","San Pedro","01","0129","012924");
-INSERT INTO barangay VALUES("1041","012924041","Saoat","01","0129","012924");
-INSERT INTO barangay VALUES("1042","012924042","Sevilla","01","0129","012924");
-INSERT INTO barangay VALUES("1043","012924043","Sidaoen","01","0129","012924");
-INSERT INTO barangay VALUES("1044","012924044","Suyo","01","0129","012924");
-INSERT INTO barangay VALUES("1045","012924045","Tampugo","01","0129","012924");
-INSERT INTO barangay VALUES("1046","012924046","Turod","01","0129","012924");
-INSERT INTO barangay VALUES("1047","012924047","Villa Garcia","01","0129","012924");
-INSERT INTO barangay VALUES("1048","012924048","Villa Hermosa","01","0129","012924");
-INSERT INTO barangay VALUES("1049","012924049","Villa Laurencia","01","0129","012924");
-INSERT INTO barangay VALUES("1050","012925001","Alincaoeg","01","0129","012925");
-INSERT INTO barangay VALUES("1051","012925002","Angkileng","01","0129","012925");
-INSERT INTO barangay VALUES("1052","012925003","Arangin","01","0129","012925");
-INSERT INTO barangay VALUES("1053","012925004","Ayusan (Pob.)","01","0129","012925");
-INSERT INTO barangay VALUES("1054","012925005","Banbanaba","01","0129","012925");
-INSERT INTO barangay VALUES("1055","012925006","Bao-as","01","0129","012925");
-INSERT INTO barangay VALUES("1056","012925007","Barangobong (Pob.)","01","0129","012925");
-INSERT INTO barangay VALUES("1057","012925008","Buliclic","01","0129","012925");
-INSERT INTO barangay VALUES("1058","012925009","Burgos (Pob.)","01","0129","012925");
-INSERT INTO barangay VALUES("1059","012925010","Cabaritan","01","0129","012925");
-INSERT INTO barangay VALUES("1060","012925011","Catayagan","01","0129","012925");
-INSERT INTO barangay VALUES("1061","012925012","Conconig East","01","0129","012925");
-INSERT INTO barangay VALUES("1062","012925013","Conconig West","01","0129","012925");
-INSERT INTO barangay VALUES("1063","012925014","Damacuag","01","0129","012925");
-INSERT INTO barangay VALUES("1064","012925015","Lubong","01","0129","012925");
-INSERT INTO barangay VALUES("1065","012925016","Luba","01","0129","012925");
-INSERT INTO barangay VALUES("1066","012925017","Nagrebcan","01","0129","012925");
-INSERT INTO barangay VALUES("1067","012925018","Nagtablaan","01","0129","012925");
-INSERT INTO barangay VALUES("1068","012925019","Namatican","01","0129","012925");
-INSERT INTO barangay VALUES("1069","012925020","Nangalisan","01","0129","012925");
-INSERT INTO barangay VALUES("1070","012925021","Palali Norte","01","0129","012925");
-INSERT INTO barangay VALUES("1071","012925022","Palali Sur","01","0129","012925");
-INSERT INTO barangay VALUES("1072","012925023","Paoc Norte","01","0129","012925");
-INSERT INTO barangay VALUES("1073","012925024","Paoc Sur","01","0129","012925");
-INSERT INTO barangay VALUES("1074","012925025","Paratong","01","0129","012925");
-INSERT INTO barangay VALUES("1075","012925026","Pila East","01","0129","012925");
-INSERT INTO barangay VALUES("1076","012925027","Pila West","01","0129","012925");
-INSERT INTO barangay VALUES("1077","012925028","Quinabalayangan","01","0129","012925");
-INSERT INTO barangay VALUES("1078","012925029","Ronda","01","0129","012925");
-INSERT INTO barangay VALUES("1079","012925030","Sabuanan","01","0129","012925");
-INSERT INTO barangay VALUES("1080","012925031","San Juan","01","0129","012925");
-INSERT INTO barangay VALUES("1081","012925032","San Pedro","01","0129","012925");
-INSERT INTO barangay VALUES("1082","012925033","Sapang","01","0129","012925");
-INSERT INTO barangay VALUES("1083","012925034","Suagayan","01","0129","012925");
-INSERT INTO barangay VALUES("1084","012925035","Vical","01","0129","012925");
-INSERT INTO barangay VALUES("1085","012925036","Bani","01","0129","012925");
-INSERT INTO barangay VALUES("1086","012926001","Ag-agrao","01","0129","012926");
-INSERT INTO barangay VALUES("1087","012926002","Ampuagan","01","0129","012926");
-INSERT INTO barangay VALUES("1088","012926003","Baballasioan","01","0129","012926");
-INSERT INTO barangay VALUES("1089","012926004","Baliw Daya","01","0129","012926");
-INSERT INTO barangay VALUES("1090","012926005","Baliw Laud","01","0129","012926");
-INSERT INTO barangay VALUES("1091","012926006","Bia-o","01","0129","012926");
-INSERT INTO barangay VALUES("1092","012926007","Butir","01","0129","012926");
-INSERT INTO barangay VALUES("1093","012926008","Cabaroan","01","0129","012926");
-INSERT INTO barangay VALUES("1094","012926009","Danuman East","01","0129","012926");
-INSERT INTO barangay VALUES("1095","012926010","Danuman West","01","0129","012926");
-INSERT INTO barangay VALUES("1096","012926011","Dunglayan","01","0129","012926");
-INSERT INTO barangay VALUES("1097","012926012","Gusing","01","0129","012926");
-INSERT INTO barangay VALUES("1098","012926013","Langaoan","01","0129","012926");
-INSERT INTO barangay VALUES("1099","012926014","Laslasong Norte","01","0129","012926");
-INSERT INTO barangay VALUES("1100","012926015","Laslasong Sur","01","0129","012926");
-INSERT INTO barangay VALUES("1101","012926016","Laslasong West","01","0129","012926");
-INSERT INTO barangay VALUES("1102","012926017","Lesseb","01","0129","012926");
-INSERT INTO barangay VALUES("1103","012926018","Lingsat","01","0129","012926");
-INSERT INTO barangay VALUES("1104","012926019","Lubong","01","0129","012926");
-INSERT INTO barangay VALUES("1105","012926020","Maynganay Norte","01","0129","012926");
-INSERT INTO barangay VALUES("1106","012926021","Maynganay Sur","01","0129","012926");
-INSERT INTO barangay VALUES("1107","012926022","Nagsayaoan","01","0129","012926");
-INSERT INTO barangay VALUES("1108","012926023","Nagtupacan","01","0129","012926");
-INSERT INTO barangay VALUES("1109","012926024","Nalvo","01","0129","012926");
-INSERT INTO barangay VALUES("1110","012926027","Pacang","01","0129","012926");
-INSERT INTO barangay VALUES("1111","012926028","Penned","01","0129","012926");
-INSERT INTO barangay VALUES("1112","012926029","Poblacion Norte","01","0129","012926");
-INSERT INTO barangay VALUES("1113","012926030","Poblacion Sur","01","0129","012926");
-INSERT INTO barangay VALUES("1114","012926031","Silag","01","0129","012926");
-INSERT INTO barangay VALUES("1115","012926032","Sumagui","01","0129","012926");
-INSERT INTO barangay VALUES("1116","012926033","Suso","01","0129","012926");
-INSERT INTO barangay VALUES("1117","012926034","Tangaoan","01","0129","012926");
-INSERT INTO barangay VALUES("1118","012926035","Tinaan","01","0129","012926");
-INSERT INTO barangay VALUES("1119","012927001","Al-aludig","01","0129","012927");
-INSERT INTO barangay VALUES("1120","012927002","Ambucao","01","0129","012927");
-INSERT INTO barangay VALUES("1121","012927003","San Jose (Baraoas)","01","0129","012927");
-INSERT INTO barangay VALUES("1122","012927004","Baybayabas","01","0129","012927");
-INSERT INTO barangay VALUES("1123","012927005","Bigbiga","01","0129","012927");
-INSERT INTO barangay VALUES("1124","012927006","Bulbulala","01","0129","012927");
-INSERT INTO barangay VALUES("1125","012927007","Busel-busel","01","0129","012927");
-INSERT INTO barangay VALUES("1126","012927008","Butol","01","0129","012927");
-INSERT INTO barangay VALUES("1127","012927009","Caburao","01","0129","012927");
-INSERT INTO barangay VALUES("1128","012927010","Dan-ar","01","0129","012927");
-INSERT INTO barangay VALUES("1129","012927011","Gabao","01","0129","012927");
-INSERT INTO barangay VALUES("1130","012927012","Guinabang","01","0129","012927");
-INSERT INTO barangay VALUES("1131","012927013","Imus","01","0129","012927");
-INSERT INTO barangay VALUES("1132","012927014","Lang-ayan","01","0129","012927");
-INSERT INTO barangay VALUES("1133","012927015","Mambug","01","0129","012927");
-INSERT INTO barangay VALUES("1134","012927016","Nalasin","01","0129","012927");
-INSERT INTO barangay VALUES("1135","012927017","Olo-olo Norte","01","0129","012927");
-INSERT INTO barangay VALUES("1136","012927018","Olo-olo Sur","01","0129","012927");
-INSERT INTO barangay VALUES("1137","012927019","Poblacion Norte","01","0129","012927");
-INSERT INTO barangay VALUES("1138","012927020","Poblacion Sur","01","0129","012927");
-INSERT INTO barangay VALUES("1139","012927021","Sabangan","01","0129","012927");
-INSERT INTO barangay VALUES("1140","012927022","Salincub","01","0129","012927");
-INSERT INTO barangay VALUES("1141","012927023","San Roque","01","0129","012927");
-INSERT INTO barangay VALUES("1142","012927024","Ubbog","01","0129","012927");
-INSERT INTO barangay VALUES("1143","012928001","Binalayangan","01","0129","012928");
-INSERT INTO barangay VALUES("1144","012928002","Binongan","01","0129","012928");
-INSERT INTO barangay VALUES("1145","012928003","Borobor","01","0129","012928");
-INSERT INTO barangay VALUES("1146","012928004","Cabaritan","01","0129","012928");
-INSERT INTO barangay VALUES("1147","012928005","Cabigbigaan","01","0129","012928");
-INSERT INTO barangay VALUES("1148","012928006","Calautit","01","0129","012928");
-INSERT INTO barangay VALUES("1149","012928007","Calay-ab","01","0129","012928");
-INSERT INTO barangay VALUES("1150","012928008","Camestizoan","01","0129","012928");
-INSERT INTO barangay VALUES("1151","012928009","Casili","01","0129","012928");
-INSERT INTO barangay VALUES("1152","012928010","Flora","01","0129","012928");
-INSERT INTO barangay VALUES("1153","012928011","Lagatit","01","0129","012928");
-INSERT INTO barangay VALUES("1154","012928012","Laoingen","01","0129","012928");
-INSERT INTO barangay VALUES("1155","012928013","Lussoc","01","0129","012928");
-INSERT INTO barangay VALUES("1156","012928014","Nalasin","01","0129","012928");
-INSERT INTO barangay VALUES("1157","012928015","Nagbettedan","01","0129","012928");
-INSERT INTO barangay VALUES("1158","012928016","Naglaoa-an","01","0129","012928");
-INSERT INTO barangay VALUES("1159","012928017","Nambaran","01","0129","012928");
-INSERT INTO barangay VALUES("1160","012928018","Nanerman","01","0129","012928");
-INSERT INTO barangay VALUES("1161","012928019","Napo","01","0129","012928");
-INSERT INTO barangay VALUES("1162","012928020","Padu Chico","01","0129","012928");
-INSERT INTO barangay VALUES("1163","012928021","Padu Grande","01","0129","012928");
-INSERT INTO barangay VALUES("1164","012928022","Paguraper","01","0129","012928");
-INSERT INTO barangay VALUES("1165","012928023","Panay","01","0129","012928");
-INSERT INTO barangay VALUES("1166","012928024","Pangpangdan","01","0129","012928");
-INSERT INTO barangay VALUES("1167","012928025","Parada","01","0129","012928");
-INSERT INTO barangay VALUES("1168","012928026","Paras","01","0129","012928");
-INSERT INTO barangay VALUES("1169","012928027","Poblacion","01","0129","012928");
-INSERT INTO barangay VALUES("1170","012928030","Puerta Real","01","0129","012928");
-INSERT INTO barangay VALUES("1171","012928031","Pussuac","01","0129","012928");
-INSERT INTO barangay VALUES("1172","012928032","Quimmarayan","01","0129","012928");
-INSERT INTO barangay VALUES("1173","012928033","San Pablo","01","0129","012928");
-INSERT INTO barangay VALUES("1174","012928034","Santa Cruz","01","0129","012928");
-INSERT INTO barangay VALUES("1175","012928035","Santo Tomas","01","0129","012928");
-INSERT INTO barangay VALUES("1176","012928036","Sived","01","0129","012928");
-INSERT INTO barangay VALUES("1177","012928038","Vacunero","01","0129","012928");
-INSERT INTO barangay VALUES("1178","012928039","Suksukit","01","0129","012928");
-INSERT INTO barangay VALUES("1179","012929001","Abaccan","01","0129","012929");
-INSERT INTO barangay VALUES("1180","012929002","Mabileg","01","0129","012929");
-INSERT INTO barangay VALUES("1181","012929003","Matallucod","01","0129","012929");
-INSERT INTO barangay VALUES("1182","012929004","Poblacion (Madayaw)","01","0129","012929");
-INSERT INTO barangay VALUES("1183","012929005","San Elias","01","0129","012929");
-INSERT INTO barangay VALUES("1184","012929006","San Ramon","01","0129","012929");
-INSERT INTO barangay VALUES("1185","012929007","Santo Rosario","01","0129","012929");
-INSERT INTO barangay VALUES("1186","012930001","Aguing","01","0129","012930");
-INSERT INTO barangay VALUES("1187","012930002","Ballaigui (Pob.)","01","0129","012930");
-INSERT INTO barangay VALUES("1188","012930003","Baliw","01","0129","012930");
-INSERT INTO barangay VALUES("1189","012930004","Baracbac","01","0129","012930");
-INSERT INTO barangay VALUES("1190","012930005","Barikir","01","0129","012930");
-INSERT INTO barangay VALUES("1191","012930006","Battog","01","0129","012930");
-INSERT INTO barangay VALUES("1192","012930007","Binacud","01","0129","012930");
-INSERT INTO barangay VALUES("1193","012930008","Cabangtalan","01","0129","012930");
-INSERT INTO barangay VALUES("1194","012930009","Cabarambanan","01","0129","012930");
-INSERT INTO barangay VALUES("1195","012930010","Cabulalaan","01","0129","012930");
-INSERT INTO barangay VALUES("1196","012930011","Cadanglaan","01","0129","012930");
-INSERT INTO barangay VALUES("1197","012930012","Calingayan","01","0129","012930");
-INSERT INTO barangay VALUES("1198","012930013","Curtin","01","0129","012930");
-INSERT INTO barangay VALUES("1199","012930014","Dadalaquiten Norte","01","0129","012930");
-INSERT INTO barangay VALUES("1200","012930015","Dadalaquiten Sur","01","0129","012930");
-INSERT INTO barangay VALUES("1201","012930016","Duyayyat","01","0129","012930");
-INSERT INTO barangay VALUES("1202","012930017","Jordan","01","0129","012930");
-INSERT INTO barangay VALUES("1203","012930018","Calanutian","01","0129","012930");
-INSERT INTO barangay VALUES("1204","012930019","Katipunan","01","0129","012930");
-INSERT INTO barangay VALUES("1205","012930020","Macabiag (Pob.)","01","0129","012930");
-INSERT INTO barangay VALUES("1206","012930021","Magsaysay","01","0129","012930");
-INSERT INTO barangay VALUES("1207","012930022","Marnay","01","0129","012930");
-INSERT INTO barangay VALUES("1208","012930023","Masadag","01","0129","012930");
-INSERT INTO barangay VALUES("1209","012930024","Nagcullooban","01","0129","012930");
-INSERT INTO barangay VALUES("1210","012930025","Nagbalioartian","01","0129","012930");
-INSERT INTO barangay VALUES("1211","012930026","Nagongburan","01","0129","012930");
-INSERT INTO barangay VALUES("1212","012930027","Namnama (Pob.)","01","0129","012930");
-INSERT INTO barangay VALUES("1213","012930028","Pacis","01","0129","012930");
-INSERT INTO barangay VALUES("1214","012930029","Paratong","01","0129","012930");
-INSERT INTO barangay VALUES("1215","012930030","Dean Leopoldo Yabes (Pug-os)","01","0129","012930");
-INSERT INTO barangay VALUES("1216","012930031","Purag","01","0129","012930");
-INSERT INTO barangay VALUES("1217","012930032","Quibit-quibit","01","0129","012930");
-INSERT INTO barangay VALUES("1218","012930033","Quimmallogong","01","0129","012930");
-INSERT INTO barangay VALUES("1219","012930034","Rang-ay (Pob.)","01","0129","012930");
-INSERT INTO barangay VALUES("1220","012930035","Ricudo","01","0129","012930");
-INSERT INTO barangay VALUES("1221","012930036","Sabañgan (Marcos)","01","0129","012930");
-INSERT INTO barangay VALUES("1222","012930037","Sallacapo","01","0129","012930");
-INSERT INTO barangay VALUES("1223","012930038","Santa Cruz","01","0129","012930");
-INSERT INTO barangay VALUES("1224","012930039","Sapriana","01","0129","012930");
-INSERT INTO barangay VALUES("1225","012930040","Tapao","01","0129","012930");
-INSERT INTO barangay VALUES("1226","012930041","Teppeng","01","0129","012930");
-INSERT INTO barangay VALUES("1227","012930042","Tubigay","01","0129","012930");
-INSERT INTO barangay VALUES("1228","012930043","Ubbog","01","0129","012930");
-INSERT INTO barangay VALUES("1229","012930044","Zapat","01","0129","012930");
-INSERT INTO barangay VALUES("1230","012931001","Banga","01","0129","012931");
-INSERT INTO barangay VALUES("1231","012931002","Caoayan","01","0129","012931");
-INSERT INTO barangay VALUES("1232","012931004","Licungan (Cullang)","01","0129","012931");
-INSERT INTO barangay VALUES("1233","012931005","Danac","01","0129","012931");
-INSERT INTO barangay VALUES("1234","012931007","Pangotan","01","0129","012931");
-INSERT INTO barangay VALUES("1235","012931008","Balbalayang (Pob.)","01","0129","012931");
-INSERT INTO barangay VALUES("1236","012932001","Baringcucurong","01","0129","012932");
-INSERT INTO barangay VALUES("1237","012932002","Cabugao","01","0129","012932");
-INSERT INTO barangay VALUES("1238","012932003","Man-atong","01","0129","012932");
-INSERT INTO barangay VALUES("1239","012932004","Patoc-ao","01","0129","012932");
-INSERT INTO barangay VALUES("1240","012932005","Poblacion (Kimpusa)","01","0129","012932");
-INSERT INTO barangay VALUES("1241","012932007","Suyo Proper","01","0129","012932");
-INSERT INTO barangay VALUES("1242","012932008","Urzadan","01","0129","012932");
-INSERT INTO barangay VALUES("1243","012932009","Uso","01","0129","012932");
-INSERT INTO barangay VALUES("1244","012933001","Ag-aguman","01","0129","012933");
-INSERT INTO barangay VALUES("1245","012933002","Ambalayat","01","0129","012933");
-INSERT INTO barangay VALUES("1246","012933003","Baracbac","01","0129","012933");
-INSERT INTO barangay VALUES("1247","012933004","Bario-an","01","0129","012933");
-INSERT INTO barangay VALUES("1248","012933005","Baritao","01","0129","012933");
-INSERT INTO barangay VALUES("1249","012933006","Borono","01","0129","012933");
-INSERT INTO barangay VALUES("1250","012933007","Becques","01","0129","012933");
-INSERT INTO barangay VALUES("1251","012933008","Bimmanga","01","0129","012933");
-INSERT INTO barangay VALUES("1252","012933009","Bio","01","0129","012933");
-INSERT INTO barangay VALUES("1253","012933010","Bitalag","01","0129","012933");
-INSERT INTO barangay VALUES("1254","012933011","Bucao East","01","0129","012933");
-INSERT INTO barangay VALUES("1255","012933012","Bucao West","01","0129","012933");
-INSERT INTO barangay VALUES("1256","012933013","Cabaroan","01","0129","012933");
-INSERT INTO barangay VALUES("1257","012933014","Cabugbugan","01","0129","012933");
-INSERT INTO barangay VALUES("1258","012933015","Cabulanglangan","01","0129","012933");
-INSERT INTO barangay VALUES("1259","012933016","Dacutan","01","0129","012933");
-INSERT INTO barangay VALUES("1260","012933017","Dardarat","01","0129","012933");
-INSERT INTO barangay VALUES("1261","012933018","Del Pilar (Pob.)","01","0129","012933");
-INSERT INTO barangay VALUES("1262","012933019","Farola","01","0129","012933");
-INSERT INTO barangay VALUES("1263","012933020","Gabur","01","0129","012933");
-INSERT INTO barangay VALUES("1264","012933021","Garitan","01","0129","012933");
-INSERT INTO barangay VALUES("1265","012933022","Jardin","01","0129","012933");
-INSERT INTO barangay VALUES("1266","012933023","Lacong","01","0129","012933");
-INSERT INTO barangay VALUES("1267","012933024","Lantag","01","0129","012933");
-INSERT INTO barangay VALUES("1268","012933025","Las-ud","01","0129","012933");
-INSERT INTO barangay VALUES("1269","012933026","Libtong","01","0129","012933");
-INSERT INTO barangay VALUES("1270","012933027","Lubnac","01","0129","012933");
-INSERT INTO barangay VALUES("1271","012933028","Magsaysay (Pob.)","01","0129","012933");
-INSERT INTO barangay VALUES("1272","012933029","Malacañang","01","0129","012933");
-INSERT INTO barangay VALUES("1273","012933030","Pacac","01","0129","012933");
-INSERT INTO barangay VALUES("1274","012933031","Pallogan","01","0129","012933");
-INSERT INTO barangay VALUES("1275","012933032","Pudoc East","01","0129","012933");
-INSERT INTO barangay VALUES("1276","012933033","Pudoc West","01","0129","012933");
-INSERT INTO barangay VALUES("1277","012933034","Pula","01","0129","012933");
-INSERT INTO barangay VALUES("1278","012933035","Quirino (Pob.)","01","0129","012933");
-INSERT INTO barangay VALUES("1279","012933036","Ranget","01","0129","012933");
-INSERT INTO barangay VALUES("1280","012933038","Rizal (Pob.)","01","0129","012933");
-INSERT INTO barangay VALUES("1281","012933039","Salvacion","01","0129","012933");
-INSERT INTO barangay VALUES("1282","012933040","San Miguel","01","0129","012933");
-INSERT INTO barangay VALUES("1283","012933041","Sawat","01","0129","012933");
-INSERT INTO barangay VALUES("1284","012933044","Tallaoen","01","0129","012933");
-INSERT INTO barangay VALUES("1285","012933045","Tampugo","01","0129","012933");
-INSERT INTO barangay VALUES("1286","012933046","Tarangotong","01","0129","012933");
-INSERT INTO barangay VALUES("1287","012934001","Ayusan Norte","01","0129","012934");
-INSERT INTO barangay VALUES("1288","012934002","Ayusan Sur","01","0129","012934");
-INSERT INTO barangay VALUES("1289","012934003","Barangay I (Pob.)","01","0129","012934");
-INSERT INTO barangay VALUES("1290","012934004","Barangay II (Pob.)","01","0129","012934");
-INSERT INTO barangay VALUES("1291","012934005","Barangay III (Pob.)","01","0129","012934");
-INSERT INTO barangay VALUES("1292","012934006","Barangay IV (Pob.)","01","0129","012934");
-INSERT INTO barangay VALUES("1293","012934007","Barangay V (Pob.)","01","0129","012934");
-INSERT INTO barangay VALUES("1294","012934008","Barangay VI (Pob.)","01","0129","012934");
-INSERT INTO barangay VALUES("1295","012934009","Barraca","01","0129","012934");
-INSERT INTO barangay VALUES("1296","012934010","Beddeng Laud","01","0129","012934");
-INSERT INTO barangay VALUES("1297","012934011","Beddeng Daya","01","0129","012934");
-INSERT INTO barangay VALUES("1298","012934012","Bongtolan","01","0129","012934");
-INSERT INTO barangay VALUES("1299","012934013","Bulala","01","0129","012934");
-INSERT INTO barangay VALUES("1300","012934014","Cabalangegan","01","0129","012934");
-INSERT INTO barangay VALUES("1301","012934015","Cabaroan Daya","01","0129","012934");
-INSERT INTO barangay VALUES("1302","012934016","Cabaroan Laud","01","0129","012934");
-INSERT INTO barangay VALUES("1303","012934017","Camangaan","01","0129","012934");
-INSERT INTO barangay VALUES("1304","012934018","Capangpangan","01","0129","012934");
-INSERT INTO barangay VALUES("1305","012934020","Mindoro","01","0129","012934");
-INSERT INTO barangay VALUES("1306","012934021","Nagsangalan","01","0129","012934");
-INSERT INTO barangay VALUES("1307","012934022","Pantay Daya","01","0129","012934");
-INSERT INTO barangay VALUES("1308","012934023","Pantay Fatima","01","0129","012934");
-INSERT INTO barangay VALUES("1309","012934024","Pantay Laud","01","0129","012934");
-INSERT INTO barangay VALUES("1310","012934025","Paoa","01","0129","012934");
-INSERT INTO barangay VALUES("1311","012934026","Paratong","01","0129","012934");
-INSERT INTO barangay VALUES("1312","012934027","Pong-ol","01","0129","012934");
-INSERT INTO barangay VALUES("1313","012934028","Purok-a-bassit","01","0129","012934");
-INSERT INTO barangay VALUES("1314","012934029","Purok-a-dackel","01","0129","012934");
-INSERT INTO barangay VALUES("1315","012934030","Raois","01","0129","012934");
-INSERT INTO barangay VALUES("1316","012934031","Rugsuanan","01","0129","012934");
-INSERT INTO barangay VALUES("1317","012934032","Salindeg","01","0129","012934");
-INSERT INTO barangay VALUES("1318","012934033","San Jose","01","0129","012934");
-INSERT INTO barangay VALUES("1319","012934034","San Julian Norte","01","0129","012934");
-INSERT INTO barangay VALUES("1320","012934035","San Julian Sur","01","0129","012934");
-INSERT INTO barangay VALUES("1321","012934036","San Pedro","01","0129","012934");
-INSERT INTO barangay VALUES("1322","012934037","Tamag","01","0129","012934");
-INSERT INTO barangay VALUES("1323","012934038","Barangay VII","01","0129","012934");
-INSERT INTO barangay VALUES("1324","012934039","Barangay VIII","01","0129","012934");
-INSERT INTO barangay VALUES("1325","012934040","Barangay IX","01","0129","012934");
-INSERT INTO barangay VALUES("1326","013301001","Ambitacay","01","0133","013301");
-INSERT INTO barangay VALUES("1327","013301002","Balawarte","01","0133","013301");
-INSERT INTO barangay VALUES("1328","013301003","Capas","01","0133","013301");
-INSERT INTO barangay VALUES("1329","013301004","Consolacion (Pob.)","01","0133","013301");
-INSERT INTO barangay VALUES("1330","013301005","Macalva Central","01","0133","013301");
-INSERT INTO barangay VALUES("1331","013301006","Macalva Norte","01","0133","013301");
-INSERT INTO barangay VALUES("1332","013301007","Macalva Sur","01","0133","013301");
-INSERT INTO barangay VALUES("1333","013301008","Nazareno","01","0133","013301");
-INSERT INTO barangay VALUES("1334","013301009","Purok","01","0133","013301");
-INSERT INTO barangay VALUES("1335","013301010","San Agustin East","01","0133","013301");
-INSERT INTO barangay VALUES("1336","013301011","San Agustin Norte","01","0133","013301");
-INSERT INTO barangay VALUES("1337","013301012","San Agustin Sur","01","0133","013301");
-INSERT INTO barangay VALUES("1338","013301013","San Antonino","01","0133","013301");
-INSERT INTO barangay VALUES("1339","013301014","San Antonio","01","0133","013301");
-INSERT INTO barangay VALUES("1340","013301015","San Francisco","01","0133","013301");
-INSERT INTO barangay VALUES("1341","013301016","San Isidro","01","0133","013301");
-INSERT INTO barangay VALUES("1342","013301017","San Joaquin Norte","01","0133","013301");
-INSERT INTO barangay VALUES("1343","013301018","San Joaquin Sur","01","0133","013301");
-INSERT INTO barangay VALUES("1344","013301019","San Jose Norte","01","0133","013301");
-INSERT INTO barangay VALUES("1345","013301020","San Jose Sur","01","0133","013301");
-INSERT INTO barangay VALUES("1346","013301021","San Juan","01","0133","013301");
-INSERT INTO barangay VALUES("1347","013301022","San Julian Central","01","0133","013301");
-INSERT INTO barangay VALUES("1348","013301023","San Julian East","01","0133","013301");
-INSERT INTO barangay VALUES("1349","013301024","San Julian Norte","01","0133","013301");
-INSERT INTO barangay VALUES("1350","013301025","San Julian West","01","0133","013301");
-INSERT INTO barangay VALUES("1351","013301026","San Manuel Norte","01","0133","013301");
-INSERT INTO barangay VALUES("1352","013301027","San Manuel Sur","01","0133","013301");
-INSERT INTO barangay VALUES("1353","013301028","San Marcos","01","0133","013301");
-INSERT INTO barangay VALUES("1354","013301029","San Miguel","01","0133","013301");
-INSERT INTO barangay VALUES("1355","013301030","San Nicolas Central (Pob.)","01","0133","013301");
-INSERT INTO barangay VALUES("1356","013301031","San Nicolas East","01","0133","013301");
-INSERT INTO barangay VALUES("1357","013301032","San Nicolas Norte (Pob.)","01","0133","013301");
-INSERT INTO barangay VALUES("1358","013301033","San Nicolas West","01","0133","013301");
-INSERT INTO barangay VALUES("1359","013301034","San Nicolas Sur (Pob.)","01","0133","013301");
-INSERT INTO barangay VALUES("1360","013301035","San Pedro","01","0133","013301");
-INSERT INTO barangay VALUES("1361","013301036","San Roque West","01","0133","013301");
-INSERT INTO barangay VALUES("1362","013301037","San Roque East","01","0133","013301");
-INSERT INTO barangay VALUES("1363","013301038","San Vicente Norte","01","0133","013301");
-INSERT INTO barangay VALUES("1364","013301039","San Vicente Sur","01","0133","013301");
-INSERT INTO barangay VALUES("1365","013301040","Santa Ana","01","0133","013301");
-INSERT INTO barangay VALUES("1366","013301041","Santa Barbara (Pob.)","01","0133","013301");
-INSERT INTO barangay VALUES("1367","013301042","Santa Fe","01","0133","013301");
-INSERT INTO barangay VALUES("1368","013301043","Santa Maria","01","0133","013301");
-INSERT INTO barangay VALUES("1369","013301044","Santa Monica","01","0133","013301");
-INSERT INTO barangay VALUES("1370","013301045","Santa Rita (Nalinac)","01","0133","013301");
-INSERT INTO barangay VALUES("1371","013301046","Santa Rita East","01","0133","013301");
-INSERT INTO barangay VALUES("1372","013301047","Santa Rita Norte","01","0133","013301");
-INSERT INTO barangay VALUES("1373","013301048","Santa Rita Sur","01","0133","013301");
-INSERT INTO barangay VALUES("1374","013301049","Santa Rita West","01","0133","013301");
-INSERT INTO barangay VALUES("1375","013302001","Alaska","01","0133","013302");
-INSERT INTO barangay VALUES("1376","013302002","Basca","01","0133","013302");
-INSERT INTO barangay VALUES("1377","013302003","Dulao","01","0133","013302");
-INSERT INTO barangay VALUES("1378","013302004","Gallano","01","0133","013302");
-INSERT INTO barangay VALUES("1379","013302005","Macabato","01","0133","013302");
-INSERT INTO barangay VALUES("1380","013302006","Manga","01","0133","013302");
-INSERT INTO barangay VALUES("1381","013302007","Pangao-aoan East","01","0133","013302");
-INSERT INTO barangay VALUES("1382","013302009","Pangao-aoan West","01","0133","013302");
-INSERT INTO barangay VALUES("1383","013302010","Poblacion","01","0133","013302");
-INSERT INTO barangay VALUES("1384","013302011","Samara","01","0133","013302");
-INSERT INTO barangay VALUES("1385","013302012","San Antonio","01","0133","013302");
-INSERT INTO barangay VALUES("1386","013302014","San Benito Norte","01","0133","013302");
-INSERT INTO barangay VALUES("1387","013302015","San Benito Sur","01","0133","013302");
-INSERT INTO barangay VALUES("1388","013302016","San Eugenio","01","0133","013302");
-INSERT INTO barangay VALUES("1389","013302018","San Juan East","01","0133","013302");
-INSERT INTO barangay VALUES("1390","013302019","San Juan West","01","0133","013302");
-INSERT INTO barangay VALUES("1391","013302020","San Simon East","01","0133","013302");
-INSERT INTO barangay VALUES("1392","013302021","San Simon West","01","0133","013302");
-INSERT INTO barangay VALUES("1393","013302022","Santa Cecilia","01","0133","013302");
-INSERT INTO barangay VALUES("1394","013302023","Santa Lucia","01","0133","013302");
-INSERT INTO barangay VALUES("1395","013302024","Santa Rita East","01","0133","013302");
-INSERT INTO barangay VALUES("1396","013302025","Santa Rita West","01","0133","013302");
-INSERT INTO barangay VALUES("1397","013302027","Santo Rosario East","01","0133","013302");
-INSERT INTO barangay VALUES("1398","013302028","Santo Rosario West","01","0133","013302");
-INSERT INTO barangay VALUES("1399","013303001","Agtipal","01","0133","013303");
-INSERT INTO barangay VALUES("1400","013303002","Arosip","01","0133","013303");
-INSERT INTO barangay VALUES("1401","013303003","Bacqui","01","0133","013303");
-INSERT INTO barangay VALUES("1402","013303004","Bacsil","01","0133","013303");
-INSERT INTO barangay VALUES("1403","013303005","Bagutot","01","0133","013303");
-INSERT INTO barangay VALUES("1404","013303006","Ballogo","01","0133","013303");
-INSERT INTO barangay VALUES("1405","013303007","Baroro","01","0133","013303");
-INSERT INTO barangay VALUES("1406","013303008","Bitalag","01","0133","013303");
-INSERT INTO barangay VALUES("1407","013303009","Bulala","01","0133","013303");
-INSERT INTO barangay VALUES("1408","013303010","Burayoc","01","0133","013303");
-INSERT INTO barangay VALUES("1409","013303011","Bussaoit","01","0133","013303");
-INSERT INTO barangay VALUES("1410","013303012","Cabaroan","01","0133","013303");
-INSERT INTO barangay VALUES("1411","013303013","Cabarsican","01","0133","013303");
-INSERT INTO barangay VALUES("1412","013303014","Cabugao","01","0133","013303");
-INSERT INTO barangay VALUES("1413","013303015","Calautit","01","0133","013303");
-INSERT INTO barangay VALUES("1414","013303016","Carcarmay","01","0133","013303");
-INSERT INTO barangay VALUES("1415","013303017","Casiaman","01","0133","013303");
-INSERT INTO barangay VALUES("1416","013303018","Galongen","01","0133","013303");
-INSERT INTO barangay VALUES("1417","013303019","Guinabang","01","0133","013303");
-INSERT INTO barangay VALUES("1418","013303020","Legleg","01","0133","013303");
-INSERT INTO barangay VALUES("1419","013303021","Lisqueb","01","0133","013303");
-INSERT INTO barangay VALUES("1420","013303022","Mabanengbeng 1st","01","0133","013303");
-INSERT INTO barangay VALUES("1421","013303023","Mabanengbeng 2nd","01","0133","013303");
-INSERT INTO barangay VALUES("1422","013303024","Maragayap","01","0133","013303");
-INSERT INTO barangay VALUES("1423","013303025","Nangalisan","01","0133","013303");
-INSERT INTO barangay VALUES("1424","013303026","Nagatiran","01","0133","013303");
-INSERT INTO barangay VALUES("1425","013303027","Nagsaraboan","01","0133","013303");
-INSERT INTO barangay VALUES("1426","013303028","Nagsimbaanan","01","0133","013303");
-INSERT INTO barangay VALUES("1427","013303029","Narra","01","0133","013303");
-INSERT INTO barangay VALUES("1428","013303030","Ortega","01","0133","013303");
-INSERT INTO barangay VALUES("1429","013303031","Paagan","01","0133","013303");
-INSERT INTO barangay VALUES("1430","013303032","Pandan","01","0133","013303");
-INSERT INTO barangay VALUES("1431","013303033","Pang-pang","01","0133","013303");
-INSERT INTO barangay VALUES("1432","013303034","Poblacion","01","0133","013303");
-INSERT INTO barangay VALUES("1433","013303035","Quirino","01","0133","013303");
-INSERT INTO barangay VALUES("1434","013303036","Raois","01","0133","013303");
-INSERT INTO barangay VALUES("1435","013303037","Salincob","01","0133","013303");
-INSERT INTO barangay VALUES("1436","013303038","San Martin","01","0133","013303");
-INSERT INTO barangay VALUES("1437","013303039","Santa Cruz","01","0133","013303");
-INSERT INTO barangay VALUES("1438","013303040","Santa Rita","01","0133","013303");
-INSERT INTO barangay VALUES("1439","013303041","Sapilang","01","0133","013303");
-INSERT INTO barangay VALUES("1440","013303042","Sayoan","01","0133","013303");
-INSERT INTO barangay VALUES("1441","013303043","Sipulo","01","0133","013303");
-INSERT INTO barangay VALUES("1442","013303044","Tammocalao","01","0133","013303");
-INSERT INTO barangay VALUES("1443","013303045","Ubbog","01","0133","013303");
-INSERT INTO barangay VALUES("1444","013303046","Oya-oy","01","0133","013303");
-INSERT INTO barangay VALUES("1445","013303047","Zaragosa","01","0133","013303");
-INSERT INTO barangay VALUES("1446","013304001","Alibangsay","01","0133","013304");
-INSERT INTO barangay VALUES("1447","013304002","Baay","01","0133","013304");
-INSERT INTO barangay VALUES("1448","013304003","Cambaly","01","0133","013304");
-INSERT INTO barangay VALUES("1449","013304004","Cardiz","01","0133","013304");
-INSERT INTO barangay VALUES("1450","013304005","Dagup","01","0133","013304");
-INSERT INTO barangay VALUES("1451","013304006","Libbo","01","0133","013304");
-INSERT INTO barangay VALUES("1452","013304007","Suyo (Pob.)","01","0133","013304");
-INSERT INTO barangay VALUES("1453","013304008","Tagudtud","01","0133","013304");
-INSERT INTO barangay VALUES("1454","013304009","Tio-angan","01","0133","013304");
-INSERT INTO barangay VALUES("1455","013304010","Wallayan","01","0133","013304");
-INSERT INTO barangay VALUES("1456","013305001","Apatut","01","0133","013305");
-INSERT INTO barangay VALUES("1457","013305002","Ar-arampang","01","0133","013305");
-INSERT INTO barangay VALUES("1458","013305003","Baracbac Este","01","0133","013305");
-INSERT INTO barangay VALUES("1459","013305004","Baracbac Oeste","01","0133","013305");
-INSERT INTO barangay VALUES("1460","013305005","Bet-ang","01","0133","013305");
-INSERT INTO barangay VALUES("1461","013305006","Bulbulala","01","0133","013305");
-INSERT INTO barangay VALUES("1462","013305007","Bungol","01","0133","013305");
-INSERT INTO barangay VALUES("1463","013305008","Butubut Este","01","0133","013305");
-INSERT INTO barangay VALUES("1464","013305009","Butubut Norte","01","0133","013305");
-INSERT INTO barangay VALUES("1465","013305010","Butubut Oeste","01","0133","013305");
-INSERT INTO barangay VALUES("1466","013305011","Butubut Sur","01","0133","013305");
-INSERT INTO barangay VALUES("1467","013305012","Cabuaan Oeste (Pob.)","01","0133","013305");
-INSERT INTO barangay VALUES("1468","013305013","Calliat","01","0133","013305");
-INSERT INTO barangay VALUES("1469","013305014","Calungbuyan","01","0133","013305");
-INSERT INTO barangay VALUES("1470","013305015","Camiling","01","0133","013305");
-INSERT INTO barangay VALUES("1471","013305016","Guinaburan","01","0133","013305");
-INSERT INTO barangay VALUES("1472","013305017","Masupe","01","0133","013305");
-INSERT INTO barangay VALUES("1473","013305018","Nagsabaran Norte","01","0133","013305");
-INSERT INTO barangay VALUES("1474","013305019","Nagsabaran Sur","01","0133","013305");
-INSERT INTO barangay VALUES("1475","013305020","Nalasin","01","0133","013305");
-INSERT INTO barangay VALUES("1476","013305021","Napaset","01","0133","013305");
-INSERT INTO barangay VALUES("1477","013305022","Pagbennecan","01","0133","013305");
-INSERT INTO barangay VALUES("1478","013305023","Pagleddegan","01","0133","013305");
-INSERT INTO barangay VALUES("1479","013305024","Pantar Norte","01","0133","013305");
-INSERT INTO barangay VALUES("1480","013305025","Pantar Sur","01","0133","013305");
-INSERT INTO barangay VALUES("1481","013305026","Pa-o","01","0133","013305");
-INSERT INTO barangay VALUES("1482","013305028","Almieda","01","0133","013305");
-INSERT INTO barangay VALUES("1483","013305029","Paraoir","01","0133","013305");
-INSERT INTO barangay VALUES("1484","013305030","Patpata","01","0133","013305");
-INSERT INTO barangay VALUES("1485","013305031","Dr. Camilo Osias Pob. (Cabuaan Este)","01","0133","013305");
-INSERT INTO barangay VALUES("1486","013305032","Sablut","01","0133","013305");
-INSERT INTO barangay VALUES("1487","013305033","San Pablo","01","0133","013305");
-INSERT INTO barangay VALUES("1488","013305034","Sinapangan Norte","01","0133","013305");
-INSERT INTO barangay VALUES("1489","013305035","Sinapangan Sur","01","0133","013305");
-INSERT INTO barangay VALUES("1490","013305036","Tallipugo","01","0133","013305");
-INSERT INTO barangay VALUES("1491","013305037","Antonino","01","0133","013305");
-INSERT INTO barangay VALUES("1492","013306001","Agdeppa","01","0133","013306");
-INSERT INTO barangay VALUES("1493","013306002","Alzate","01","0133","013306");
-INSERT INTO barangay VALUES("1494","013306004","Bangaoilan East","01","0133","013306");
-INSERT INTO barangay VALUES("1495","013306005","Bangaoilan West","01","0133","013306");
-INSERT INTO barangay VALUES("1496","013306006","Barraca","01","0133","013306");
-INSERT INTO barangay VALUES("1497","013306007","Cadapli","01","0133","013306");
-INSERT INTO barangay VALUES("1498","013306008","Caggao","01","0133","013306");
-INSERT INTO barangay VALUES("1499","013306009","Consuegra","01","0133","013306");
-INSERT INTO barangay VALUES("1500","013306010","General Prim East","01","0133","013306");
-INSERT INTO barangay VALUES("1501","013306011","General Prim West","01","0133","013306");
-INSERT INTO barangay VALUES("1502","013306013","General Terrero","01","0133","013306");
-INSERT INTO barangay VALUES("1503","013306015","Luzong Norte","01","0133","013306");
-INSERT INTO barangay VALUES("1504","013306016","Luzong Sur","01","0133","013306");
-INSERT INTO barangay VALUES("1505","013306018","Maria Cristina East","01","0133","013306");
-INSERT INTO barangay VALUES("1506","013306019","Maria Cristina West","01","0133","013306");
-INSERT INTO barangay VALUES("1507","013306020","Mindoro","01","0133","013306");
-INSERT INTO barangay VALUES("1508","013306021","Nagsabaran","01","0133","013306");
-INSERT INTO barangay VALUES("1509","013306022","Paratong Norte","01","0133","013306");
-INSERT INTO barangay VALUES("1510","013306023","Paratong No. 3","01","0133","013306");
-INSERT INTO barangay VALUES("1511","013306024","Paratong No. 4","01","0133","013306");
-INSERT INTO barangay VALUES("1512","013306025","Central East No. 1 (Pob.)","01","0133","013306");
-INSERT INTO barangay VALUES("1513","013306026","Central East No. 2 (Pob.)","01","0133","013306");
-INSERT INTO barangay VALUES("1514","013306027","Central West No. 1 (Pob.)","01","0133","013306");
-INSERT INTO barangay VALUES("1515","013306028","Central West No. 2 (Pob.)","01","0133","013306");
-INSERT INTO barangay VALUES("1516","013306029","Central West No. 3 (Pob.)","01","0133","013306");
-INSERT INTO barangay VALUES("1517","013306030","Quintarong","01","0133","013306");
-INSERT INTO barangay VALUES("1518","013306031","Reyna Regente","01","0133","013306");
-INSERT INTO barangay VALUES("1519","013306032","Rissing","01","0133","013306");
-INSERT INTO barangay VALUES("1520","013306033","San Blas","01","0133","013306");
-INSERT INTO barangay VALUES("1521","013306034","San Cristobal","01","0133","013306");
-INSERT INTO barangay VALUES("1522","013306035","Sinapangan Norte","01","0133","013306");
-INSERT INTO barangay VALUES("1523","013306036","Sinapangan Sur","01","0133","013306");
-INSERT INTO barangay VALUES("1524","013306037","Ubbog","01","0133","013306");
-INSERT INTO barangay VALUES("1525","013307001","Acao","01","0133","013307");
-INSERT INTO barangay VALUES("1526","013307002","Baccuit Norte","01","0133","013307");
-INSERT INTO barangay VALUES("1527","013307003","Baccuit Sur","01","0133","013307");
-INSERT INTO barangay VALUES("1528","013307004","Bagbag","01","0133","013307");
-INSERT INTO barangay VALUES("1529","013307005","Ballay","01","0133","013307");
-INSERT INTO barangay VALUES("1530","013307006","Bawanta","01","0133","013307");
-INSERT INTO barangay VALUES("1531","013307007","Boy-utan","01","0133","013307");
-INSERT INTO barangay VALUES("1532","013307008","Bucayab","01","0133","013307");
-INSERT INTO barangay VALUES("1533","013307009","Cabalayangan","01","0133","013307");
-INSERT INTO barangay VALUES("1534","013307010","Cabisilan","01","0133","013307");
-INSERT INTO barangay VALUES("1535","013307011","Calumbaya","01","0133","013307");
-INSERT INTO barangay VALUES("1536","013307012","Carmay","01","0133","013307");
-INSERT INTO barangay VALUES("1537","013307013","Casilagan","01","0133","013307");
-INSERT INTO barangay VALUES("1538","013307014","Central East (Pob.)","01","0133","013307");
-INSERT INTO barangay VALUES("1539","013307015","Central West (Pob.)","01","0133","013307");
-INSERT INTO barangay VALUES("1540","013307016","Dili","01","0133","013307");
-INSERT INTO barangay VALUES("1541","013307017","Disso-or","01","0133","013307");
-INSERT INTO barangay VALUES("1542","013307018","Guerrero","01","0133","013307");
-INSERT INTO barangay VALUES("1543","013307019","Nagrebcan","01","0133","013307");
-INSERT INTO barangay VALUES("1544","013307020","Pagdalagan Sur","01","0133","013307");
-INSERT INTO barangay VALUES("1545","013307021","Palintucang","01","0133","013307");
-INSERT INTO barangay VALUES("1546","013307022","Palugsi-Limmansangan","01","0133","013307");
-INSERT INTO barangay VALUES("1547","013307023","Parian Oeste","01","0133","013307");
-INSERT INTO barangay VALUES("1548","013307024","Parian Este","01","0133","013307");
-INSERT INTO barangay VALUES("1549","013307025","Paringao","01","0133","013307");
-INSERT INTO barangay VALUES("1550","013307026","Payocpoc Norte Este","01","0133","013307");
-INSERT INTO barangay VALUES("1551","013307027","Payocpoc Norte Oeste","01","0133","013307");
-INSERT INTO barangay VALUES("1552","013307028","Payocpoc Sur","01","0133","013307");
-INSERT INTO barangay VALUES("1553","013307029","Pilar","01","0133","013307");
-INSERT INTO barangay VALUES("1554","013307030","Pudoc","01","0133","013307");
-INSERT INTO barangay VALUES("1555","013307031","Pottot","01","0133","013307");
-INSERT INTO barangay VALUES("1556","013307032","Pugo","01","0133","013307");
-INSERT INTO barangay VALUES("1557","013307033","Quinavite","01","0133","013307");
-INSERT INTO barangay VALUES("1558","013307034","Lower San Agustin","01","0133","013307");
-INSERT INTO barangay VALUES("1559","013307035","Santa Monica","01","0133","013307");
-INSERT INTO barangay VALUES("1560","013307036","Santiago","01","0133","013307");
-INSERT INTO barangay VALUES("1561","013307037","Taberna","01","0133","013307");
-INSERT INTO barangay VALUES("1562","013307038","Upper San Agustin","01","0133","013307");
-INSERT INTO barangay VALUES("1563","013307039","Urayong","01","0133","013307");
-INSERT INTO barangay VALUES("1564","013308001","Agpay","01","0133","013308");
-INSERT INTO barangay VALUES("1565","013308002","Bilis","01","0133","013308");
-INSERT INTO barangay VALUES("1566","013308003","Caoayan","01","0133","013308");
-INSERT INTO barangay VALUES("1567","013308004","Dalacdac","01","0133","013308");
-INSERT INTO barangay VALUES("1568","013308005","Delles","01","0133","013308");
-INSERT INTO barangay VALUES("1569","013308006","Imelda","01","0133","013308");
-INSERT INTO barangay VALUES("1570","013308007","Libtong","01","0133","013308");
-INSERT INTO barangay VALUES("1571","013308008","Linuan","01","0133","013308");
-INSERT INTO barangay VALUES("1572","013308009","New Poblacion","01","0133","013308");
-INSERT INTO barangay VALUES("1573","013308010","Old Poblacion","01","0133","013308");
-INSERT INTO barangay VALUES("1574","013308011","Lower Tumapoc","01","0133","013308");
-INSERT INTO barangay VALUES("1575","013308012","Upper Tumapoc","01","0133","013308");
-INSERT INTO barangay VALUES("1576","013309001","Bautista","01","0133","013309");
-INSERT INTO barangay VALUES("1577","013309002","Gana","01","0133","013309");
-INSERT INTO barangay VALUES("1578","013309003","Juan Cartas","01","0133","013309");
-INSERT INTO barangay VALUES("1579","013309004","Las-ud","01","0133","013309");
-INSERT INTO barangay VALUES("1580","013309005","Liquicia","01","0133","013309");
-INSERT INTO barangay VALUES("1581","013309006","Poblacion Norte","01","0133","013309");
-INSERT INTO barangay VALUES("1582","013309007","Poblacion Sur","01","0133","013309");
-INSERT INTO barangay VALUES("1583","013309009","San Carlos","01","0133","013309");
-INSERT INTO barangay VALUES("1584","013309010","San Cornelio","01","0133","013309");
-INSERT INTO barangay VALUES("1585","013309011","San Fermin","01","0133","013309");
-INSERT INTO barangay VALUES("1586","013309012","San Gregorio","01","0133","013309");
-INSERT INTO barangay VALUES("1587","013309013","San Jose","01","0133","013309");
-INSERT INTO barangay VALUES("1588","013309014","Santiago Norte","01","0133","013309");
-INSERT INTO barangay VALUES("1589","013309015","Santiago Sur","01","0133","013309");
-INSERT INTO barangay VALUES("1590","013309016","Sobredillo","01","0133","013309");
-INSERT INTO barangay VALUES("1591","013309017","Urayong","01","0133","013309");
-INSERT INTO barangay VALUES("1592","013309018","Wenceslao","01","0133","013309");
-INSERT INTO barangay VALUES("1593","013310001","Alcala (Pob.)","01","0133","013310");
-INSERT INTO barangay VALUES("1594","013310002","Ayaoan","01","0133","013310");
-INSERT INTO barangay VALUES("1595","013310003","Barangobong","01","0133","013310");
-INSERT INTO barangay VALUES("1596","013310004","Barrientos","01","0133","013310");
-INSERT INTO barangay VALUES("1597","013310005","Bungro","01","0133","013310");
-INSERT INTO barangay VALUES("1598","013310006","Buselbusel","01","0133","013310");
-INSERT INTO barangay VALUES("1599","013310007","Cabalitocan","01","0133","013310");
-INSERT INTO barangay VALUES("1600","013310008","Cantoria No. 1","01","0133","013310");
-INSERT INTO barangay VALUES("1601","013310009","Cantoria No. 2","01","0133","013310");
-INSERT INTO barangay VALUES("1602","013310010","Cantoria No. 3","01","0133","013310");
-INSERT INTO barangay VALUES("1603","013310011","Cantoria No. 4","01","0133","013310");
-INSERT INTO barangay VALUES("1604","013310012","Carisquis","01","0133","013310");
-INSERT INTO barangay VALUES("1605","013310013","Darigayos","01","0133","013310");
-INSERT INTO barangay VALUES("1606","013310014","Magallanes (Pob.)","01","0133","013310");
-INSERT INTO barangay VALUES("1607","013310015","Magsiping","01","0133","013310");
-INSERT INTO barangay VALUES("1608","013310016","Mamay","01","0133","013310");
-INSERT INTO barangay VALUES("1609","013310017","Nagrebcan","01","0133","013310");
-INSERT INTO barangay VALUES("1610","013310018","Nalvo Norte","01","0133","013310");
-INSERT INTO barangay VALUES("1611","013310019","Nalvo Sur","01","0133","013310");
-INSERT INTO barangay VALUES("1612","013310020","Napaset","01","0133","013310");
-INSERT INTO barangay VALUES("1613","013310021","Oaqui No. 1","01","0133","013310");
-INSERT INTO barangay VALUES("1614","013310022","Oaqui No. 2","01","0133","013310");
-INSERT INTO barangay VALUES("1615","013310023","Oaqui No. 3","01","0133","013310");
-INSERT INTO barangay VALUES("1616","013310024","Oaqui No. 4","01","0133","013310");
-INSERT INTO barangay VALUES("1617","013310025","Pila","01","0133","013310");
-INSERT INTO barangay VALUES("1618","013310026","Pitpitac","01","0133","013310");
-INSERT INTO barangay VALUES("1619","013310027","Rimos No. 1","01","0133","013310");
-INSERT INTO barangay VALUES("1620","013310028","Rimos No. 2","01","0133","013310");
-INSERT INTO barangay VALUES("1621","013310029","Rimos No. 3","01","0133","013310");
-INSERT INTO barangay VALUES("1622","013310030","Rimos No. 4","01","0133","013310");
-INSERT INTO barangay VALUES("1623","013310031","Rimos No. 5","01","0133","013310");
-INSERT INTO barangay VALUES("1624","013310032","Rissing","01","0133","013310");
-INSERT INTO barangay VALUES("1625","013310033","Salcedo (Pob.)","01","0133","013310");
-INSERT INTO barangay VALUES("1626","013310034","Santo Domingo Norte","01","0133","013310");
-INSERT INTO barangay VALUES("1627","013310035","Santo Domingo Sur","01","0133","013310");
-INSERT INTO barangay VALUES("1628","013310036","Sucoc Norte","01","0133","013310");
-INSERT INTO barangay VALUES("1629","013310037","Sucoc Sur","01","0133","013310");
-INSERT INTO barangay VALUES("1630","013310038","Suyo","01","0133","013310");
-INSERT INTO barangay VALUES("1631","013310039","Tallaoen","01","0133","013310");
-INSERT INTO barangay VALUES("1632","013310040","Victoria (Pob.)","01","0133","013310");
-INSERT INTO barangay VALUES("1633","013311001","Aguioas","01","0133","013311");
-INSERT INTO barangay VALUES("1634","013311002","Al-alinao Norte","01","0133","013311");
-INSERT INTO barangay VALUES("1635","013311003","Al-alinao Sur","01","0133","013311");
-INSERT INTO barangay VALUES("1636","013311004","Ambaracao Norte","01","0133","013311");
-INSERT INTO barangay VALUES("1637","013311005","Ambaracao Sur","01","0133","013311");
-INSERT INTO barangay VALUES("1638","013311006","Angin","01","0133","013311");
-INSERT INTO barangay VALUES("1639","013311007","Balecbec","01","0133","013311");
-INSERT INTO barangay VALUES("1640","013311008","Bancagan","01","0133","013311");
-INSERT INTO barangay VALUES("1641","013311009","Baraoas Norte","01","0133","013311");
-INSERT INTO barangay VALUES("1642","013311010","Baraoas Sur","01","0133","013311");
-INSERT INTO barangay VALUES("1643","013311011","Bariquir","01","0133","013311");
-INSERT INTO barangay VALUES("1644","013311012","Bato","01","0133","013311");
-INSERT INTO barangay VALUES("1645","013311013","Bimmotobot","01","0133","013311");
-INSERT INTO barangay VALUES("1646","013311014","Cabaritan Norte","01","0133","013311");
-INSERT INTO barangay VALUES("1647","013311015","Cabaritan Sur","01","0133","013311");
-INSERT INTO barangay VALUES("1648","013311016","Casilagan","01","0133","013311");
-INSERT INTO barangay VALUES("1649","013311017","Dal-lipaoen","01","0133","013311");
-INSERT INTO barangay VALUES("1650","013311018","Daramuangan","01","0133","013311");
-INSERT INTO barangay VALUES("1651","013311019","Guesset","01","0133","013311");
-INSERT INTO barangay VALUES("1652","013311020","Gusing Norte","01","0133","013311");
-INSERT INTO barangay VALUES("1653","013311021","Gusing Sur","01","0133","013311");
-INSERT INTO barangay VALUES("1654","013311022","Imelda","01","0133","013311");
-INSERT INTO barangay VALUES("1655","013311023","Lioac Norte","01","0133","013311");
-INSERT INTO barangay VALUES("1656","013311024","Lioac Sur","01","0133","013311");
-INSERT INTO barangay VALUES("1657","013311025","Magungunay","01","0133","013311");
-INSERT INTO barangay VALUES("1658","013311026","Mamat-ing Norte","01","0133","013311");
-INSERT INTO barangay VALUES("1659","013311027","Mamat-ing Sur","01","0133","013311");
-INSERT INTO barangay VALUES("1660","013311028","Nagsidorisan","01","0133","013311");
-INSERT INTO barangay VALUES("1661","013311029","Natividad (Pob.)","01","0133","013311");
-INSERT INTO barangay VALUES("1662","013311030","Ortiz (Pob.)","01","0133","013311");
-INSERT INTO barangay VALUES("1663","013311032","Ribsuan","01","0133","013311");
-INSERT INTO barangay VALUES("1664","013311033","San Antonio","01","0133","013311");
-INSERT INTO barangay VALUES("1665","013311034","San Isidro","01","0133","013311");
-INSERT INTO barangay VALUES("1666","013311035","Sili","01","0133","013311");
-INSERT INTO barangay VALUES("1667","013311037","Suguidan Norte","01","0133","013311");
-INSERT INTO barangay VALUES("1668","013311038","Suguidan Sur","01","0133","013311");
-INSERT INTO barangay VALUES("1669","013311039","Tuddingan","01","0133","013311");
-INSERT INTO barangay VALUES("1670","013312001","Ambalite","01","0133","013312");
-INSERT INTO barangay VALUES("1671","013312002","Ambangonan","01","0133","013312");
-INSERT INTO barangay VALUES("1672","013312003","Cares","01","0133","013312");
-INSERT INTO barangay VALUES("1673","013312004","Cuenca","01","0133","013312");
-INSERT INTO barangay VALUES("1674","013312005","Duplas","01","0133","013312");
-INSERT INTO barangay VALUES("1675","013312007","Maoasoas Norte","01","0133","013312");
-INSERT INTO barangay VALUES("1676","013312008","Maoasoas Sur","01","0133","013312");
-INSERT INTO barangay VALUES("1677","013312009","Palina","01","0133","013312");
-INSERT INTO barangay VALUES("1678","013312010","Poblacion East","01","0133","013312");
-INSERT INTO barangay VALUES("1679","013312011","San Luis","01","0133","013312");
-INSERT INTO barangay VALUES("1680","013312012","Saytan","01","0133","013312");
-INSERT INTO barangay VALUES("1681","013312013","Tavora East","01","0133","013312");
-INSERT INTO barangay VALUES("1682","013312014","Tavora Proper","01","0133","013312");
-INSERT INTO barangay VALUES("1683","013312015","Poblacion West","01","0133","013312");
-INSERT INTO barangay VALUES("1684","013313001","Alipang","01","0133","013313");
-INSERT INTO barangay VALUES("1685","013313002","Ambangonan","01","0133","013313");
-INSERT INTO barangay VALUES("1686","013313003","Amlang","01","0133","013313");
-INSERT INTO barangay VALUES("1687","013313004","Bacani","01","0133","013313");
-INSERT INTO barangay VALUES("1688","013313005","Bangar","01","0133","013313");
-INSERT INTO barangay VALUES("1689","013313006","Bani","01","0133","013313");
-INSERT INTO barangay VALUES("1690","013313007","Benteng-Sapilang","01","0133","013313");
-INSERT INTO barangay VALUES("1691","013313008","Cadumanian","01","0133","013313");
-INSERT INTO barangay VALUES("1692","013313009","Camp One","01","0133","013313");
-INSERT INTO barangay VALUES("1693","013313010","Carunuan East","01","0133","013313");
-INSERT INTO barangay VALUES("1694","013313011","Carunuan West","01","0133","013313");
-INSERT INTO barangay VALUES("1695","013313012","Casilagan","01","0133","013313");
-INSERT INTO barangay VALUES("1696","013313013","Cataguingtingan","01","0133","013313");
-INSERT INTO barangay VALUES("1697","013313014","Concepcion","01","0133","013313");
-INSERT INTO barangay VALUES("1698","013313015","Damortis","01","0133","013313");
-INSERT INTO barangay VALUES("1699","013313016","Gumot-Nagcolaran","01","0133","013313");
-INSERT INTO barangay VALUES("1700","013313017","Inabaan Norte","01","0133","013313");
-INSERT INTO barangay VALUES("1701","013313018","Inabaan Sur","01","0133","013313");
-INSERT INTO barangay VALUES("1702","013313019","Nagtagaan","01","0133","013313");
-INSERT INTO barangay VALUES("1703","013313020","Nangcamotian","01","0133","013313");
-INSERT INTO barangay VALUES("1704","013313021","Parasapas","01","0133","013313");
-INSERT INTO barangay VALUES("1705","013313022","Poblacion East","01","0133","013313");
-INSERT INTO barangay VALUES("1706","013313023","Poblacion West","01","0133","013313");
-INSERT INTO barangay VALUES("1707","013313024","Puzon","01","0133","013313");
-INSERT INTO barangay VALUES("1708","013313026","Rabon","01","0133","013313");
-INSERT INTO barangay VALUES("1709","013313027","San Jose","01","0133","013313");
-INSERT INTO barangay VALUES("1710","013313028","Marcos","01","0133","013313");
-INSERT INTO barangay VALUES("1711","013313029","Subusub","01","0133","013313");
-INSERT INTO barangay VALUES("1712","013313030","Tabtabungao","01","0133","013313");
-INSERT INTO barangay VALUES("1713","013313031","Tanglag","01","0133","013313");
-INSERT INTO barangay VALUES("1714","013313032","Tay-ac","01","0133","013313");
-INSERT INTO barangay VALUES("1715","013313033","Udiao","01","0133","013313");
-INSERT INTO barangay VALUES("1716","013313034","Vila","01","0133","013313");
-INSERT INTO barangay VALUES("1717","013314001","Abut","01","0133","013314");
-INSERT INTO barangay VALUES("1718","013314002","Apaleng","01","0133","013314");
-INSERT INTO barangay VALUES("1719","013314003","Bacsil","01","0133","013314");
-INSERT INTO barangay VALUES("1720","013314004","Bangbangolan","01","0133","013314");
-INSERT INTO barangay VALUES("1721","013314005","Bangcusay","01","0133","013314");
-INSERT INTO barangay VALUES("1722","013314006","Barangay I (Pob.)","01","0133","013314");
-INSERT INTO barangay VALUES("1723","013314007","Barangay II (Pob.)","01","0133","013314");
-INSERT INTO barangay VALUES("1724","013314008","Barangay III (Pob.)","01","0133","013314");
-INSERT INTO barangay VALUES("1725","013314009","Barangay IV (Pob.)","01","0133","013314");
-INSERT INTO barangay VALUES("1726","013314010","Baraoas","01","0133","013314");
-INSERT INTO barangay VALUES("1727","013314011","Bato","01","0133","013314");
-INSERT INTO barangay VALUES("1728","013314012","Biday","01","0133","013314");
-INSERT INTO barangay VALUES("1729","013314013","Birunget","01","0133","013314");
-INSERT INTO barangay VALUES("1730","013314014","Bungro","01","0133","013314");
-INSERT INTO barangay VALUES("1731","013314015","Cabaroan (Negro)","01","0133","013314");
-INSERT INTO barangay VALUES("1732","013314016","Cabarsican","01","0133","013314");
-INSERT INTO barangay VALUES("1733","013314017","Cadaclan","01","0133","013314");
-INSERT INTO barangay VALUES("1734","013314018","Calabugao","01","0133","013314");
-INSERT INTO barangay VALUES("1735","013314019","Camansi","01","0133","013314");
-INSERT INTO barangay VALUES("1736","013314020","Canaoay","01","0133","013314");
-INSERT INTO barangay VALUES("1737","013314021","Carlatan","01","0133","013314");
-INSERT INTO barangay VALUES("1738","013314022","Catbangen","01","0133","013314");
-INSERT INTO barangay VALUES("1739","013314023","Dallangayan Este","01","0133","013314");
-INSERT INTO barangay VALUES("1740","013314024","Dallangayan Oeste","01","0133","013314");
-INSERT INTO barangay VALUES("1741","013314025","Dalumpinas Este","01","0133","013314");
-INSERT INTO barangay VALUES("1742","013314026","Dalumpinas Oeste","01","0133","013314");
-INSERT INTO barangay VALUES("1743","013314027","Ilocanos Norte","01","0133","013314");
-INSERT INTO barangay VALUES("1744","013314028","Ilocanos Sur","01","0133","013314");
-INSERT INTO barangay VALUES("1745","013314029","Langcuas","01","0133","013314");
-INSERT INTO barangay VALUES("1746","013314030","Lingsat","01","0133","013314");
-INSERT INTO barangay VALUES("1747","013314031","Madayegdeg","01","0133","013314");
-INSERT INTO barangay VALUES("1748","013314032","Mameltac","01","0133","013314");
-INSERT INTO barangay VALUES("1749","013314033","Masicong","01","0133","013314");
-INSERT INTO barangay VALUES("1750","013314034","Nagyubuyuban","01","0133","013314");
-INSERT INTO barangay VALUES("1751","013314035","Namtutan","01","0133","013314");
-INSERT INTO barangay VALUES("1752","013314036","Narra Este","01","0133","013314");
-INSERT INTO barangay VALUES("1753","013314037","Narra Oeste","01","0133","013314");
-INSERT INTO barangay VALUES("1754","013314039","Pacpaco","01","0133","013314");
-INSERT INTO barangay VALUES("1755","013314040","Pagdalagan","01","0133","013314");
-INSERT INTO barangay VALUES("1756","013314041","Pagdaraoan","01","0133","013314");
-INSERT INTO barangay VALUES("1757","013314042","Pagudpud","01","0133","013314");
-INSERT INTO barangay VALUES("1758","013314043","Pao Norte","01","0133","013314");
-INSERT INTO barangay VALUES("1759","013314044","Pao Sur","01","0133","013314");
-INSERT INTO barangay VALUES("1760","013314045","Parian","01","0133","013314");
-INSERT INTO barangay VALUES("1761","013314046","Pias","01","0133","013314");
-INSERT INTO barangay VALUES("1762","013314047","Poro","01","0133","013314");
-INSERT INTO barangay VALUES("1763","013314048","Puspus","01","0133","013314");
-INSERT INTO barangay VALUES("1764","013314049","Sacyud","01","0133","013314");
-INSERT INTO barangay VALUES("1765","013314050","Sagayad","01","0133","013314");
-INSERT INTO barangay VALUES("1766","013314051","San Agustin","01","0133","013314");
-INSERT INTO barangay VALUES("1767","013314052","San Francisco","01","0133","013314");
-INSERT INTO barangay VALUES("1768","013314053","San Vicente","01","0133","013314");
-INSERT INTO barangay VALUES("1769","013314054","Santiago Norte","01","0133","013314");
-INSERT INTO barangay VALUES("1770","013314055","Santiago Sur","01","0133","013314");
-INSERT INTO barangay VALUES("1771","013314056","Saoay","01","0133","013314");
-INSERT INTO barangay VALUES("1772","013314057","Sevilla","01","0133","013314");
-INSERT INTO barangay VALUES("1773","013314058","Siboan-Otong","01","0133","013314");
-INSERT INTO barangay VALUES("1774","013314059","Tanqui","01","0133","013314");
-INSERT INTO barangay VALUES("1775","013314060","Tanquigan","01","0133","013314");
-INSERT INTO barangay VALUES("1776","013315002","Amontoc","01","0133","013315");
-INSERT INTO barangay VALUES("1777","013315003","Apayao","01","0133","013315");
-INSERT INTO barangay VALUES("1778","013315004","Balbalayang","01","0133","013315");
-INSERT INTO barangay VALUES("1779","013315006","Bayabas","01","0133","013315");
-INSERT INTO barangay VALUES("1780","013315007","Bucao","01","0133","013315");
-INSERT INTO barangay VALUES("1781","013315008","Bumbuneg","01","0133","013315");
-INSERT INTO barangay VALUES("1782","013315012","Lacong","01","0133","013315");
-INSERT INTO barangay VALUES("1783","013315013","Lipay Este","01","0133","013315");
-INSERT INTO barangay VALUES("1784","013315014","Lipay Norte","01","0133","013315");
-INSERT INTO barangay VALUES("1785","013315015","Lipay Proper","01","0133","013315");
-INSERT INTO barangay VALUES("1786","013315016","Lipay Sur","01","0133","013315");
-INSERT INTO barangay VALUES("1787","013315017","Lon-oy","01","0133","013315");
-INSERT INTO barangay VALUES("1788","013315019","Poblacion","01","0133","013315");
-INSERT INTO barangay VALUES("1789","013315020","Polipol","01","0133","013315");
-INSERT INTO barangay VALUES("1790","013315021","Daking","01","0133","013315");
-INSERT INTO barangay VALUES("1791","013316001","Allangigan","01","0133","013316");
-INSERT INTO barangay VALUES("1792","013316002","Aludaid","01","0133","013316");
-INSERT INTO barangay VALUES("1793","013316003","Bacsayan","01","0133","013316");
-INSERT INTO barangay VALUES("1794","013316004","Balballosa","01","0133","013316");
-INSERT INTO barangay VALUES("1795","013316005","Bambanay","01","0133","013316");
-INSERT INTO barangay VALUES("1796","013316006","Bugbugcao","01","0133","013316");
-INSERT INTO barangay VALUES("1797","013316007","Caarusipan","01","0133","013316");
-INSERT INTO barangay VALUES("1798","013316008","Cabaroan","01","0133","013316");
-INSERT INTO barangay VALUES("1799","013316009","Cabugnayan","01","0133","013316");
-INSERT INTO barangay VALUES("1800","013316010","Cacapian","01","0133","013316");
-INSERT INTO barangay VALUES("1801","013316011","Caculangan","01","0133","013316");
-INSERT INTO barangay VALUES("1802","013316012","Calincamasan","01","0133","013316");
-INSERT INTO barangay VALUES("1803","013316013","Casilagan","01","0133","013316");
-INSERT INTO barangay VALUES("1804","013316014","Catdongan","01","0133","013316");
-INSERT INTO barangay VALUES("1805","013316015","Dangdangla","01","0133","013316");
-INSERT INTO barangay VALUES("1806","013316016","Dasay","01","0133","013316");
-INSERT INTO barangay VALUES("1807","013316017","Dinanum","01","0133","013316");
-INSERT INTO barangay VALUES("1808","013316018","Duplas","01","0133","013316");
-INSERT INTO barangay VALUES("1809","013316019","Guinguinabang","01","0133","013316");
-INSERT INTO barangay VALUES("1810","013316020","Ili Norte (Pob.)","01","0133","013316");
-INSERT INTO barangay VALUES("1811","013316021","Ili Sur (Pob.)","01","0133","013316");
-INSERT INTO barangay VALUES("1812","013316022","Legleg","01","0133","013316");
-INSERT INTO barangay VALUES("1813","013316023","Lubing","01","0133","013316");
-INSERT INTO barangay VALUES("1814","013316024","Nadsaag","01","0133","013316");
-INSERT INTO barangay VALUES("1815","013316025","Nagsabaran","01","0133","013316");
-INSERT INTO barangay VALUES("1816","013316026","Naguirangan","01","0133","013316");
-INSERT INTO barangay VALUES("1817","013316027","Naguituban","01","0133","013316");
-INSERT INTO barangay VALUES("1818","013316028","Nagyubuyuban","01","0133","013316");
-INSERT INTO barangay VALUES("1819","013316029","Oaquing","01","0133","013316");
-INSERT INTO barangay VALUES("1820","013316030","Pacpacac","01","0133","013316");
-INSERT INTO barangay VALUES("1821","013316031","Pagdildilan","01","0133","013316");
-INSERT INTO barangay VALUES("1822","013316032","Panicsican","01","0133","013316");
-INSERT INTO barangay VALUES("1823","013316033","Quidem","01","0133","013316");
-INSERT INTO barangay VALUES("1824","013316035","San Felipe","01","0133","013316");
-INSERT INTO barangay VALUES("1825","013316036","Santa Rosa","01","0133","013316");
-INSERT INTO barangay VALUES("1826","013316037","Santo Rosario","01","0133","013316");
-INSERT INTO barangay VALUES("1827","013316038","Saracat","01","0133","013316");
-INSERT INTO barangay VALUES("1828","013316039","Sinapangan","01","0133","013316");
-INSERT INTO barangay VALUES("1829","013316040","Taboc","01","0133","013316");
-INSERT INTO barangay VALUES("1830","013316041","Talogtog","01","0133","013316");
-INSERT INTO barangay VALUES("1831","013316042","Urbiztondo","01","0133","013316");
-INSERT INTO barangay VALUES("1832","013317001","Ambitacay","01","0133","013317");
-INSERT INTO barangay VALUES("1833","013317002","Bail","01","0133","013317");
-INSERT INTO barangay VALUES("1834","013317003","Balaoc","01","0133","013317");
-INSERT INTO barangay VALUES("1835","013317004","Balsaan","01","0133","013317");
-INSERT INTO barangay VALUES("1836","013317005","Baybay","01","0133","013317");
-INSERT INTO barangay VALUES("1837","013317006","Cabaruan","01","0133","013317");
-INSERT INTO barangay VALUES("1838","013317007","Casantaan","01","0133","013317");
-INSERT INTO barangay VALUES("1839","013317008","Casilagan","01","0133","013317");
-INSERT INTO barangay VALUES("1840","013317009","Cupang","01","0133","013317");
-INSERT INTO barangay VALUES("1841","013317010","Damortis","01","0133","013317");
-INSERT INTO barangay VALUES("1842","013317011","Fernando","01","0133","013317");
-INSERT INTO barangay VALUES("1843","013317012","Linong","01","0133","013317");
-INSERT INTO barangay VALUES("1844","013317013","Lomboy","01","0133","013317");
-INSERT INTO barangay VALUES("1845","013317014","Malabago","01","0133","013317");
-INSERT INTO barangay VALUES("1846","013317015","Namboongan","01","0133","013317");
-INSERT INTO barangay VALUES("1847","013317016","Namonitan","01","0133","013317");
-INSERT INTO barangay VALUES("1848","013317017","Narvacan","01","0133","013317");
-INSERT INTO barangay VALUES("1849","013317018","Patac","01","0133","013317");
-INSERT INTO barangay VALUES("1850","013317019","Poblacion","01","0133","013317");
-INSERT INTO barangay VALUES("1851","013317020","Pongpong","01","0133","013317");
-INSERT INTO barangay VALUES("1852","013317021","Raois","01","0133","013317");
-INSERT INTO barangay VALUES("1853","013317022","Tubod","01","0133","013317");
-INSERT INTO barangay VALUES("1854","013317023","Tococ","01","0133","013317");
-INSERT INTO barangay VALUES("1855","013317024","Ubagan","01","0133","013317");
-INSERT INTO barangay VALUES("1856","013318002","Corrooy","01","0133","013318");
-INSERT INTO barangay VALUES("1857","013318003","Lettac Norte","01","0133","013318");
-INSERT INTO barangay VALUES("1858","013318004","Lettac Sur","01","0133","013318");
-INSERT INTO barangay VALUES("1859","013318005","Mangaan","01","0133","013318");
-INSERT INTO barangay VALUES("1860","013318008","Paagan","01","0133","013318");
-INSERT INTO barangay VALUES("1861","013318010","Poblacion","01","0133","013318");
-INSERT INTO barangay VALUES("1862","013318011","Puguil","01","0133","013318");
-INSERT INTO barangay VALUES("1863","013318012","Ramot","01","0133","013318");
-INSERT INTO barangay VALUES("1864","013318013","Sapdaan","01","0133","013318");
-INSERT INTO barangay VALUES("1865","013318014","Sasaba","01","0133","013318");
-INSERT INTO barangay VALUES("1866","013318015","Tubaday","01","0133","013318");
-INSERT INTO barangay VALUES("1867","013319001","Bigbiga","01","0133","013319");
-INSERT INTO barangay VALUES("1868","013319002","Castro","01","0133","013319");
-INSERT INTO barangay VALUES("1869","013319003","Duplas","01","0133","013319");
-INSERT INTO barangay VALUES("1870","013319004","Ipet","01","0133","013319");
-INSERT INTO barangay VALUES("1871","013319005","Ilocano","01","0133","013319");
-INSERT INTO barangay VALUES("1872","013319006","Maliclico","01","0133","013319");
-INSERT INTO barangay VALUES("1873","013319007","Old Central","01","0133","013319");
-INSERT INTO barangay VALUES("1874","013319008","Namaltugan","01","0133","013319");
-INSERT INTO barangay VALUES("1875","013319010","Poblacion","01","0133","013319");
-INSERT INTO barangay VALUES("1876","013319011","Porporiket","01","0133","013319");
-INSERT INTO barangay VALUES("1877","013319013","San Francisco Norte","01","0133","013319");
-INSERT INTO barangay VALUES("1878","013319014","San Francisco Sur","01","0133","013319");
-INSERT INTO barangay VALUES("1879","013319015","San Jose","01","0133","013319");
-INSERT INTO barangay VALUES("1880","013319017","Sengngat","01","0133","013319");
-INSERT INTO barangay VALUES("1881","013319018","Turod","01","0133","013319");
-INSERT INTO barangay VALUES("1882","013319019","Up-uplas","01","0133","013319");
-INSERT INTO barangay VALUES("1883","013319020","Bulalaan","01","0133","013319");
-INSERT INTO barangay VALUES("1884","013320001","Amallapay","01","0133","013320");
-INSERT INTO barangay VALUES("1885","013320002","Anduyan","01","0133","013320");
-INSERT INTO barangay VALUES("1886","013320003","Caoigue","01","0133","013320");
-INSERT INTO barangay VALUES("1887","013320004","Francia Sur","01","0133","013320");
-INSERT INTO barangay VALUES("1888","013320005","Francia West","01","0133","013320");
-INSERT INTO barangay VALUES("1889","013320006","Garcia","01","0133","013320");
-INSERT INTO barangay VALUES("1890","013320007","Gonzales","01","0133","013320");
-INSERT INTO barangay VALUES("1891","013320008","Halog East","01","0133","013320");
-INSERT INTO barangay VALUES("1892","013320009","Halog West","01","0133","013320");
-INSERT INTO barangay VALUES("1893","013320010","Leones East","01","0133","013320");
-INSERT INTO barangay VALUES("1894","013320011","Leones West","01","0133","013320");
-INSERT INTO barangay VALUES("1895","013320012","Linapew","01","0133","013320");
-INSERT INTO barangay VALUES("1896","013320015","Magsaysay","01","0133","013320");
-INSERT INTO barangay VALUES("1897","013320016","Pideg","01","0133","013320");
-INSERT INTO barangay VALUES("1898","013320017","Poblacion","01","0133","013320");
-INSERT INTO barangay VALUES("1899","013320018","Rizal","01","0133","013320");
-INSERT INTO barangay VALUES("1900","013320019","Santa Teresa","01","0133","013320");
-INSERT INTO barangay VALUES("1901","013320020","Lloren","01","0133","013320");
-INSERT INTO barangay VALUES("1902","015501001","Allabon","01","0155","015501");
-INSERT INTO barangay VALUES("1903","015501002","Aloleng","01","0155","015501");
-INSERT INTO barangay VALUES("1904","015501003","Bangan-Oda","01","0155","015501");
-INSERT INTO barangay VALUES("1905","015501004","Baruan","01","0155","015501");
-INSERT INTO barangay VALUES("1906","015501005","Boboy","01","0155","015501");
-INSERT INTO barangay VALUES("1907","015501006","Cayungnan","01","0155","015501");
-INSERT INTO barangay VALUES("1908","015501007","Dangley","01","0155","015501");
-INSERT INTO barangay VALUES("1909","015501009","Gayusan","01","0155","015501");
-INSERT INTO barangay VALUES("1910","015501010","Macaboboni","01","0155","015501");
-INSERT INTO barangay VALUES("1911","015501011","Magsaysay","01","0155","015501");
-INSERT INTO barangay VALUES("1912","015501012","Namatucan","01","0155","015501");
-INSERT INTO barangay VALUES("1913","015501013","Patar","01","0155","015501");
-INSERT INTO barangay VALUES("1914","015501014","Poblacion East","01","0155","015501");
-INSERT INTO barangay VALUES("1915","015501015","Poblacion West","01","0155","015501");
-INSERT INTO barangay VALUES("1916","015501016","San Juan","01","0155","015501");
-INSERT INTO barangay VALUES("1917","015501017","Tupa","01","0155","015501");
-INSERT INTO barangay VALUES("1918","015501018","Viga","01","0155","015501");
-INSERT INTO barangay VALUES("1919","015502002","Bayaoas","01","0155","015502");
-INSERT INTO barangay VALUES("1920","015502003","Baybay","01","0155","015502");
-INSERT INTO barangay VALUES("1921","015502004","Bocacliw","01","0155","015502");
-INSERT INTO barangay VALUES("1922","015502006","Bocboc East","01","0155","015502");
-INSERT INTO barangay VALUES("1923","015502007","Bocboc West","01","0155","015502");
-INSERT INTO barangay VALUES("1924","015502008","Buer","01","0155","015502");
-INSERT INTO barangay VALUES("1925","015502009","Calsib","01","0155","015502");
-INSERT INTO barangay VALUES("1926","015502010","Ninoy","01","0155","015502");
-INSERT INTO barangay VALUES("1927","015502011","Poblacion","01","0155","015502");
-INSERT INTO barangay VALUES("1928","015502012","Pogomboa","01","0155","015502");
-INSERT INTO barangay VALUES("1929","015502013","Pogonsili","01","0155","015502");
-INSERT INTO barangay VALUES("1930","015502014","San Jose","01","0155","015502");
-INSERT INTO barangay VALUES("1931","015502016","Tampac","01","0155","015502");
-INSERT INTO barangay VALUES("1932","015502017","Laoag","01","0155","015502");
-INSERT INTO barangay VALUES("1933","015502018","Manlocboc","01","0155","015502");
-INSERT INTO barangay VALUES("1934","015502019","Panacol","01","0155","015502");
-INSERT INTO barangay VALUES("1935","015503001","Alos","01","0155","015503");
-INSERT INTO barangay VALUES("1936","015503002","Amandiego","01","0155","015503");
-INSERT INTO barangay VALUES("1937","015503003","Amangbangan","01","0155","015503");
-INSERT INTO barangay VALUES("1938","015503004","Balangobong","01","0155","015503");
-INSERT INTO barangay VALUES("1939","015503005","Balayang","01","0155","015503");
-INSERT INTO barangay VALUES("1940","015503006","Bisocol","01","0155","015503");
-INSERT INTO barangay VALUES("1941","015503007","Bolaney","01","0155","015503");
-INSERT INTO barangay VALUES("1942","015503008","Baleyadaan","01","0155","015503");
-INSERT INTO barangay VALUES("1943","015503009","Bued","01","0155","015503");
-INSERT INTO barangay VALUES("1944","015503010","Cabatuan","01","0155","015503");
-INSERT INTO barangay VALUES("1945","015503011","Cayucay","01","0155","015503");
-INSERT INTO barangay VALUES("1946","015503012","Dulacac","01","0155","015503");
-INSERT INTO barangay VALUES("1947","015503013","Inerangan","01","0155","015503");
-INSERT INTO barangay VALUES("1948","015503014","Linmansangan","01","0155","015503");
-INSERT INTO barangay VALUES("1949","015503015","Lucap","01","0155","015503");
-INSERT INTO barangay VALUES("1950","015503016","Macatiw","01","0155","015503");
-INSERT INTO barangay VALUES("1951","015503017","Magsaysay","01","0155","015503");
-INSERT INTO barangay VALUES("1952","015503018","Mona","01","0155","015503");
-INSERT INTO barangay VALUES("1953","015503019","Palamis","01","0155","015503");
-INSERT INTO barangay VALUES("1954","015503020","Pangapisan","01","0155","015503");
-INSERT INTO barangay VALUES("1955","015503021","Poblacion","01","0155","015503");
-INSERT INTO barangay VALUES("1956","015503022","Pocalpocal","01","0155","015503");
-INSERT INTO barangay VALUES("1957","015503023","Pogo","01","0155","015503");
-INSERT INTO barangay VALUES("1958","015503024","Polo","01","0155","015503");
-INSERT INTO barangay VALUES("1959","015503025","Quibuar","01","0155","015503");
-INSERT INTO barangay VALUES("1960","015503026","Sabangan","01","0155","015503");
-INSERT INTO barangay VALUES("1961","015503029","San Jose","01","0155","015503");
-INSERT INTO barangay VALUES("1962","015503030","San Roque","01","0155","015503");
-INSERT INTO barangay VALUES("1963","015503031","San Vicente","01","0155","015503");
-INSERT INTO barangay VALUES("1964","015503032","Santa Maria","01","0155","015503");
-INSERT INTO barangay VALUES("1965","015503033","Tanaytay","01","0155","015503");
-INSERT INTO barangay VALUES("1966","015503034","Tangcarang","01","0155","015503");
-INSERT INTO barangay VALUES("1967","015503035","Tawintawin","01","0155","015503");
-INSERT INTO barangay VALUES("1968","015503036","Telbang","01","0155","015503");
-INSERT INTO barangay VALUES("1969","015503037","Victoria","01","0155","015503");
-INSERT INTO barangay VALUES("1970","015503038","Landoc","01","0155","015503");
-INSERT INTO barangay VALUES("1971","015503039","Maawi","01","0155","015503");
-INSERT INTO barangay VALUES("1972","015503040","Pandan","01","0155","015503");
-INSERT INTO barangay VALUES("1973","015503041","San Antonio (R. Magsaysay)","01","0155","015503");
-INSERT INTO barangay VALUES("1974","015504001","Anulid","01","0155","015504");
-INSERT INTO barangay VALUES("1975","015504003","Atainan","01","0155","015504");
-INSERT INTO barangay VALUES("1976","015504004","Bersamin","01","0155","015504");
-INSERT INTO barangay VALUES("1977","015504005","Canarvacanan","01","0155","015504");
-INSERT INTO barangay VALUES("1978","015504006","Caranglaan","01","0155","015504");
-INSERT INTO barangay VALUES("1979","015504007","Curareng","01","0155","015504");
-INSERT INTO barangay VALUES("1980","015504008","Gualsic","01","0155","015504");
-INSERT INTO barangay VALUES("1981","015504009","Kasikis","01","0155","015504");
-INSERT INTO barangay VALUES("1982","015504010","Laoac","01","0155","015504");
-INSERT INTO barangay VALUES("1983","015504011","Macayo","01","0155","015504");
-INSERT INTO barangay VALUES("1984","015504012","Pindangan Centro","01","0155","015504");
-INSERT INTO barangay VALUES("1985","015504013","Pindangan East","01","0155","015504");
-INSERT INTO barangay VALUES("1986","015504014","Pindangan West","01","0155","015504");
-INSERT INTO barangay VALUES("1987","015504015","Poblacion East","01","0155","015504");
-INSERT INTO barangay VALUES("1988","015504016","Poblacion West","01","0155","015504");
-INSERT INTO barangay VALUES("1989","015504017","San Juan","01","0155","015504");
-INSERT INTO barangay VALUES("1990","015504018","San Nicolas","01","0155","015504");
-INSERT INTO barangay VALUES("1991","015504019","San Pedro Apartado","01","0155","015504");
-INSERT INTO barangay VALUES("1992","015504020","San Pedro IlI","01","0155","015504");
-INSERT INTO barangay VALUES("1993","015504021","San Vicente","01","0155","015504");
-INSERT INTO barangay VALUES("1994","015504022","Vacante","01","0155","015504");
-INSERT INTO barangay VALUES("1995","015505002","Awile","01","0155","015505");
-INSERT INTO barangay VALUES("1996","015505003","Awag","01","0155","015505");
-INSERT INTO barangay VALUES("1997","015505004","Batiarao","01","0155","015505");
-INSERT INTO barangay VALUES("1998","015505005","Cabungan","01","0155","015505");
-INSERT INTO barangay VALUES("1999","015505006","Carot","01","0155","015505");
-INSERT INTO barangay VALUES("2000","015505007","Dolaoan","01","0155","015505");
-INSERT INTO barangay VALUES("2001","015505008","Imbo","01","0155","015505");
-INSERT INTO barangay VALUES("2002","015505009","Macaleeng","01","0155","015505");
-INSERT INTO barangay VALUES("2003","015505010","Macandocandong","01","0155","015505");
-INSERT INTO barangay VALUES("2004","015505011","Mal-ong","01","0155","015505");
-INSERT INTO barangay VALUES("2005","015505012","Namagbagan","01","0155","015505");
-INSERT INTO barangay VALUES("2006","015505014","Poblacion","01","0155","015505");
-INSERT INTO barangay VALUES("2007","015505015","Roxas","01","0155","015505");
-INSERT INTO barangay VALUES("2008","015505016","Sablig","01","0155","015505");
-INSERT INTO barangay VALUES("2009","015505018","San Jose","01","0155","015505");
-INSERT INTO barangay VALUES("2010","015505019","Siapar","01","0155","015505");
-INSERT INTO barangay VALUES("2011","015505020","Tondol","01","0155","015505");
-INSERT INTO barangay VALUES("2012","015505021","Toritori","01","0155","015505");
-INSERT INTO barangay VALUES("2013","015506002","Ariston Este","01","0155","015506");
-INSERT INTO barangay VALUES("2014","015506003","Ariston Weste","01","0155","015506");
-INSERT INTO barangay VALUES("2015","015506004","Bantog","01","0155","015506");
-INSERT INTO barangay VALUES("2016","015506005","Baro","01","0155","015506");
-INSERT INTO barangay VALUES("2017","015506006","Bobonan","01","0155","015506");
-INSERT INTO barangay VALUES("2018","015506007","Cabalitian","01","0155","015506");
-INSERT INTO barangay VALUES("2019","015506008","Calepaan","01","0155","015506");
-INSERT INTO barangay VALUES("2020","015506009","Carosucan Norte","01","0155","015506");
-INSERT INTO barangay VALUES("2021","015506010","Carosucan Sur","01","0155","015506");
-INSERT INTO barangay VALUES("2022","015506011","Coldit","01","0155","015506");
-INSERT INTO barangay VALUES("2023","015506012","Domanpot","01","0155","015506");
-INSERT INTO barangay VALUES("2024","015506013","Dupac","01","0155","015506");
-INSERT INTO barangay VALUES("2025","015506014","Macalong","01","0155","015506");
-INSERT INTO barangay VALUES("2026","015506015","Palaris","01","0155","015506");
-INSERT INTO barangay VALUES("2027","015506016","Poblacion East","01","0155","015506");
-INSERT INTO barangay VALUES("2028","015506017","Poblacion West","01","0155","015506");
-INSERT INTO barangay VALUES("2029","015506018","San Vicente Este","01","0155","015506");
-INSERT INTO barangay VALUES("2030","015506019","San Vicente Weste","01","0155","015506");
-INSERT INTO barangay VALUES("2031","015506020","Sanchez","01","0155","015506");
-INSERT INTO barangay VALUES("2032","015506021","Sobol","01","0155","015506");
-INSERT INTO barangay VALUES("2033","015506022","Toboy","01","0155","015506");
-INSERT INTO barangay VALUES("2034","015507001","Angayan Norte","01","0155","015507");
-INSERT INTO barangay VALUES("2035","015507002","Angayan Sur","01","0155","015507");
-INSERT INTO barangay VALUES("2036","015507003","Capulaan","01","0155","015507");
-INSERT INTO barangay VALUES("2037","015507004","Esmeralda","01","0155","015507");
-INSERT INTO barangay VALUES("2038","015507005","Kita-kita","01","0155","015507");
-INSERT INTO barangay VALUES("2039","015507006","Mabini","01","0155","015507");
-INSERT INTO barangay VALUES("2040","015507007","Mauban","01","0155","015507");
-INSERT INTO barangay VALUES("2041","015507008","Poblacion","01","0155","015507");
-INSERT INTO barangay VALUES("2042","015507009","Pugaro","01","0155","015507");
-INSERT INTO barangay VALUES("2043","015507010","Rajal","01","0155","015507");
-INSERT INTO barangay VALUES("2044","015507011","San Andres","01","0155","015507");
-INSERT INTO barangay VALUES("2045","015507012","San Aurelio 1st","01","0155","015507");
-INSERT INTO barangay VALUES("2046","015507013","San Aurelio 2nd","01","0155","015507");
-INSERT INTO barangay VALUES("2047","015507014","San Aurelio 3rd","01","0155","015507");
-INSERT INTO barangay VALUES("2048","015507015","San Joaquin","01","0155","015507");
-INSERT INTO barangay VALUES("2049","015507016","San Julian","01","0155","015507");
-INSERT INTO barangay VALUES("2050","015507017","San Leon","01","0155","015507");
-INSERT INTO barangay VALUES("2051","015507018","San Marcelino","01","0155","015507");
-INSERT INTO barangay VALUES("2052","015507019","San Miguel","01","0155","015507");
-INSERT INTO barangay VALUES("2053","015507020","San Raymundo","01","0155","015507");
-INSERT INTO barangay VALUES("2054","015508001","Ambabaay","01","0155","015508");
-INSERT INTO barangay VALUES("2055","015508002","Aporao","01","0155","015508");
-INSERT INTO barangay VALUES("2056","015508003","Arwas","01","0155","015508");
-INSERT INTO barangay VALUES("2057","015508004","Ballag","01","0155","015508");
-INSERT INTO barangay VALUES("2058","015508005","Banog Norte","01","0155","015508");
-INSERT INTO barangay VALUES("2059","015508006","Banog Sur","01","0155","015508");
-INSERT INTO barangay VALUES("2060","015508007","Centro Toma","01","0155","015508");
-INSERT INTO barangay VALUES("2061","015508008","Colayo","01","0155","015508");
-INSERT INTO barangay VALUES("2062","015508009","Dacap Norte","01","0155","015508");
-INSERT INTO barangay VALUES("2063","015508010","Dacap Sur","01","0155","015508");
-INSERT INTO barangay VALUES("2064","015508011","Garrita","01","0155","015508");
-INSERT INTO barangay VALUES("2065","015508012","Luac","01","0155","015508");
-INSERT INTO barangay VALUES("2066","015508013","Macabit","01","0155","015508");
-INSERT INTO barangay VALUES("2067","015508014","Masidem","01","0155","015508");
-INSERT INTO barangay VALUES("2068","015508015","Poblacion","01","0155","015508");
-INSERT INTO barangay VALUES("2069","015508016","Quinaoayanan","01","0155","015508");
-INSERT INTO barangay VALUES("2070","015508017","Ranao","01","0155","015508");
-INSERT INTO barangay VALUES("2071","015508018","Ranom Iloco","01","0155","015508");
-INSERT INTO barangay VALUES("2072","015508019","San Jose","01","0155","015508");
-INSERT INTO barangay VALUES("2073","015508020","San Miguel","01","0155","015508");
-INSERT INTO barangay VALUES("2074","015508021","San Simon","01","0155","015508");
-INSERT INTO barangay VALUES("2075","015508022","San Vicente","01","0155","015508");
-INSERT INTO barangay VALUES("2076","015508023","Tiep","01","0155","015508");
-INSERT INTO barangay VALUES("2077","015508024","Tipor","01","0155","015508");
-INSERT INTO barangay VALUES("2078","015508025","Tugui Grande","01","0155","015508");
-INSERT INTO barangay VALUES("2079","015508026","Tugui Norte","01","0155","015508");
-INSERT INTO barangay VALUES("2080","015508027","Calabeng","01","0155","015508");
-INSERT INTO barangay VALUES("2081","015509001","Anambongan","01","0155","015509");
-INSERT INTO barangay VALUES("2082","015509002","Bayoyong","01","0155","015509");
-INSERT INTO barangay VALUES("2083","015509003","Cabeldatan","01","0155","015509");
-INSERT INTO barangay VALUES("2084","015509004","Dumpay","01","0155","015509");
-INSERT INTO barangay VALUES("2085","015509005","Malimpec East","01","0155","015509");
-INSERT INTO barangay VALUES("2086","015509006","Mapolopolo","01","0155","015509");
-INSERT INTO barangay VALUES("2087","015509007","Nalneran","01","0155","015509");
-INSERT INTO barangay VALUES("2088","015509008","Navatat","01","0155","015509");
-INSERT INTO barangay VALUES("2089","015509009","Obong","01","0155","015509");
-INSERT INTO barangay VALUES("2090","015509010","Osmena Sr.","01","0155","015509");
-INSERT INTO barangay VALUES("2091","015509011","Palma","01","0155","015509");
-INSERT INTO barangay VALUES("2092","015509012","Patacbo","01","0155","015509");
-INSERT INTO barangay VALUES("2093","015509013","Poblacion","01","0155","015509");
-INSERT INTO barangay VALUES("2094","015510001","Artacho","01","0155","015510");
-INSERT INTO barangay VALUES("2095","015510003","Cabuaan","01","0155","015510");
-INSERT INTO barangay VALUES("2096","015510004","Cacandongan","01","0155","015510");
-INSERT INTO barangay VALUES("2097","015510006","Diaz","01","0155","015510");
-INSERT INTO barangay VALUES("2098","015510007","Nandacan","01","0155","015510");
-INSERT INTO barangay VALUES("2099","015510009","Nibaliw Norte","01","0155","015510");
-INSERT INTO barangay VALUES("2100","015510010","Nibaliw Sur","01","0155","015510");
-INSERT INTO barangay VALUES("2101","015510011","Palisoc","01","0155","015510");
-INSERT INTO barangay VALUES("2102","015510012","Poblacion East","01","0155","015510");
-INSERT INTO barangay VALUES("2103","015510013","Poblacion West","01","0155","015510");
-INSERT INTO barangay VALUES("2104","015510014","Pogo","01","0155","015510");
-INSERT INTO barangay VALUES("2105","015510015","Poponto","01","0155","015510");
-INSERT INTO barangay VALUES("2106","015510016","Primicias","01","0155","015510");
-INSERT INTO barangay VALUES("2107","015510017","Ketegan","01","0155","015510");
-INSERT INTO barangay VALUES("2108","015510018","Sinabaan","01","0155","015510");
-INSERT INTO barangay VALUES("2109","015510019","Vacante","01","0155","015510");
-INSERT INTO barangay VALUES("2110","015510020","Villanueva","01","0155","015510");
-INSERT INTO barangay VALUES("2111","015510021","Baluyot","01","0155","015510");
-INSERT INTO barangay VALUES("2112","015511001","Alinggan","01","0155","015511");
-INSERT INTO barangay VALUES("2113","015511002","Amamperez","01","0155","015511");
-INSERT INTO barangay VALUES("2114","015511003","Amancosiling Norte","01","0155","015511");
-INSERT INTO barangay VALUES("2115","015511004","Amancosiling Sur","01","0155","015511");
-INSERT INTO barangay VALUES("2116","015511005","Ambayat I","01","0155","015511");
-INSERT INTO barangay VALUES("2117","015511006","Ambayat II","01","0155","015511");
-INSERT INTO barangay VALUES("2118","015511007","Apalen","01","0155","015511");
-INSERT INTO barangay VALUES("2119","015511008","Asin","01","0155","015511");
-INSERT INTO barangay VALUES("2120","015511009","Ataynan","01","0155","015511");
-INSERT INTO barangay VALUES("2121","015511010","Bacnono","01","0155","015511");
-INSERT INTO barangay VALUES("2122","015511011","Balaybuaya","01","0155","015511");
-INSERT INTO barangay VALUES("2123","015511012","Banaban","01","0155","015511");
-INSERT INTO barangay VALUES("2124","015511013","Bani","01","0155","015511");
-INSERT INTO barangay VALUES("2125","015511014","Batangcawa","01","0155","015511");
-INSERT INTO barangay VALUES("2126","015511015","Beleng","01","0155","015511");
-INSERT INTO barangay VALUES("2127","015511016","Bical Norte","01","0155","015511");
-INSERT INTO barangay VALUES("2128","015511017","Bical Sur","01","0155","015511");
-INSERT INTO barangay VALUES("2129","015511018","Bongato East","01","0155","015511");
-INSERT INTO barangay VALUES("2130","015511019","Bongato West","01","0155","015511");
-INSERT INTO barangay VALUES("2131","015511020","Buayaen","01","0155","015511");
-INSERT INTO barangay VALUES("2132","015511021","Buenlag 1st","01","0155","015511");
-INSERT INTO barangay VALUES("2133","015511022","Buenlag 2nd","01","0155","015511");
-INSERT INTO barangay VALUES("2134","015511023","Cadre Site","01","0155","015511");
-INSERT INTO barangay VALUES("2135","015511024","Carungay","01","0155","015511");
-INSERT INTO barangay VALUES("2136","015511025","Caturay","01","0155","015511");
-INSERT INTO barangay VALUES("2137","015511027","Duera","01","0155","015511");
-INSERT INTO barangay VALUES("2138","015511028","Dusoc","01","0155","015511");
-INSERT INTO barangay VALUES("2139","015511029","Hermoza","01","0155","015511");
-INSERT INTO barangay VALUES("2140","015511030","Idong","01","0155","015511");
-INSERT INTO barangay VALUES("2141","015511031","Inanlorenzana","01","0155","015511");
-INSERT INTO barangay VALUES("2142","015511032","Inirangan","01","0155","015511");
-INSERT INTO barangay VALUES("2143","015511033","Iton","01","0155","015511");
-INSERT INTO barangay VALUES("2144","015511034","Langiran","01","0155","015511");
-INSERT INTO barangay VALUES("2145","015511035","Ligue","01","0155","015511");
-INSERT INTO barangay VALUES("2146","015511036","M. H. del Pilar","01","0155","015511");
-INSERT INTO barangay VALUES("2147","015511037","Macayocayo","01","0155","015511");
-INSERT INTO barangay VALUES("2148","015511038","Magsaysay","01","0155","015511");
-INSERT INTO barangay VALUES("2149","015511039","Maigpa","01","0155","015511");
-INSERT INTO barangay VALUES("2150","015511040","Malimpec","01","0155","015511");
-INSERT INTO barangay VALUES("2151","015511041","Malioer","01","0155","015511");
-INSERT INTO barangay VALUES("2152","015511042","Managos","01","0155","015511");
-INSERT INTO barangay VALUES("2153","015511043","Manambong Norte","01","0155","015511");
-INSERT INTO barangay VALUES("2154","015511044","Manambong Parte","01","0155","015511");
-INSERT INTO barangay VALUES("2155","015511045","Manambong Sur","01","0155","015511");
-INSERT INTO barangay VALUES("2156","015511046","Mangayao","01","0155","015511");
-INSERT INTO barangay VALUES("2157","015511047","Nalsian Norte","01","0155","015511");
-INSERT INTO barangay VALUES("2158","015511048","Nalsian Sur","01","0155","015511");
-INSERT INTO barangay VALUES("2159","015511049","Pangdel","01","0155","015511");
-INSERT INTO barangay VALUES("2160","015511050","Pantol","01","0155","015511");
-INSERT INTO barangay VALUES("2161","015511051","Paragos","01","0155","015511");
-INSERT INTO barangay VALUES("2162","015511053","Poblacion Sur","01","0155","015511");
-INSERT INTO barangay VALUES("2163","015511054","Pugo","01","0155","015511");
-INSERT INTO barangay VALUES("2164","015511055","Reynado","01","0155","015511");
-INSERT INTO barangay VALUES("2165","015511056","San Gabriel 1st","01","0155","015511");
-INSERT INTO barangay VALUES("2166","015511057","San Gabriel 2nd","01","0155","015511");
-INSERT INTO barangay VALUES("2167","015511058","San Vicente","01","0155","015511");
-INSERT INTO barangay VALUES("2168","015511059","Sangcagulis","01","0155","015511");
-INSERT INTO barangay VALUES("2169","015511060","Sanlibo","01","0155","015511");
-INSERT INTO barangay VALUES("2170","015511061","Sapang","01","0155","015511");
-INSERT INTO barangay VALUES("2171","015511062","Tamaro","01","0155","015511");
-INSERT INTO barangay VALUES("2172","015511063","Tambac","01","0155","015511");
-INSERT INTO barangay VALUES("2173","015511064","Tampog","01","0155","015511");
-INSERT INTO barangay VALUES("2174","015511065","Darawey (Tangal)","01","0155","015511");
-INSERT INTO barangay VALUES("2175","015511066","Tanolong","01","0155","015511");
-INSERT INTO barangay VALUES("2176","015511067","Tatarao","01","0155","015511");
-INSERT INTO barangay VALUES("2177","015511068","Telbang","01","0155","015511");
-INSERT INTO barangay VALUES("2178","015511069","Tococ East","01","0155","015511");
-INSERT INTO barangay VALUES("2179","015511070","Tococ West","01","0155","015511");
-INSERT INTO barangay VALUES("2180","015511071","Warding","01","0155","015511");
-INSERT INTO barangay VALUES("2181","015511072","Wawa","01","0155","015511");
-INSERT INTO barangay VALUES("2182","015511073","Zone I (Pob.)","01","0155","015511");
-INSERT INTO barangay VALUES("2183","015511074","Zone II (Pob.)","01","0155","015511");
-INSERT INTO barangay VALUES("2184","015511075","Zone III (Pob.)","01","0155","015511");
-INSERT INTO barangay VALUES("2185","015511076","Zone IV (Pob.)","01","0155","015511");
-INSERT INTO barangay VALUES("2186","015511077","Zone V (Pob.)","01","0155","015511");
-INSERT INTO barangay VALUES("2187","015511078","Zone VI (Pob.)","01","0155","015511");
-INSERT INTO barangay VALUES("2188","015511079","Zone VII (Pob.)","01","0155","015511");
-INSERT INTO barangay VALUES("2189","015512001","Balangobong","01","0155","015512");
-INSERT INTO barangay VALUES("2190","015512002","Bued","01","0155","015512");
-INSERT INTO barangay VALUES("2191","015512003","Bugayong","01","0155","015512");
-INSERT INTO barangay VALUES("2192","015512004","Camangaan","01","0155","015512");
-INSERT INTO barangay VALUES("2193","015512005","Canarvacanan","01","0155","015512");
-INSERT INTO barangay VALUES("2194","015512006","Capas","01","0155","015512");
-INSERT INTO barangay VALUES("2195","015512007","Cili","01","0155","015512");
-INSERT INTO barangay VALUES("2196","015512008","Dumayat","01","0155","015512");
-INSERT INTO barangay VALUES("2197","015512009","Linmansangan","01","0155","015512");
-INSERT INTO barangay VALUES("2198","015512011","Mangcasuy","01","0155","015512");
-INSERT INTO barangay VALUES("2199","015512012","Moreno","01","0155","015512");
-INSERT INTO barangay VALUES("2200","015512013","Pasileng Norte","01","0155","015512");
-INSERT INTO barangay VALUES("2201","015512014","Pasileng Sur","01","0155","015512");
-INSERT INTO barangay VALUES("2202","015512015","Poblacion","01","0155","015512");
-INSERT INTO barangay VALUES("2203","015512016","San Felipe Central","01","0155","015512");
-INSERT INTO barangay VALUES("2204","015512017","San Felipe Sur","01","0155","015512");
-INSERT INTO barangay VALUES("2205","015512019","San Pablo","01","0155","015512");
-INSERT INTO barangay VALUES("2206","015512020","Santa Catalina","01","0155","015512");
-INSERT INTO barangay VALUES("2207","015512021","Santa Maria Norte","01","0155","015512");
-INSERT INTO barangay VALUES("2208","015512022","Santiago","01","0155","015512");
-INSERT INTO barangay VALUES("2209","015512023","Santo Niño","01","0155","015512");
-INSERT INTO barangay VALUES("2210","015512024","Sumabnit","01","0155","015512");
-INSERT INTO barangay VALUES("2211","015512025","Tabuyoc","01","0155","015512");
-INSERT INTO barangay VALUES("2212","015512026","Vacante","01","0155","015512");
-INSERT INTO barangay VALUES("2213","015513001","Amancoro","01","0155","015513");
-INSERT INTO barangay VALUES("2214","015513002","Balagan","01","0155","015513");
-INSERT INTO barangay VALUES("2215","015513003","Balogo","01","0155","015513");
-INSERT INTO barangay VALUES("2216","015513004","Basing","01","0155","015513");
-INSERT INTO barangay VALUES("2217","015513005","Baybay Lopez","01","0155","015513");
-INSERT INTO barangay VALUES("2218","015513006","Baybay Polong","01","0155","015513");
-INSERT INTO barangay VALUES("2219","015513007","Biec","01","0155","015513");
-INSERT INTO barangay VALUES("2220","015513008","Buenlag","01","0155","015513");
-INSERT INTO barangay VALUES("2221","015513009","Calit","01","0155","015513");
-INSERT INTO barangay VALUES("2222","015513010","Caloocan Norte","01","0155","015513");
-INSERT INTO barangay VALUES("2223","015513011","Caloocan Sur","01","0155","015513");
-INSERT INTO barangay VALUES("2224","015513012","Camaley","01","0155","015513");
-INSERT INTO barangay VALUES("2225","015513013","Canaoalan","01","0155","015513");
-INSERT INTO barangay VALUES("2226","015513014","Dulag","01","0155","015513");
-INSERT INTO barangay VALUES("2227","015513015","Gayaman","01","0155","015513");
-INSERT INTO barangay VALUES("2228","015513016","Linoc","01","0155","015513");
-INSERT INTO barangay VALUES("2229","015513017","Lomboy","01","0155","015513");
-INSERT INTO barangay VALUES("2230","015513018","Nagpalangan","01","0155","015513");
-INSERT INTO barangay VALUES("2231","015513019","Malindong","01","0155","015513");
-INSERT INTO barangay VALUES("2232","015513020","Manat","01","0155","015513");
-INSERT INTO barangay VALUES("2233","015513021","Naguilayan","01","0155","015513");
-INSERT INTO barangay VALUES("2234","015513022","Pallas","01","0155","015513");
-INSERT INTO barangay VALUES("2235","015513023","Papagueyan","01","0155","015513");
-INSERT INTO barangay VALUES("2236","015513024","Parayao","01","0155","015513");
-INSERT INTO barangay VALUES("2237","015513026","Poblacion","01","0155","015513");
-INSERT INTO barangay VALUES("2238","015513027","Pototan","01","0155","015513");
-INSERT INTO barangay VALUES("2239","015513028","Sabangan","01","0155","015513");
-INSERT INTO barangay VALUES("2240","015513029","Salapingao","01","0155","015513");
-INSERT INTO barangay VALUES("2241","015513030","San Isidro Norte","01","0155","015513");
-INSERT INTO barangay VALUES("2242","015513031","San Isidro Sur","01","0155","015513");
-INSERT INTO barangay VALUES("2243","015513032","Santa Rosa","01","0155","015513");
-INSERT INTO barangay VALUES("2244","015513033","Tombor","01","0155","015513");
-INSERT INTO barangay VALUES("2245","015513034","Caloocan Dupo","01","0155","015513");
-INSERT INTO barangay VALUES("2246","015514001","Arnedo","01","0155","015514");
-INSERT INTO barangay VALUES("2247","015514002","Balingasay","01","0155","015514");
-INSERT INTO barangay VALUES("2248","015514003","Binabalian","01","0155","015514");
-INSERT INTO barangay VALUES("2249","015514004","Cabuyao","01","0155","015514");
-INSERT INTO barangay VALUES("2250","015514005","Catuday","01","0155","015514");
-INSERT INTO barangay VALUES("2251","015514006","Catungi","01","0155","015514");
-INSERT INTO barangay VALUES("2252","015514007","Concordia (Pob.)","01","0155","015514");
-INSERT INTO barangay VALUES("2253","015514008","Culang","01","0155","015514");
-INSERT INTO barangay VALUES("2254","015514009","Dewey","01","0155","015514");
-INSERT INTO barangay VALUES("2255","015514010","Estanza","01","0155","015514");
-INSERT INTO barangay VALUES("2256","015514011","Germinal (Pob.)","01","0155","015514");
-INSERT INTO barangay VALUES("2257","015514012","Goyoden","01","0155","015514");
-INSERT INTO barangay VALUES("2258","015514013","Ilogmalino","01","0155","015514");
-INSERT INTO barangay VALUES("2259","015514014","Lambes (Lames)","01","0155","015514");
-INSERT INTO barangay VALUES("2260","015514015","Liwa-liwa","01","0155","015514");
-INSERT INTO barangay VALUES("2261","015514016","Lucero","01","0155","015514");
-INSERT INTO barangay VALUES("2262","015514017","Luciente 1.0","01","0155","015514");
-INSERT INTO barangay VALUES("2263","015514018","Luciente 2.0","01","0155","015514");
-INSERT INTO barangay VALUES("2264","015514019","Luna","01","0155","015514");
-INSERT INTO barangay VALUES("2265","015514020","Patar","01","0155","015514");
-INSERT INTO barangay VALUES("2266","015514021","Pilar","01","0155","015514");
-INSERT INTO barangay VALUES("2267","015514023","Salud","01","0155","015514");
-INSERT INTO barangay VALUES("2268","015514024","Samang Norte","01","0155","015514");
-INSERT INTO barangay VALUES("2269","015514025","Samang Sur","01","0155","015514");
-INSERT INTO barangay VALUES("2270","015514026","Sampaloc","01","0155","015514");
-INSERT INTO barangay VALUES("2271","015514027","San Roque","01","0155","015514");
-INSERT INTO barangay VALUES("2272","015514028","Tara","01","0155","015514");
-INSERT INTO barangay VALUES("2273","015514029","Tupa","01","0155","015514");
-INSERT INTO barangay VALUES("2274","015514030","Victory","01","0155","015514");
-INSERT INTO barangay VALUES("2275","015514031","Zaragoza","01","0155","015514");
-INSERT INTO barangay VALUES("2276","015515001","Angarian","01","0155","015515");
-INSERT INTO barangay VALUES("2277","015515002","Asinan","01","0155","015515");
-INSERT INTO barangay VALUES("2278","015515003","Banaga","01","0155","015515");
-INSERT INTO barangay VALUES("2279","015515004","Bacabac","01","0155","015515");
-INSERT INTO barangay VALUES("2280","015515005","Bolaoen","01","0155","015515");
-INSERT INTO barangay VALUES("2281","015515006","Buenlag","01","0155","015515");
-INSERT INTO barangay VALUES("2282","015515007","Cabayaoasan","01","0155","015515");
-INSERT INTO barangay VALUES("2283","015515008","Cayanga","01","0155","015515");
-INSERT INTO barangay VALUES("2284","015515009","Gueset","01","0155","015515");
-INSERT INTO barangay VALUES("2285","015515010","Hacienda","01","0155","015515");
-INSERT INTO barangay VALUES("2286","015515011","Laguit Centro","01","0155","015515");
-INSERT INTO barangay VALUES("2287","015515012","Laguit Padilla","01","0155","015515");
-INSERT INTO barangay VALUES("2288","015515013","Magtaking","01","0155","015515");
-INSERT INTO barangay VALUES("2289","015515014","Pangascasan","01","0155","015515");
-INSERT INTO barangay VALUES("2290","015515015","Pantal","01","0155","015515");
-INSERT INTO barangay VALUES("2291","015515016","Poblacion","01","0155","015515");
-INSERT INTO barangay VALUES("2292","015515017","Polong","01","0155","015515");
-INSERT INTO barangay VALUES("2293","015515018","Portic","01","0155","015515");
-INSERT INTO barangay VALUES("2294","015515019","Salasa","01","0155","015515");
-INSERT INTO barangay VALUES("2295","015515020","Salomague Norte","01","0155","015515");
-INSERT INTO barangay VALUES("2296","015515021","Salomague Sur","01","0155","015515");
-INSERT INTO barangay VALUES("2297","015515022","Samat","01","0155","015515");
-INSERT INTO barangay VALUES("2298","015515023","San Francisco","01","0155","015515");
-INSERT INTO barangay VALUES("2299","015515024","Umanday","01","0155","015515");
-INSERT INTO barangay VALUES("2300","015516001","Anapao (Bur Anapac)","01","0155","015516");
-INSERT INTO barangay VALUES("2301","015516003","Cacayasen","01","0155","015516");
-INSERT INTO barangay VALUES("2302","015516004","Concordia","01","0155","015516");
-INSERT INTO barangay VALUES("2303","015516005","Ilio-ilio (Iliw-iliw)","01","0155","015516");
-INSERT INTO barangay VALUES("2304","015516006","Papallasen","01","0155","015516");
-INSERT INTO barangay VALUES("2305","015516007","Poblacion","01","0155","015516");
-INSERT INTO barangay VALUES("2306","015516008","Pogoruac","01","0155","015516");
-INSERT INTO barangay VALUES("2307","015516009","Don Matias","01","0155","015516");
-INSERT INTO barangay VALUES("2308","015516010","San Miguel","01","0155","015516");
-INSERT INTO barangay VALUES("2309","015516011","San Pascual","01","0155","015516");
-INSERT INTO barangay VALUES("2310","015516012","San Vicente","01","0155","015516");
-INSERT INTO barangay VALUES("2311","015516013","Sapa Grande","01","0155","015516");
-INSERT INTO barangay VALUES("2312","015516014","Sapa Pequeña","01","0155","015516");
-INSERT INTO barangay VALUES("2313","015516015","Tambacan","01","0155","015516");
-INSERT INTO barangay VALUES("2314","015517001","Ambonao","01","0155","015517");
-INSERT INTO barangay VALUES("2315","015517002","Ambuetel","01","0155","015517");
-INSERT INTO barangay VALUES("2316","015517003","Banaoang","01","0155","015517");
-INSERT INTO barangay VALUES("2317","015517004","Bued","01","0155","015517");
-INSERT INTO barangay VALUES("2318","015517005","Buenlag","01","0155","015517");
-INSERT INTO barangay VALUES("2319","015517006","Cabilocaan","01","0155","015517");
-INSERT INTO barangay VALUES("2320","015517007","Dinalaoan","01","0155","015517");
-INSERT INTO barangay VALUES("2321","015517008","Doyong","01","0155","015517");
-INSERT INTO barangay VALUES("2322","015517009","Gabon","01","0155","015517");
-INSERT INTO barangay VALUES("2323","015517010","Lasip","01","0155","015517");
-INSERT INTO barangay VALUES("2324","015517011","Longos","01","0155","015517");
-INSERT INTO barangay VALUES("2325","015517012","Lumbang","01","0155","015517");
-INSERT INTO barangay VALUES("2326","015517013","Macabito","01","0155","015517");
-INSERT INTO barangay VALUES("2327","015517014","Malabago","01","0155","015517");
-INSERT INTO barangay VALUES("2328","015517015","Mancup","01","0155","015517");
-INSERT INTO barangay VALUES("2329","015517016","Nagsaing","01","0155","015517");
-INSERT INTO barangay VALUES("2330","015517017","Nalsian","01","0155","015517");
-INSERT INTO barangay VALUES("2331","015517018","Poblacion East","01","0155","015517");
-INSERT INTO barangay VALUES("2332","015517019","Poblacion West","01","0155","015517");
-INSERT INTO barangay VALUES("2333","015517020","Quesban","01","0155","015517");
-INSERT INTO barangay VALUES("2334","015517022","San Miguel","01","0155","015517");
-INSERT INTO barangay VALUES("2335","015517023","San Vicente","01","0155","015517");
-INSERT INTO barangay VALUES("2336","015517024","Songkoy","01","0155","015517");
-INSERT INTO barangay VALUES("2337","015517025","Talibaew","01","0155","015517");
-INSERT INTO barangay VALUES("2338","015518001","Bacayao Norte","01","0155","015518");
-INSERT INTO barangay VALUES("2339","015518002","Bacayao Sur","01","0155","015518");
-INSERT INTO barangay VALUES("2340","015518003","Barangay II (Nueva)","01","0155","015518");
-INSERT INTO barangay VALUES("2341","015518004","Barangay IV (Zamora)","01","0155","015518");
-INSERT INTO barangay VALUES("2342","015518006","Bolosan","01","0155","015518");
-INSERT INTO barangay VALUES("2343","015518007","Bonuan Binloc","01","0155","015518");
-INSERT INTO barangay VALUES("2344","015518008","Bonuan Boquig","01","0155","015518");
-INSERT INTO barangay VALUES("2345","015518009","Bonuan Gueset","01","0155","015518");
-INSERT INTO barangay VALUES("2346","015518010","Calmay","01","0155","015518");
-INSERT INTO barangay VALUES("2347","015518011","Carael","01","0155","015518");
-INSERT INTO barangay VALUES("2348","015518012","Caranglaan","01","0155","015518");
-INSERT INTO barangay VALUES("2349","015518013","Herrero","01","0155","015518");
-INSERT INTO barangay VALUES("2350","015518014","Lasip Chico","01","0155","015518");
-INSERT INTO barangay VALUES("2351","015518015","Lasip Grande","01","0155","015518");
-INSERT INTO barangay VALUES("2352","015518016","Lomboy","01","0155","015518");
-INSERT INTO barangay VALUES("2353","015518017","Lucao","01","0155","015518");
-INSERT INTO barangay VALUES("2354","015518018","Malued","01","0155","015518");
-INSERT INTO barangay VALUES("2355","015518019","Mamalingling","01","0155","015518");
-INSERT INTO barangay VALUES("2356","015518020","Mangin","01","0155","015518");
-INSERT INTO barangay VALUES("2357","015518021","Mayombo","01","0155","015518");
-INSERT INTO barangay VALUES("2358","015518022","Pantal","01","0155","015518");
-INSERT INTO barangay VALUES("2359","015518023","Poblacion Oeste","01","0155","015518");
-INSERT INTO barangay VALUES("2360","015518024","Barangay I (T. Bugallon)","01","0155","015518");
-INSERT INTO barangay VALUES("2361","015518025","Pogo Chico","01","0155","015518");
-INSERT INTO barangay VALUES("2362","015518026","Pogo Grande","01","0155","015518");
-INSERT INTO barangay VALUES("2363","015518027","Pugaro Suit","01","0155","015518");
-INSERT INTO barangay VALUES("2364","015518028","Salapingao","01","0155","015518");
-INSERT INTO barangay VALUES("2365","015518029","Salisay","01","0155","015518");
-INSERT INTO barangay VALUES("2366","015518030","Tambac","01","0155","015518");
-INSERT INTO barangay VALUES("2367","015518031","Tapuac","01","0155","015518");
-INSERT INTO barangay VALUES("2368","015518032","Tebeng","01","0155","015518");
-INSERT INTO barangay VALUES("2369","015519001","Alilao","01","0155","015519");
-INSERT INTO barangay VALUES("2370","015519002","Amalbalan","01","0155","015519");
-INSERT INTO barangay VALUES("2371","015519003","Bobonot","01","0155","015519");
-INSERT INTO barangay VALUES("2372","015519004","Eguia","01","0155","015519");
-INSERT INTO barangay VALUES("2373","015519005","Gais-Guipe","01","0155","015519");
-INSERT INTO barangay VALUES("2374","015519006","Hermosa","01","0155","015519");
-INSERT INTO barangay VALUES("2375","015519007","Macalang","01","0155","015519");
-INSERT INTO barangay VALUES("2376","015519008","Magsaysay","01","0155","015519");
-INSERT INTO barangay VALUES("2377","015519010","Malacapas","01","0155","015519");
-INSERT INTO barangay VALUES("2378","015519011","Malimpin","01","0155","015519");
-INSERT INTO barangay VALUES("2379","015519012","Osmeña","01","0155","015519");
-INSERT INTO barangay VALUES("2380","015519013","Petal","01","0155","015519");
-INSERT INTO barangay VALUES("2381","015519014","Poblacion","01","0155","015519");
-INSERT INTO barangay VALUES("2382","015519015","San Vicente","01","0155","015519");
-INSERT INTO barangay VALUES("2383","015519016","Tambac","01","0155","015519");
-INSERT INTO barangay VALUES("2384","015519017","Tambobong","01","0155","015519");
-INSERT INTO barangay VALUES("2385","015519018","Uli","01","0155","015519");
-INSERT INTO barangay VALUES("2386","015519019","Viga","01","0155","015519");
-INSERT INTO barangay VALUES("2387","015520002","Bamban","01","0155","015520");
-INSERT INTO barangay VALUES("2388","015520003","Batang","01","0155","015520");
-INSERT INTO barangay VALUES("2389","015520004","Bayambang","01","0155","015520");
-INSERT INTO barangay VALUES("2390","015520005","Cato","01","0155","015520");
-INSERT INTO barangay VALUES("2391","015520006","Doliman","01","0155","015520");
-INSERT INTO barangay VALUES("2392","015520007","Fatima","01","0155","015520");
-INSERT INTO barangay VALUES("2393","015520008","Maya","01","0155","015520");
-INSERT INTO barangay VALUES("2394","015520009","Nangalisan","01","0155","015520");
-INSERT INTO barangay VALUES("2395","015520010","Nayom","01","0155","015520");
-INSERT INTO barangay VALUES("2396","015520011","Pita","01","0155","015520");
-INSERT INTO barangay VALUES("2397","015520012","Poblacion","01","0155","015520");
-INSERT INTO barangay VALUES("2398","015520013","Potol","01","0155","015520");
-INSERT INTO barangay VALUES("2399","015520014","Babuyan","01","0155","015520");
-INSERT INTO barangay VALUES("2400","015521001","Bolo","01","0155","015521");
-INSERT INTO barangay VALUES("2401","015521002","Bongalon","01","0155","015521");
-INSERT INTO barangay VALUES("2402","015521003","Dulig","01","0155","015521");
-INSERT INTO barangay VALUES("2403","015521004","Laois","01","0155","015521");
-INSERT INTO barangay VALUES("2404","015521005","Magsaysay","01","0155","015521");
-INSERT INTO barangay VALUES("2405","015521006","Poblacion","01","0155","015521");
-INSERT INTO barangay VALUES("2406","015521007","San Gonzalo","01","0155","015521");
-INSERT INTO barangay VALUES("2407","015521008","San Jose","01","0155","015521");
-INSERT INTO barangay VALUES("2408","015521009","Tobuan","01","0155","015521");
-INSERT INTO barangay VALUES("2409","015521010","Uyong","01","0155","015521");
-INSERT INTO barangay VALUES("2410","015522001","Aliwekwek","01","0155","015522");
-INSERT INTO barangay VALUES("2411","015522002","Baay","01","0155","015522");
-INSERT INTO barangay VALUES("2412","015522003","Balangobong","01","0155","015522");
-INSERT INTO barangay VALUES("2413","015522004","Balococ","01","0155","015522");
-INSERT INTO barangay VALUES("2414","015522006","Bantayan","01","0155","015522");
-INSERT INTO barangay VALUES("2415","015522007","Basing","01","0155","015522");
-INSERT INTO barangay VALUES("2416","015522008","Capandanan","01","0155","015522");
-INSERT INTO barangay VALUES("2417","015522009","Domalandan Center","01","0155","015522");
-INSERT INTO barangay VALUES("2418","015522010","Domalandan East","01","0155","015522");
-INSERT INTO barangay VALUES("2419","015522011","Domalandan West","01","0155","015522");
-INSERT INTO barangay VALUES("2420","015522013","Dorongan","01","0155","015522");
-INSERT INTO barangay VALUES("2421","015522014","Dulag","01","0155","015522");
-INSERT INTO barangay VALUES("2422","015522015","Estanza","01","0155","015522");
-INSERT INTO barangay VALUES("2423","015522016","Lasip","01","0155","015522");
-INSERT INTO barangay VALUES("2424","015522017","Libsong East","01","0155","015522");
-INSERT INTO barangay VALUES("2425","015522018","Libsong West","01","0155","015522");
-INSERT INTO barangay VALUES("2426","015522019","Malawa","01","0155","015522");
-INSERT INTO barangay VALUES("2427","015522020","Malimpuec","01","0155","015522");
-INSERT INTO barangay VALUES("2428","015522021","Maniboc","01","0155","015522");
-INSERT INTO barangay VALUES("2429","015522022","Matalava","01","0155","015522");
-INSERT INTO barangay VALUES("2430","015522023","Naguelguel","01","0155","015522");
-INSERT INTO barangay VALUES("2431","015522025","Namolan","01","0155","015522");
-INSERT INTO barangay VALUES("2432","015522026","Pangapisan North","01","0155","015522");
-INSERT INTO barangay VALUES("2433","015522027","Pangapisan Sur","01","0155","015522");
-INSERT INTO barangay VALUES("2434","015522028","Poblacion","01","0155","015522");
-INSERT INTO barangay VALUES("2435","015522029","Quibaol","01","0155","015522");
-INSERT INTO barangay VALUES("2436","015522030","Rosario","01","0155","015522");
-INSERT INTO barangay VALUES("2437","015522031","Sabangan","01","0155","015522");
-INSERT INTO barangay VALUES("2438","015522032","Talogtog","01","0155","015522");
-INSERT INTO barangay VALUES("2439","015522033","Tonton","01","0155","015522");
-INSERT INTO barangay VALUES("2440","015522034","Tumbar","01","0155","015522");
-INSERT INTO barangay VALUES("2441","015522035","Wawa","01","0155","015522");
-INSERT INTO barangay VALUES("2442","015523002","Bacnit","01","0155","015523");
-INSERT INTO barangay VALUES("2443","015523003","Barlo","01","0155","015523");
-INSERT INTO barangay VALUES("2444","015523005","Caabiangaan","01","0155","015523");
-INSERT INTO barangay VALUES("2445","015523006","Cabanaetan","01","0155","015523");
-INSERT INTO barangay VALUES("2446","015523007","Cabinuangan","01","0155","015523");
-INSERT INTO barangay VALUES("2447","015523008","Calzada","01","0155","015523");
-INSERT INTO barangay VALUES("2448","015523009","Caranglaan","01","0155","015523");
-INSERT INTO barangay VALUES("2449","015523010","De Guzman","01","0155","015523");
-INSERT INTO barangay VALUES("2450","015523012","Luna","01","0155","015523");
-INSERT INTO barangay VALUES("2451","015523013","Magalong","01","0155","015523");
-INSERT INTO barangay VALUES("2452","015523014","Nibaliw","01","0155","015523");
-INSERT INTO barangay VALUES("2453","015523015","Patar","01","0155","015523");
-INSERT INTO barangay VALUES("2454","015523016","Poblacion","01","0155","015523");
-INSERT INTO barangay VALUES("2455","015523017","San Pedro","01","0155","015523");
-INSERT INTO barangay VALUES("2456","015523018","Tagudin","01","0155","015523");
-INSERT INTO barangay VALUES("2457","015523020","Villacorta","01","0155","015523");
-INSERT INTO barangay VALUES("2458","015524001","Abonagan","01","0155","015524");
-INSERT INTO barangay VALUES("2459","015524002","Agdao","01","0155","015524");
-INSERT INTO barangay VALUES("2460","015524003","Alacan","01","0155","015524");
-INSERT INTO barangay VALUES("2461","015524004","Aliaga","01","0155","015524");
-INSERT INTO barangay VALUES("2462","015524005","Amacalan","01","0155","015524");
-INSERT INTO barangay VALUES("2463","015524006","Anolid","01","0155","015524");
-INSERT INTO barangay VALUES("2464","015524007","Apaya","01","0155","015524");
-INSERT INTO barangay VALUES("2465","015524008","Asin Este","01","0155","015524");
-INSERT INTO barangay VALUES("2466","015524009","Asin Weste","01","0155","015524");
-INSERT INTO barangay VALUES("2467","015524010","Bacundao Este","01","0155","015524");
-INSERT INTO barangay VALUES("2468","015524011","Bacundao Weste","01","0155","015524");
-INSERT INTO barangay VALUES("2469","015524012","Bakitiw","01","0155","015524");
-INSERT INTO barangay VALUES("2470","015524013","Balite","01","0155","015524");
-INSERT INTO barangay VALUES("2471","015524014","Banawang","01","0155","015524");
-INSERT INTO barangay VALUES("2472","015524015","Barang","01","0155","015524");
-INSERT INTO barangay VALUES("2473","015524016","Bawer","01","0155","015524");
-INSERT INTO barangay VALUES("2474","015524017","Binalay","01","0155","015524");
-INSERT INTO barangay VALUES("2475","015524018","Bobon","01","0155","015524");
-INSERT INTO barangay VALUES("2476","015524019","Bolaoit","01","0155","015524");
-INSERT INTO barangay VALUES("2477","015524020","Bongar","01","0155","015524");
-INSERT INTO barangay VALUES("2478","015524021","Butao","01","0155","015524");
-INSERT INTO barangay VALUES("2479","015524022","Cabatling","01","0155","015524");
-INSERT INTO barangay VALUES("2480","015524023","Cabueldatan","01","0155","015524");
-INSERT INTO barangay VALUES("2481","015524026","Calbueg","01","0155","015524");
-INSERT INTO barangay VALUES("2482","015524027","Canan Norte","01","0155","015524");
-INSERT INTO barangay VALUES("2483","015524028","Canan Sur","01","0155","015524");
-INSERT INTO barangay VALUES("2484","015524029","Cawayan Bogtong","01","0155","015524");
-INSERT INTO barangay VALUES("2485","015524031","Don Pedro","01","0155","015524");
-INSERT INTO barangay VALUES("2486","015524032","Gatang","01","0155","015524");
-INSERT INTO barangay VALUES("2487","015524033","Goliman","01","0155","015524");
-INSERT INTO barangay VALUES("2488","015524034","Gomez","01","0155","015524");
-INSERT INTO barangay VALUES("2489","015524035","Guilig","01","0155","015524");
-INSERT INTO barangay VALUES("2490","015524036","Ican","01","0155","015524");
-INSERT INTO barangay VALUES("2491","015524037","Ingalagala","01","0155","015524");
-INSERT INTO barangay VALUES("2492","015524038","Lareg-lareg","01","0155","015524");
-INSERT INTO barangay VALUES("2493","015524039","Lasip","01","0155","015524");
-INSERT INTO barangay VALUES("2494","015524040","Lepa","01","0155","015524");
-INSERT INTO barangay VALUES("2495","015524041","Loqueb Este","01","0155","015524");
-INSERT INTO barangay VALUES("2496","015524042","Loqueb Norte","01","0155","015524");
-INSERT INTO barangay VALUES("2497","015524043","Loqueb Sur","01","0155","015524");
-INSERT INTO barangay VALUES("2498","015524044","Lunec","01","0155","015524");
-INSERT INTO barangay VALUES("2499","015524045","Mabulitec","01","0155","015524");
-INSERT INTO barangay VALUES("2500","015524047","Malimpec","01","0155","015524");
-INSERT INTO barangay VALUES("2501","015524048","Manggan-Dampay","01","0155","015524");
-INSERT INTO barangay VALUES("2502","015524049","Nancapian","01","0155","015524");
-INSERT INTO barangay VALUES("2503","015524050","Nalsian Norte","01","0155","015524");
-INSERT INTO barangay VALUES("2504","015524051","Nalsian Sur","01","0155","015524");
-INSERT INTO barangay VALUES("2505","015524053","Nansangaan","01","0155","015524");
-INSERT INTO barangay VALUES("2506","015524054","Olea","01","0155","015524");
-INSERT INTO barangay VALUES("2507","015524055","Pacuan","01","0155","015524");
-INSERT INTO barangay VALUES("2508","015524056","Palapar Norte","01","0155","015524");
-INSERT INTO barangay VALUES("2509","015524057","Palapar Sur","01","0155","015524");
-INSERT INTO barangay VALUES("2510","015524058","Palong","01","0155","015524");
-INSERT INTO barangay VALUES("2511","015524059","Pamaranum","01","0155","015524");
-INSERT INTO barangay VALUES("2512","015524060","Pasima","01","0155","015524");
-INSERT INTO barangay VALUES("2513","015524061","Payar","01","0155","015524");
-INSERT INTO barangay VALUES("2514","015524062","Poblacion","01","0155","015524");
-INSERT INTO barangay VALUES("2515","015524063","Polong Norte","01","0155","015524");
-INSERT INTO barangay VALUES("2516","015524064","Polong Sur","01","0155","015524");
-INSERT INTO barangay VALUES("2517","015524065","Potiocan","01","0155","015524");
-INSERT INTO barangay VALUES("2518","015524066","San Julian","01","0155","015524");
-INSERT INTO barangay VALUES("2519","015524067","Tabo-Sili","01","0155","015524");
-INSERT INTO barangay VALUES("2520","015524068","Tobor","01","0155","015524");
-INSERT INTO barangay VALUES("2521","015524069","Talospatang","01","0155","015524");
-INSERT INTO barangay VALUES("2522","015524070","Taloy","01","0155","015524");
-INSERT INTO barangay VALUES("2523","015524071","Taloyan","01","0155","015524");
-INSERT INTO barangay VALUES("2524","015524072","Tambac","01","0155","015524");
-INSERT INTO barangay VALUES("2525","015524073","Tolonguat","01","0155","015524");
-INSERT INTO barangay VALUES("2526","015524074","Tomling","01","0155","015524");
-INSERT INTO barangay VALUES("2527","015524075","Umando","01","0155","015524");
-INSERT INTO barangay VALUES("2528","015524076","Viado","01","0155","015524");
-INSERT INTO barangay VALUES("2529","015524077","Waig","01","0155","015524");
-INSERT INTO barangay VALUES("2530","015524078","Warey","01","0155","015524");
-INSERT INTO barangay VALUES("2531","015525002","Babasit","01","0155","015525");
-INSERT INTO barangay VALUES("2532","015525003","Baguinay","01","0155","015525");
-INSERT INTO barangay VALUES("2533","015525004","Baritao","01","0155","015525");
-INSERT INTO barangay VALUES("2534","015525005","Bisal","01","0155","015525");
-INSERT INTO barangay VALUES("2535","015525007","Bucao","01","0155","015525");
-INSERT INTO barangay VALUES("2536","015525009","Cabanbanan","01","0155","015525");
-INSERT INTO barangay VALUES("2537","015525014","Calaocan","01","0155","015525");
-INSERT INTO barangay VALUES("2538","015525019","Inamotan","01","0155","015525");
-INSERT INTO barangay VALUES("2539","015525023","Lelemaan","01","0155","015525");
-INSERT INTO barangay VALUES("2540","015525024","Licsi","01","0155","015525");
-INSERT INTO barangay VALUES("2541","015525025","Lipit Norte","01","0155","015525");
-INSERT INTO barangay VALUES("2542","015525026","Lipit Sur","01","0155","015525");
-INSERT INTO barangay VALUES("2543","015525027","Parian","01","0155","015525");
-INSERT INTO barangay VALUES("2544","015525028","Matolong","01","0155","015525");
-INSERT INTO barangay VALUES("2545","015525030","Mermer","01","0155","015525");
-INSERT INTO barangay VALUES("2546","015525031","Nalsian","01","0155","015525");
-INSERT INTO barangay VALUES("2547","015525033","Oraan East","01","0155","015525");
-INSERT INTO barangay VALUES("2548","015525034","Oraan West","01","0155","015525");
-INSERT INTO barangay VALUES("2549","015525036","Pantal","01","0155","015525");
-INSERT INTO barangay VALUES("2550","015525037","Pao","01","0155","015525");
-INSERT INTO barangay VALUES("2551","015525039","Poblacion","01","0155","015525");
-INSERT INTO barangay VALUES("2552","015525040","Pugaro","01","0155","015525");
-INSERT INTO barangay VALUES("2553","015525041","San Ramon","01","0155","015525");
-INSERT INTO barangay VALUES("2554","015525042","Santa Ines","01","0155","015525");
-INSERT INTO barangay VALUES("2555","015525043","Sapang","01","0155","015525");
-INSERT INTO barangay VALUES("2556","015525045","Tebuel","01","0155","015525");
-INSERT INTO barangay VALUES("2557","015526001","Alitaya","01","0155","015526");
-INSERT INTO barangay VALUES("2558","015526002","Amansabina","01","0155","015526");
-INSERT INTO barangay VALUES("2559","015526003","Anolid","01","0155","015526");
-INSERT INTO barangay VALUES("2560","015526004","Banaoang","01","0155","015526");
-INSERT INTO barangay VALUES("2561","015526005","Bantayan","01","0155","015526");
-INSERT INTO barangay VALUES("2562","015526006","Bari","01","0155","015526");
-INSERT INTO barangay VALUES("2563","015526007","Bateng","01","0155","015526");
-INSERT INTO barangay VALUES("2564","015526008","Buenlag","01","0155","015526");
-INSERT INTO barangay VALUES("2565","015526009","David","01","0155","015526");
-INSERT INTO barangay VALUES("2566","015526010","Embarcadero","01","0155","015526");
-INSERT INTO barangay VALUES("2567","015526011","Gueguesangen","01","0155","015526");
-INSERT INTO barangay VALUES("2568","015526012","Guesang","01","0155","015526");
-INSERT INTO barangay VALUES("2569","015526013","Guiguilonen","01","0155","015526");
-INSERT INTO barangay VALUES("2570","015526014","Guilig","01","0155","015526");
-INSERT INTO barangay VALUES("2571","015526015","Inlambo","01","0155","015526");
-INSERT INTO barangay VALUES("2572","015526016","Lanas","01","0155","015526");
-INSERT INTO barangay VALUES("2573","015526017","Landas","01","0155","015526");
-INSERT INTO barangay VALUES("2574","015526018","Maasin","01","0155","015526");
-INSERT INTO barangay VALUES("2575","015526019","Macayug","01","0155","015526");
-INSERT INTO barangay VALUES("2576","015526020","Malabago","01","0155","015526");
-INSERT INTO barangay VALUES("2577","015526021","Navaluan","01","0155","015526");
-INSERT INTO barangay VALUES("2578","015526022","Nibaliw","01","0155","015526");
-INSERT INTO barangay VALUES("2579","015526023","Osiem","01","0155","015526");
-INSERT INTO barangay VALUES("2580","015526024","Palua","01","0155","015526");
-INSERT INTO barangay VALUES("2581","015526025","Poblacion","01","0155","015526");
-INSERT INTO barangay VALUES("2582","015526026","Pogo","01","0155","015526");
-INSERT INTO barangay VALUES("2583","015526027","Salaan","01","0155","015526");
-INSERT INTO barangay VALUES("2584","015526028","Salay","01","0155","015526");
-INSERT INTO barangay VALUES("2585","015526029","Tebag","01","0155","015526");
-INSERT INTO barangay VALUES("2586","015526030","Talogtog","01","0155","015526");
-INSERT INTO barangay VALUES("2587","015527001","Andangin","01","0155","015527");
-INSERT INTO barangay VALUES("2588","015527002","Arellano Street (Pob.)","01","0155","015527");
-INSERT INTO barangay VALUES("2589","015527003","Bantay","01","0155","015527");
-INSERT INTO barangay VALUES("2590","015527004","Bantocaling","01","0155","015527");
-INSERT INTO barangay VALUES("2591","015527005","Baracbac","01","0155","015527");
-INSERT INTO barangay VALUES("2592","015527006","Peania Pedania (Bedania)","01","0155","015527");
-INSERT INTO barangay VALUES("2593","015527007","Bogtong Bolo","01","0155","015527");
-INSERT INTO barangay VALUES("2594","015527008","Bogtong Bunao","01","0155","015527");
-INSERT INTO barangay VALUES("2595","015527009","Bogtong Centro","01","0155","015527");
-INSERT INTO barangay VALUES("2596","015527010","Bogtong Niog","01","0155","015527");
-INSERT INTO barangay VALUES("2597","015527011","Bogtong Silag","01","0155","015527");
-INSERT INTO barangay VALUES("2598","015527012","Buaya","01","0155","015527");
-INSERT INTO barangay VALUES("2599","015527013","Buenlag","01","0155","015527");
-INSERT INTO barangay VALUES("2600","015527014","Bueno","01","0155","015527");
-INSERT INTO barangay VALUES("2601","015527015","Bunagan","01","0155","015527");
-INSERT INTO barangay VALUES("2602","015527017","Bunlalacao","01","0155","015527");
-INSERT INTO barangay VALUES("2603","015527018","Burgos Street (Pob.)","01","0155","015527");
-INSERT INTO barangay VALUES("2604","015527019","Cabaluyan 1st","01","0155","015527");
-INSERT INTO barangay VALUES("2605","015527020","Cabaluyan 2nd","01","0155","015527");
-INSERT INTO barangay VALUES("2606","015527021","Cabarabuan","01","0155","015527");
-INSERT INTO barangay VALUES("2607","015527022","Cabaruan","01","0155","015527");
-INSERT INTO barangay VALUES("2608","015527023","Cabayaoasan","01","0155","015527");
-INSERT INTO barangay VALUES("2609","015527024","Cabayugan","01","0155","015527");
-INSERT INTO barangay VALUES("2610","015527025","Cacaoiten","01","0155","015527");
-INSERT INTO barangay VALUES("2611","015527026","Calumboyan Norte","01","0155","015527");
-INSERT INTO barangay VALUES("2612","015527027","Calumboyan Sur","01","0155","015527");
-INSERT INTO barangay VALUES("2613","015527028","Calvo (Pob.)","01","0155","015527");
-INSERT INTO barangay VALUES("2614","015527029","Casilagan","01","0155","015527");
-INSERT INTO barangay VALUES("2615","015527030","Catarataraan","01","0155","015527");
-INSERT INTO barangay VALUES("2616","015527031","Caturay Norte","01","0155","015527");
-INSERT INTO barangay VALUES("2617","015527032","Caturay Sur","01","0155","015527");
-INSERT INTO barangay VALUES("2618","015527033","Caviernesan","01","0155","015527");
-INSERT INTO barangay VALUES("2619","015527034","Dorongan Ketaket","01","0155","015527");
-INSERT INTO barangay VALUES("2620","015527035","Dorongan Linmansangan","01","0155","015527");
-INSERT INTO barangay VALUES("2621","015527036","Dorongan Punta","01","0155","015527");
-INSERT INTO barangay VALUES("2622","015527037","Dorongan Sawat","01","0155","015527");
-INSERT INTO barangay VALUES("2623","015527038","Dorongan Valerio","01","0155","015527");
-INSERT INTO barangay VALUES("2624","015527039","General Luna (Pob.)","01","0155","015527");
-INSERT INTO barangay VALUES("2625","015527040","Historia","01","0155","015527");
-INSERT INTO barangay VALUES("2626","015527041","Lawak Langka","01","0155","015527");
-INSERT INTO barangay VALUES("2627","015527042","Linmansangan","01","0155","015527");
-INSERT INTO barangay VALUES("2628","015527043","Lopez (Pob.)","01","0155","015527");
-INSERT INTO barangay VALUES("2629","015527044","Mabini (Pob.)","01","0155","015527");
-INSERT INTO barangay VALUES("2630","015527045","Macarang","01","0155","015527");
-INSERT INTO barangay VALUES("2631","015527046","Malabobo","01","0155","015527");
-INSERT INTO barangay VALUES("2632","015527047","Malibong","01","0155","015527");
-INSERT INTO barangay VALUES("2633","015527048","Malunec","01","0155","015527");
-INSERT INTO barangay VALUES("2634","015527049","Maravilla (Pob.)","01","0155","015527");
-INSERT INTO barangay VALUES("2635","015527050","Maravilla-Arellano Ext. (Pob.)","01","0155","015527");
-INSERT INTO barangay VALUES("2636","015527051","Muelang","01","0155","015527");
-INSERT INTO barangay VALUES("2637","015527052","Naguilayan East","01","0155","015527");
-INSERT INTO barangay VALUES("2638","015527053","Naguilayan West","01","0155","015527");
-INSERT INTO barangay VALUES("2639","015527054","Nancasalan","01","0155","015527");
-INSERT INTO barangay VALUES("2640","015527055","Niog-Cabison-Bulaney","01","0155","015527");
-INSERT INTO barangay VALUES("2641","015527056","Olegario-Caoile (Pob.)","01","0155","015527");
-INSERT INTO barangay VALUES("2642","015527057","Olo Cacamposan","01","0155","015527");
-INSERT INTO barangay VALUES("2643","015527058","Olo Cafabrosan","01","0155","015527");
-INSERT INTO barangay VALUES("2644","015527059","Olo Cagarlitan","01","0155","015527");
-INSERT INTO barangay VALUES("2645","015527060","Osmeña (Pob.)","01","0155","015527");
-INSERT INTO barangay VALUES("2646","015527061","Pacalat","01","0155","015527");
-INSERT INTO barangay VALUES("2647","015527062","Pampano","01","0155","015527");
-INSERT INTO barangay VALUES("2648","015527063","Parian","01","0155","015527");
-INSERT INTO barangay VALUES("2649","015527064","Paul","01","0155","015527");
-INSERT INTO barangay VALUES("2650","015527065","Pogon-Aniat","01","0155","015527");
-INSERT INTO barangay VALUES("2651","015527066","Pogon-Lomboy (Pob.)","01","0155","015527");
-INSERT INTO barangay VALUES("2652","015527067","Ponglo-Baleg","01","0155","015527");
-INSERT INTO barangay VALUES("2653","015527068","Ponglo-Muelag","01","0155","015527");
-INSERT INTO barangay VALUES("2654","015527069","Quetegan (Pogon-Baleg)","01","0155","015527");
-INSERT INTO barangay VALUES("2655","015527070","Quezon (Pob.)","01","0155","015527");
-INSERT INTO barangay VALUES("2656","015527071","Salavante","01","0155","015527");
-INSERT INTO barangay VALUES("2657","015527072","Sapang","01","0155","015527");
-INSERT INTO barangay VALUES("2658","015527073","Sonson Ongkit","01","0155","015527");
-INSERT INTO barangay VALUES("2659","015527074","Suaco","01","0155","015527");
-INSERT INTO barangay VALUES("2660","015527075","Tagac","01","0155","015527");
-INSERT INTO barangay VALUES("2661","015527076","Takipan","01","0155","015527");
-INSERT INTO barangay VALUES("2662","015527077","Talogtog","01","0155","015527");
-INSERT INTO barangay VALUES("2663","015527078","Tococ Barikir","01","0155","015527");
-INSERT INTO barangay VALUES("2664","015527079","Torre 1st","01","0155","015527");
-INSERT INTO barangay VALUES("2665","015527080","Torre 2nd","01","0155","015527");
-INSERT INTO barangay VALUES("2666","015527081","Torres Bugallon (Pob.)","01","0155","015527");
-INSERT INTO barangay VALUES("2667","015527082","Umangan","01","0155","015527");
-INSERT INTO barangay VALUES("2668","015527083","Zamora (Pob.)","01","0155","015527");
-INSERT INTO barangay VALUES("2669","015528001","Amanoaoac","01","0155","015528");
-INSERT INTO barangay VALUES("2670","015528002","Apaya","01","0155","015528");
-INSERT INTO barangay VALUES("2671","015528003","Aserda","01","0155","015528");
-INSERT INTO barangay VALUES("2672","015528004","Baloling","01","0155","015528");
-INSERT INTO barangay VALUES("2673","015528006","Coral","01","0155","015528");
-INSERT INTO barangay VALUES("2674","015528007","Golden","01","0155","015528");
-INSERT INTO barangay VALUES("2675","015528008","Jimenez","01","0155","015528");
-INSERT INTO barangay VALUES("2676","015528009","Lambayan","01","0155","015528");
-INSERT INTO barangay VALUES("2677","015528010","Luyan (Luyan South)","01","0155","015528");
-INSERT INTO barangay VALUES("2678","015528012","Nilombot","01","0155","015528");
-INSERT INTO barangay VALUES("2679","015528013","Pias","01","0155","015528");
-INSERT INTO barangay VALUES("2680","015528014","Poblacion","01","0155","015528");
-INSERT INTO barangay VALUES("2681","015528015","Primicias","01","0155","015528");
-INSERT INTO barangay VALUES("2682","015528016","Santa Maria (Luyan North)","01","0155","015528");
-INSERT INTO barangay VALUES("2683","015528018","Torres","01","0155","015528");
-INSERT INTO barangay VALUES("2684","015529001","Barangobong","01","0155","015529");
-INSERT INTO barangay VALUES("2685","015529003","Batchelor East","01","0155","015529");
-INSERT INTO barangay VALUES("2686","015529004","Batchelor West","01","0155","015529");
-INSERT INTO barangay VALUES("2687","015529005","Burgos (San Narciso)","01","0155","015529");
-INSERT INTO barangay VALUES("2688","015529006","Cacandungan","01","0155","015529");
-INSERT INTO barangay VALUES("2689","015529007","Calapugan","01","0155","015529");
-INSERT INTO barangay VALUES("2690","015529008","Canarem","01","0155","015529");
-INSERT INTO barangay VALUES("2691","015529009","Luna","01","0155","015529");
-INSERT INTO barangay VALUES("2692","015529011","Poblacion East","01","0155","015529");
-INSERT INTO barangay VALUES("2693","015529012","Poblacion West","01","0155","015529");
-INSERT INTO barangay VALUES("2694","015529013","Rizal","01","0155","015529");
-INSERT INTO barangay VALUES("2695","015529014","Salud","01","0155","015529");
-INSERT INTO barangay VALUES("2696","015529015","San Eugenio","01","0155","015529");
-INSERT INTO barangay VALUES("2697","015529017","San Macario Norte","01","0155","015529");
-INSERT INTO barangay VALUES("2698","015529018","San Macario Sur","01","0155","015529");
-INSERT INTO barangay VALUES("2699","015529019","San Maximo","01","0155","015529");
-INSERT INTO barangay VALUES("2700","015529020","San Miguel","01","0155","015529");
-INSERT INTO barangay VALUES("2701","015529022","Silag","01","0155","015529");
-INSERT INTO barangay VALUES("2702","015530001","Alipangpang","01","0155","015530");
-INSERT INTO barangay VALUES("2703","015530002","Amagbagan","01","0155","015530");
-INSERT INTO barangay VALUES("2704","015530003","Balacag","01","0155","015530");
-INSERT INTO barangay VALUES("2705","015530004","Banding","01","0155","015530");
-INSERT INTO barangay VALUES("2706","015530006","Bantugan","01","0155","015530");
-INSERT INTO barangay VALUES("2707","015530007","Batakil","01","0155","015530");
-INSERT INTO barangay VALUES("2708","015530008","Bobonan","01","0155","015530");
-INSERT INTO barangay VALUES("2709","015530009","Buneg","01","0155","015530");
-INSERT INTO barangay VALUES("2710","015530010","Cablong","01","0155","015530");
-INSERT INTO barangay VALUES("2711","015530011","Castaño","01","0155","015530");
-INSERT INTO barangay VALUES("2712","015530012","Dilan","01","0155","015530");
-INSERT INTO barangay VALUES("2713","015530013","Don Benito","01","0155","015530");
-INSERT INTO barangay VALUES("2714","015530014","Haway","01","0155","015530");
-INSERT INTO barangay VALUES("2715","015530015","Imbalbalatong","01","0155","015530");
-INSERT INTO barangay VALUES("2716","015530016","Inoman","01","0155","015530");
-INSERT INTO barangay VALUES("2717","015530017","Laoac","01","0155","015530");
-INSERT INTO barangay VALUES("2718","015530018","Maambal","01","0155","015530");
-INSERT INTO barangay VALUES("2719","015530019","Malasin","01","0155","015530");
-INSERT INTO barangay VALUES("2720","015530020","Malokiat","01","0155","015530");
-INSERT INTO barangay VALUES("2721","015530021","Manaol","01","0155","015530");
-INSERT INTO barangay VALUES("2722","015530022","Nama","01","0155","015530");
-INSERT INTO barangay VALUES("2723","015530023","Nantangalan","01","0155","015530");
-INSERT INTO barangay VALUES("2724","015530024","Palacpalac","01","0155","015530");
-INSERT INTO barangay VALUES("2725","015530025","Palguyod","01","0155","015530");
-INSERT INTO barangay VALUES("2726","015530026","Poblacion I","01","0155","015530");
-INSERT INTO barangay VALUES("2727","015530027","Poblacion II","01","0155","015530");
-INSERT INTO barangay VALUES("2728","015530028","Poblacion III","01","0155","015530");
-INSERT INTO barangay VALUES("2729","015530029","Poblacion IV","01","0155","015530");
-INSERT INTO barangay VALUES("2730","015530030","Rosario","01","0155","015530");
-INSERT INTO barangay VALUES("2731","015530031","Sugcong","01","0155","015530");
-INSERT INTO barangay VALUES("2732","015530032","Talogtog","01","0155","015530");
-INSERT INTO barangay VALUES("2733","015530033","Tulnac","01","0155","015530");
-INSERT INTO barangay VALUES("2734","015530034","Villegas","01","0155","015530");
-INSERT INTO barangay VALUES("2735","015530035","Casanfernandoan","01","0155","015530");
-INSERT INTO barangay VALUES("2736","015531001","Acop","01","0155","015531");
-INSERT INTO barangay VALUES("2737","015531002","Bakitbakit","01","0155","015531");
-INSERT INTO barangay VALUES("2738","015531003","Balingcanaway","01","0155","015531");
-INSERT INTO barangay VALUES("2739","015531004","Cabalaoangan Norte","01","0155","015531");
-INSERT INTO barangay VALUES("2740","015531005","Cabalaoangan Sur","01","0155","015531");
-INSERT INTO barangay VALUES("2741","015531006","Camangaan","01","0155","015531");
-INSERT INTO barangay VALUES("2742","015531007","Capitan Tomas","01","0155","015531");
-INSERT INTO barangay VALUES("2743","015531008","Carmay West","01","0155","015531");
-INSERT INTO barangay VALUES("2744","015531009","Carmen East","01","0155","015531");
-INSERT INTO barangay VALUES("2745","015531010","Carmen West","01","0155","015531");
-INSERT INTO barangay VALUES("2746","015531012","Casanicolasan","01","0155","015531");
-INSERT INTO barangay VALUES("2747","015531013","Coliling","01","0155","015531");
-INSERT INTO barangay VALUES("2748","015531014","Calanutan (Don Felix Coloma)","01","0155","015531");
-INSERT INTO barangay VALUES("2749","015531015","Guiling","01","0155","015531");
-INSERT INTO barangay VALUES("2750","015531016","Palakipak","01","0155","015531");
-INSERT INTO barangay VALUES("2751","015531017","Pangaoan","01","0155","015531");
-INSERT INTO barangay VALUES("2752","015531018","Rabago","01","0155","015531");
-INSERT INTO barangay VALUES("2753","015531019","Rizal","01","0155","015531");
-INSERT INTO barangay VALUES("2754","015531020","Salvacion","01","0155","015531");
-INSERT INTO barangay VALUES("2755","015531021","San Antonio","01","0155","015531");
-INSERT INTO barangay VALUES("2756","015531022","San Bartolome","01","0155","015531");
-INSERT INTO barangay VALUES("2757","015531023","San Isidro","01","0155","015531");
-INSERT INTO barangay VALUES("2758","015531024","San Luis","01","0155","015531");
-INSERT INTO barangay VALUES("2759","015531025","San Pedro East","01","0155","015531");
-INSERT INTO barangay VALUES("2760","015531026","San Pedro West","01","0155","015531");
-INSERT INTO barangay VALUES("2761","015531027","San Vicente","01","0155","015531");
-INSERT INTO barangay VALUES("2762","015531028","San Angel","01","0155","015531");
-INSERT INTO barangay VALUES("2763","015531029","Station District","01","0155","015531");
-INSERT INTO barangay VALUES("2764","015531031","Tomana East","01","0155","015531");
-INSERT INTO barangay VALUES("2765","015531032","Tomana West","01","0155","015531");
-INSERT INTO barangay VALUES("2766","015531033","Zone I (Pob.)","01","0155","015531");
-INSERT INTO barangay VALUES("2767","015531034","Zone IV (Pob.)","01","0155","015531");
-INSERT INTO barangay VALUES("2768","015531035","Carmay East","01","0155","015531");
-INSERT INTO barangay VALUES("2769","015531036","Don Antonio Village","01","0155","015531");
-INSERT INTO barangay VALUES("2770","015531037","Zone II (Pob.)","01","0155","015531");
-INSERT INTO barangay VALUES("2771","015531038","Zone III (Pob.)","01","0155","015531");
-INSERT INTO barangay VALUES("2772","015531039","Zone V (Pob.)","01","0155","015531");
-INSERT INTO barangay VALUES("2773","015532001","Abanon","01","0155","015532");
-INSERT INTO barangay VALUES("2774","015532002","Agdao","01","0155","015532");
-INSERT INTO barangay VALUES("2775","015532003","Anando","01","0155","015532");
-INSERT INTO barangay VALUES("2776","015532004","Ano","01","0155","015532");
-INSERT INTO barangay VALUES("2777","015532005","Antipangol","01","0155","015532");
-INSERT INTO barangay VALUES("2778","015532006","Aponit","01","0155","015532");
-INSERT INTO barangay VALUES("2779","015532007","Bacnar","01","0155","015532");
-INSERT INTO barangay VALUES("2780","015532008","Balaya","01","0155","015532");
-INSERT INTO barangay VALUES("2781","015532009","Balayong","01","0155","015532");
-INSERT INTO barangay VALUES("2782","015532010","Baldog","01","0155","015532");
-INSERT INTO barangay VALUES("2783","015532011","Balite Sur","01","0155","015532");
-INSERT INTO barangay VALUES("2784","015532012","Balococ","01","0155","015532");
-INSERT INTO barangay VALUES("2785","015532013","Bani","01","0155","015532");
-INSERT INTO barangay VALUES("2786","015532014","Bega","01","0155","015532");
-INSERT INTO barangay VALUES("2787","015532015","Bocboc","01","0155","015532");
-INSERT INTO barangay VALUES("2788","015532016","Bugallon-Posadas Street (Pob.)","01","0155","015532");
-INSERT INTO barangay VALUES("2789","015532017","Bogaoan","01","0155","015532");
-INSERT INTO barangay VALUES("2790","015532018","Bolingit","01","0155","015532");
-INSERT INTO barangay VALUES("2791","015532019","Bolosan","01","0155","015532");
-INSERT INTO barangay VALUES("2792","015532020","Bonifacio (Pob.)","01","0155","015532");
-INSERT INTO barangay VALUES("2793","015532021","Buenglat","01","0155","015532");
-INSERT INTO barangay VALUES("2794","015532022","Burgos Padlan (Pob.)","01","0155","015532");
-INSERT INTO barangay VALUES("2795","015532023","Cacaritan","01","0155","015532");
-INSERT INTO barangay VALUES("2796","015532024","Caingal","01","0155","015532");
-INSERT INTO barangay VALUES("2797","015532025","Calobaoan","01","0155","015532");
-INSERT INTO barangay VALUES("2798","015532026","Calomboyan","01","0155","015532");
-INSERT INTO barangay VALUES("2799","015532027","Capataan","01","0155","015532");
-INSERT INTO barangay VALUES("2800","015532028","Caoayan-Kiling","01","0155","015532");
-INSERT INTO barangay VALUES("2801","015532029","Cobol","01","0155","015532");
-INSERT INTO barangay VALUES("2802","015532030","Coliling","01","0155","015532");
-INSERT INTO barangay VALUES("2803","015532031","Cruz","01","0155","015532");
-INSERT INTO barangay VALUES("2804","015532032","Doyong","01","0155","015532");
-INSERT INTO barangay VALUES("2805","015532035","Gamata","01","0155","015532");
-INSERT INTO barangay VALUES("2806","015532036","Guelew","01","0155","015532");
-INSERT INTO barangay VALUES("2807","015532037","Ilang","01","0155","015532");
-INSERT INTO barangay VALUES("2808","015532038","Inerangan","01","0155","015532");
-INSERT INTO barangay VALUES("2809","015532039","Isla","01","0155","015532");
-INSERT INTO barangay VALUES("2810","015532040","Libas","01","0155","015532");
-INSERT INTO barangay VALUES("2811","015532041","Lilimasan","01","0155","015532");
-INSERT INTO barangay VALUES("2812","015532043","Longos","01","0155","015532");
-INSERT INTO barangay VALUES("2813","015532044","Lucban (Pob.)","01","0155","015532");
-INSERT INTO barangay VALUES("2814","015532045","Mabalbalino","01","0155","015532");
-INSERT INTO barangay VALUES("2815","015532046","Mabini (Pob.)","01","0155","015532");
-INSERT INTO barangay VALUES("2816","015532047","Magtaking","01","0155","015532");
-INSERT INTO barangay VALUES("2817","015532048","Malacañang","01","0155","015532");
-INSERT INTO barangay VALUES("2818","015532050","Maliwara","01","0155","015532");
-INSERT INTO barangay VALUES("2819","015532051","Mamarlao","01","0155","015532");
-INSERT INTO barangay VALUES("2820","015532052","Manzon","01","0155","015532");
-INSERT INTO barangay VALUES("2821","015532053","Matagdem","01","0155","015532");
-INSERT INTO barangay VALUES("2822","015532054","Mestizo Norte","01","0155","015532");
-INSERT INTO barangay VALUES("2823","015532055","Naguilayan","01","0155","015532");
-INSERT INTO barangay VALUES("2824","015532056","Nilentap","01","0155","015532");
-INSERT INTO barangay VALUES("2825","015532057","Padilla-Gomez","01","0155","015532");
-INSERT INTO barangay VALUES("2826","015532058","Pagal","01","0155","015532");
-INSERT INTO barangay VALUES("2827","015532060","Palaming","01","0155","015532");
-INSERT INTO barangay VALUES("2828","015532061","Palaris (Pob.)","01","0155","015532");
-INSERT INTO barangay VALUES("2829","015532062","Palospos","01","0155","015532");
-INSERT INTO barangay VALUES("2830","015532063","Pangalangan","01","0155","015532");
-INSERT INTO barangay VALUES("2831","015532064","Pangoloan","01","0155","015532");
-INSERT INTO barangay VALUES("2832","015532065","Pangpang","01","0155","015532");
-INSERT INTO barangay VALUES("2833","015532066","Paitan-Panoypoy","01","0155","015532");
-INSERT INTO barangay VALUES("2834","015532067","Parayao","01","0155","015532");
-INSERT INTO barangay VALUES("2835","015532069","Payapa","01","0155","015532");
-INSERT INTO barangay VALUES("2836","015532070","Payar","01","0155","015532");
-INSERT INTO barangay VALUES("2837","015532071","Perez Boulevard (Pob.)","01","0155","015532");
-INSERT INTO barangay VALUES("2838","015532072","Polo","01","0155","015532");
-INSERT INTO barangay VALUES("2839","015532073","Quezon Boulevard (Pob.)","01","0155","015532");
-INSERT INTO barangay VALUES("2840","015532074","Quintong","01","0155","015532");
-INSERT INTO barangay VALUES("2841","015532075","Rizal (Pob.)","01","0155","015532");
-INSERT INTO barangay VALUES("2842","015532076","Roxas Boulevard (Pob.)","01","0155","015532");
-INSERT INTO barangay VALUES("2843","015532077","Salinap","01","0155","015532");
-INSERT INTO barangay VALUES("2844","015532078","San Juan","01","0155","015532");
-INSERT INTO barangay VALUES("2845","015532079","San Pedro-Taloy","01","0155","015532");
-INSERT INTO barangay VALUES("2846","015532080","Sapinit","01","0155","015532");
-INSERT INTO barangay VALUES("2847","015532081","PNR Station Site","01","0155","015532");
-INSERT INTO barangay VALUES("2848","015532082","Supo","01","0155","015532");
-INSERT INTO barangay VALUES("2849","015532083","Talang","01","0155","015532");
-INSERT INTO barangay VALUES("2850","015532084","Tamayo","01","0155","015532");
-INSERT INTO barangay VALUES("2851","015532085","Tandoc","01","0155","015532");
-INSERT INTO barangay VALUES("2852","015532086","Tarece","01","0155","015532");
-INSERT INTO barangay VALUES("2853","015532087","Tarectec","01","0155","015532");
-INSERT INTO barangay VALUES("2854","015532088","Tayambani","01","0155","015532");
-INSERT INTO barangay VALUES("2855","015532089","Tebag","01","0155","015532");
-INSERT INTO barangay VALUES("2856","015532090","Turac","01","0155","015532");
-INSERT INTO barangay VALUES("2857","015532091","M. Soriano","01","0155","015532");
-INSERT INTO barangay VALUES("2858","015532092","Tandang Sora","01","0155","015532");
-INSERT INTO barangay VALUES("2859","015533001","Ambalangan-Dalin","01","0155","015533");
-INSERT INTO barangay VALUES("2860","015533002","Angio","01","0155","015533");
-INSERT INTO barangay VALUES("2861","015533003","Anonang","01","0155","015533");
-INSERT INTO barangay VALUES("2862","015533004","Aramal","01","0155","015533");
-INSERT INTO barangay VALUES("2863","015533006","Bigbiga","01","0155","015533");
-INSERT INTO barangay VALUES("2864","015533007","Binday","01","0155","015533");
-INSERT INTO barangay VALUES("2865","015533008","Bolaoen","01","0155","015533");
-INSERT INTO barangay VALUES("2866","015533009","Bolasi","01","0155","015533");
-INSERT INTO barangay VALUES("2867","015533010","Cayanga","01","0155","015533");
-INSERT INTO barangay VALUES("2868","015533011","Gomot","01","0155","015533");
-INSERT INTO barangay VALUES("2869","015533012","Inmalog","01","0155","015533");
-INSERT INTO barangay VALUES("2870","015533013","Lekep-Butao","01","0155","015533");
-INSERT INTO barangay VALUES("2871","015533014","Longos","01","0155","015533");
-INSERT INTO barangay VALUES("2872","015533015","Mabilao","01","0155","015533");
-INSERT INTO barangay VALUES("2873","015533016","Nibaliw Central","01","0155","015533");
-INSERT INTO barangay VALUES("2874","015533017","Nibaliw East","01","0155","015533");
-INSERT INTO barangay VALUES("2875","015533018","Nibaliw Magliba","01","0155","015533");
-INSERT INTO barangay VALUES("2876","015533019","Palapad","01","0155","015533");
-INSERT INTO barangay VALUES("2877","015533020","Poblacion","01","0155","015533");
-INSERT INTO barangay VALUES("2878","015533021","Rabon","01","0155","015533");
-INSERT INTO barangay VALUES("2879","015533022","Sagud-Bahley","01","0155","015533");
-INSERT INTO barangay VALUES("2880","015533023","Sobol","01","0155","015533");
-INSERT INTO barangay VALUES("2881","015533024","Tempra-Guilig","01","0155","015533");
-INSERT INTO barangay VALUES("2882","015533025","Tocok","01","0155","015533");
-INSERT INTO barangay VALUES("2883","015533027","Lipit-Tomeeng","01","0155","015533");
-INSERT INTO barangay VALUES("2884","015533028","Colisao","01","0155","015533");
-INSERT INTO barangay VALUES("2885","015533029","Nibaliw Narvarte (Nibaliw West Compound)","01","0155","015533");
-INSERT INTO barangay VALUES("2886","015533030","Nibaliw Vidal (Nibaliw West Proper)","01","0155","015533");
-INSERT INTO barangay VALUES("2887","015533031","Alacan","01","0155","015533");
-INSERT INTO barangay VALUES("2888","015533032","Cabaruan","01","0155","015533");
-INSERT INTO barangay VALUES("2889","015533033","Inmalog Norte","01","0155","015533");
-INSERT INTO barangay VALUES("2890","015533034","Longos-Amangonan-Parac-Parac Fabrica","01","0155","015533");
-INSERT INTO barangay VALUES("2891","015533035","Longos Proper","01","0155","015533");
-INSERT INTO barangay VALUES("2892","015533036","Tiblong","01","0155","015533");
-INSERT INTO barangay VALUES("2893","015534001","Awai","01","0155","015534");
-INSERT INTO barangay VALUES("2894","015534002","Bolo","01","0155","015534");
-INSERT INTO barangay VALUES("2895","015534003","Capaoay (Pob.)","01","0155","015534");
-INSERT INTO barangay VALUES("2896","015534004","Casibong","01","0155","015534");
-INSERT INTO barangay VALUES("2897","015534005","Imelda (Decrito)","01","0155","015534");
-INSERT INTO barangay VALUES("2898","015534006","Guibel","01","0155","015534");
-INSERT INTO barangay VALUES("2899","015534007","Labney","01","0155","015534");
-INSERT INTO barangay VALUES("2900","015534009","Magsaysay (Capay)","01","0155","015534");
-INSERT INTO barangay VALUES("2901","015534010","Lobong","01","0155","015534");
-INSERT INTO barangay VALUES("2902","015534011","Macayug","01","0155","015534");
-INSERT INTO barangay VALUES("2903","015534013","Bagong Pag-asa (Poblacion East)","01","0155","015534");
-INSERT INTO barangay VALUES("2904","015534014","San Guillermo (Poblacion West)","01","0155","015534");
-INSERT INTO barangay VALUES("2905","015534015","San Jose","01","0155","015534");
-INSERT INTO barangay VALUES("2906","015534016","San Juan","01","0155","015534");
-INSERT INTO barangay VALUES("2907","015534017","San Roque","01","0155","015534");
-INSERT INTO barangay VALUES("2908","015534018","San Vicente","01","0155","015534");
-INSERT INTO barangay VALUES("2909","015534019","Santa Cruz","01","0155","015534");
-INSERT INTO barangay VALUES("2910","015534020","Santa Maria","01","0155","015534");
-INSERT INTO barangay VALUES("2911","015534021","Santo Tomas","01","0155","015534");
-INSERT INTO barangay VALUES("2912","015535001","San Antonio-Arzadon","01","0155","015535");
-INSERT INTO barangay VALUES("2913","015535003","Cabacaraan","01","0155","015535");
-INSERT INTO barangay VALUES("2914","015535004","Cabaritan","01","0155","015535");
-INSERT INTO barangay VALUES("2915","015535005","Flores","01","0155","015535");
-INSERT INTO barangay VALUES("2916","015535007","Guiset Norte (Pob.)","01","0155","015535");
-INSERT INTO barangay VALUES("2917","015535008","Guiset Sur (Pob.)","01","0155","015535");
-INSERT INTO barangay VALUES("2918","015535009","Lapalo","01","0155","015535");
-INSERT INTO barangay VALUES("2919","015535010","Nagsaag","01","0155","015535");
-INSERT INTO barangay VALUES("2920","015535011","Narra","01","0155","015535");
-INSERT INTO barangay VALUES("2921","015535013","San Bonifacio","01","0155","015535");
-INSERT INTO barangay VALUES("2922","015535014","San Juan","01","0155","015535");
-INSERT INTO barangay VALUES("2923","015535015","San Roque","01","0155","015535");
-INSERT INTO barangay VALUES("2924","015535016","San Vicente","01","0155","015535");
-INSERT INTO barangay VALUES("2925","015535018","Santo Domingo","01","0155","015535");
-INSERT INTO barangay VALUES("2926","015536001","Bensican","01","0155","015536");
-INSERT INTO barangay VALUES("2927","015536002","Cabitnongan","01","0155","015536");
-INSERT INTO barangay VALUES("2928","015536003","Caboloan","01","0155","015536");
-INSERT INTO barangay VALUES("2929","015536005","Cacabugaoan","01","0155","015536");
-INSERT INTO barangay VALUES("2930","015536006","Calanutian","01","0155","015536");
-INSERT INTO barangay VALUES("2931","015536007","Calaocan","01","0155","015536");
-INSERT INTO barangay VALUES("2932","015536008","Camanggaan","01","0155","015536");
-INSERT INTO barangay VALUES("2933","015536009","Camindoroan","01","0155","015536");
-INSERT INTO barangay VALUES("2934","015536010","Casaratan","01","0155","015536");
-INSERT INTO barangay VALUES("2935","015536011","Dalumpinas","01","0155","015536");
-INSERT INTO barangay VALUES("2936","015536013","Fianza","01","0155","015536");
-INSERT INTO barangay VALUES("2937","015536015","Lungao","01","0155","015536");
-INSERT INTO barangay VALUES("2938","015536016","Malico","01","0155","015536");
-INSERT INTO barangay VALUES("2939","015536017","Malilion","01","0155","015536");
-INSERT INTO barangay VALUES("2940","015536018","Nagkaysa","01","0155","015536");
-INSERT INTO barangay VALUES("2941","015536019","Nining","01","0155","015536");
-INSERT INTO barangay VALUES("2942","015536020","Poblacion East","01","0155","015536");
-INSERT INTO barangay VALUES("2943","015536021","Poblacion West","01","0155","015536");
-INSERT INTO barangay VALUES("2944","015536022","Salingcob","01","0155","015536");
-INSERT INTO barangay VALUES("2945","015536023","Salpad","01","0155","015536");
-INSERT INTO barangay VALUES("2946","015536024","San Felipe East","01","0155","015536");
-INSERT INTO barangay VALUES("2947","015536025","San Felipe West","01","0155","015536");
-INSERT INTO barangay VALUES("2948","015536026","San Isidro (Sta. Cruzan)","01","0155","015536");
-INSERT INTO barangay VALUES("2949","015536027","San Jose","01","0155","015536");
-INSERT INTO barangay VALUES("2950","015536028","San Rafael Centro","01","0155","015536");
-INSERT INTO barangay VALUES("2951","015536029","San Rafael East","01","0155","015536");
-INSERT INTO barangay VALUES("2952","015536030","San Rafael West","01","0155","015536");
-INSERT INTO barangay VALUES("2953","015536031","San Roque","01","0155","015536");
-INSERT INTO barangay VALUES("2954","015536032","Santa Maria East","01","0155","015536");
-INSERT INTO barangay VALUES("2955","015536033","Santa Maria West","01","0155","015536");
-INSERT INTO barangay VALUES("2956","015536034","Santo Tomas","01","0155","015536");
-INSERT INTO barangay VALUES("2957","015536035","Siblot","01","0155","015536");
-INSERT INTO barangay VALUES("2958","015536036","Sobol","01","0155","015536");
-INSERT INTO barangay VALUES("2959","015537001","Alac","01","0155","015537");
-INSERT INTO barangay VALUES("2960","015537002","Baligayan","01","0155","015537");
-INSERT INTO barangay VALUES("2961","015537004","Bantog","01","0155","015537");
-INSERT INTO barangay VALUES("2962","015537005","Bolintaguen","01","0155","015537");
-INSERT INTO barangay VALUES("2963","015537006","Cabangaran","01","0155","015537");
-INSERT INTO barangay VALUES("2964","015537007","Cabalaoangan","01","0155","015537");
-INSERT INTO barangay VALUES("2965","015537009","Calomboyan","01","0155","015537");
-INSERT INTO barangay VALUES("2966","015537010","Carayacan","01","0155","015537");
-INSERT INTO barangay VALUES("2967","015537011","Casantamarian","01","0155","015537");
-INSERT INTO barangay VALUES("2968","015537012","Gonzalo","01","0155","015537");
-INSERT INTO barangay VALUES("2969","015537013","Labuan","01","0155","015537");
-INSERT INTO barangay VALUES("2970","015537014","Lagasit","01","0155","015537");
-INSERT INTO barangay VALUES("2971","015537015","Lumayao","01","0155","015537");
-INSERT INTO barangay VALUES("2972","015537016","Mabini","01","0155","015537");
-INSERT INTO barangay VALUES("2973","015537017","Mantacdang","01","0155","015537");
-INSERT INTO barangay VALUES("2974","015537018","Nangapugan","01","0155","015537");
-INSERT INTO barangay VALUES("2975","015537020","San Pedro","01","0155","015537");
-INSERT INTO barangay VALUES("2976","015537021","Ungib","01","0155","015537");
-INSERT INTO barangay VALUES("2977","015537022","Poblacion Zone I","01","0155","015537");
-INSERT INTO barangay VALUES("2978","015537023","Poblacion Zone II","01","0155","015537");
-INSERT INTO barangay VALUES("2979","015537024","Poblacion Zone III","01","0155","015537");
-INSERT INTO barangay VALUES("2980","015538001","Alibago","01","0155","015538");
-INSERT INTO barangay VALUES("2981","015538002","Balingueo","01","0155","015538");
-INSERT INTO barangay VALUES("2982","015538003","Banaoang","01","0155","015538");
-INSERT INTO barangay VALUES("2983","015538004","Banzal","01","0155","015538");
-INSERT INTO barangay VALUES("2984","015538005","Botao","01","0155","015538");
-INSERT INTO barangay VALUES("2985","015538006","Cablong","01","0155","015538");
-INSERT INTO barangay VALUES("2986","015538007","Carusocan","01","0155","015538");
-INSERT INTO barangay VALUES("2987","015538008","Dalongue","01","0155","015538");
-INSERT INTO barangay VALUES("2988","015538009","Erfe","01","0155","015538");
-INSERT INTO barangay VALUES("2989","015538010","Gueguesangen","01","0155","015538");
-INSERT INTO barangay VALUES("2990","015538011","Leet","01","0155","015538");
-INSERT INTO barangay VALUES("2991","015538012","Malanay","01","0155","015538");
-INSERT INTO barangay VALUES("2992","015538013","Maningding","01","0155","015538");
-INSERT INTO barangay VALUES("2993","015538014","Maronong","01","0155","015538");
-INSERT INTO barangay VALUES("2994","015538015","Maticmatic","01","0155","015538");
-INSERT INTO barangay VALUES("2995","015538016","Minien East","01","0155","015538");
-INSERT INTO barangay VALUES("2996","015538017","Minien West","01","0155","015538");
-INSERT INTO barangay VALUES("2997","015538018","Nilombot","01","0155","015538");
-INSERT INTO barangay VALUES("2998","015538019","Patayac","01","0155","015538");
-INSERT INTO barangay VALUES("2999","015538020","Payas","01","0155","015538");
-INSERT INTO barangay VALUES("3000","015538021","Poblacion Norte","01","0155","015538");
-INSERT INTO barangay VALUES("3001","015538022","Poblacion Sur","01","0155","015538");
-INSERT INTO barangay VALUES("3002","015538023","Sapang","01","0155","015538");
-INSERT INTO barangay VALUES("3003","015538024","Sonquil","01","0155","015538");
-INSERT INTO barangay VALUES("3004","015538025","Tebag East","01","0155","015538");
-INSERT INTO barangay VALUES("3005","015538026","Tebag West","01","0155","015538");
-INSERT INTO barangay VALUES("3006","015538027","Tuliao","01","0155","015538");
-INSERT INTO barangay VALUES("3007","015538028","Ventinilla (Ventinilla East)","01","0155","015538");
-INSERT INTO barangay VALUES("3008","015538029","Primicias (Ventinilla West)","01","0155","015538");
-INSERT INTO barangay VALUES("3009","015539001","Bal-loy","01","0155","015539");
-INSERT INTO barangay VALUES("3010","015539002","Bantog","01","0155","015539");
-INSERT INTO barangay VALUES("3011","015539003","Caboluan","01","0155","015539");
-INSERT INTO barangay VALUES("3012","015539004","Cal-litang","01","0155","015539");
-INSERT INTO barangay VALUES("3013","015539005","Capandanan","01","0155","015539");
-INSERT INTO barangay VALUES("3014","015539006","Cauplasan","01","0155","015539");
-INSERT INTO barangay VALUES("3015","015539008","Dalayap","01","0155","015539");
-INSERT INTO barangay VALUES("3016","015539009","Libsong","01","0155","015539");
-INSERT INTO barangay VALUES("3017","015539010","Namagbagan","01","0155","015539");
-INSERT INTO barangay VALUES("3018","015539011","Paitan","01","0155","015539");
-INSERT INTO barangay VALUES("3019","015539012","Pataquid","01","0155","015539");
-INSERT INTO barangay VALUES("3020","015539013","Pilar","01","0155","015539");
-INSERT INTO barangay VALUES("3021","015539014","Poblacion East","01","0155","015539");
-INSERT INTO barangay VALUES("3022","015539015","Poblacion West","01","0155","015539");
-INSERT INTO barangay VALUES("3023","015539016","Pugot","01","0155","015539");
-INSERT INTO barangay VALUES("3024","015539017","Samon","01","0155","015539");
-INSERT INTO barangay VALUES("3025","015539018","San Alejandro","01","0155","015539");
-INSERT INTO barangay VALUES("3026","015539020","San Mariano","01","0155","015539");
-INSERT INTO barangay VALUES("3027","015539021","San Pablo","01","0155","015539");
-INSERT INTO barangay VALUES("3028","015539022","San Patricio","01","0155","015539");
-INSERT INTO barangay VALUES("3029","015539023","San Vicente","01","0155","015539");
-INSERT INTO barangay VALUES("3030","015539024","Santa Cruz","01","0155","015539");
-INSERT INTO barangay VALUES("3031","015539025","Santa Rosa","01","0155","015539");
-INSERT INTO barangay VALUES("3032","015540001","La Luna","01","0155","015540");
-INSERT INTO barangay VALUES("3033","015540002","Poblacion East","01","0155","015540");
-INSERT INTO barangay VALUES("3034","015540003","Poblacion West","01","0155","015540");
-INSERT INTO barangay VALUES("3035","015540004","Salvacion","01","0155","015540");
-INSERT INTO barangay VALUES("3036","015540005","San Agustin","01","0155","015540");
-INSERT INTO barangay VALUES("3037","015540006","San Antonio","01","0155","015540");
-INSERT INTO barangay VALUES("3038","015540007","San Jose","01","0155","015540");
-INSERT INTO barangay VALUES("3039","015540008","San Marcos","01","0155","015540");
-INSERT INTO barangay VALUES("3040","015540009","Santo Domingo","01","0155","015540");
-INSERT INTO barangay VALUES("3041","015540010","Santo Niño","01","0155","015540");
-INSERT INTO barangay VALUES("3042","015541001","Agat","01","0155","015541");
-INSERT INTO barangay VALUES("3043","015541002","Alibeng","01","0155","015541");
-INSERT INTO barangay VALUES("3044","015541003","Amagbagan","01","0155","015541");
-INSERT INTO barangay VALUES("3045","015541004","Artacho","01","0155","015541");
-INSERT INTO barangay VALUES("3046","015541005","Asan Norte","01","0155","015541");
-INSERT INTO barangay VALUES("3047","015541006","Asan Sur","01","0155","015541");
-INSERT INTO barangay VALUES("3048","015541007","Bantay Insik","01","0155","015541");
-INSERT INTO barangay VALUES("3049","015541008","Bila","01","0155","015541");
-INSERT INTO barangay VALUES("3050","015541009","Binmeckeg","01","0155","015541");
-INSERT INTO barangay VALUES("3051","015541010","Bulaoen East","01","0155","015541");
-INSERT INTO barangay VALUES("3052","015541011","Bulaoen West","01","0155","015541");
-INSERT INTO barangay VALUES("3053","015541012","Cabaritan","01","0155","015541");
-INSERT INTO barangay VALUES("3054","015541013","Calunetan","01","0155","015541");
-INSERT INTO barangay VALUES("3055","015541014","Camangaan","01","0155","015541");
-INSERT INTO barangay VALUES("3056","015541015","Cauringan","01","0155","015541");
-INSERT INTO barangay VALUES("3057","015541016","Dungon","01","0155","015541");
-INSERT INTO barangay VALUES("3058","015541017","Esperanza","01","0155","015541");
-INSERT INTO barangay VALUES("3059","015541018","Killo","01","0155","015541");
-INSERT INTO barangay VALUES("3060","015541019","Labayug","01","0155","015541");
-INSERT INTO barangay VALUES("3061","015541021","Paldit","01","0155","015541");
-INSERT INTO barangay VALUES("3062","015541022","Pindangan","01","0155","015541");
-INSERT INTO barangay VALUES("3063","015541023","Pinmilapil","01","0155","015541");
-INSERT INTO barangay VALUES("3064","015541024","Poblacion Central","01","0155","015541");
-INSERT INTO barangay VALUES("3065","015541025","Poblacion Norte","01","0155","015541");
-INSERT INTO barangay VALUES("3066","015541026","Poblacion Sur","01","0155","015541");
-INSERT INTO barangay VALUES("3067","015541027","Sagunto","01","0155","015541");
-INSERT INTO barangay VALUES("3068","015541028","Inmalog","01","0155","015541");
-INSERT INTO barangay VALUES("3069","015541029","Tara-tara","01","0155","015541");
-INSERT INTO barangay VALUES("3070","015542001","Baquioen","01","0155","015542");
-INSERT INTO barangay VALUES("3071","015542002","Baybay Norte","01","0155","015542");
-INSERT INTO barangay VALUES("3072","015542003","Baybay Sur","01","0155","015542");
-INSERT INTO barangay VALUES("3073","015542004","Bolaoen","01","0155","015542");
-INSERT INTO barangay VALUES("3074","015542005","Cabalitian","01","0155","015542");
-INSERT INTO barangay VALUES("3075","015542006","Calumbuyan","01","0155","015542");
-INSERT INTO barangay VALUES("3076","015542007","Camagsingalan","01","0155","015542");
-INSERT INTO barangay VALUES("3077","015542008","Caoayan","01","0155","015542");
-INSERT INTO barangay VALUES("3078","015542009","Capantolan","01","0155","015542");
-INSERT INTO barangay VALUES("3079","015542010","Macaycayawan","01","0155","015542");
-INSERT INTO barangay VALUES("3080","015542011","Paitan East","01","0155","015542");
-INSERT INTO barangay VALUES("3081","015542012","Paitan West","01","0155","015542");
-INSERT INTO barangay VALUES("3082","015542013","Pangascasan","01","0155","015542");
-INSERT INTO barangay VALUES("3083","015542014","Poblacion","01","0155","015542");
-INSERT INTO barangay VALUES("3084","015542015","Santo Domingo","01","0155","015542");
-INSERT INTO barangay VALUES("3085","015542016","Seselangen","01","0155","015542");
-INSERT INTO barangay VALUES("3086","015542018","Sioasio East","01","0155","015542");
-INSERT INTO barangay VALUES("3087","015542019","Sioasio West","01","0155","015542");
-INSERT INTO barangay VALUES("3088","015542020","Victoria","01","0155","015542");
-INSERT INTO barangay VALUES("3089","015543001","Agno","01","0155","015543");
-INSERT INTO barangay VALUES("3090","015543002","Amistad","01","0155","015543");
-INSERT INTO barangay VALUES("3091","015543003","Barangobong","01","0155","015543");
-INSERT INTO barangay VALUES("3092","015543004","Carriedo","01","0155","015543");
-INSERT INTO barangay VALUES("3093","015543005","C. Lichauco","01","0155","015543");
-INSERT INTO barangay VALUES("3094","015543006","Evangelista","01","0155","015543");
-INSERT INTO barangay VALUES("3095","015543007","Guzon","01","0155","015543");
-INSERT INTO barangay VALUES("3096","015543008","Lawak","01","0155","015543");
-INSERT INTO barangay VALUES("3097","015543009","Legaspi","01","0155","015543");
-INSERT INTO barangay VALUES("3098","015543010","Libertad","01","0155","015543");
-INSERT INTO barangay VALUES("3099","015543012","Magallanes","01","0155","015543");
-INSERT INTO barangay VALUES("3100","015543013","Panganiban","01","0155","015543");
-INSERT INTO barangay VALUES("3101","015543014","Barangay A (Pob.)","01","0155","015543");
-INSERT INTO barangay VALUES("3102","015543015","Barangay B (Pob.)","01","0155","015543");
-INSERT INTO barangay VALUES("3103","015543016","Barangay C (Pob.)","01","0155","015543");
-INSERT INTO barangay VALUES("3104","015543017","Barangay D (Pob.)","01","0155","015543");
-INSERT INTO barangay VALUES("3105","015543019","Saleng","01","0155","015543");
-INSERT INTO barangay VALUES("3106","015543020","Santo Domingo","01","0155","015543");
-INSERT INTO barangay VALUES("3107","015543022","Toketec","01","0155","015543");
-INSERT INTO barangay VALUES("3108","015543023","Trenchera","01","0155","015543");
-INSERT INTO barangay VALUES("3109","015543024","Zamora","01","0155","015543");
-INSERT INTO barangay VALUES("3110","015544001","Abot Molina","01","0155","015544");
-INSERT INTO barangay VALUES("3111","015544002","Alo-o","01","0155","015544");
-INSERT INTO barangay VALUES("3112","015544003","Amaronan","01","0155","015544");
-INSERT INTO barangay VALUES("3113","015544004","Annam","01","0155","015544");
-INSERT INTO barangay VALUES("3114","015544005","Bantug","01","0155","015544");
-INSERT INTO barangay VALUES("3115","015544006","Baracbac","01","0155","015544");
-INSERT INTO barangay VALUES("3116","015544007","Barat","01","0155","015544");
-INSERT INTO barangay VALUES("3117","015544008","Buenavista","01","0155","015544");
-INSERT INTO barangay VALUES("3118","015544010","Cabalitian","01","0155","015544");
-INSERT INTO barangay VALUES("3119","015544011","Cabaruan","01","0155","015544");
-INSERT INTO barangay VALUES("3120","015544012","Cabatuan","01","0155","015544");
-INSERT INTO barangay VALUES("3121","015544013","Cadiz","01","0155","015544");
-INSERT INTO barangay VALUES("3122","015544014","Calitlitan","01","0155","015544");
-INSERT INTO barangay VALUES("3123","015544015","Capas","01","0155","015544");
-INSERT INTO barangay VALUES("3124","015544017","Carosalesan","01","0155","015544");
-INSERT INTO barangay VALUES("3125","015544018","Casilan","01","0155","015544");
-INSERT INTO barangay VALUES("3126","015544019","Caurdanetaan","01","0155","015544");
-INSERT INTO barangay VALUES("3127","015544020","Concepcion","01","0155","015544");
-INSERT INTO barangay VALUES("3128","015544021","Decreto","01","0155","015544");
-INSERT INTO barangay VALUES("3129","015544022","Diaz","01","0155","015544");
-INSERT INTO barangay VALUES("3130","015544023","Diket","01","0155","015544");
-INSERT INTO barangay VALUES("3131","015544024","Don Justo Abalos (Caroan)","01","0155","015544");
-INSERT INTO barangay VALUES("3132","015544025","Don Montano","01","0155","015544");
-INSERT INTO barangay VALUES("3133","015544026","Esperanza","01","0155","015544");
-INSERT INTO barangay VALUES("3134","015544027","Evangelista","01","0155","015544");
-INSERT INTO barangay VALUES("3135","015544028","Flores","01","0155","015544");
-INSERT INTO barangay VALUES("3136","015544029","Fulgosino","01","0155","015544");
-INSERT INTO barangay VALUES("3137","015544030","Gonzales","01","0155","015544");
-INSERT INTO barangay VALUES("3138","015544031","La Paz","01","0155","015544");
-INSERT INTO barangay VALUES("3139","015544032","Labuan","01","0155","015544");
-INSERT INTO barangay VALUES("3140","015544033","Lauren","01","0155","015544");
-INSERT INTO barangay VALUES("3141","015544034","Lubong","01","0155","015544");
-INSERT INTO barangay VALUES("3142","015544035","Luna Weste","01","0155","015544");
-INSERT INTO barangay VALUES("3143","015544036","Luna Este","01","0155","015544");
-INSERT INTO barangay VALUES("3144","015544037","Mantacdang","01","0155","015544");
-INSERT INTO barangay VALUES("3145","015544038","Maseil-seil","01","0155","015544");
-INSERT INTO barangay VALUES("3146","015544039","Nampalcan","01","0155","015544");
-INSERT INTO barangay VALUES("3147","015544040","Nancalabasaan","01","0155","015544");
-INSERT INTO barangay VALUES("3148","015544041","Pangangaan","01","0155","015544");
-INSERT INTO barangay VALUES("3149","015544042","Papallasen","01","0155","015544");
-INSERT INTO barangay VALUES("3150","015544044","Pemienta","01","0155","015544");
-INSERT INTO barangay VALUES("3151","015544046","Poblacion East","01","0155","015544");
-INSERT INTO barangay VALUES("3152","015544047","Poblacion West","01","0155","015544");
-INSERT INTO barangay VALUES("3153","015544048","Prado","01","0155","015544");
-INSERT INTO barangay VALUES("3154","015544049","Resurreccion","01","0155","015544");
-INSERT INTO barangay VALUES("3155","015544050","Ricos","01","0155","015544");
-INSERT INTO barangay VALUES("3156","015544051","San Andres","01","0155","015544");
-INSERT INTO barangay VALUES("3157","015544052","San Juan","01","0155","015544");
-INSERT INTO barangay VALUES("3158","015544053","San Leon","01","0155","015544");
-INSERT INTO barangay VALUES("3159","015544054","San Pablo","01","0155","015544");
-INSERT INTO barangay VALUES("3160","015544055","San Vicente","01","0155","015544");
-INSERT INTO barangay VALUES("3161","015544056","Santa Maria","01","0155","015544");
-INSERT INTO barangay VALUES("3162","015544057","Santa Rosa","01","0155","015544");
-INSERT INTO barangay VALUES("3163","015544058","Sinabaan","01","0155","015544");
-INSERT INTO barangay VALUES("3164","015544059","Tanggal Sawang","01","0155","015544");
-INSERT INTO barangay VALUES("3165","015544060","Cabangaran","01","0155","015544");
-INSERT INTO barangay VALUES("3166","015544061","Carayungan Sur","01","0155","015544");
-INSERT INTO barangay VALUES("3167","015544062","Del Rosario","01","0155","015544");
-INSERT INTO barangay VALUES("3168","015545001","Angatel","01","0155","015545");
-INSERT INTO barangay VALUES("3169","015545002","Balangay","01","0155","015545");
-INSERT INTO barangay VALUES("3170","015545003","Batangcaoa","01","0155","015545");
-INSERT INTO barangay VALUES("3171","015545004","Baug","01","0155","015545");
-INSERT INTO barangay VALUES("3172","015545005","Bayaoas","01","0155","015545");
-INSERT INTO barangay VALUES("3173","015545006","Bituag","01","0155","015545");
-INSERT INTO barangay VALUES("3174","015545007","Camambugan","01","0155","015545");
-INSERT INTO barangay VALUES("3175","015545008","Dalangiring","01","0155","015545");
-INSERT INTO barangay VALUES("3176","015545009","Duplac","01","0155","015545");
-INSERT INTO barangay VALUES("3177","015545010","Galarin","01","0155","015545");
-INSERT INTO barangay VALUES("3178","015545011","Gueteb","01","0155","015545");
-INSERT INTO barangay VALUES("3179","015545012","Malaca","01","0155","015545");
-INSERT INTO barangay VALUES("3180","015545013","Malayo","01","0155","015545");
-INSERT INTO barangay VALUES("3181","015545014","Malibong","01","0155","015545");
-INSERT INTO barangay VALUES("3182","015545015","Pasibi East","01","0155","015545");
-INSERT INTO barangay VALUES("3183","015545016","Pasibi West","01","0155","015545");
-INSERT INTO barangay VALUES("3184","015545017","Pisuac","01","0155","015545");
-INSERT INTO barangay VALUES("3185","015545018","Poblacion","01","0155","015545");
-INSERT INTO barangay VALUES("3186","015545019","Real","01","0155","015545");
-INSERT INTO barangay VALUES("3187","015545020","Salavante","01","0155","015545");
-INSERT INTO barangay VALUES("3188","015545021","Sawat","01","0155","015545");
-INSERT INTO barangay VALUES("3189","015546001","Anonas","01","0155","015546");
-INSERT INTO barangay VALUES("3190","015546003","Bactad East","01","0155","015546");
-INSERT INTO barangay VALUES("3191","015546004","Dr. Pedro T. Orata (Bactad Proper)","01","0155","015546");
-INSERT INTO barangay VALUES("3192","015546005","Bayaoas","01","0155","015546");
-INSERT INTO barangay VALUES("3193","015546007","Bolaoen","01","0155","015546");
-INSERT INTO barangay VALUES("3194","015546008","Cabaruan","01","0155","015546");
-INSERT INTO barangay VALUES("3195","015546009","Cabuloan","01","0155","015546");
-INSERT INTO barangay VALUES("3196","015546011","Camanang","01","0155","015546");
-INSERT INTO barangay VALUES("3197","015546012","Camantiles","01","0155","015546");
-INSERT INTO barangay VALUES("3198","015546014","Casantaan","01","0155","015546");
-INSERT INTO barangay VALUES("3199","015546015","Catablan","01","0155","015546");
-INSERT INTO barangay VALUES("3200","015546016","Cayambanan","01","0155","015546");
-INSERT INTO barangay VALUES("3201","015546017","Consolacion","01","0155","015546");
-INSERT INTO barangay VALUES("3202","015546018","Dilan Paurido","01","0155","015546");
-INSERT INTO barangay VALUES("3203","015546019","Labit Proper","01","0155","015546");
-INSERT INTO barangay VALUES("3204","015546020","Labit West","01","0155","015546");
-INSERT INTO barangay VALUES("3205","015546022","Mabanogbog","01","0155","015546");
-INSERT INTO barangay VALUES("3206","015546023","Macalong","01","0155","015546");
-INSERT INTO barangay VALUES("3207","015546024","Nancalobasaan","01","0155","015546");
-INSERT INTO barangay VALUES("3208","015546025","Nancamaliran East","01","0155","015546");
-INSERT INTO barangay VALUES("3209","015546026","Nancamaliran West","01","0155","015546");
-INSERT INTO barangay VALUES("3210","015546027","Nancayasan","01","0155","015546");
-INSERT INTO barangay VALUES("3211","015546028","Oltama","01","0155","015546");
-INSERT INTO barangay VALUES("3212","015546029","Palina East","01","0155","015546");
-INSERT INTO barangay VALUES("3213","015546030","Palina West","01","0155","015546");
-INSERT INTO barangay VALUES("3214","015546031","Pinmaludpod","01","0155","015546");
-INSERT INTO barangay VALUES("3215","015546032","Poblacion","01","0155","015546");
-INSERT INTO barangay VALUES("3216","015546033","San Jose","01","0155","015546");
-INSERT INTO barangay VALUES("3217","015546034","San Vicente","01","0155","015546");
-INSERT INTO barangay VALUES("3218","015546035","Santa Lucia","01","0155","015546");
-INSERT INTO barangay VALUES("3219","015546036","Santo Domingo","01","0155","015546");
-INSERT INTO barangay VALUES("3220","015546037","Sugcong","01","0155","015546");
-INSERT INTO barangay VALUES("3221","015546038","Tipuso","01","0155","015546");
-INSERT INTO barangay VALUES("3222","015546039","Tulong","01","0155","015546");
-INSERT INTO barangay VALUES("3223","015547001","Amamperez","01","0155","015547");
-INSERT INTO barangay VALUES("3224","015547002","Bacag","01","0155","015547");
-INSERT INTO barangay VALUES("3225","015547003","Barangobong","01","0155","015547");
-INSERT INTO barangay VALUES("3226","015547004","Barraca","01","0155","015547");
-INSERT INTO barangay VALUES("3227","015547005","Capulaan","01","0155","015547");
-INSERT INTO barangay VALUES("3228","015547006","Caramutan","01","0155","015547");
-INSERT INTO barangay VALUES("3229","015547007","La Paz","01","0155","015547");
-INSERT INTO barangay VALUES("3230","015547008","Labit","01","0155","015547");
-INSERT INTO barangay VALUES("3231","015547009","Lipay","01","0155","015547");
-INSERT INTO barangay VALUES("3232","015547010","Lomboy","01","0155","015547");
-INSERT INTO barangay VALUES("3233","015547011","Piaz (Plaza)","01","0155","015547");
-INSERT INTO barangay VALUES("3234","015547012","Zone V (Pob.)","01","0155","015547");
-INSERT INTO barangay VALUES("3235","015547013","Zone I (Pob.)","01","0155","015547");
-INSERT INTO barangay VALUES("3236","015547014","Zone II (Pob.)","01","0155","015547");
-INSERT INTO barangay VALUES("3237","015547015","Zone III (Pob.)","01","0155","015547");
-INSERT INTO barangay VALUES("3238","015547016","Zone IV (Pob.)","01","0155","015547");
-INSERT INTO barangay VALUES("3239","015547017","Puelay","01","0155","015547");
-INSERT INTO barangay VALUES("3240","015547018","San Blas","01","0155","015547");
-INSERT INTO barangay VALUES("3241","015547019","San Nicolas","01","0155","015547");
-INSERT INTO barangay VALUES("3242","015547020","Tombod","01","0155","015547");
-INSERT INTO barangay VALUES("3243","015547021","Unzad","01","0155","015547");
-INSERT INTO barangay VALUES("3244","015548001","Anis","01","0155","015548");
-INSERT INTO barangay VALUES("3245","015548002","Botique","01","0155","015548");
-INSERT INTO barangay VALUES("3246","015548003","Caaringayan","01","0155","015548");
-INSERT INTO barangay VALUES("3247","015548004","Domingo Alarcio (Cabilaoan East)","01","0155","015548");
-INSERT INTO barangay VALUES("3248","015548005","Cabilaoan West","01","0155","015548");
-INSERT INTO barangay VALUES("3249","015548006","Cabulalaan","01","0155","015548");
-INSERT INTO barangay VALUES("3250","015548007","Calaoagan","01","0155","015548");
-INSERT INTO barangay VALUES("3251","015548008","Calmay","01","0155","015548");
-INSERT INTO barangay VALUES("3252","015548009","Casampagaan","01","0155","015548");
-INSERT INTO barangay VALUES("3253","015548010","Casanestebanan","01","0155","015548");
-INSERT INTO barangay VALUES("3254","015548011","Casantiagoan","01","0155","015548");
-INSERT INTO barangay VALUES("3255","015548012","Inmanduyan","01","0155","015548");
-INSERT INTO barangay VALUES("3256","015548013","Poblacion (Laoac)","01","0155","015548");
-INSERT INTO barangay VALUES("3257","015548014","Lebueg","01","0155","015548");
-INSERT INTO barangay VALUES("3258","015548015","Maraboc","01","0155","015548");
-INSERT INTO barangay VALUES("3259","015548016","Nanbagatan","01","0155","015548");
-INSERT INTO barangay VALUES("3260","015548017","Panaga","01","0155","015548");
-INSERT INTO barangay VALUES("3261","015548018","Talogtog","01","0155","015548");
-INSERT INTO barangay VALUES("3262","015548019","Turko","01","0155","015548");
-INSERT INTO barangay VALUES("3263","015548020","Yatyat","01","0155","015548");
-INSERT INTO barangay VALUES("3264","015548021","Balligi","01","0155","015548");
-INSERT INTO barangay VALUES("3265","015548022","Banuar","01","0155","015548");
+--
+-- Dumping data for table `barangay`
+--
 
+INSERT INTO `barangay` (`barangay_id`, `brgyCode`, `brgyDesc`, `regCode`, `provCode`, `citymunCode`) VALUES
+(1, '012801001', 'Adams (Pob.)', '01', '0128', '012801'),
+(2, '012802001', 'Bani', '01', '0128', '012802'),
+(3, '012802002', 'Buyon', '01', '0128', '012802'),
+(4, '012802003', 'Cabaruan', '01', '0128', '012802'),
+(5, '012802004', 'Cabulalaan', '01', '0128', '012802'),
+(6, '012802005', 'Cabusligan', '01', '0128', '012802'),
+(7, '012802006', 'Cadaratan', '01', '0128', '012802'),
+(8, '012802007', 'Calioet-Libong', '01', '0128', '012802'),
+(9, '012802008', 'Casilian', '01', '0128', '012802'),
+(10, '012802009', 'Corocor', '01', '0128', '012802'),
+(11, '012802011', 'Duripes', '01', '0128', '012802'),
+(12, '012802012', 'Ganagan', '01', '0128', '012802'),
+(13, '012802013', 'Libtong', '01', '0128', '012802'),
+(14, '012802014', 'Macupit', '01', '0128', '012802'),
+(15, '012802015', 'Nambaran', '01', '0128', '012802'),
+(16, '012802016', 'Natba', '01', '0128', '012802'),
+(17, '012802017', 'Paninaan', '01', '0128', '012802'),
+(18, '012802018', 'Pasiocan', '01', '0128', '012802'),
+(19, '012802019', 'Pasngal', '01', '0128', '012802'),
+(20, '012802020', 'Pipias', '01', '0128', '012802'),
+(21, '012802021', 'Pulangi', '01', '0128', '012802'),
+(22, '012802022', 'Pungto', '01', '0128', '012802'),
+(23, '012802024', 'San Agustin I (Pob.)', '01', '0128', '012802'),
+(24, '012802025', 'San Agustin II (Pob.)', '01', '0128', '012802'),
+(25, '012802027', 'San Andres I (Pob.)', '01', '0128', '012802'),
+(26, '012802028', 'San Andres II (Pob.)', '01', '0128', '012802'),
+(27, '012802030', 'San Gabriel I (Pob.)', '01', '0128', '012802'),
+(28, '012802031', 'San Gabriel II (Pob.)', '01', '0128', '012802'),
+(29, '012802033', 'San Pedro I (Pob.)', '01', '0128', '012802'),
+(30, '012802034', 'San Pedro II (Pob.)', '01', '0128', '012802'),
+(31, '012802036', 'San Roque I (Pob.)', '01', '0128', '012802'),
+(32, '012802037', 'San Roque II (Pob.)', '01', '0128', '012802'),
+(33, '012802039', 'San Simon I (Pob.)', '01', '0128', '012802'),
+(34, '012802040', 'San Simon II (Pob.)', '01', '0128', '012802'),
+(35, '012802041', 'San Vicente (Pob.)', '01', '0128', '012802'),
+(36, '012802042', 'Sangil', '01', '0128', '012802'),
+(37, '012802044', 'Santa Filomena I (Pob.)', '01', '0128', '012802'),
+(38, '012802045', 'Santa Filomena II (Pob.)', '01', '0128', '012802'),
+(39, '012802046', 'Santa Rita (Pob.)', '01', '0128', '012802'),
+(40, '012802047', 'Santo Cristo I (Pob.)', '01', '0128', '012802'),
+(41, '012802048', 'Santo Cristo II (Pob.)', '01', '0128', '012802'),
+(42, '012802050', 'Tambidao', '01', '0128', '012802'),
+(43, '012802051', 'Teppang', '01', '0128', '012802'),
+(44, '012802052', 'Tubburan', '01', '0128', '012802'),
+(45, '012803001', 'Alay-Nangbabaan (Alay 15-B)', '01', '0128', '012803'),
+(46, '012803002', 'Alogoog', '01', '0128', '012803'),
+(47, '012803003', 'Ar-arusip', '01', '0128', '012803'),
+(48, '012803004', 'Aring', '01', '0128', '012803'),
+(49, '012803005', 'Balbaldez', '01', '0128', '012803'),
+(50, '012803006', 'Bato', '01', '0128', '012803'),
+(51, '012803007', 'Camanga', '01', '0128', '012803'),
+(52, '012803008', 'Canaan (Pob.)', '01', '0128', '012803'),
+(53, '012803009', 'Caraitan', '01', '0128', '012803'),
+(54, '012803011', 'Gabut Norte', '01', '0128', '012803'),
+(55, '012803012', 'Gabut Sur', '01', '0128', '012803'),
+(56, '012803013', 'Garreta (Pob.)', '01', '0128', '012803'),
+(57, '012803016', 'Labut', '01', '0128', '012803'),
+(58, '012803017', 'Lacuben', '01', '0128', '012803'),
+(59, '012803018', 'Lubigan', '01', '0128', '012803'),
+(60, '012803020', 'Mabusag Norte', '01', '0128', '012803'),
+(61, '012803021', 'Mabusag Sur', '01', '0128', '012803'),
+(62, '012803022', 'Madupayas', '01', '0128', '012803'),
+(63, '012803023', 'Morong', '01', '0128', '012803'),
+(64, '012803025', 'Nagrebcan', '01', '0128', '012803'),
+(65, '012803026', 'Napu', '01', '0128', '012803'),
+(66, '012803027', 'La Virgen Milagrosa (Paguetpet)', '01', '0128', '012803'),
+(67, '012803028', 'Pagsanahan Norte', '01', '0128', '012803'),
+(68, '012803029', 'Pagsanahan Sur', '01', '0128', '012803'),
+(69, '012803030', 'Paltit', '01', '0128', '012803'),
+(70, '012803031', 'Parang', '01', '0128', '012803'),
+(71, '012803032', 'Pasuc', '01', '0128', '012803'),
+(72, '012803034', 'Santa Cruz Norte', '01', '0128', '012803'),
+(73, '012803035', 'Santa Cruz Sur', '01', '0128', '012803'),
+(74, '012803036', 'Saud', '01', '0128', '012803'),
+(75, '012803037', 'Turod', '01', '0128', '012803'),
+(76, '012804001', 'Abaca', '01', '0128', '012804'),
+(77, '012804002', 'Bacsil', '01', '0128', '012804'),
+(78, '012804003', 'Banban', '01', '0128', '012804'),
+(79, '012804004', 'Baruyen', '01', '0128', '012804'),
+(80, '012804005', 'Dadaor', '01', '0128', '012804'),
+(81, '012804006', 'Lanao', '01', '0128', '012804'),
+(82, '012804007', 'Malasin', '01', '0128', '012804'),
+(83, '012804008', 'Manayon', '01', '0128', '012804'),
+(84, '012804009', 'Masikil', '01', '0128', '012804'),
+(85, '012804010', 'Nagbalagan', '01', '0128', '012804'),
+(86, '012804011', 'Payac', '01', '0128', '012804'),
+(87, '012804012', 'San Lorenzo (Pob.)', '01', '0128', '012804'),
+(88, '012804014', 'Taguiporo', '01', '0128', '012804'),
+(89, '012804015', 'Utol', '01', '0128', '012804'),
+(90, '012805001', 'Aglipay (Pob.)', '01', '0128', '012805'),
+(91, '012805002', 'Baay', '01', '0128', '012805'),
+(92, '012805003', 'Baligat', '01', '0128', '012805'),
+(93, '012805004', 'Bungon', '01', '0128', '012805'),
+(94, '012805005', 'Baoa East', '01', '0128', '012805'),
+(95, '012805006', 'Baoa West', '01', '0128', '012805'),
+(96, '012805007', 'Barani (Pob.)', '01', '0128', '012805'),
+(97, '012805009', 'Ben-agan (Pob.)', '01', '0128', '012805'),
+(98, '012805010', 'Bil-loca', '01', '0128', '012805'),
+(99, '012805011', 'Biningan', '01', '0128', '012805'),
+(100, '012805012', 'Callaguip (Pob.)', '01', '0128', '012805'),
+(101, '012805013', 'Camandingan', '01', '0128', '012805'),
+(102, '012805014', 'Camguidan', '01', '0128', '012805'),
+(103, '012805015', 'Cangrunaan (Pob.)', '01', '0128', '012805'),
+(104, '012805016', 'Capacuan', '01', '0128', '012805'),
+(105, '012805017', 'Caunayan (Pob.)', '01', '0128', '012805'),
+(106, '012805018', 'Valdez Pob. (Caoayan)', '01', '0128', '012805'),
+(107, '012805019', 'Colo', '01', '0128', '012805'),
+(108, '012805020', 'Pimentel (Cubol)', '01', '0128', '012805'),
+(109, '012805021', 'Dariwdiw', '01', '0128', '012805'),
+(110, '012805022', 'Acosta Pob. (Iloilo)', '01', '0128', '012805'),
+(111, '012805023', 'Ablan Pob. (Labucao)', '01', '0128', '012805'),
+(112, '012805024', 'Lacub (Pob.)', '01', '0128', '012805'),
+(113, '012805025', 'Mabaleng', '01', '0128', '012805'),
+(114, '012805026', 'Magnuang', '01', '0128', '012805'),
+(115, '012805027', 'Maipalig', '01', '0128', '012805'),
+(116, '012805028', 'Nagbacalan', '01', '0128', '012805'),
+(117, '012805029', 'Naguirangan', '01', '0128', '012805'),
+(118, '012805030', 'Ricarte Pob. (Nalasin)', '01', '0128', '012805'),
+(119, '012805031', 'Palongpong', '01', '0128', '012805'),
+(120, '012805032', 'Palpalicong (Pob.)', '01', '0128', '012805'),
+(121, '012805033', 'Parangopong', '01', '0128', '012805'),
+(122, '012805034', 'Payao', '01', '0128', '012805'),
+(123, '012805035', 'Quiling Norte', '01', '0128', '012805'),
+(124, '012805036', 'Quiling Sur', '01', '0128', '012805'),
+(125, '012805037', 'Quiom', '01', '0128', '012805'),
+(126, '012805038', 'Rayuray', '01', '0128', '012805'),
+(127, '012805039', 'San Julian (Pob.)', '01', '0128', '012805'),
+(128, '012805040', 'San Mateo', '01', '0128', '012805'),
+(129, '012805041', 'San Pedro', '01', '0128', '012805'),
+(130, '012805042', 'Suabit (Pob.)', '01', '0128', '012805'),
+(131, '012805043', 'Sumader', '01', '0128', '012805'),
+(132, '012805044', 'Tabug', '01', '0128', '012805'),
+(133, '012806001', 'Ablan Sarat', '01', '0128', '012806'),
+(134, '012806002', 'Agaga', '01', '0128', '012806'),
+(135, '012806005', 'Bayog', '01', '0128', '012806'),
+(136, '012806006', 'Bobon', '01', '0128', '012806'),
+(137, '012806007', 'Buduan (Malituek)', '01', '0128', '012806'),
+(138, '012806008', 'Nagsurot', '01', '0128', '012806'),
+(139, '012806009', 'Paayas', '01', '0128', '012806'),
+(140, '012806010', 'Pagali', '01', '0128', '012806'),
+(141, '012806011', 'Poblacion', '01', '0128', '012806'),
+(142, '012806013', 'Saoit', '01', '0128', '012806'),
+(143, '012806014', 'Tanap', '01', '0128', '012806'),
+(144, '012807001', 'Angset', '01', '0128', '012807'),
+(145, '012807003', 'Barbaqueso (Pob.)', '01', '0128', '012807'),
+(146, '012807004', 'Virbira', '01', '0128', '012807'),
+(147, '012808001', 'Anggapang Norte', '01', '0128', '012808'),
+(148, '012808002', 'Anggapang Sur', '01', '0128', '012808'),
+(149, '012808003', 'Bimmanga', '01', '0128', '012808'),
+(150, '012808004', 'Cabuusan', '01', '0128', '012808'),
+(151, '012808005', 'Comcomloong', '01', '0128', '012808'),
+(152, '012808006', 'Gaang', '01', '0128', '012808'),
+(153, '012808007', 'Lang-ayan-Baramban', '01', '0128', '012808'),
+(154, '012808008', 'Lioes', '01', '0128', '012808'),
+(155, '012808009', 'Maglaoi Centro', '01', '0128', '012808'),
+(156, '012808010', 'Maglaoi Norte', '01', '0128', '012808'),
+(157, '012808011', 'Maglaoi Sur', '01', '0128', '012808'),
+(158, '012808013', 'Paguludan-Salindeg', '01', '0128', '012808'),
+(159, '012808014', 'Pangil', '01', '0128', '012808'),
+(160, '012808015', 'Pias Norte', '01', '0128', '012808'),
+(161, '012808016', 'Pias Sur', '01', '0128', '012808'),
+(162, '012808017', 'Poblacion I', '01', '0128', '012808'),
+(163, '012808018', 'Poblacion II', '01', '0128', '012808'),
+(164, '012808019', 'Salugan', '01', '0128', '012808'),
+(165, '012808020', 'San Simeon', '01', '0128', '012808'),
+(166, '012808021', 'Santa Cruz', '01', '0128', '012808'),
+(167, '012808022', 'Tapao-Tigue', '01', '0128', '012808'),
+(168, '012808023', 'Torre', '01', '0128', '012808'),
+(169, '012808024', 'Victoria', '01', '0128', '012808'),
+(170, '012809001', 'Albano (Pob.)', '01', '0128', '012809'),
+(171, '012809002', 'Bacsil', '01', '0128', '012809'),
+(172, '012809003', 'Bagut', '01', '0128', '012809'),
+(173, '012809004', 'Parado (Bangay)', '01', '0128', '012809'),
+(174, '012809005', 'Baresbes', '01', '0128', '012809'),
+(175, '012809006', 'Barong', '01', '0128', '012809'),
+(176, '012809007', 'Bungcag', '01', '0128', '012809'),
+(177, '012809009', 'Cali', '01', '0128', '012809'),
+(178, '012809010', 'Capasan', '01', '0128', '012809'),
+(179, '012809011', 'Dancel (Pob.)', '01', '0128', '012809'),
+(180, '012809012', 'Foz', '01', '0128', '012809'),
+(181, '012809013', 'Guerrero (Pob.)', '01', '0128', '012809'),
+(182, '012809014', 'Lanas', '01', '0128', '012809'),
+(183, '012809015', 'Lumbad', '01', '0128', '012809'),
+(184, '012809016', 'Madamba (Pob.)', '01', '0128', '012809'),
+(185, '012809017', 'Mandaloque', '01', '0128', '012809'),
+(186, '012809018', 'Medina', '01', '0128', '012809'),
+(187, '012809019', 'Ver (Naglayaan)', '01', '0128', '012809'),
+(188, '012809020', 'San Marcelino (Padong)', '01', '0128', '012809'),
+(189, '012809021', 'Puruganan (Pob.)', '01', '0128', '012809'),
+(190, '012809022', 'Peralta (Pob.)', '01', '0128', '012809'),
+(191, '012809023', 'Root (Baldias)', '01', '0128', '012809'),
+(192, '012809024', 'Sagpatan', '01', '0128', '012809'),
+(193, '012809025', 'Saludares', '01', '0128', '012809'),
+(194, '012809026', 'San Esteban', '01', '0128', '012809'),
+(195, '012809027', 'Espiritu', '01', '0128', '012809'),
+(196, '012809028', 'Sulquiano (Sidiran)', '01', '0128', '012809'),
+(197, '012809029', 'San Francisco (Surrate)', '01', '0128', '012809'),
+(198, '012809030', 'Suyo', '01', '0128', '012809'),
+(199, '012809031', 'San Marcos', '01', '0128', '012809'),
+(200, '012809032', 'Elizabeth', '01', '0128', '012809'),
+(201, '012810001', 'Dumalneg', '01', '0128', '012810'),
+(202, '012810002', 'San Isidro', '01', '0128', '012810'),
+(203, '012811001', 'Balioeg', '01', '0128', '012811'),
+(204, '012811002', 'Bangsar', '01', '0128', '012811'),
+(205, '012811003', 'Barbarangay', '01', '0128', '012811'),
+(206, '012811004', 'Bomitog', '01', '0128', '012811'),
+(207, '012811005', 'Bugasi', '01', '0128', '012811'),
+(208, '012811006', 'Caestebanan', '01', '0128', '012811'),
+(209, '012811008', 'Caribquib', '01', '0128', '012811'),
+(210, '012811009', 'Catagtaguen', '01', '0128', '012811'),
+(211, '012811011', 'Crispina', '01', '0128', '012811'),
+(212, '012811012', 'Hilario (Pob.)', '01', '0128', '012811'),
+(213, '012811013', 'Imelda', '01', '0128', '012811'),
+(214, '012811014', 'Lorenzo (Pob.)', '01', '0128', '012811'),
+(215, '012811015', 'Macayepyep', '01', '0128', '012811'),
+(216, '012811016', 'Marcos (Pob.)', '01', '0128', '012811'),
+(217, '012811017', 'Nagpatayan', '01', '0128', '012811'),
+(218, '012811018', 'Valdez', '01', '0128', '012811'),
+(219, '012811019', 'Sinamar', '01', '0128', '012811'),
+(220, '012811020', 'Tabtabagan', '01', '0128', '012811'),
+(221, '012811021', 'Valenciano (Pob.)', '01', '0128', '012811'),
+(222, '012811022', 'Binacag', '01', '0128', '012811'),
+(223, '012812001', 'Bgy. No. 42, Apaya', '01', '0128', '012812'),
+(224, '012812002', 'Bgy. No. 36, Araniw', '01', '0128', '012812'),
+(225, '012812003', 'Bgy. No. 56-A, Bacsil North', '01', '0128', '012812'),
+(226, '012812004', 'Bgy. No. 56-B, Bacsil South', '01', '0128', '012812'),
+(227, '012812005', 'Bgy. No. 41, Balacad', '01', '0128', '012812'),
+(228, '012812006', 'Bgy. No. 40, Balatong', '01', '0128', '012812'),
+(229, '012812007', 'Bgy. No. 55-A, Barit-Pandan', '01', '0128', '012812'),
+(230, '012812008', 'Bgy. No. 47, Bengcag', '01', '0128', '012812'),
+(231, '012812009', 'Bgy. No. 50, Buttong', '01', '0128', '012812'),
+(232, '012812010', 'Bgy. No. 60-A, Caaoacan', '01', '0128', '012812'),
+(233, '012812011', 'Bry. No. 48-A, Cabungaan North', '01', '0128', '012812'),
+(234, '012812012', 'Bgy. No. 48-B, Cabungaan South', '01', '0128', '012812'),
+(235, '012812013', 'Bgy. No. 37, Calayab', '01', '0128', '012812'),
+(236, '012812014', 'Bgy. No. 54-B, Camangaan', '01', '0128', '012812'),
+(237, '012812015', 'Bgy. No. 58, Casili', '01', '0128', '012812'),
+(238, '012812016', 'Bgy. No. 61, Cataban', '01', '0128', '012812'),
+(239, '012812017', 'Bgy. No. 43, Cavit', '01', '0128', '012812'),
+(240, '012812019', 'Bgy. No. 49-A, Darayday', '01', '0128', '012812'),
+(241, '012812020', 'Bgy. No. 59-B, Dibua North', '01', '0128', '012812'),
+(242, '012812021', 'Bgy. No. 59-A, Dibua South', '01', '0128', '012812'),
+(243, '012812022', 'Bgy. No. 34-B, Gabu Norte East', '01', '0128', '012812'),
+(244, '012812023', 'Bgy. No. 34-A, Gabu Norte West', '01', '0128', '012812'),
+(245, '012812024', 'Bgy. No. 35, Gabu Sur', '01', '0128', '012812'),
+(246, '012812026', 'Bgy. No. 32-C La Paz East', '01', '0128', '012812'),
+(247, '012812027', 'Bgy. No. 33-B, La Paz Proper', '01', '0128', '012812'),
+(248, '012812028', 'Bgy. No. 32-B, La Paz West', '01', '0128', '012812'),
+(249, '012812029', 'Bgy. No. 54-A, Lagui-Sail', '01', '0128', '012812'),
+(250, '012812030', 'Bgy. No. 32-A, La Paz East', '01', '0128', '012812'),
+(251, '012812031', 'Bgy. No. 33-A, La Paz Proper', '01', '0128', '012812'),
+(252, '012812032', 'Bgy. No. 52-B, Lataag', '01', '0128', '012812'),
+(253, '012812033', 'Bgy. No. 60-B, Madiladig', '01', '0128', '012812'),
+(254, '012812034', 'Bgy. No. 38-A, Mangato East', '01', '0128', '012812'),
+(255, '012812035', 'Bgy. No. 38-B, Mangato West', '01', '0128', '012812'),
+(256, '012812036', 'Bgy. No. 62-A, Navotas North', '01', '0128', '012812'),
+(257, '012812037', 'Bgy. No. 62-B, Navotas South', '01', '0128', '012812'),
+(258, '012812038', 'Bgy. No. 46, Nalbo', '01', '0128', '012812'),
+(259, '012812039', 'Bgy. No. 51-A, Nangalisan East', '01', '0128', '012812'),
+(260, '012812040', 'Bgy. No. 51-B, Nangalisan West', '01', '0128', '012812'),
+(261, '012812041', 'Bgy. No. 24, Nstra. Sra. De Consolacion (Pob.)', '01', '0128', '012812'),
+(262, '012812042', 'Bgy. No. 7-A, Nstra. Sra. De Natividad (Pob.)', '01', '0128', '012812'),
+(263, '012812043', 'Bgy. No. 7-B, Nstra. Sra. De Natividad (Pob.)', '01', '0128', '012812'),
+(264, '012812044', 'Bgy. No. 27, Nstra. Sra. De Soledad (Pob.)', '01', '0128', '012812'),
+(265, '012812045', 'Bgy. No. 13, Nstra. Sra. De Visitacion (Pob.)', '01', '0128', '012812'),
+(266, '012812046', 'Bgy. No. 3, Nstra. Sra. Del Rosario (Pob.)', '01', '0128', '012812'),
+(267, '012812047', 'Bgy. No. 57, Pila', '01', '0128', '012812'),
+(268, '012812048', 'Bgy. No. 49-B, Raraburan', '01', '0128', '012812'),
+(269, '012812049', 'Bgy. No. 53, Rioeng', '01', '0128', '012812'),
+(270, '012812050', 'Bgy. No. 55-B, Salet-Bulangon', '01', '0128', '012812'),
+(271, '012812053', 'Bgy. No. 6, San Agustin (Pob.)', '01', '0128', '012812'),
+(272, '012812054', 'Bgy. No. 22, San Andres (Pob.)', '01', '0128', '012812'),
+(273, '012812055', 'Bgy. No. 28, San Bernardo (Pob.)', '01', '0128', '012812'),
+(274, '012812056', 'Bgy. No. 17, San Francisco (Pob.)', '01', '0128', '012812'),
+(275, '012812057', 'Bgy. No. 4, San Guillermo (Pob.)', '01', '0128', '012812'),
+(276, '012812058', 'Bgy. No. 15, San Guillermo (Pob.)', '01', '0128', '012812'),
+(277, '012812059', 'Bgy. No. 12, San Isidro (Pob.)', '01', '0128', '012812'),
+(278, '012812060', 'Bgy. No. 16, San Jacinto (Pob.)', '01', '0128', '012812'),
+(279, '012812061', 'Bgy. No. 10, San Jose (Pob.)', '01', '0128', '012812'),
+(280, '012812062', 'Bgy. No. 1, San Lorenzo (Pob.)', '01', '0128', '012812'),
+(281, '012812063', 'Bgy. No. 26, San Marcelino (Pob.)', '01', '0128', '012812'),
+(282, '012812064', 'Bgy. No. 52-A, San Mateo', '01', '0128', '012812'),
+(283, '012812065', 'Bgy. No. 23, San Matias (Pob.)', '01', '0128', '012812'),
+(284, '012812066', 'Bgy. No. 20, San Miguel (Pob.)', '01', '0128', '012812'),
+(285, '012812067', 'Bgy. No. 21, San Pedro (Pob.)', '01', '0128', '012812'),
+(286, '012812068', 'Bgy. No. 5, San Pedro (Pob.)', '01', '0128', '012812'),
+(287, '012812069', 'Bry. No. 18, San Quirino (Pob.)', '01', '0128', '012812'),
+(288, '012812070', 'Bgy. No. 8, San Vicente (Pob.)', '01', '0128', '012812'),
+(289, '012812071', 'Bgy. No. 9, Santa Angela (Pob.)', '01', '0128', '012812'),
+(290, '012812072', 'Bgy. No. 11, Santa Balbina (Pob.)', '01', '0128', '012812'),
+(291, '012812073', 'Bgy. No. 25, Santa Cayetana (Pob.)', '01', '0128', '012812'),
+(292, '012812074', 'Bgy. No. 2, Santa Joaquina (Pob.)', '01', '0128', '012812'),
+(293, '012812075', 'Bgy. No. 19, Santa Marcela (Pob.)', '01', '0128', '012812'),
+(294, '012812076', 'Bgy. No. 30-B, Santa Maria', '01', '0128', '012812'),
+(295, '012812077', 'Bgy. No. 39, Santa Rosa', '01', '0128', '012812'),
+(296, '012812078', 'Bgy. No. 14, Santo Tomas (Pob.)', '01', '0128', '012812'),
+(297, '012812079', 'Bgy. No. 29, Santo Tomas (Pob.)', '01', '0128', '012812'),
+(298, '012812080', 'Bgy. No. 30-A, Suyo', '01', '0128', '012812'),
+(299, '012812081', 'Bgy. No. 31, Talingaan', '01', '0128', '012812'),
+(300, '012812082', 'Bgy. No. 45, Tangid', '01', '0128', '012812'),
+(301, '012812083', 'Bgy. No. 55-C, Vira', '01', '0128', '012812'),
+(302, '012812084', 'Bgy. No. 44, Zamboanga', '01', '0128', '012812'),
+(303, '012813001', 'Pacifico (Agunit)', '01', '0128', '012813'),
+(304, '012813003', 'Imelda (Capariaan)', '01', '0128', '012813'),
+(305, '012813004', 'Elizabeth (Culao)', '01', '0128', '012813'),
+(306, '012813005', 'Daquioag', '01', '0128', '012813'),
+(307, '012813006', 'Escoda', '01', '0128', '012813'),
+(308, '012813007', 'Ferdinand', '01', '0128', '012813'),
+(309, '012813008', 'Fortuna', '01', '0128', '012813'),
+(310, '012813009', 'Lydia (Pob.)', '01', '0128', '012813'),
+(311, '012813010', 'Mabuti', '01', '0128', '012813'),
+(312, '012813011', 'Valdez (Biding)', '01', '0128', '012813'),
+(313, '012813012', 'Tabucbuc (Ragas)', '01', '0128', '012813'),
+(314, '012813013', 'Santiago', '01', '0128', '012813'),
+(315, '012813014', 'Cacafean', '01', '0128', '012813'),
+(316, '012814001', 'Acnam', '01', '0128', '012814'),
+(317, '012814002', 'Barangobong', '01', '0128', '012814'),
+(318, '012814003', 'Barikir', '01', '0128', '012814'),
+(319, '012814004', 'Bugayong', '01', '0128', '012814'),
+(320, '012814005', 'Cabittauran', '01', '0128', '012814'),
+(321, '012814006', 'Caray', '01', '0128', '012814'),
+(322, '012814007', 'Garnaden', '01', '0128', '012814'),
+(323, '012814008', 'Naguillan (Pagpag-ong)', '01', '0128', '012814'),
+(324, '012814009', 'Poblacion', '01', '0128', '012814'),
+(325, '012814010', 'Santo Niño', '01', '0128', '012814'),
+(326, '012814011', 'Uguis', '01', '0128', '012814'),
+(327, '012815001', 'Aggasi', '01', '0128', '012815'),
+(328, '012815003', 'Baduang', '01', '0128', '012815'),
+(329, '012815004', 'Balaoi', '01', '0128', '012815'),
+(330, '012815005', 'Burayoc', '01', '0128', '012815'),
+(331, '012815006', 'Caunayan', '01', '0128', '012815'),
+(332, '012815007', 'Dampig', '01', '0128', '012815'),
+(333, '012815008', 'Ligaya', '01', '0128', '012815'),
+(334, '012815010', 'Pancian', '01', '0128', '012815'),
+(335, '012815011', 'Pasaleng', '01', '0128', '012815'),
+(336, '012815012', 'Poblacion 1', '01', '0128', '012815'),
+(337, '012815013', 'Poblacion 2', '01', '0128', '012815'),
+(338, '012815014', 'Saguigui', '01', '0128', '012815'),
+(339, '012815015', 'Saud', '01', '0128', '012815'),
+(340, '012815016', 'Subec', '01', '0128', '012815'),
+(341, '012815017', 'Tarrag', '01', '0128', '012815'),
+(342, '012815018', 'Caparispisan', '01', '0128', '012815'),
+(343, '012816001', 'Bacsil', '01', '0128', '012816'),
+(344, '012816002', 'Cabagoan', '01', '0128', '012816'),
+(345, '012816003', 'Cabangaran', '01', '0128', '012816'),
+(346, '012816004', 'Callaguip', '01', '0128', '012816'),
+(347, '012816005', 'Cayubog', '01', '0128', '012816'),
+(348, '012816006', 'Dolores', '01', '0128', '012816'),
+(349, '012816007', 'Laoa', '01', '0128', '012816'),
+(350, '012816008', 'Masintoc', '01', '0128', '012816'),
+(351, '012816009', 'Monte', '01', '0128', '012816'),
+(352, '012816010', 'Mumulaan', '01', '0128', '012816'),
+(353, '012816011', 'Nagbacalan', '01', '0128', '012816'),
+(354, '012816012', 'Nalasin', '01', '0128', '012816'),
+(355, '012816013', 'Nanguyudan', '01', '0128', '012816'),
+(356, '012816014', 'Oaig-Upay-Abulao', '01', '0128', '012816'),
+(357, '012816015', 'Pambaran', '01', '0128', '012816'),
+(358, '012816016', 'Pannaratan (Pob.)', '01', '0128', '012816'),
+(359, '012816017', 'Paratong', '01', '0128', '012816'),
+(360, '012816018', 'Pasil', '01', '0128', '012816'),
+(361, '012816019', 'Salbang (Pob.)', '01', '0128', '012816'),
+(362, '012816020', 'San Agustin', '01', '0128', '012816'),
+(363, '012816021', 'San Blas (Pob.)', '01', '0128', '012816'),
+(364, '012816022', 'San Juan', '01', '0128', '012816'),
+(365, '012816025', 'San Pedro', '01', '0128', '012816'),
+(366, '012816028', 'San Roque (Pob.)', '01', '0128', '012816'),
+(367, '012816029', 'Sangladan Pob. (Nalbuan)', '01', '0128', '012816'),
+(368, '012816030', 'Santa Rita (Pob.)', '01', '0128', '012816'),
+(369, '012816031', 'Sideg', '01', '0128', '012816'),
+(370, '012816032', 'Suba', '01', '0128', '012816'),
+(371, '012816033', 'Sungadan', '01', '0128', '012816'),
+(372, '012816034', 'Surgui', '01', '0128', '012816'),
+(373, '012816035', 'Veronica', '01', '0128', '012816'),
+(374, '012817001', 'Batuli', '01', '0128', '012817'),
+(375, '012817002', 'Binsang', '01', '0128', '012817'),
+(376, '012817003', 'Nalvo (Cababaan-Nalvo)', '01', '0128', '012817'),
+(377, '012817004', 'Caruan', '01', '0128', '012817'),
+(378, '012817005', 'Carusikis', '01', '0128', '012817'),
+(379, '012817006', 'Carusipan', '01', '0128', '012817'),
+(380, '012817007', 'Dadaeman', '01', '0128', '012817'),
+(381, '012817008', 'Darupidip', '01', '0128', '012817'),
+(382, '012817009', 'Davila', '01', '0128', '012817'),
+(383, '012817010', 'Dilanis', '01', '0128', '012817'),
+(384, '012817011', 'Dilavo', '01', '0128', '012817'),
+(385, '012817012', 'Estancia', '01', '0128', '012817'),
+(386, '012817014', 'Naglicuan', '01', '0128', '012817'),
+(387, '012817015', 'Nagsanga', '01', '0128', '012817'),
+(388, '012817016', 'Ngabangab', '01', '0128', '012817'),
+(389, '012817017', 'Pangil', '01', '0128', '012817'),
+(390, '012817018', 'Poblacion 1', '01', '0128', '012817'),
+(391, '012817019', 'Poblacion 2', '01', '0128', '012817'),
+(392, '012817020', 'Poblacion 3', '01', '0128', '012817'),
+(393, '012817021', 'Poblacion 4', '01', '0128', '012817'),
+(394, '012817022', 'Pragata (Pragata-Bungro)', '01', '0128', '012817'),
+(395, '012817023', 'Puyupuyan', '01', '0128', '012817'),
+(396, '012817024', 'Sulongan', '01', '0128', '012817'),
+(397, '012817025', 'Salpad', '01', '0128', '012817'),
+(398, '012817026', 'San Juan', '01', '0128', '012817'),
+(399, '012817027', 'Santa Catalina', '01', '0128', '012817'),
+(400, '012817028', 'Santa Matilde', '01', '0128', '012817'),
+(401, '012817029', 'Sapat', '01', '0128', '012817'),
+(402, '012817030', 'Sulbec', '01', '0128', '012817'),
+(403, '012817031', 'Surong', '01', '0128', '012817'),
+(404, '012817032', 'Susugaen', '01', '0128', '012817'),
+(405, '012817033', 'Tabungao', '01', '0128', '012817'),
+(406, '012817034', 'Tadao', '01', '0128', '012817'),
+(407, '012818001', 'Ab-abut', '01', '0128', '012818'),
+(408, '012818002', 'Abucay', '01', '0128', '012818'),
+(409, '012818003', 'Anao (Pob.)', '01', '0128', '012818'),
+(410, '012818004', 'Arua-ay', '01', '0128', '012818'),
+(411, '012818005', 'Bimmanga', '01', '0128', '012818'),
+(412, '012818006', 'Boyboy', '01', '0128', '012818'),
+(413, '012818007', 'Cabaroan (Pob.)', '01', '0128', '012818'),
+(414, '012818008', 'Calambeg', '01', '0128', '012818'),
+(415, '012818009', 'Callusa', '01', '0128', '012818'),
+(416, '012818010', 'Dupitac', '01', '0128', '012818'),
+(417, '012818011', 'Estancia', '01', '0128', '012818'),
+(418, '012818012', 'Gayamat', '01', '0128', '012818'),
+(419, '012818013', 'Lagandit', '01', '0128', '012818'),
+(420, '012818014', 'Libnaoan', '01', '0128', '012818'),
+(421, '012818015', 'Loing (Pob.)', '01', '0128', '012818'),
+(422, '012818016', 'Maab-abaca', '01', '0128', '012818'),
+(423, '012818017', 'Mangitayag', '01', '0128', '012818'),
+(424, '012818018', 'Maruaya', '01', '0128', '012818'),
+(425, '012818019', 'San Antonio', '01', '0128', '012818'),
+(426, '012818020', 'Santa Maria', '01', '0128', '012818'),
+(427, '012818021', 'Sucsuquen', '01', '0128', '012818'),
+(428, '012818022', 'Tangaoan', '01', '0128', '012818'),
+(429, '012818023', 'Tonoton', '01', '0128', '012818'),
+(430, '012819001', 'Aglipay', '01', '0128', '012819'),
+(431, '012819002', 'Apatut-Lubong', '01', '0128', '012819'),
+(432, '012819003', 'Badio', '01', '0128', '012819'),
+(433, '012819004', 'Barbar', '01', '0128', '012819'),
+(434, '012819005', 'Buanga', '01', '0128', '012819'),
+(435, '012819006', 'Bulbulala', '01', '0128', '012819'),
+(436, '012819007', 'Bungro', '01', '0128', '012819'),
+(437, '012819008', 'Cabaroan', '01', '0128', '012819'),
+(438, '012819009', 'Capangdanan', '01', '0128', '012819'),
+(439, '012819010', 'Dalayap', '01', '0128', '012819'),
+(440, '012819011', 'Darat', '01', '0128', '012819'),
+(441, '012819012', 'Gulpeng', '01', '0128', '012819'),
+(442, '012819013', 'Liliputen', '01', '0128', '012819'),
+(443, '012819014', 'Lumbaan-Bicbica', '01', '0128', '012819'),
+(444, '012819015', 'Nagtrigoan', '01', '0128', '012819'),
+(445, '012819016', 'Pagdilao (Pob.)', '01', '0128', '012819'),
+(446, '012819017', 'Pugaoan', '01', '0128', '012819'),
+(447, '012819018', 'Puritac', '01', '0128', '012819'),
+(448, '012819019', 'Sacritan', '01', '0128', '012819'),
+(449, '012819020', 'Salanap', '01', '0128', '012819'),
+(450, '012819021', 'Santo Tomas', '01', '0128', '012819'),
+(451, '012819022', 'Tartarabang', '01', '0128', '012819'),
+(452, '012819023', 'Puzol', '01', '0128', '012819'),
+(453, '012819024', 'Upon', '01', '0128', '012819'),
+(454, '012819025', 'Valbuena (Pob.)', '01', '0128', '012819'),
+(455, '012820001', 'San Francisco (Pob.)', '01', '0128', '012820'),
+(456, '012820002', 'San Ildefonso (Pob.)', '01', '0128', '012820'),
+(457, '012820003', 'San Agustin', '01', '0128', '012820'),
+(458, '012820004', 'San Baltazar (Pob.)', '01', '0128', '012820'),
+(459, '012820005', 'San Bartolome (Pob.)', '01', '0128', '012820'),
+(460, '012820006', 'San Cayetano (Pob.)', '01', '0128', '012820'),
+(461, '012820007', 'San Eugenio (Pob.)', '01', '0128', '012820'),
+(462, '012820008', 'San Fernando (Pob.)', '01', '0128', '012820'),
+(463, '012820009', 'San Gregorio (Pob.)', '01', '0128', '012820'),
+(464, '012820010', 'San Guillermo', '01', '0128', '012820'),
+(465, '012820011', 'San Jose (Pob.)', '01', '0128', '012820'),
+(466, '012820012', 'San Juan Bautista (Pob.)', '01', '0128', '012820'),
+(467, '012820013', 'San Lorenzo', '01', '0128', '012820'),
+(468, '012820014', 'San Lucas (Pob.)', '01', '0128', '012820'),
+(469, '012820015', 'San Marcos (Payas)', '01', '0128', '012820'),
+(470, '012820016', 'San Miguel (Pob.)', '01', '0128', '012820'),
+(471, '012820017', 'San Pablo', '01', '0128', '012820'),
+(472, '012820018', 'San Paulo (Pob.)', '01', '0128', '012820'),
+(473, '012820019', 'San Pedro (Bingao)', '01', '0128', '012820'),
+(474, '012820020', 'San Rufino (Pob.)', '01', '0128', '012820'),
+(475, '012820021', 'San Silvestre (Pob.)', '01', '0128', '012820'),
+(476, '012820022', 'Santa Asuncion (Samac)', '01', '0128', '012820'),
+(477, '012820023', 'Santa Cecilia (Barabar)', '01', '0128', '012820'),
+(478, '012820024', 'Santa Monica (Nagrebcan)', '01', '0128', '012820'),
+(479, '012821001', 'San Agustin (Pob.)', '01', '0128', '012821'),
+(480, '012821002', 'San Andres', '01', '0128', '012821'),
+(481, '012821003', 'San Antonio', '01', '0128', '012821'),
+(482, '012821004', 'San Bernabe', '01', '0128', '012821'),
+(483, '012821005', 'San Cristobal', '01', '0128', '012821'),
+(484, '012821006', 'San Felipe', '01', '0128', '012821'),
+(485, '012821007', 'San Francisco (Pob.)', '01', '0128', '012821'),
+(486, '012821008', 'San Isidro', '01', '0128', '012821'),
+(487, '012821009', 'San Joaquin (Pob.)', '01', '0128', '012821'),
+(488, '012821010', 'San Jose', '01', '0128', '012821'),
+(489, '012821011', 'San Juan', '01', '0128', '012821'),
+(490, '012821012', 'San Leandro (Pob.)', '01', '0128', '012821'),
+(491, '012821014', 'San Lorenzo', '01', '0128', '012821'),
+(492, '012821015', 'San Manuel', '01', '0128', '012821'),
+(493, '012821016', 'San Marcos', '01', '0128', '012821'),
+(494, '012821017', 'San Nicolas', '01', '0128', '012821'),
+(495, '012821018', 'San Pedro', '01', '0128', '012821'),
+(496, '012821019', 'San Roque', '01', '0128', '012821'),
+(497, '012821020', 'San Vicente (Pob.)', '01', '0128', '012821'),
+(498, '012821021', 'Santa Barbara (Pob.)', '01', '0128', '012821'),
+(499, '012821022', 'Santa Magdalena', '01', '0128', '012821'),
+(500, '012821023', 'Santa Rosa', '01', '0128', '012821'),
+(501, '012821024', 'Santo Santiago', '01', '0128', '012821'),
+(502, '012821025', 'Santo Tomas', '01', '0128', '012821'),
+(503, '012822001', 'Aguitap', '01', '0128', '012822'),
+(504, '012822002', 'Bagbag', '01', '0128', '012822'),
+(505, '012822003', 'Bagbago', '01', '0128', '012822'),
+(506, '012822004', 'Barcelona', '01', '0128', '012822'),
+(507, '012822005', 'Bubuos', '01', '0128', '012822'),
+(508, '012822006', 'Capurictan', '01', '0128', '012822'),
+(509, '012822007', 'Catangraran', '01', '0128', '012822'),
+(510, '012822008', 'Darasdas', '01', '0128', '012822'),
+(511, '012822009', 'Juan (Pob.)', '01', '0128', '012822'),
+(512, '012822010', 'Laureta (Pob.)', '01', '0128', '012822'),
+(513, '012822011', 'Lipay', '01', '0128', '012822'),
+(514, '012822012', 'Maananteng', '01', '0128', '012822'),
+(515, '012822013', 'Manalpac', '01', '0128', '012822'),
+(516, '012822014', 'Mariquet', '01', '0128', '012822'),
+(517, '012822015', 'Nagpatpatan', '01', '0128', '012822'),
+(518, '012822016', 'Nalasin', '01', '0128', '012822'),
+(519, '012822017', 'Puttao', '01', '0128', '012822'),
+(520, '012822018', 'San Juan', '01', '0128', '012822'),
+(521, '012822019', 'San Julian', '01', '0128', '012822'),
+(522, '012822020', 'Santa Ana', '01', '0128', '012822'),
+(523, '012822021', 'Santiago', '01', '0128', '012822'),
+(524, '012822022', 'Talugtog', '01', '0128', '012822'),
+(525, '012823001', 'Abkir', '01', '0128', '012823'),
+(526, '012823003', 'Alsem', '01', '0128', '012823'),
+(527, '012823005', 'Bago', '01', '0128', '012823'),
+(528, '012823010', 'Bulbulala', '01', '0128', '012823'),
+(529, '012823011', 'Cabangaran', '01', '0128', '012823'),
+(530, '012823012', 'Cabayo', '01', '0128', '012823'),
+(531, '012823013', 'Cabisocolan', '01', '0128', '012823'),
+(532, '012823014', 'Canaam', '01', '0128', '012823'),
+(533, '012823015', 'Columbia', '01', '0128', '012823'),
+(534, '012823016', 'Dagupan', '01', '0128', '012823'),
+(535, '012823017', 'Pedro F. Alviar (Diaton)', '01', '0128', '012823'),
+(536, '012823019', 'Dipilat', '01', '0128', '012823'),
+(537, '012823022', 'Esperanza', '01', '0128', '012823'),
+(538, '012823023', 'Ester', '01', '0128', '012823'),
+(539, '012823024', 'Isic Isic', '01', '0128', '012823'),
+(540, '012823027', 'Lubnac', '01', '0128', '012823'),
+(541, '012823028', 'Mabanbanag', '01', '0128', '012823'),
+(542, '012823030', 'Alejo Malasig', '01', '0128', '012823'),
+(543, '012823031', 'Manarang', '01', '0128', '012823'),
+(544, '012823033', 'Margaay', '01', '0128', '012823'),
+(545, '012823035', 'Namoroc', '01', '0128', '012823'),
+(546, '012823038', 'Malampa (Peninaan-Malampa)', '01', '0128', '012823'),
+(547, '012823039', 'Parparoroc', '01', '0128', '012823'),
+(548, '012823040', 'Parut', '01', '0128', '012823'),
+(549, '012823047', 'Salsalamagui', '01', '0128', '012823'),
+(550, '012823049', 'San Jose (Lipay)', '01', '0128', '012823'),
+(551, '012823050', 'San Nicolas (Pob.)', '01', '0128', '012823'),
+(552, '012823051', 'San Pedro (Pob.)', '01', '0128', '012823'),
+(553, '012823052', 'San Ramon (Pob.)', '01', '0128', '012823'),
+(554, '012823053', 'San Roque (Pob.)', '01', '0128', '012823'),
+(555, '012823054', 'Santa Maria (Pob.)', '01', '0128', '012823'),
+(556, '012823056', 'Tamdagan', '01', '0128', '012823'),
+(557, '012823058', 'Visaya', '01', '0128', '012823'),
+(558, '012901001', 'Alilem Daya (Pob.)', '01', '0129', '012901'),
+(559, '012901002', 'Amilongan', '01', '0129', '012901'),
+(560, '012901003', 'Anaao', '01', '0129', '012901'),
+(561, '012901004', 'Apang', '01', '0129', '012901'),
+(562, '012901005', 'Apaya', '01', '0129', '012901'),
+(563, '012901006', 'Batbato', '01', '0129', '012901'),
+(564, '012901010', 'Daddaay', '01', '0129', '012901'),
+(565, '012901011', 'Dalawa', '01', '0129', '012901'),
+(566, '012901013', 'Kiat', '01', '0129', '012901'),
+(567, '012902001', 'Bagbagotot', '01', '0129', '012902'),
+(568, '012902002', 'Banbanaal', '01', '0129', '012902'),
+(569, '012902004', 'Bisangol', '01', '0129', '012902'),
+(570, '012902005', 'Cadanglaan', '01', '0129', '012902'),
+(571, '012902006', 'Casilagan Norte', '01', '0129', '012902'),
+(572, '012902007', 'Casilagan Sur', '01', '0129', '012902'),
+(573, '012902008', 'Elefante', '01', '0129', '012902'),
+(574, '012902009', 'Guardia', '01', '0129', '012902'),
+(575, '012902010', 'Lintic', '01', '0129', '012902'),
+(576, '012902011', 'Lopez', '01', '0129', '012902'),
+(577, '012902012', 'Montero', '01', '0129', '012902'),
+(578, '012902013', 'Naguimba', '01', '0129', '012902'),
+(579, '012902014', 'Pila', '01', '0129', '012902'),
+(580, '012902015', 'Poblacion', '01', '0129', '012902'),
+(581, '012903001', 'Aggay', '01', '0129', '012903'),
+(582, '012903002', 'An-annam', '01', '0129', '012903'),
+(583, '012903003', 'Balaleng', '01', '0129', '012903'),
+(584, '012903004', 'Banaoang', '01', '0129', '012903'),
+(585, '012903005', 'Bulag', '01', '0129', '012903'),
+(586, '012903006', 'Buquig', '01', '0129', '012903'),
+(587, '012903007', 'Cabalanggan', '01', '0129', '012903'),
+(588, '012903008', 'Cabaroan', '01', '0129', '012903'),
+(589, '012903009', 'Cabusligan', '01', '0129', '012903'),
+(590, '012903010', 'Capangdanan', '01', '0129', '012903'),
+(591, '012903011', 'Guimod', '01', '0129', '012903'),
+(592, '012903012', 'Lingsat', '01', '0129', '012903'),
+(593, '012903013', 'Malingeb', '01', '0129', '012903'),
+(594, '012903014', 'Mira', '01', '0129', '012903'),
+(595, '012903015', 'Naguiddayan', '01', '0129', '012903'),
+(596, '012903016', 'Ora', '01', '0129', '012903'),
+(597, '012903017', 'Paing', '01', '0129', '012903'),
+(598, '012903018', 'Puspus', '01', '0129', '012903'),
+(599, '012903019', 'Quimmarayan', '01', '0129', '012903'),
+(600, '012903020', 'Sagneb', '01', '0129', '012903'),
+(601, '012903021', 'Sagpat', '01', '0129', '012903'),
+(602, '012903022', 'San Mariano (Sallacong)', '01', '0129', '012903'),
+(603, '012903023', 'San Isidro', '01', '0129', '012903'),
+(604, '012903024', 'San Julian', '01', '0129', '012903'),
+(605, '012903026', 'Sinabaan', '01', '0129', '012903'),
+(606, '012903027', 'Taguiporo', '01', '0129', '012903'),
+(607, '012903028', 'Taleb', '01', '0129', '012903'),
+(608, '012903029', 'Tay-ac', '01', '0129', '012903'),
+(609, '012903030', 'Barangay 1 (Pob.)', '01', '0129', '012903'),
+(610, '012903031', 'Barangay 2 (Pob.)', '01', '0129', '012903'),
+(611, '012903032', 'Barangay 3 (Pob.)', '01', '0129', '012903'),
+(612, '012903033', 'Barangay 4 (Pob.)', '01', '0129', '012903'),
+(613, '012903034', 'Barangay 5 (Pob.)', '01', '0129', '012903'),
+(614, '012903035', 'Barangay 6 (Pob.)', '01', '0129', '012903'),
+(615, '012904001', 'Ambugat', '01', '0129', '012904'),
+(616, '012904002', 'Balugang', '01', '0129', '012904'),
+(617, '012904003', 'Bangbangar', '01', '0129', '012904'),
+(618, '012904005', 'Bessang', '01', '0129', '012904'),
+(619, '012904006', 'Cabcaburao', '01', '0129', '012904'),
+(620, '012904007', 'Cadacad', '01', '0129', '012904'),
+(621, '012904008', 'Callitong', '01', '0129', '012904'),
+(622, '012904009', 'Dayanki', '01', '0129', '012904'),
+(623, '012904010', 'Lesseb', '01', '0129', '012904'),
+(624, '012904011', 'Lubing', '01', '0129', '012904'),
+(625, '012904012', 'Lucaban', '01', '0129', '012904'),
+(626, '012904013', 'Luna', '01', '0129', '012904'),
+(627, '012904014', 'Macaoayan', '01', '0129', '012904'),
+(628, '012904015', 'Mambug', '01', '0129', '012904'),
+(629, '012904016', 'Manaboc', '01', '0129', '012904'),
+(630, '012904017', 'Mapanit', '01', '0129', '012904'),
+(631, '012904018', 'Poblacion Sur (Masingit)', '01', '0129', '012904'),
+(632, '012904019', 'Nagpanaoan', '01', '0129', '012904'),
+(633, '012904020', 'Dirdirig (Dirdirig-Paday)', '01', '0129', '012904'),
+(634, '012904022', 'Paduros', '01', '0129', '012904'),
+(635, '012904023', 'Patac', '01', '0129', '012904'),
+(636, '012904024', 'Poblacion Norte (Bato)', '01', '0129', '012904'),
+(637, '012904026', 'Sabangan Pinggan', '01', '0129', '012904'),
+(638, '012904027', 'Subadi Norte', '01', '0129', '012904'),
+(639, '012904028', 'Subadi Sur', '01', '0129', '012904'),
+(640, '012904029', 'Taliao', '01', '0129', '012904'),
+(641, '012905001', 'Alinaay', '01', '0129', '012905'),
+(642, '012905002', 'Aragan', '01', '0129', '012905'),
+(643, '012905003', 'Arnap', '01', '0129', '012905'),
+(644, '012905004', 'Baclig (Pob.)', '01', '0129', '012905'),
+(645, '012905005', 'Bato', '01', '0129', '012905'),
+(646, '012905006', 'Bonifacio (Pob.)', '01', '0129', '012905'),
+(647, '012905007', 'Bungro', '01', '0129', '012905'),
+(648, '012905008', 'Cacadiran', '01', '0129', '012905'),
+(649, '012905009', 'Caellayan', '01', '0129', '012905'),
+(650, '012905010', 'Carusipan', '01', '0129', '012905'),
+(651, '012905011', 'Catucdaan', '01', '0129', '012905'),
+(652, '012905012', 'Cuancabal', '01', '0129', '012905'),
+(653, '012905013', 'Cuantacla', '01', '0129', '012905'),
+(654, '012905014', 'Daclapan', '01', '0129', '012905'),
+(655, '012905015', 'Dardarat', '01', '0129', '012905'),
+(656, '012905016', 'Lipit', '01', '0129', '012905'),
+(657, '012905017', 'Maradodon', '01', '0129', '012905'),
+(658, '012905018', 'Margaay', '01', '0129', '012905'),
+(659, '012905019', 'Nagsantaan', '01', '0129', '012905'),
+(660, '012905020', 'Nagsincaoan', '01', '0129', '012905'),
+(661, '012905021', 'Namruangan', '01', '0129', '012905'),
+(662, '012905022', 'Pila', '01', '0129', '012905'),
+(663, '012905023', 'Pug-os', '01', '0129', '012905'),
+(664, '012905024', 'Quezon (Pob.)', '01', '0129', '012905'),
+(665, '012905025', 'Reppaac', '01', '0129', '012905'),
+(666, '012905026', 'Rizal (Pob.)', '01', '0129', '012905'),
+(667, '012905027', 'Sabang', '01', '0129', '012905'),
+(668, '012905028', 'Sagayaden', '01', '0129', '012905'),
+(669, '012905029', 'Salapasap', '01', '0129', '012905'),
+(670, '012905030', 'Salomague', '01', '0129', '012905'),
+(671, '012905031', 'Sisim', '01', '0129', '012905'),
+(672, '012905032', 'Turod', '01', '0129', '012905'),
+(673, '012905033', 'Turod-Patac', '01', '0129', '012905'),
+(674, '012906001', 'Allangigan Primero', '01', '0129', '012906'),
+(675, '012906002', 'Allangigan Segundo', '01', '0129', '012906'),
+(676, '012906003', 'Amguid', '01', '0129', '012906'),
+(677, '012906004', 'Ayudante', '01', '0129', '012906'),
+(678, '012906005', 'Bagani Camposanto', '01', '0129', '012906'),
+(679, '012906006', 'Bagani Gabor', '01', '0129', '012906'),
+(680, '012906007', 'Bagani Tocgo', '01', '0129', '012906'),
+(681, '012906008', 'Bagani Ubbog', '01', '0129', '012906'),
+(682, '012906009', 'Bagar', '01', '0129', '012906'),
+(683, '012906010', 'Balingaoan', '01', '0129', '012906'),
+(684, '012906015', 'Bugnay', '01', '0129', '012906'),
+(685, '012906016', 'Calaoaan', '01', '0129', '012906'),
+(686, '012906017', 'Calongbuyan', '01', '0129', '012906'),
+(687, '012906018', 'Caterman', '01', '0129', '012906'),
+(688, '012906019', 'Cubcubboot', '01', '0129', '012906'),
+(689, '012906020', 'Darapidap', '01', '0129', '012906'),
+(690, '012906022', 'Langlangca Primero', '01', '0129', '012906'),
+(691, '012906023', 'Langlangca Segundo', '01', '0129', '012906'),
+(692, '012906024', 'Oaig-Daya', '01', '0129', '012906'),
+(693, '012906025', 'Palacapac', '01', '0129', '012906'),
+(694, '012906026', 'Paras', '01', '0129', '012906'),
+(695, '012906027', 'Parioc Primero', '01', '0129', '012906'),
+(696, '012906028', 'Parioc Segundo', '01', '0129', '012906'),
+(697, '012906029', 'Patpata Primero', '01', '0129', '012906'),
+(698, '012906030', 'Patpata Segundo', '01', '0129', '012906'),
+(699, '012906031', 'Paypayad', '01', '0129', '012906'),
+(700, '012906032', 'Salvador Primero', '01', '0129', '012906'),
+(701, '012906033', 'Salvador Segundo', '01', '0129', '012906'),
+(702, '012906034', 'San Agustin', '01', '0129', '012906'),
+(703, '012906035', 'San Andres', '01', '0129', '012906'),
+(704, '012906036', 'San Antonio (Pob.)', '01', '0129', '012906'),
+(705, '012906037', 'San Isidro (Pob.)', '01', '0129', '012906'),
+(706, '012906038', 'San Jose (Pob.)', '01', '0129', '012906'),
+(707, '012906039', 'San Juan (Pob.)', '01', '0129', '012906'),
+(708, '012906040', 'San Nicolas', '01', '0129', '012906'),
+(709, '012906041', 'San Pedro', '01', '0129', '012906'),
+(710, '012906042', 'Santo Tomas', '01', '0129', '012906'),
+(711, '012906043', 'Tablac', '01', '0129', '012906'),
+(712, '012906044', 'Talogtog', '01', '0129', '012906'),
+(713, '012906045', 'Tamurong Primero', '01', '0129', '012906'),
+(714, '012906046', 'Tamurong Segundo', '01', '0129', '012906'),
+(715, '012906048', 'Villarica', '01', '0129', '012906'),
+(716, '012907001', 'Anonang Mayor', '01', '0129', '012907'),
+(717, '012907002', 'Anonang Menor', '01', '0129', '012907'),
+(718, '012907003', 'Baggoc', '01', '0129', '012907'),
+(719, '012907004', 'Callaguip', '01', '0129', '012907'),
+(720, '012907005', 'Caparacadan', '01', '0129', '012907'),
+(721, '012907006', 'Fuerte', '01', '0129', '012907'),
+(722, '012907007', 'Manangat', '01', '0129', '012907'),
+(723, '012907008', 'Naguilian', '01', '0129', '012907'),
+(724, '012907009', 'Nansuagao', '01', '0129', '012907'),
+(725, '012907010', 'Pandan', '01', '0129', '012907'),
+(726, '012907011', 'Pantay-Quitiquit', '01', '0129', '012907'),
+(727, '012907012', 'Don Dimas Querubin (Pob.)', '01', '0129', '012907'),
+(728, '012907013', 'Puro', '01', '0129', '012907'),
+(729, '012907014', 'Pantay Tamurong', '01', '0129', '012907'),
+(730, '012907015', 'Villamar', '01', '0129', '012907'),
+(731, '012907016', 'Don Alejandro Quirolgico (Pob.)', '01', '0129', '012907'),
+(732, '012907017', 'Don Lorenzo Querubin (Pob.)', '01', '0129', '012907'),
+(733, '012908001', 'Aluling', '01', '0129', '012908'),
+(734, '012908002', 'Comillas North', '01', '0129', '012908'),
+(735, '012908003', 'Comillas South', '01', '0129', '012908'),
+(736, '012908004', 'Concepcion (Pob.)', '01', '0129', '012908'),
+(737, '012908005', 'Dinwede East', '01', '0129', '012908'),
+(738, '012908006', 'Dinwede West', '01', '0129', '012908'),
+(739, '012908007', 'Libang', '01', '0129', '012908'),
+(740, '012908010', 'Pilipil', '01', '0129', '012908'),
+(741, '012908013', 'Remedios', '01', '0129', '012908'),
+(742, '012908014', 'Rosario (Pob.)', '01', '0129', '012908'),
+(743, '012908015', 'San Juan', '01', '0129', '012908'),
+(744, '012908016', 'San Luis', '01', '0129', '012908'),
+(745, '012908017', 'Malaya', '01', '0129', '012908'),
+(746, '012909001', 'Abaya', '01', '0129', '012909'),
+(747, '012909002', 'Baracbac', '01', '0129', '012909'),
+(748, '012909003', 'Bidbiday', '01', '0129', '012909'),
+(749, '012909004', 'Bitong', '01', '0129', '012909'),
+(750, '012909005', 'Borobor', '01', '0129', '012909'),
+(751, '012909006', 'Calimugtong', '01', '0129', '012909'),
+(752, '012909007', 'Calongbuyan', '01', '0129', '012909'),
+(753, '012909008', 'Calumbaya', '01', '0129', '012909'),
+(754, '012909009', 'Daldagan', '01', '0129', '012909'),
+(755, '012909010', 'Kilang', '01', '0129', '012909'),
+(756, '012909011', 'Legaspi', '01', '0129', '012909'),
+(757, '012909012', 'Mabayag', '01', '0129', '012909'),
+(758, '012909013', 'Matanubong', '01', '0129', '012909'),
+(759, '012909014', 'Mckinley', '01', '0129', '012909'),
+(760, '012909015', 'Nagsingcaoan', '01', '0129', '012909'),
+(761, '012909016', 'Oaig-Daya', '01', '0129', '012909'),
+(762, '012909017', 'Pagangpang', '01', '0129', '012909'),
+(763, '012909018', 'Patac', '01', '0129', '012909'),
+(764, '012909019', 'Poblacion', '01', '0129', '012909'),
+(765, '012909020', 'Rubio', '01', '0129', '012909'),
+(766, '012909021', 'Sabangan-Bato', '01', '0129', '012909'),
+(767, '012909022', 'Sacaang', '01', '0129', '012909'),
+(768, '012909023', 'San Vicente', '01', '0129', '012909'),
+(769, '012909024', 'Sapang', '01', '0129', '012909'),
+(770, '012910001', 'Alfonso (Tangaoan)', '01', '0129', '012910'),
+(771, '012910002', 'Bussot', '01', '0129', '012910'),
+(772, '012910003', 'Concepcion', '01', '0129', '012910'),
+(773, '012910004', 'Dapdappig', '01', '0129', '012910'),
+(774, '012910005', 'Matue-Butarag', '01', '0129', '012910'),
+(775, '012910007', 'Poblacion Norte', '01', '0129', '012910'),
+(776, '012910008', 'Poblacion Sur', '01', '0129', '012910'),
+(777, '012911001', 'Banucal', '01', '0129', '012911'),
+(778, '012911002', 'Bequi-Walin', '01', '0129', '012911'),
+(779, '012911003', 'Bugui', '01', '0129', '012911'),
+(780, '012911004', 'Calungbuyan', '01', '0129', '012911'),
+(781, '012911005', 'Carcarabasa', '01', '0129', '012911'),
+(782, '012911006', 'Labut', '01', '0129', '012911'),
+(783, '012911007', 'Poblacion Norte', '01', '0129', '012911'),
+(784, '012911008', 'Poblacion Sur', '01', '0129', '012911'),
+(785, '012911009', 'San Vicente', '01', '0129', '012911'),
+(786, '012911010', 'Suysuyan', '01', '0129', '012911'),
+(787, '012911011', 'Tay-ac', '01', '0129', '012911'),
+(788, '012912001', 'Alangan', '01', '0129', '012912'),
+(789, '012912002', 'Bacar', '01', '0129', '012912'),
+(790, '012912006', 'Barbarit', '01', '0129', '012912'),
+(791, '012912007', 'Bungro', '01', '0129', '012912'),
+(792, '012912008', 'Cabaroan', '01', '0129', '012912'),
+(793, '012912010', 'Cadanglaan', '01', '0129', '012912'),
+(794, '012912011', 'Caraisan', '01', '0129', '012912'),
+(795, '012912014', 'Dacutan', '01', '0129', '012912'),
+(796, '012912015', 'Labut', '01', '0129', '012912'),
+(797, '012912017', 'Maas-asin', '01', '0129', '012912'),
+(798, '012912018', 'Macatcatud', '01', '0129', '012912'),
+(799, '012912019', 'Namalpalan', '01', '0129', '012912'),
+(800, '012912020', 'Manzante', '01', '0129', '012912'),
+(801, '012912022', 'Maratudo', '01', '0129', '012912'),
+(802, '012912023', 'Miramar', '01', '0129', '012912'),
+(803, '012912025', 'Napo', '01', '0129', '012912'),
+(804, '012912026', 'Pagsanaan Norte', '01', '0129', '012912'),
+(805, '012912027', 'Pagsanaan Sur', '01', '0129', '012912'),
+(806, '012912028', 'Panay Norte', '01', '0129', '012912'),
+(807, '012912029', 'Panay Sur', '01', '0129', '012912'),
+(808, '012912030', 'Patong', '01', '0129', '012912'),
+(809, '012912031', 'Puro', '01', '0129', '012912'),
+(810, '012912032', 'San Basilio (Pob.)', '01', '0129', '012912'),
+(811, '012912033', 'San Clemente (Pob.)', '01', '0129', '012912'),
+(812, '012912034', 'San Julian (Pob.)', '01', '0129', '012912'),
+(813, '012912035', 'San Lucas (Pob.)', '01', '0129', '012912'),
+(814, '012912036', 'San Ramon (Pob.)', '01', '0129', '012912'),
+(815, '012912037', 'San Vicente (Pob.)', '01', '0129', '012912'),
+(816, '012912038', 'Santa Monica', '01', '0129', '012912'),
+(817, '012912039', 'Sarsaracat', '01', '0129', '012912'),
+(818, '012913001', 'Balaweg', '01', '0129', '012913'),
+(819, '012913002', 'Bandril', '01', '0129', '012913'),
+(820, '012913003', 'Bantugo', '01', '0129', '012913'),
+(821, '012913004', 'Cadacad', '01', '0129', '012913'),
+(822, '012913005', 'Casilagan', '01', '0129', '012913'),
+(823, '012913006', 'Casocos', '01', '0129', '012913'),
+(824, '012913007', 'Lapting', '01', '0129', '012913'),
+(825, '012913008', 'Mapisi', '01', '0129', '012913'),
+(826, '012913009', 'Mission', '01', '0129', '012913'),
+(827, '012913010', 'Poblacion East', '01', '0129', '012913'),
+(828, '012913011', 'Poblacion West', '01', '0129', '012913'),
+(829, '012913012', 'Taleb', '01', '0129', '012913'),
+(830, '012914001', 'Abuor', '01', '0129', '012914'),
+(831, '012914002', 'Ambulogan', '01', '0129', '012914'),
+(832, '012914004', 'Aquib', '01', '0129', '012914'),
+(833, '012914005', 'Banglayan', '01', '0129', '012914'),
+(834, '012914006', 'Bulanos', '01', '0129', '012914'),
+(835, '012914007', 'Cadacad', '01', '0129', '012914'),
+(836, '012914008', 'Cagayungan', '01', '0129', '012914'),
+(837, '012914009', 'Camarao', '01', '0129', '012914'),
+(838, '012914010', 'Casilagan', '01', '0129', '012914'),
+(839, '012914011', 'Codoog', '01', '0129', '012914'),
+(840, '012914012', 'Dasay', '01', '0129', '012914'),
+(841, '012914013', 'Dinalaoan', '01', '0129', '012914'),
+(842, '012914014', 'Estancia', '01', '0129', '012914'),
+(843, '012914015', 'Lanipao', '01', '0129', '012914'),
+(844, '012914016', 'Lungog', '01', '0129', '012914'),
+(845, '012914017', 'Margaay', '01', '0129', '012914'),
+(846, '012914018', 'Marozo', '01', '0129', '012914'),
+(847, '012914019', 'Naguneg', '01', '0129', '012914'),
+(848, '012914020', 'Orence', '01', '0129', '012914'),
+(849, '012914021', 'Pantoc', '01', '0129', '012914'),
+(850, '012914022', 'Paratong', '01', '0129', '012914'),
+(851, '012914023', 'Parparia', '01', '0129', '012914'),
+(852, '012914024', 'Quinarayan', '01', '0129', '012914'),
+(853, '012914025', 'Rivadavia', '01', '0129', '012914'),
+(854, '012914026', 'San Antonio', '01', '0129', '012914'),
+(855, '012914027', 'San Jose (Pob.)', '01', '0129', '012914'),
+(856, '012914028', 'San Pablo', '01', '0129', '012914'),
+(857, '012914029', 'San Pedro', '01', '0129', '012914'),
+(858, '012914030', 'Santa Lucia (Pob.)', '01', '0129', '012914'),
+(859, '012914031', 'Sarmingan', '01', '0129', '012914'),
+(860, '012914032', 'Sucoc', '01', '0129', '012914'),
+(861, '012914033', 'Sulvec', '01', '0129', '012914'),
+(862, '012914034', 'Turod', '01', '0129', '012914'),
+(863, '012914035', 'Bantay Abot', '01', '0129', '012914'),
+(864, '012915001', 'Banoen', '01', '0129', '012915'),
+(865, '012915002', 'Cayus', '01', '0129', '012915'),
+(866, '012915003', 'Patungcaleo (Lamag)', '01', '0129', '012915');
+INSERT INTO `barangay` (`barangay_id`, `brgyCode`, `brgyDesc`, `regCode`, `provCode`, `citymunCode`) VALUES
+(867, '012915004', 'Malideg', '01', '0129', '012915'),
+(868, '012915005', 'Namitpit', '01', '0129', '012915'),
+(869, '012915006', 'Patiacan', '01', '0129', '012915'),
+(870, '012915007', 'Legleg (Pob.)', '01', '0129', '012915'),
+(871, '012915008', 'Suagayan', '01', '0129', '012915'),
+(872, '012915009', 'Lamag (Tubtuba)', '01', '0129', '012915'),
+(873, '012916001', 'Atabay', '01', '0129', '012916'),
+(874, '012916002', 'Calangcuasan', '01', '0129', '012916'),
+(875, '012916003', 'Balidbid', '01', '0129', '012916'),
+(876, '012916004', 'Baluarte', '01', '0129', '012916'),
+(877, '012916005', 'Baybayading', '01', '0129', '012916'),
+(878, '012916006', 'Boguibog', '01', '0129', '012916'),
+(879, '012916007', 'Bulala-Leguey', '01', '0129', '012916'),
+(880, '012916008', 'Kaliwakiw', '01', '0129', '012916'),
+(881, '012916010', 'Culiong', '01', '0129', '012916'),
+(882, '012916011', 'Dinaratan', '01', '0129', '012916'),
+(883, '012916012', 'Kinmarin', '01', '0129', '012916'),
+(884, '012916013', 'Lucbuban', '01', '0129', '012916'),
+(885, '012916014', 'Madarang', '01', '0129', '012916'),
+(886, '012916015', 'Maligcong', '01', '0129', '012916'),
+(887, '012916016', 'Pias', '01', '0129', '012916'),
+(888, '012916017', 'Poblacion Norte', '01', '0129', '012916'),
+(889, '012916018', 'Poblacion Sur', '01', '0129', '012916'),
+(890, '012916019', 'San Gaspar', '01', '0129', '012916'),
+(891, '012916020', 'San Tiburcio', '01', '0129', '012916'),
+(892, '012916021', 'Sorioan', '01', '0129', '012916'),
+(893, '012916022', 'Ubbog', '01', '0129', '012916'),
+(894, '012917001', 'Cabaroan (Pob.)', '01', '0129', '012917'),
+(895, '012917002', 'Kalumsing', '01', '0129', '012917'),
+(896, '012917003', 'Lancuas', '01', '0129', '012917'),
+(897, '012917004', 'Matibuey', '01', '0129', '012917'),
+(898, '012917005', 'Paltoc', '01', '0129', '012917'),
+(899, '012917006', 'Sibsibbu', '01', '0129', '012917'),
+(900, '012917007', 'Tiagan', '01', '0129', '012917'),
+(901, '012917008', 'San Miliano', '01', '0129', '012917'),
+(902, '012918001', 'Ansad', '01', '0129', '012918'),
+(903, '012918002', 'Apatot', '01', '0129', '012918'),
+(904, '012918003', 'Bateria', '01', '0129', '012918'),
+(905, '012918004', 'Cabaroan', '01', '0129', '012918'),
+(906, '012918005', 'Cappa-cappa', '01', '0129', '012918'),
+(907, '012918006', 'Poblacion', '01', '0129', '012918'),
+(908, '012918007', 'San Nicolas', '01', '0129', '012918'),
+(909, '012918008', 'San Pablo', '01', '0129', '012918'),
+(910, '012918009', 'San Rafael', '01', '0129', '012918'),
+(911, '012918010', 'Villa Quirino', '01', '0129', '012918'),
+(912, '012919001', 'Arnap', '01', '0129', '012919'),
+(913, '012919002', 'Bahet', '01', '0129', '012919'),
+(914, '012919003', 'Belen', '01', '0129', '012919'),
+(915, '012919004', 'Bungro', '01', '0129', '012919'),
+(916, '012919006', 'Busiing Sur', '01', '0129', '012919'),
+(917, '012919007', 'Busiing Norte', '01', '0129', '012919'),
+(918, '012919009', 'Dongalo', '01', '0129', '012919'),
+(919, '012919010', 'Gongogong', '01', '0129', '012919'),
+(920, '012919011', 'Iboy', '01', '0129', '012919'),
+(921, '012919013', 'Otol-Patac', '01', '0129', '012919'),
+(922, '012919014', 'Poblacion East', '01', '0129', '012919'),
+(923, '012919015', 'Poblacion West', '01', '0129', '012919'),
+(924, '012919016', 'Kinamantirisan', '01', '0129', '012919'),
+(925, '012919017', 'Sagneb', '01', '0129', '012919'),
+(926, '012919018', 'Sagsagat', '01', '0129', '012919'),
+(927, '012920001', 'Bacsil', '01', '0129', '012920'),
+(928, '012920002', 'Baliw', '01', '0129', '012920'),
+(929, '012920003', 'Bannuar (Pob.)', '01', '0129', '012920'),
+(930, '012920004', 'Barbar', '01', '0129', '012920'),
+(931, '012920005', 'Cabanglotan', '01', '0129', '012920'),
+(932, '012920006', 'Cacandongan', '01', '0129', '012920'),
+(933, '012920007', 'Camanggaan', '01', '0129', '012920'),
+(934, '012920008', 'Camindoroan', '01', '0129', '012920'),
+(935, '012920009', 'Caronoan', '01', '0129', '012920'),
+(936, '012920010', 'Darao', '01', '0129', '012920'),
+(937, '012920012', 'Dardarat', '01', '0129', '012920'),
+(938, '012920013', 'Guimod Norte', '01', '0129', '012920'),
+(939, '012920014', 'Guimod Sur', '01', '0129', '012920'),
+(940, '012920015', 'Immayos Norte', '01', '0129', '012920'),
+(941, '012920016', 'Immayos Sur', '01', '0129', '012920'),
+(942, '012920017', 'Labnig', '01', '0129', '012920'),
+(943, '012920018', 'Lapting', '01', '0129', '012920'),
+(944, '012920019', 'Lira (Pob.)', '01', '0129', '012920'),
+(945, '012920020', 'Malamin', '01', '0129', '012920'),
+(946, '012920021', 'Muraya', '01', '0129', '012920'),
+(947, '012920022', 'Nagsabaran', '01', '0129', '012920'),
+(948, '012920023', 'Nagsupotan', '01', '0129', '012920'),
+(949, '012920025', 'Pandayan (Pob.)', '01', '0129', '012920'),
+(950, '012920027', 'Refaro', '01', '0129', '012920'),
+(951, '012920028', 'Resurreccion (Pob.)', '01', '0129', '012920'),
+(952, '012920029', 'Sabangan', '01', '0129', '012920'),
+(953, '012920031', 'San Isidro', '01', '0129', '012920'),
+(954, '012920035', 'Saoang', '01', '0129', '012920'),
+(955, '012920037', 'Solotsolot', '01', '0129', '012920'),
+(956, '012920038', 'Sunggiam', '01', '0129', '012920'),
+(957, '012920039', 'Surngit', '01', '0129', '012920'),
+(958, '012920040', 'Asilang', '01', '0129', '012920'),
+(959, '012921001', 'Bantaoay', '01', '0129', '012921'),
+(960, '012921002', 'Bayubay Norte', '01', '0129', '012921'),
+(961, '012921003', 'Bayubay Sur', '01', '0129', '012921'),
+(962, '012921004', 'Lubong', '01', '0129', '012921'),
+(963, '012921005', 'Poblacion', '01', '0129', '012921'),
+(964, '012921006', 'Pudoc', '01', '0129', '012921'),
+(965, '012921007', 'San Sebastian', '01', '0129', '012921'),
+(966, '012922001', 'Ampandula', '01', '0129', '012922'),
+(967, '012922002', 'Banaoang', '01', '0129', '012922'),
+(968, '012922003', 'Basug', '01', '0129', '012922'),
+(969, '012922004', 'Bucalag', '01', '0129', '012922'),
+(970, '012922005', 'Cabangaran', '01', '0129', '012922'),
+(971, '012922006', 'Calungboyan', '01', '0129', '012922'),
+(972, '012922008', 'Casiber', '01', '0129', '012922'),
+(973, '012922009', 'Dammay', '01', '0129', '012922'),
+(974, '012922010', 'Labut Norte', '01', '0129', '012922'),
+(975, '012922011', 'Labut Sur', '01', '0129', '012922'),
+(976, '012922012', 'Mabilbila Sur', '01', '0129', '012922'),
+(977, '012922013', 'Mabilbila Norte', '01', '0129', '012922'),
+(978, '012922014', 'Magsaysay District (Pob.)', '01', '0129', '012922'),
+(979, '012922015', 'Manueva', '01', '0129', '012922'),
+(980, '012922016', 'Marcos (Pob.)', '01', '0129', '012922'),
+(981, '012922017', 'Nagpanaoan', '01', '0129', '012922'),
+(982, '012922018', 'Namalangan', '01', '0129', '012922'),
+(983, '012922019', 'Oribi', '01', '0129', '012922'),
+(984, '012922020', 'Pasungol', '01', '0129', '012922'),
+(985, '012922022', 'Quezon (Pob.)', '01', '0129', '012922'),
+(986, '012922023', 'Quirino (Pob.)', '01', '0129', '012922'),
+(987, '012922024', 'Rancho', '01', '0129', '012922'),
+(988, '012922025', 'Rizal', '01', '0129', '012922'),
+(989, '012922026', 'Sacuyya Norte', '01', '0129', '012922'),
+(990, '012922027', 'Sacuyya Sur', '01', '0129', '012922'),
+(991, '012922028', 'Tabucolan', '01', '0129', '012922'),
+(992, '012923001', 'Cabaroan', '01', '0129', '012923'),
+(993, '012923002', 'Cabittaogan', '01', '0129', '012923'),
+(994, '012923003', 'Cabuloan', '01', '0129', '012923'),
+(995, '012923004', 'Pangada', '01', '0129', '012923'),
+(996, '012923005', 'Paratong', '01', '0129', '012923'),
+(997, '012923006', 'Poblacion', '01', '0129', '012923'),
+(998, '012923007', 'Sinabaan', '01', '0129', '012923'),
+(999, '012923008', 'Subec', '01', '0129', '012923'),
+(1000, '012923009', 'Tamorong', '01', '0129', '012923'),
+(1001, '012924001', 'Amarao', '01', '0129', '012924'),
+(1002, '012924002', 'Babayoan', '01', '0129', '012924'),
+(1003, '012924003', 'Bacsayan', '01', '0129', '012924'),
+(1004, '012924004', 'Banay', '01', '0129', '012924'),
+(1005, '012924005', 'Bayugao Este', '01', '0129', '012924'),
+(1006, '012924006', 'Bayugao Oeste', '01', '0129', '012924'),
+(1007, '012924007', 'Besalan', '01', '0129', '012924'),
+(1008, '012924008', 'Bugbuga', '01', '0129', '012924'),
+(1009, '012924009', 'Calaoaan', '01', '0129', '012924'),
+(1010, '012924010', 'Camanggaan', '01', '0129', '012924'),
+(1011, '012924011', 'Candalican', '01', '0129', '012924'),
+(1012, '012924012', 'Capariaan', '01', '0129', '012924'),
+(1013, '012924013', 'Casilagan', '01', '0129', '012924'),
+(1014, '012924014', 'Coscosnong', '01', '0129', '012924'),
+(1015, '012924015', 'Daligan', '01', '0129', '012924'),
+(1016, '012924016', 'Dili', '01', '0129', '012924'),
+(1017, '012924017', 'Gabor Norte', '01', '0129', '012924'),
+(1018, '012924018', 'Gabor Sur', '01', '0129', '012924'),
+(1019, '012924019', 'Lalong', '01', '0129', '012924'),
+(1020, '012924020', 'Lantag', '01', '0129', '012924'),
+(1021, '012924021', 'Las-ud', '01', '0129', '012924'),
+(1022, '012924022', 'Mambog', '01', '0129', '012924'),
+(1023, '012924023', 'Mantanas', '01', '0129', '012924'),
+(1024, '012924024', 'Nagtengnga', '01', '0129', '012924'),
+(1025, '012924025', 'Padaoil', '01', '0129', '012924'),
+(1026, '012924026', 'Paratong', '01', '0129', '012924'),
+(1027, '012924027', 'Pattiqui', '01', '0129', '012924'),
+(1028, '012924028', 'Pidpid', '01', '0129', '012924'),
+(1029, '012924029', 'Pilar', '01', '0129', '012924'),
+(1030, '012924030', 'Pinipin', '01', '0129', '012924'),
+(1031, '012924031', 'Poblacion Este', '01', '0129', '012924'),
+(1032, '012924032', 'Poblacion Norte', '01', '0129', '012924'),
+(1033, '012924033', 'Poblacion Weste', '01', '0129', '012924'),
+(1034, '012924034', 'Poblacion Sur', '01', '0129', '012924'),
+(1035, '012924035', 'Quinfermin', '01', '0129', '012924'),
+(1036, '012924036', 'Quinsoriano', '01', '0129', '012924'),
+(1037, '012924037', 'Sagat', '01', '0129', '012924'),
+(1038, '012924038', 'San Antonio', '01', '0129', '012924'),
+(1039, '012924039', 'San Jose', '01', '0129', '012924'),
+(1040, '012924040', 'San Pedro', '01', '0129', '012924'),
+(1041, '012924041', 'Saoat', '01', '0129', '012924'),
+(1042, '012924042', 'Sevilla', '01', '0129', '012924'),
+(1043, '012924043', 'Sidaoen', '01', '0129', '012924'),
+(1044, '012924044', 'Suyo', '01', '0129', '012924'),
+(1045, '012924045', 'Tampugo', '01', '0129', '012924'),
+(1046, '012924046', 'Turod', '01', '0129', '012924'),
+(1047, '012924047', 'Villa Garcia', '01', '0129', '012924'),
+(1048, '012924048', 'Villa Hermosa', '01', '0129', '012924'),
+(1049, '012924049', 'Villa Laurencia', '01', '0129', '012924'),
+(1050, '012925001', 'Alincaoeg', '01', '0129', '012925'),
+(1051, '012925002', 'Angkileng', '01', '0129', '012925'),
+(1052, '012925003', 'Arangin', '01', '0129', '012925'),
+(1053, '012925004', 'Ayusan (Pob.)', '01', '0129', '012925'),
+(1054, '012925005', 'Banbanaba', '01', '0129', '012925'),
+(1055, '012925006', 'Bao-as', '01', '0129', '012925'),
+(1056, '012925007', 'Barangobong (Pob.)', '01', '0129', '012925'),
+(1057, '012925008', 'Buliclic', '01', '0129', '012925'),
+(1058, '012925009', 'Burgos (Pob.)', '01', '0129', '012925'),
+(1059, '012925010', 'Cabaritan', '01', '0129', '012925'),
+(1060, '012925011', 'Catayagan', '01', '0129', '012925'),
+(1061, '012925012', 'Conconig East', '01', '0129', '012925'),
+(1062, '012925013', 'Conconig West', '01', '0129', '012925'),
+(1063, '012925014', 'Damacuag', '01', '0129', '012925'),
+(1064, '012925015', 'Lubong', '01', '0129', '012925'),
+(1065, '012925016', 'Luba', '01', '0129', '012925'),
+(1066, '012925017', 'Nagrebcan', '01', '0129', '012925'),
+(1067, '012925018', 'Nagtablaan', '01', '0129', '012925'),
+(1068, '012925019', 'Namatican', '01', '0129', '012925'),
+(1069, '012925020', 'Nangalisan', '01', '0129', '012925'),
+(1070, '012925021', 'Palali Norte', '01', '0129', '012925'),
+(1071, '012925022', 'Palali Sur', '01', '0129', '012925'),
+(1072, '012925023', 'Paoc Norte', '01', '0129', '012925'),
+(1073, '012925024', 'Paoc Sur', '01', '0129', '012925'),
+(1074, '012925025', 'Paratong', '01', '0129', '012925'),
+(1075, '012925026', 'Pila East', '01', '0129', '012925'),
+(1076, '012925027', 'Pila West', '01', '0129', '012925'),
+(1077, '012925028', 'Quinabalayangan', '01', '0129', '012925'),
+(1078, '012925029', 'Ronda', '01', '0129', '012925'),
+(1079, '012925030', 'Sabuanan', '01', '0129', '012925'),
+(1080, '012925031', 'San Juan', '01', '0129', '012925'),
+(1081, '012925032', 'San Pedro', '01', '0129', '012925'),
+(1082, '012925033', 'Sapang', '01', '0129', '012925'),
+(1083, '012925034', 'Suagayan', '01', '0129', '012925'),
+(1084, '012925035', 'Vical', '01', '0129', '012925'),
+(1085, '012925036', 'Bani', '01', '0129', '012925'),
+(1086, '012926001', 'Ag-agrao', '01', '0129', '012926'),
+(1087, '012926002', 'Ampuagan', '01', '0129', '012926'),
+(1088, '012926003', 'Baballasioan', '01', '0129', '012926'),
+(1089, '012926004', 'Baliw Daya', '01', '0129', '012926'),
+(1090, '012926005', 'Baliw Laud', '01', '0129', '012926'),
+(1091, '012926006', 'Bia-o', '01', '0129', '012926'),
+(1092, '012926007', 'Butir', '01', '0129', '012926'),
+(1093, '012926008', 'Cabaroan', '01', '0129', '012926'),
+(1094, '012926009', 'Danuman East', '01', '0129', '012926'),
+(1095, '012926010', 'Danuman West', '01', '0129', '012926'),
+(1096, '012926011', 'Dunglayan', '01', '0129', '012926'),
+(1097, '012926012', 'Gusing', '01', '0129', '012926'),
+(1098, '012926013', 'Langaoan', '01', '0129', '012926'),
+(1099, '012926014', 'Laslasong Norte', '01', '0129', '012926'),
+(1100, '012926015', 'Laslasong Sur', '01', '0129', '012926'),
+(1101, '012926016', 'Laslasong West', '01', '0129', '012926'),
+(1102, '012926017', 'Lesseb', '01', '0129', '012926'),
+(1103, '012926018', 'Lingsat', '01', '0129', '012926'),
+(1104, '012926019', 'Lubong', '01', '0129', '012926'),
+(1105, '012926020', 'Maynganay Norte', '01', '0129', '012926'),
+(1106, '012926021', 'Maynganay Sur', '01', '0129', '012926'),
+(1107, '012926022', 'Nagsayaoan', '01', '0129', '012926'),
+(1108, '012926023', 'Nagtupacan', '01', '0129', '012926'),
+(1109, '012926024', 'Nalvo', '01', '0129', '012926'),
+(1110, '012926027', 'Pacang', '01', '0129', '012926'),
+(1111, '012926028', 'Penned', '01', '0129', '012926'),
+(1112, '012926029', 'Poblacion Norte', '01', '0129', '012926'),
+(1113, '012926030', 'Poblacion Sur', '01', '0129', '012926'),
+(1114, '012926031', 'Silag', '01', '0129', '012926'),
+(1115, '012926032', 'Sumagui', '01', '0129', '012926'),
+(1116, '012926033', 'Suso', '01', '0129', '012926'),
+(1117, '012926034', 'Tangaoan', '01', '0129', '012926'),
+(1118, '012926035', 'Tinaan', '01', '0129', '012926'),
+(1119, '012927001', 'Al-aludig', '01', '0129', '012927'),
+(1120, '012927002', 'Ambucao', '01', '0129', '012927'),
+(1121, '012927003', 'San Jose (Baraoas)', '01', '0129', '012927'),
+(1122, '012927004', 'Baybayabas', '01', '0129', '012927'),
+(1123, '012927005', 'Bigbiga', '01', '0129', '012927'),
+(1124, '012927006', 'Bulbulala', '01', '0129', '012927'),
+(1125, '012927007', 'Busel-busel', '01', '0129', '012927'),
+(1126, '012927008', 'Butol', '01', '0129', '012927'),
+(1127, '012927009', 'Caburao', '01', '0129', '012927'),
+(1128, '012927010', 'Dan-ar', '01', '0129', '012927'),
+(1129, '012927011', 'Gabao', '01', '0129', '012927'),
+(1130, '012927012', 'Guinabang', '01', '0129', '012927'),
+(1131, '012927013', 'Imus', '01', '0129', '012927'),
+(1132, '012927014', 'Lang-ayan', '01', '0129', '012927'),
+(1133, '012927015', 'Mambug', '01', '0129', '012927'),
+(1134, '012927016', 'Nalasin', '01', '0129', '012927'),
+(1135, '012927017', 'Olo-olo Norte', '01', '0129', '012927'),
+(1136, '012927018', 'Olo-olo Sur', '01', '0129', '012927'),
+(1137, '012927019', 'Poblacion Norte', '01', '0129', '012927'),
+(1138, '012927020', 'Poblacion Sur', '01', '0129', '012927'),
+(1139, '012927021', 'Sabangan', '01', '0129', '012927'),
+(1140, '012927022', 'Salincub', '01', '0129', '012927'),
+(1141, '012927023', 'San Roque', '01', '0129', '012927'),
+(1142, '012927024', 'Ubbog', '01', '0129', '012927'),
+(1143, '012928001', 'Binalayangan', '01', '0129', '012928'),
+(1144, '012928002', 'Binongan', '01', '0129', '012928'),
+(1145, '012928003', 'Borobor', '01', '0129', '012928'),
+(1146, '012928004', 'Cabaritan', '01', '0129', '012928'),
+(1147, '012928005', 'Cabigbigaan', '01', '0129', '012928'),
+(1148, '012928006', 'Calautit', '01', '0129', '012928'),
+(1149, '012928007', 'Calay-ab', '01', '0129', '012928'),
+(1150, '012928008', 'Camestizoan', '01', '0129', '012928'),
+(1151, '012928009', 'Casili', '01', '0129', '012928'),
+(1152, '012928010', 'Flora', '01', '0129', '012928'),
+(1153, '012928011', 'Lagatit', '01', '0129', '012928'),
+(1154, '012928012', 'Laoingen', '01', '0129', '012928'),
+(1155, '012928013', 'Lussoc', '01', '0129', '012928'),
+(1156, '012928014', 'Nalasin', '01', '0129', '012928'),
+(1157, '012928015', 'Nagbettedan', '01', '0129', '012928'),
+(1158, '012928016', 'Naglaoa-an', '01', '0129', '012928'),
+(1159, '012928017', 'Nambaran', '01', '0129', '012928'),
+(1160, '012928018', 'Nanerman', '01', '0129', '012928'),
+(1161, '012928019', 'Napo', '01', '0129', '012928'),
+(1162, '012928020', 'Padu Chico', '01', '0129', '012928'),
+(1163, '012928021', 'Padu Grande', '01', '0129', '012928'),
+(1164, '012928022', 'Paguraper', '01', '0129', '012928'),
+(1165, '012928023', 'Panay', '01', '0129', '012928'),
+(1166, '012928024', 'Pangpangdan', '01', '0129', '012928'),
+(1167, '012928025', 'Parada', '01', '0129', '012928'),
+(1168, '012928026', 'Paras', '01', '0129', '012928'),
+(1169, '012928027', 'Poblacion', '01', '0129', '012928'),
+(1170, '012928030', 'Puerta Real', '01', '0129', '012928'),
+(1171, '012928031', 'Pussuac', '01', '0129', '012928'),
+(1172, '012928032', 'Quimmarayan', '01', '0129', '012928'),
+(1173, '012928033', 'San Pablo', '01', '0129', '012928'),
+(1174, '012928034', 'Santa Cruz', '01', '0129', '012928'),
+(1175, '012928035', 'Santo Tomas', '01', '0129', '012928'),
+(1176, '012928036', 'Sived', '01', '0129', '012928'),
+(1177, '012928038', 'Vacunero', '01', '0129', '012928'),
+(1178, '012928039', 'Suksukit', '01', '0129', '012928'),
+(1179, '012929001', 'Abaccan', '01', '0129', '012929'),
+(1180, '012929002', 'Mabileg', '01', '0129', '012929'),
+(1181, '012929003', 'Matallucod', '01', '0129', '012929'),
+(1182, '012929004', 'Poblacion (Madayaw)', '01', '0129', '012929'),
+(1183, '012929005', 'San Elias', '01', '0129', '012929'),
+(1184, '012929006', 'San Ramon', '01', '0129', '012929'),
+(1185, '012929007', 'Santo Rosario', '01', '0129', '012929'),
+(1186, '012930001', 'Aguing', '01', '0129', '012930'),
+(1187, '012930002', 'Ballaigui (Pob.)', '01', '0129', '012930'),
+(1188, '012930003', 'Baliw', '01', '0129', '012930'),
+(1189, '012930004', 'Baracbac', '01', '0129', '012930'),
+(1190, '012930005', 'Barikir', '01', '0129', '012930'),
+(1191, '012930006', 'Battog', '01', '0129', '012930'),
+(1192, '012930007', 'Binacud', '01', '0129', '012930'),
+(1193, '012930008', 'Cabangtalan', '01', '0129', '012930'),
+(1194, '012930009', 'Cabarambanan', '01', '0129', '012930'),
+(1195, '012930010', 'Cabulalaan', '01', '0129', '012930'),
+(1196, '012930011', 'Cadanglaan', '01', '0129', '012930'),
+(1197, '012930012', 'Calingayan', '01', '0129', '012930'),
+(1198, '012930013', 'Curtin', '01', '0129', '012930'),
+(1199, '012930014', 'Dadalaquiten Norte', '01', '0129', '012930'),
+(1200, '012930015', 'Dadalaquiten Sur', '01', '0129', '012930'),
+(1201, '012930016', 'Duyayyat', '01', '0129', '012930'),
+(1202, '012930017', 'Jordan', '01', '0129', '012930'),
+(1203, '012930018', 'Calanutian', '01', '0129', '012930'),
+(1204, '012930019', 'Katipunan', '01', '0129', '012930'),
+(1205, '012930020', 'Macabiag (Pob.)', '01', '0129', '012930'),
+(1206, '012930021', 'Magsaysay', '01', '0129', '012930'),
+(1207, '012930022', 'Marnay', '01', '0129', '012930'),
+(1208, '012930023', 'Masadag', '01', '0129', '012930'),
+(1209, '012930024', 'Nagcullooban', '01', '0129', '012930'),
+(1210, '012930025', 'Nagbalioartian', '01', '0129', '012930'),
+(1211, '012930026', 'Nagongburan', '01', '0129', '012930'),
+(1212, '012930027', 'Namnama (Pob.)', '01', '0129', '012930'),
+(1213, '012930028', 'Pacis', '01', '0129', '012930'),
+(1214, '012930029', 'Paratong', '01', '0129', '012930'),
+(1215, '012930030', 'Dean Leopoldo Yabes (Pug-os)', '01', '0129', '012930'),
+(1216, '012930031', 'Purag', '01', '0129', '012930'),
+(1217, '012930032', 'Quibit-quibit', '01', '0129', '012930'),
+(1218, '012930033', 'Quimmallogong', '01', '0129', '012930'),
+(1219, '012930034', 'Rang-ay (Pob.)', '01', '0129', '012930'),
+(1220, '012930035', 'Ricudo', '01', '0129', '012930'),
+(1221, '012930036', 'Sabañgan (Marcos)', '01', '0129', '012930'),
+(1222, '012930037', 'Sallacapo', '01', '0129', '012930'),
+(1223, '012930038', 'Santa Cruz', '01', '0129', '012930'),
+(1224, '012930039', 'Sapriana', '01', '0129', '012930'),
+(1225, '012930040', 'Tapao', '01', '0129', '012930'),
+(1226, '012930041', 'Teppeng', '01', '0129', '012930'),
+(1227, '012930042', 'Tubigay', '01', '0129', '012930'),
+(1228, '012930043', 'Ubbog', '01', '0129', '012930'),
+(1229, '012930044', 'Zapat', '01', '0129', '012930'),
+(1230, '012931001', 'Banga', '01', '0129', '012931'),
+(1231, '012931002', 'Caoayan', '01', '0129', '012931'),
+(1232, '012931004', 'Licungan (Cullang)', '01', '0129', '012931'),
+(1233, '012931005', 'Danac', '01', '0129', '012931'),
+(1234, '012931007', 'Pangotan', '01', '0129', '012931'),
+(1235, '012931008', 'Balbalayang (Pob.)', '01', '0129', '012931'),
+(1236, '012932001', 'Baringcucurong', '01', '0129', '012932'),
+(1237, '012932002', 'Cabugao', '01', '0129', '012932'),
+(1238, '012932003', 'Man-atong', '01', '0129', '012932'),
+(1239, '012932004', 'Patoc-ao', '01', '0129', '012932'),
+(1240, '012932005', 'Poblacion (Kimpusa)', '01', '0129', '012932'),
+(1241, '012932007', 'Suyo Proper', '01', '0129', '012932'),
+(1242, '012932008', 'Urzadan', '01', '0129', '012932'),
+(1243, '012932009', 'Uso', '01', '0129', '012932'),
+(1244, '012933001', 'Ag-aguman', '01', '0129', '012933'),
+(1245, '012933002', 'Ambalayat', '01', '0129', '012933'),
+(1246, '012933003', 'Baracbac', '01', '0129', '012933'),
+(1247, '012933004', 'Bario-an', '01', '0129', '012933'),
+(1248, '012933005', 'Baritao', '01', '0129', '012933'),
+(1249, '012933006', 'Borono', '01', '0129', '012933'),
+(1250, '012933007', 'Becques', '01', '0129', '012933'),
+(1251, '012933008', 'Bimmanga', '01', '0129', '012933'),
+(1252, '012933009', 'Bio', '01', '0129', '012933'),
+(1253, '012933010', 'Bitalag', '01', '0129', '012933'),
+(1254, '012933011', 'Bucao East', '01', '0129', '012933'),
+(1255, '012933012', 'Bucao West', '01', '0129', '012933'),
+(1256, '012933013', 'Cabaroan', '01', '0129', '012933'),
+(1257, '012933014', 'Cabugbugan', '01', '0129', '012933'),
+(1258, '012933015', 'Cabulanglangan', '01', '0129', '012933'),
+(1259, '012933016', 'Dacutan', '01', '0129', '012933'),
+(1260, '012933017', 'Dardarat', '01', '0129', '012933'),
+(1261, '012933018', 'Del Pilar (Pob.)', '01', '0129', '012933'),
+(1262, '012933019', 'Farola', '01', '0129', '012933'),
+(1263, '012933020', 'Gabur', '01', '0129', '012933'),
+(1264, '012933021', 'Garitan', '01', '0129', '012933'),
+(1265, '012933022', 'Jardin', '01', '0129', '012933'),
+(1266, '012933023', 'Lacong', '01', '0129', '012933'),
+(1267, '012933024', 'Lantag', '01', '0129', '012933'),
+(1268, '012933025', 'Las-ud', '01', '0129', '012933'),
+(1269, '012933026', 'Libtong', '01', '0129', '012933'),
+(1270, '012933027', 'Lubnac', '01', '0129', '012933'),
+(1271, '012933028', 'Magsaysay (Pob.)', '01', '0129', '012933'),
+(1272, '012933029', 'Malacañang', '01', '0129', '012933'),
+(1273, '012933030', 'Pacac', '01', '0129', '012933'),
+(1274, '012933031', 'Pallogan', '01', '0129', '012933'),
+(1275, '012933032', 'Pudoc East', '01', '0129', '012933'),
+(1276, '012933033', 'Pudoc West', '01', '0129', '012933'),
+(1277, '012933034', 'Pula', '01', '0129', '012933'),
+(1278, '012933035', 'Quirino (Pob.)', '01', '0129', '012933'),
+(1279, '012933036', 'Ranget', '01', '0129', '012933'),
+(1280, '012933038', 'Rizal (Pob.)', '01', '0129', '012933'),
+(1281, '012933039', 'Salvacion', '01', '0129', '012933'),
+(1282, '012933040', 'San Miguel', '01', '0129', '012933'),
+(1283, '012933041', 'Sawat', '01', '0129', '012933'),
+(1284, '012933044', 'Tallaoen', '01', '0129', '012933'),
+(1285, '012933045', 'Tampugo', '01', '0129', '012933'),
+(1286, '012933046', 'Tarangotong', '01', '0129', '012933'),
+(1287, '012934001', 'Ayusan Norte', '01', '0129', '012934'),
+(1288, '012934002', 'Ayusan Sur', '01', '0129', '012934'),
+(1289, '012934003', 'Barangay I (Pob.)', '01', '0129', '012934'),
+(1290, '012934004', 'Barangay II (Pob.)', '01', '0129', '012934'),
+(1291, '012934005', 'Barangay III (Pob.)', '01', '0129', '012934'),
+(1292, '012934006', 'Barangay IV (Pob.)', '01', '0129', '012934'),
+(1293, '012934007', 'Barangay V (Pob.)', '01', '0129', '012934'),
+(1294, '012934008', 'Barangay VI (Pob.)', '01', '0129', '012934'),
+(1295, '012934009', 'Barraca', '01', '0129', '012934'),
+(1296, '012934010', 'Beddeng Laud', '01', '0129', '012934'),
+(1297, '012934011', 'Beddeng Daya', '01', '0129', '012934'),
+(1298, '012934012', 'Bongtolan', '01', '0129', '012934'),
+(1299, '012934013', 'Bulala', '01', '0129', '012934'),
+(1300, '012934014', 'Cabalangegan', '01', '0129', '012934'),
+(1301, '012934015', 'Cabaroan Daya', '01', '0129', '012934'),
+(1302, '012934016', 'Cabaroan Laud', '01', '0129', '012934'),
+(1303, '012934017', 'Camangaan', '01', '0129', '012934'),
+(1304, '012934018', 'Capangpangan', '01', '0129', '012934'),
+(1305, '012934020', 'Mindoro', '01', '0129', '012934'),
+(1306, '012934021', 'Nagsangalan', '01', '0129', '012934'),
+(1307, '012934022', 'Pantay Daya', '01', '0129', '012934'),
+(1308, '012934023', 'Pantay Fatima', '01', '0129', '012934'),
+(1309, '012934024', 'Pantay Laud', '01', '0129', '012934'),
+(1310, '012934025', 'Paoa', '01', '0129', '012934'),
+(1311, '012934026', 'Paratong', '01', '0129', '012934'),
+(1312, '012934027', 'Pong-ol', '01', '0129', '012934'),
+(1313, '012934028', 'Purok-a-bassit', '01', '0129', '012934'),
+(1314, '012934029', 'Purok-a-dackel', '01', '0129', '012934'),
+(1315, '012934030', 'Raois', '01', '0129', '012934'),
+(1316, '012934031', 'Rugsuanan', '01', '0129', '012934'),
+(1317, '012934032', 'Salindeg', '01', '0129', '012934'),
+(1318, '012934033', 'San Jose', '01', '0129', '012934'),
+(1319, '012934034', 'San Julian Norte', '01', '0129', '012934'),
+(1320, '012934035', 'San Julian Sur', '01', '0129', '012934'),
+(1321, '012934036', 'San Pedro', '01', '0129', '012934'),
+(1322, '012934037', 'Tamag', '01', '0129', '012934'),
+(1323, '012934038', 'Barangay VII', '01', '0129', '012934'),
+(1324, '012934039', 'Barangay VIII', '01', '0129', '012934'),
+(1325, '012934040', 'Barangay IX', '01', '0129', '012934'),
+(1326, '013301001', 'Ambitacay', '01', '0133', '013301'),
+(1327, '013301002', 'Balawarte', '01', '0133', '013301'),
+(1328, '013301003', 'Capas', '01', '0133', '013301'),
+(1329, '013301004', 'Consolacion (Pob.)', '01', '0133', '013301'),
+(1330, '013301005', 'Macalva Central', '01', '0133', '013301'),
+(1331, '013301006', 'Macalva Norte', '01', '0133', '013301'),
+(1332, '013301007', 'Macalva Sur', '01', '0133', '013301'),
+(1333, '013301008', 'Nazareno', '01', '0133', '013301'),
+(1334, '013301009', 'Purok', '01', '0133', '013301'),
+(1335, '013301010', 'San Agustin East', '01', '0133', '013301'),
+(1336, '013301011', 'San Agustin Norte', '01', '0133', '013301'),
+(1337, '013301012', 'San Agustin Sur', '01', '0133', '013301'),
+(1338, '013301013', 'San Antonino', '01', '0133', '013301'),
+(1339, '013301014', 'San Antonio', '01', '0133', '013301'),
+(1340, '013301015', 'San Francisco', '01', '0133', '013301'),
+(1341, '013301016', 'San Isidro', '01', '0133', '013301'),
+(1342, '013301017', 'San Joaquin Norte', '01', '0133', '013301'),
+(1343, '013301018', 'San Joaquin Sur', '01', '0133', '013301'),
+(1344, '013301019', 'San Jose Norte', '01', '0133', '013301'),
+(1345, '013301020', 'San Jose Sur', '01', '0133', '013301'),
+(1346, '013301021', 'San Juan', '01', '0133', '013301'),
+(1347, '013301022', 'San Julian Central', '01', '0133', '013301'),
+(1348, '013301023', 'San Julian East', '01', '0133', '013301'),
+(1349, '013301024', 'San Julian Norte', '01', '0133', '013301'),
+(1350, '013301025', 'San Julian West', '01', '0133', '013301'),
+(1351, '013301026', 'San Manuel Norte', '01', '0133', '013301'),
+(1352, '013301027', 'San Manuel Sur', '01', '0133', '013301'),
+(1353, '013301028', 'San Marcos', '01', '0133', '013301'),
+(1354, '013301029', 'San Miguel', '01', '0133', '013301'),
+(1355, '013301030', 'San Nicolas Central (Pob.)', '01', '0133', '013301'),
+(1356, '013301031', 'San Nicolas East', '01', '0133', '013301'),
+(1357, '013301032', 'San Nicolas Norte (Pob.)', '01', '0133', '013301'),
+(1358, '013301033', 'San Nicolas West', '01', '0133', '013301'),
+(1359, '013301034', 'San Nicolas Sur (Pob.)', '01', '0133', '013301'),
+(1360, '013301035', 'San Pedro', '01', '0133', '013301'),
+(1361, '013301036', 'San Roque West', '01', '0133', '013301'),
+(1362, '013301037', 'San Roque East', '01', '0133', '013301'),
+(1363, '013301038', 'San Vicente Norte', '01', '0133', '013301'),
+(1364, '013301039', 'San Vicente Sur', '01', '0133', '013301'),
+(1365, '013301040', 'Santa Ana', '01', '0133', '013301'),
+(1366, '013301041', 'Santa Barbara (Pob.)', '01', '0133', '013301'),
+(1367, '013301042', 'Santa Fe', '01', '0133', '013301'),
+(1368, '013301043', 'Santa Maria', '01', '0133', '013301'),
+(1369, '013301044', 'Santa Monica', '01', '0133', '013301'),
+(1370, '013301045', 'Santa Rita (Nalinac)', '01', '0133', '013301'),
+(1371, '013301046', 'Santa Rita East', '01', '0133', '013301'),
+(1372, '013301047', 'Santa Rita Norte', '01', '0133', '013301'),
+(1373, '013301048', 'Santa Rita Sur', '01', '0133', '013301'),
+(1374, '013301049', 'Santa Rita West', '01', '0133', '013301'),
+(1375, '013302001', 'Alaska', '01', '0133', '013302'),
+(1376, '013302002', 'Basca', '01', '0133', '013302'),
+(1377, '013302003', 'Dulao', '01', '0133', '013302'),
+(1378, '013302004', 'Gallano', '01', '0133', '013302'),
+(1379, '013302005', 'Macabato', '01', '0133', '013302'),
+(1380, '013302006', 'Manga', '01', '0133', '013302'),
+(1381, '013302007', 'Pangao-aoan East', '01', '0133', '013302'),
+(1382, '013302009', 'Pangao-aoan West', '01', '0133', '013302'),
+(1383, '013302010', 'Poblacion', '01', '0133', '013302'),
+(1384, '013302011', 'Samara', '01', '0133', '013302'),
+(1385, '013302012', 'San Antonio', '01', '0133', '013302'),
+(1386, '013302014', 'San Benito Norte', '01', '0133', '013302'),
+(1387, '013302015', 'San Benito Sur', '01', '0133', '013302'),
+(1388, '013302016', 'San Eugenio', '01', '0133', '013302'),
+(1389, '013302018', 'San Juan East', '01', '0133', '013302'),
+(1390, '013302019', 'San Juan West', '01', '0133', '013302'),
+(1391, '013302020', 'San Simon East', '01', '0133', '013302'),
+(1392, '013302021', 'San Simon West', '01', '0133', '013302'),
+(1393, '013302022', 'Santa Cecilia', '01', '0133', '013302'),
+(1394, '013302023', 'Santa Lucia', '01', '0133', '013302'),
+(1395, '013302024', 'Santa Rita East', '01', '0133', '013302'),
+(1396, '013302025', 'Santa Rita West', '01', '0133', '013302'),
+(1397, '013302027', 'Santo Rosario East', '01', '0133', '013302'),
+(1398, '013302028', 'Santo Rosario West', '01', '0133', '013302'),
+(1399, '013303001', 'Agtipal', '01', '0133', '013303'),
+(1400, '013303002', 'Arosip', '01', '0133', '013303'),
+(1401, '013303003', 'Bacqui', '01', '0133', '013303'),
+(1402, '013303004', 'Bacsil', '01', '0133', '013303'),
+(1403, '013303005', 'Bagutot', '01', '0133', '013303'),
+(1404, '013303006', 'Ballogo', '01', '0133', '013303'),
+(1405, '013303007', 'Baroro', '01', '0133', '013303'),
+(1406, '013303008', 'Bitalag', '01', '0133', '013303'),
+(1407, '013303009', 'Bulala', '01', '0133', '013303'),
+(1408, '013303010', 'Burayoc', '01', '0133', '013303'),
+(1409, '013303011', 'Bussaoit', '01', '0133', '013303'),
+(1410, '013303012', 'Cabaroan', '01', '0133', '013303'),
+(1411, '013303013', 'Cabarsican', '01', '0133', '013303'),
+(1412, '013303014', 'Cabugao', '01', '0133', '013303'),
+(1413, '013303015', 'Calautit', '01', '0133', '013303'),
+(1414, '013303016', 'Carcarmay', '01', '0133', '013303'),
+(1415, '013303017', 'Casiaman', '01', '0133', '013303'),
+(1416, '013303018', 'Galongen', '01', '0133', '013303'),
+(1417, '013303019', 'Guinabang', '01', '0133', '013303'),
+(1418, '013303020', 'Legleg', '01', '0133', '013303'),
+(1419, '013303021', 'Lisqueb', '01', '0133', '013303'),
+(1420, '013303022', 'Mabanengbeng 1st', '01', '0133', '013303'),
+(1421, '013303023', 'Mabanengbeng 2nd', '01', '0133', '013303'),
+(1422, '013303024', 'Maragayap', '01', '0133', '013303'),
+(1423, '013303025', 'Nangalisan', '01', '0133', '013303'),
+(1424, '013303026', 'Nagatiran', '01', '0133', '013303'),
+(1425, '013303027', 'Nagsaraboan', '01', '0133', '013303'),
+(1426, '013303028', 'Nagsimbaanan', '01', '0133', '013303'),
+(1427, '013303029', 'Narra', '01', '0133', '013303'),
+(1428, '013303030', 'Ortega', '01', '0133', '013303'),
+(1429, '013303031', 'Paagan', '01', '0133', '013303'),
+(1430, '013303032', 'Pandan', '01', '0133', '013303'),
+(1431, '013303033', 'Pang-pang', '01', '0133', '013303'),
+(1432, '013303034', 'Poblacion', '01', '0133', '013303'),
+(1433, '013303035', 'Quirino', '01', '0133', '013303'),
+(1434, '013303036', 'Raois', '01', '0133', '013303'),
+(1435, '013303037', 'Salincob', '01', '0133', '013303'),
+(1436, '013303038', 'San Martin', '01', '0133', '013303'),
+(1437, '013303039', 'Santa Cruz', '01', '0133', '013303'),
+(1438, '013303040', 'Santa Rita', '01', '0133', '013303'),
+(1439, '013303041', 'Sapilang', '01', '0133', '013303'),
+(1440, '013303042', 'Sayoan', '01', '0133', '013303'),
+(1441, '013303043', 'Sipulo', '01', '0133', '013303'),
+(1442, '013303044', 'Tammocalao', '01', '0133', '013303'),
+(1443, '013303045', 'Ubbog', '01', '0133', '013303'),
+(1444, '013303046', 'Oya-oy', '01', '0133', '013303'),
+(1445, '013303047', 'Zaragosa', '01', '0133', '013303'),
+(1446, '013304001', 'Alibangsay', '01', '0133', '013304'),
+(1447, '013304002', 'Baay', '01', '0133', '013304'),
+(1448, '013304003', 'Cambaly', '01', '0133', '013304'),
+(1449, '013304004', 'Cardiz', '01', '0133', '013304'),
+(1450, '013304005', 'Dagup', '01', '0133', '013304'),
+(1451, '013304006', 'Libbo', '01', '0133', '013304'),
+(1452, '013304007', 'Suyo (Pob.)', '01', '0133', '013304'),
+(1453, '013304008', 'Tagudtud', '01', '0133', '013304'),
+(1454, '013304009', 'Tio-angan', '01', '0133', '013304'),
+(1455, '013304010', 'Wallayan', '01', '0133', '013304'),
+(1456, '013305001', 'Apatut', '01', '0133', '013305'),
+(1457, '013305002', 'Ar-arampang', '01', '0133', '013305'),
+(1458, '013305003', 'Baracbac Este', '01', '0133', '013305'),
+(1459, '013305004', 'Baracbac Oeste', '01', '0133', '013305'),
+(1460, '013305005', 'Bet-ang', '01', '0133', '013305'),
+(1461, '013305006', 'Bulbulala', '01', '0133', '013305'),
+(1462, '013305007', 'Bungol', '01', '0133', '013305'),
+(1463, '013305008', 'Butubut Este', '01', '0133', '013305'),
+(1464, '013305009', 'Butubut Norte', '01', '0133', '013305'),
+(1465, '013305010', 'Butubut Oeste', '01', '0133', '013305'),
+(1466, '013305011', 'Butubut Sur', '01', '0133', '013305'),
+(1467, '013305012', 'Cabuaan Oeste (Pob.)', '01', '0133', '013305'),
+(1468, '013305013', 'Calliat', '01', '0133', '013305'),
+(1469, '013305014', 'Calungbuyan', '01', '0133', '013305'),
+(1470, '013305015', 'Camiling', '01', '0133', '013305'),
+(1471, '013305016', 'Guinaburan', '01', '0133', '013305'),
+(1472, '013305017', 'Masupe', '01', '0133', '013305'),
+(1473, '013305018', 'Nagsabaran Norte', '01', '0133', '013305'),
+(1474, '013305019', 'Nagsabaran Sur', '01', '0133', '013305'),
+(1475, '013305020', 'Nalasin', '01', '0133', '013305'),
+(1476, '013305021', 'Napaset', '01', '0133', '013305'),
+(1477, '013305022', 'Pagbennecan', '01', '0133', '013305'),
+(1478, '013305023', 'Pagleddegan', '01', '0133', '013305'),
+(1479, '013305024', 'Pantar Norte', '01', '0133', '013305'),
+(1480, '013305025', 'Pantar Sur', '01', '0133', '013305'),
+(1481, '013305026', 'Pa-o', '01', '0133', '013305'),
+(1482, '013305028', 'Almieda', '01', '0133', '013305'),
+(1483, '013305029', 'Paraoir', '01', '0133', '013305'),
+(1484, '013305030', 'Patpata', '01', '0133', '013305'),
+(1485, '013305031', 'Dr. Camilo Osias Pob. (Cabuaan Este)', '01', '0133', '013305'),
+(1486, '013305032', 'Sablut', '01', '0133', '013305'),
+(1487, '013305033', 'San Pablo', '01', '0133', '013305'),
+(1488, '013305034', 'Sinapangan Norte', '01', '0133', '013305'),
+(1489, '013305035', 'Sinapangan Sur', '01', '0133', '013305'),
+(1490, '013305036', 'Tallipugo', '01', '0133', '013305'),
+(1491, '013305037', 'Antonino', '01', '0133', '013305'),
+(1492, '013306001', 'Agdeppa', '01', '0133', '013306'),
+(1493, '013306002', 'Alzate', '01', '0133', '013306'),
+(1494, '013306004', 'Bangaoilan East', '01', '0133', '013306'),
+(1495, '013306005', 'Bangaoilan West', '01', '0133', '013306'),
+(1496, '013306006', 'Barraca', '01', '0133', '013306'),
+(1497, '013306007', 'Cadapli', '01', '0133', '013306'),
+(1498, '013306008', 'Caggao', '01', '0133', '013306'),
+(1499, '013306009', 'Consuegra', '01', '0133', '013306'),
+(1500, '013306010', 'General Prim East', '01', '0133', '013306'),
+(1501, '013306011', 'General Prim West', '01', '0133', '013306'),
+(1502, '013306013', 'General Terrero', '01', '0133', '013306'),
+(1503, '013306015', 'Luzong Norte', '01', '0133', '013306'),
+(1504, '013306016', 'Luzong Sur', '01', '0133', '013306'),
+(1505, '013306018', 'Maria Cristina East', '01', '0133', '013306'),
+(1506, '013306019', 'Maria Cristina West', '01', '0133', '013306'),
+(1507, '013306020', 'Mindoro', '01', '0133', '013306'),
+(1508, '013306021', 'Nagsabaran', '01', '0133', '013306'),
+(1509, '013306022', 'Paratong Norte', '01', '0133', '013306'),
+(1510, '013306023', 'Paratong No. 3', '01', '0133', '013306'),
+(1511, '013306024', 'Paratong No. 4', '01', '0133', '013306'),
+(1512, '013306025', 'Central East No. 1 (Pob.)', '01', '0133', '013306'),
+(1513, '013306026', 'Central East No. 2 (Pob.)', '01', '0133', '013306'),
+(1514, '013306027', 'Central West No. 1 (Pob.)', '01', '0133', '013306'),
+(1515, '013306028', 'Central West No. 2 (Pob.)', '01', '0133', '013306'),
+(1516, '013306029', 'Central West No. 3 (Pob.)', '01', '0133', '013306'),
+(1517, '013306030', 'Quintarong', '01', '0133', '013306'),
+(1518, '013306031', 'Reyna Regente', '01', '0133', '013306'),
+(1519, '013306032', 'Rissing', '01', '0133', '013306'),
+(1520, '013306033', 'San Blas', '01', '0133', '013306'),
+(1521, '013306034', 'San Cristobal', '01', '0133', '013306'),
+(1522, '013306035', 'Sinapangan Norte', '01', '0133', '013306'),
+(1523, '013306036', 'Sinapangan Sur', '01', '0133', '013306'),
+(1524, '013306037', 'Ubbog', '01', '0133', '013306'),
+(1525, '013307001', 'Acao', '01', '0133', '013307'),
+(1526, '013307002', 'Baccuit Norte', '01', '0133', '013307'),
+(1527, '013307003', 'Baccuit Sur', '01', '0133', '013307'),
+(1528, '013307004', 'Bagbag', '01', '0133', '013307'),
+(1529, '013307005', 'Ballay', '01', '0133', '013307'),
+(1530, '013307006', 'Bawanta', '01', '0133', '013307'),
+(1531, '013307007', 'Boy-utan', '01', '0133', '013307'),
+(1532, '013307008', 'Bucayab', '01', '0133', '013307'),
+(1533, '013307009', 'Cabalayangan', '01', '0133', '013307'),
+(1534, '013307010', 'Cabisilan', '01', '0133', '013307'),
+(1535, '013307011', 'Calumbaya', '01', '0133', '013307'),
+(1536, '013307012', 'Carmay', '01', '0133', '013307'),
+(1537, '013307013', 'Casilagan', '01', '0133', '013307'),
+(1538, '013307014', 'Central East (Pob.)', '01', '0133', '013307'),
+(1539, '013307015', 'Central West (Pob.)', '01', '0133', '013307'),
+(1540, '013307016', 'Dili', '01', '0133', '013307'),
+(1541, '013307017', 'Disso-or', '01', '0133', '013307'),
+(1542, '013307018', 'Guerrero', '01', '0133', '013307'),
+(1543, '013307019', 'Nagrebcan', '01', '0133', '013307'),
+(1544, '013307020', 'Pagdalagan Sur', '01', '0133', '013307'),
+(1545, '013307021', 'Palintucang', '01', '0133', '013307'),
+(1546, '013307022', 'Palugsi-Limmansangan', '01', '0133', '013307'),
+(1547, '013307023', 'Parian Oeste', '01', '0133', '013307'),
+(1548, '013307024', 'Parian Este', '01', '0133', '013307'),
+(1549, '013307025', 'Paringao', '01', '0133', '013307'),
+(1550, '013307026', 'Payocpoc Norte Este', '01', '0133', '013307'),
+(1551, '013307027', 'Payocpoc Norte Oeste', '01', '0133', '013307'),
+(1552, '013307028', 'Payocpoc Sur', '01', '0133', '013307'),
+(1553, '013307029', 'Pilar', '01', '0133', '013307'),
+(1554, '013307030', 'Pudoc', '01', '0133', '013307'),
+(1555, '013307031', 'Pottot', '01', '0133', '013307'),
+(1556, '013307032', 'Pugo', '01', '0133', '013307'),
+(1557, '013307033', 'Quinavite', '01', '0133', '013307'),
+(1558, '013307034', 'Lower San Agustin', '01', '0133', '013307'),
+(1559, '013307035', 'Santa Monica', '01', '0133', '013307'),
+(1560, '013307036', 'Santiago', '01', '0133', '013307'),
+(1561, '013307037', 'Taberna', '01', '0133', '013307'),
+(1562, '013307038', 'Upper San Agustin', '01', '0133', '013307'),
+(1563, '013307039', 'Urayong', '01', '0133', '013307'),
+(1564, '013308001', 'Agpay', '01', '0133', '013308'),
+(1565, '013308002', 'Bilis', '01', '0133', '013308'),
+(1566, '013308003', 'Caoayan', '01', '0133', '013308'),
+(1567, '013308004', 'Dalacdac', '01', '0133', '013308'),
+(1568, '013308005', 'Delles', '01', '0133', '013308'),
+(1569, '013308006', 'Imelda', '01', '0133', '013308'),
+(1570, '013308007', 'Libtong', '01', '0133', '013308'),
+(1571, '013308008', 'Linuan', '01', '0133', '013308'),
+(1572, '013308009', 'New Poblacion', '01', '0133', '013308'),
+(1573, '013308010', 'Old Poblacion', '01', '0133', '013308'),
+(1574, '013308011', 'Lower Tumapoc', '01', '0133', '013308'),
+(1575, '013308012', 'Upper Tumapoc', '01', '0133', '013308'),
+(1576, '013309001', 'Bautista', '01', '0133', '013309'),
+(1577, '013309002', 'Gana', '01', '0133', '013309'),
+(1578, '013309003', 'Juan Cartas', '01', '0133', '013309'),
+(1579, '013309004', 'Las-ud', '01', '0133', '013309'),
+(1580, '013309005', 'Liquicia', '01', '0133', '013309'),
+(1581, '013309006', 'Poblacion Norte', '01', '0133', '013309'),
+(1582, '013309007', 'Poblacion Sur', '01', '0133', '013309'),
+(1583, '013309009', 'San Carlos', '01', '0133', '013309'),
+(1584, '013309010', 'San Cornelio', '01', '0133', '013309'),
+(1585, '013309011', 'San Fermin', '01', '0133', '013309'),
+(1586, '013309012', 'San Gregorio', '01', '0133', '013309'),
+(1587, '013309013', 'San Jose', '01', '0133', '013309'),
+(1588, '013309014', 'Santiago Norte', '01', '0133', '013309'),
+(1589, '013309015', 'Santiago Sur', '01', '0133', '013309'),
+(1590, '013309016', 'Sobredillo', '01', '0133', '013309'),
+(1591, '013309017', 'Urayong', '01', '0133', '013309'),
+(1592, '013309018', 'Wenceslao', '01', '0133', '013309'),
+(1593, '013310001', 'Alcala (Pob.)', '01', '0133', '013310'),
+(1594, '013310002', 'Ayaoan', '01', '0133', '013310'),
+(1595, '013310003', 'Barangobong', '01', '0133', '013310'),
+(1596, '013310004', 'Barrientos', '01', '0133', '013310'),
+(1597, '013310005', 'Bungro', '01', '0133', '013310'),
+(1598, '013310006', 'Buselbusel', '01', '0133', '013310'),
+(1599, '013310007', 'Cabalitocan', '01', '0133', '013310'),
+(1600, '013310008', 'Cantoria No. 1', '01', '0133', '013310'),
+(1601, '013310009', 'Cantoria No. 2', '01', '0133', '013310'),
+(1602, '013310010', 'Cantoria No. 3', '01', '0133', '013310'),
+(1603, '013310011', 'Cantoria No. 4', '01', '0133', '013310'),
+(1604, '013310012', 'Carisquis', '01', '0133', '013310'),
+(1605, '013310013', 'Darigayos', '01', '0133', '013310'),
+(1606, '013310014', 'Magallanes (Pob.)', '01', '0133', '013310'),
+(1607, '013310015', 'Magsiping', '01', '0133', '013310'),
+(1608, '013310016', 'Mamay', '01', '0133', '013310'),
+(1609, '013310017', 'Nagrebcan', '01', '0133', '013310'),
+(1610, '013310018', 'Nalvo Norte', '01', '0133', '013310'),
+(1611, '013310019', 'Nalvo Sur', '01', '0133', '013310'),
+(1612, '013310020', 'Napaset', '01', '0133', '013310'),
+(1613, '013310021', 'Oaqui No. 1', '01', '0133', '013310'),
+(1614, '013310022', 'Oaqui No. 2', '01', '0133', '013310'),
+(1615, '013310023', 'Oaqui No. 3', '01', '0133', '013310'),
+(1616, '013310024', 'Oaqui No. 4', '01', '0133', '013310'),
+(1617, '013310025', 'Pila', '01', '0133', '013310'),
+(1618, '013310026', 'Pitpitac', '01', '0133', '013310'),
+(1619, '013310027', 'Rimos No. 1', '01', '0133', '013310'),
+(1620, '013310028', 'Rimos No. 2', '01', '0133', '013310'),
+(1621, '013310029', 'Rimos No. 3', '01', '0133', '013310'),
+(1622, '013310030', 'Rimos No. 4', '01', '0133', '013310'),
+(1623, '013310031', 'Rimos No. 5', '01', '0133', '013310'),
+(1624, '013310032', 'Rissing', '01', '0133', '013310'),
+(1625, '013310033', 'Salcedo (Pob.)', '01', '0133', '013310'),
+(1626, '013310034', 'Santo Domingo Norte', '01', '0133', '013310'),
+(1627, '013310035', 'Santo Domingo Sur', '01', '0133', '013310'),
+(1628, '013310036', 'Sucoc Norte', '01', '0133', '013310'),
+(1629, '013310037', 'Sucoc Sur', '01', '0133', '013310'),
+(1630, '013310038', 'Suyo', '01', '0133', '013310'),
+(1631, '013310039', 'Tallaoen', '01', '0133', '013310'),
+(1632, '013310040', 'Victoria (Pob.)', '01', '0133', '013310'),
+(1633, '013311001', 'Aguioas', '01', '0133', '013311'),
+(1634, '013311002', 'Al-alinao Norte', '01', '0133', '013311'),
+(1635, '013311003', 'Al-alinao Sur', '01', '0133', '013311'),
+(1636, '013311004', 'Ambaracao Norte', '01', '0133', '013311'),
+(1637, '013311005', 'Ambaracao Sur', '01', '0133', '013311'),
+(1638, '013311006', 'Angin', '01', '0133', '013311'),
+(1639, '013311007', 'Balecbec', '01', '0133', '013311'),
+(1640, '013311008', 'Bancagan', '01', '0133', '013311'),
+(1641, '013311009', 'Baraoas Norte', '01', '0133', '013311'),
+(1642, '013311010', 'Baraoas Sur', '01', '0133', '013311'),
+(1643, '013311011', 'Bariquir', '01', '0133', '013311'),
+(1644, '013311012', 'Bato', '01', '0133', '013311'),
+(1645, '013311013', 'Bimmotobot', '01', '0133', '013311'),
+(1646, '013311014', 'Cabaritan Norte', '01', '0133', '013311'),
+(1647, '013311015', 'Cabaritan Sur', '01', '0133', '013311'),
+(1648, '013311016', 'Casilagan', '01', '0133', '013311'),
+(1649, '013311017', 'Dal-lipaoen', '01', '0133', '013311'),
+(1650, '013311018', 'Daramuangan', '01', '0133', '013311'),
+(1651, '013311019', 'Guesset', '01', '0133', '013311'),
+(1652, '013311020', 'Gusing Norte', '01', '0133', '013311'),
+(1653, '013311021', 'Gusing Sur', '01', '0133', '013311'),
+(1654, '013311022', 'Imelda', '01', '0133', '013311'),
+(1655, '013311023', 'Lioac Norte', '01', '0133', '013311'),
+(1656, '013311024', 'Lioac Sur', '01', '0133', '013311'),
+(1657, '013311025', 'Magungunay', '01', '0133', '013311'),
+(1658, '013311026', 'Mamat-ing Norte', '01', '0133', '013311'),
+(1659, '013311027', 'Mamat-ing Sur', '01', '0133', '013311'),
+(1660, '013311028', 'Nagsidorisan', '01', '0133', '013311'),
+(1661, '013311029', 'Natividad (Pob.)', '01', '0133', '013311'),
+(1662, '013311030', 'Ortiz (Pob.)', '01', '0133', '013311'),
+(1663, '013311032', 'Ribsuan', '01', '0133', '013311'),
+(1664, '013311033', 'San Antonio', '01', '0133', '013311'),
+(1665, '013311034', 'San Isidro', '01', '0133', '013311'),
+(1666, '013311035', 'Sili', '01', '0133', '013311'),
+(1667, '013311037', 'Suguidan Norte', '01', '0133', '013311'),
+(1668, '013311038', 'Suguidan Sur', '01', '0133', '013311'),
+(1669, '013311039', 'Tuddingan', '01', '0133', '013311'),
+(1670, '013312001', 'Ambalite', '01', '0133', '013312'),
+(1671, '013312002', 'Ambangonan', '01', '0133', '013312'),
+(1672, '013312003', 'Cares', '01', '0133', '013312'),
+(1673, '013312004', 'Cuenca', '01', '0133', '013312'),
+(1674, '013312005', 'Duplas', '01', '0133', '013312'),
+(1675, '013312007', 'Maoasoas Norte', '01', '0133', '013312'),
+(1676, '013312008', 'Maoasoas Sur', '01', '0133', '013312'),
+(1677, '013312009', 'Palina', '01', '0133', '013312'),
+(1678, '013312010', 'Poblacion East', '01', '0133', '013312'),
+(1679, '013312011', 'San Luis', '01', '0133', '013312'),
+(1680, '013312012', 'Saytan', '01', '0133', '013312'),
+(1681, '013312013', 'Tavora East', '01', '0133', '013312'),
+(1682, '013312014', 'Tavora Proper', '01', '0133', '013312'),
+(1683, '013312015', 'Poblacion West', '01', '0133', '013312'),
+(1684, '013313001', 'Alipang', '01', '0133', '013313'),
+(1685, '013313002', 'Ambangonan', '01', '0133', '013313'),
+(1686, '013313003', 'Amlang', '01', '0133', '013313'),
+(1687, '013313004', 'Bacani', '01', '0133', '013313'),
+(1688, '013313005', 'Bangar', '01', '0133', '013313'),
+(1689, '013313006', 'Bani', '01', '0133', '013313'),
+(1690, '013313007', 'Benteng-Sapilang', '01', '0133', '013313'),
+(1691, '013313008', 'Cadumanian', '01', '0133', '013313'),
+(1692, '013313009', 'Camp One', '01', '0133', '013313'),
+(1693, '013313010', 'Carunuan East', '01', '0133', '013313'),
+(1694, '013313011', 'Carunuan West', '01', '0133', '013313'),
+(1695, '013313012', 'Casilagan', '01', '0133', '013313'),
+(1696, '013313013', 'Cataguingtingan', '01', '0133', '013313'),
+(1697, '013313014', 'Concepcion', '01', '0133', '013313'),
+(1698, '013313015', 'Damortis', '01', '0133', '013313'),
+(1699, '013313016', 'Gumot-Nagcolaran', '01', '0133', '013313'),
+(1700, '013313017', 'Inabaan Norte', '01', '0133', '013313'),
+(1701, '013313018', 'Inabaan Sur', '01', '0133', '013313'),
+(1702, '013313019', 'Nagtagaan', '01', '0133', '013313'),
+(1703, '013313020', 'Nangcamotian', '01', '0133', '013313'),
+(1704, '013313021', 'Parasapas', '01', '0133', '013313'),
+(1705, '013313022', 'Poblacion East', '01', '0133', '013313'),
+(1706, '013313023', 'Poblacion West', '01', '0133', '013313'),
+(1707, '013313024', 'Puzon', '01', '0133', '013313'),
+(1708, '013313026', 'Rabon', '01', '0133', '013313'),
+(1709, '013313027', 'San Jose', '01', '0133', '013313'),
+(1710, '013313028', 'Marcos', '01', '0133', '013313'),
+(1711, '013313029', 'Subusub', '01', '0133', '013313'),
+(1712, '013313030', 'Tabtabungao', '01', '0133', '013313'),
+(1713, '013313031', 'Tanglag', '01', '0133', '013313'),
+(1714, '013313032', 'Tay-ac', '01', '0133', '013313'),
+(1715, '013313033', 'Udiao', '01', '0133', '013313'),
+(1716, '013313034', 'Vila', '01', '0133', '013313'),
+(1717, '013314001', 'Abut', '01', '0133', '013314'),
+(1718, '013314002', 'Apaleng', '01', '0133', '013314'),
+(1719, '013314003', 'Bacsil', '01', '0133', '013314'),
+(1720, '013314004', 'Bangbangolan', '01', '0133', '013314'),
+(1721, '013314005', 'Bangcusay', '01', '0133', '013314'),
+(1722, '013314006', 'Barangay I (Pob.)', '01', '0133', '013314'),
+(1723, '013314007', 'Barangay II (Pob.)', '01', '0133', '013314'),
+(1724, '013314008', 'Barangay III (Pob.)', '01', '0133', '013314'),
+(1725, '013314009', 'Barangay IV (Pob.)', '01', '0133', '013314'),
+(1726, '013314010', 'Baraoas', '01', '0133', '013314'),
+(1727, '013314011', 'Bato', '01', '0133', '013314'),
+(1728, '013314012', 'Biday', '01', '0133', '013314'),
+(1729, '013314013', 'Birunget', '01', '0133', '013314'),
+(1730, '013314014', 'Bungro', '01', '0133', '013314'),
+(1731, '013314015', 'Cabaroan (Negro)', '01', '0133', '013314'),
+(1732, '013314016', 'Cabarsican', '01', '0133', '013314'),
+(1733, '013314017', 'Cadaclan', '01', '0133', '013314'),
+(1734, '013314018', 'Calabugao', '01', '0133', '013314'),
+(1735, '013314019', 'Camansi', '01', '0133', '013314'),
+(1736, '013314020', 'Canaoay', '01', '0133', '013314'),
+(1737, '013314021', 'Carlatan', '01', '0133', '013314'),
+(1738, '013314022', 'Catbangen', '01', '0133', '013314'),
+(1739, '013314023', 'Dallangayan Este', '01', '0133', '013314'),
+(1740, '013314024', 'Dallangayan Oeste', '01', '0133', '013314'),
+(1741, '013314025', 'Dalumpinas Este', '01', '0133', '013314'),
+(1742, '013314026', 'Dalumpinas Oeste', '01', '0133', '013314'),
+(1743, '013314027', 'Ilocanos Norte', '01', '0133', '013314'),
+(1744, '013314028', 'Ilocanos Sur', '01', '0133', '013314'),
+(1745, '013314029', 'Langcuas', '01', '0133', '013314');
+INSERT INTO `barangay` (`barangay_id`, `brgyCode`, `brgyDesc`, `regCode`, `provCode`, `citymunCode`) VALUES
+(1746, '013314030', 'Lingsat', '01', '0133', '013314'),
+(1747, '013314031', 'Madayegdeg', '01', '0133', '013314'),
+(1748, '013314032', 'Mameltac', '01', '0133', '013314'),
+(1749, '013314033', 'Masicong', '01', '0133', '013314'),
+(1750, '013314034', 'Nagyubuyuban', '01', '0133', '013314'),
+(1751, '013314035', 'Namtutan', '01', '0133', '013314'),
+(1752, '013314036', 'Narra Este', '01', '0133', '013314'),
+(1753, '013314037', 'Narra Oeste', '01', '0133', '013314'),
+(1754, '013314039', 'Pacpaco', '01', '0133', '013314'),
+(1755, '013314040', 'Pagdalagan', '01', '0133', '013314'),
+(1756, '013314041', 'Pagdaraoan', '01', '0133', '013314'),
+(1757, '013314042', 'Pagudpud', '01', '0133', '013314'),
+(1758, '013314043', 'Pao Norte', '01', '0133', '013314'),
+(1759, '013314044', 'Pao Sur', '01', '0133', '013314'),
+(1760, '013314045', 'Parian', '01', '0133', '013314'),
+(1761, '013314046', 'Pias', '01', '0133', '013314'),
+(1762, '013314047', 'Poro', '01', '0133', '013314'),
+(1763, '013314048', 'Puspus', '01', '0133', '013314'),
+(1764, '013314049', 'Sacyud', '01', '0133', '013314'),
+(1765, '013314050', 'Sagayad', '01', '0133', '013314'),
+(1766, '013314051', 'San Agustin', '01', '0133', '013314'),
+(1767, '013314052', 'San Francisco', '01', '0133', '013314'),
+(1768, '013314053', 'San Vicente', '01', '0133', '013314'),
+(1769, '013314054', 'Santiago Norte', '01', '0133', '013314'),
+(1770, '013314055', 'Santiago Sur', '01', '0133', '013314'),
+(1771, '013314056', 'Saoay', '01', '0133', '013314'),
+(1772, '013314057', 'Sevilla', '01', '0133', '013314'),
+(1773, '013314058', 'Siboan-Otong', '01', '0133', '013314'),
+(1774, '013314059', 'Tanqui', '01', '0133', '013314'),
+(1775, '013314060', 'Tanquigan', '01', '0133', '013314'),
+(1776, '013315002', 'Amontoc', '01', '0133', '013315'),
+(1777, '013315003', 'Apayao', '01', '0133', '013315'),
+(1778, '013315004', 'Balbalayang', '01', '0133', '013315'),
+(1779, '013315006', 'Bayabas', '01', '0133', '013315'),
+(1780, '013315007', 'Bucao', '01', '0133', '013315'),
+(1781, '013315008', 'Bumbuneg', '01', '0133', '013315'),
+(1782, '013315012', 'Lacong', '01', '0133', '013315'),
+(1783, '013315013', 'Lipay Este', '01', '0133', '013315'),
+(1784, '013315014', 'Lipay Norte', '01', '0133', '013315'),
+(1785, '013315015', 'Lipay Proper', '01', '0133', '013315'),
+(1786, '013315016', 'Lipay Sur', '01', '0133', '013315'),
+(1787, '013315017', 'Lon-oy', '01', '0133', '013315'),
+(1788, '013315019', 'Poblacion', '01', '0133', '013315'),
+(1789, '013315020', 'Polipol', '01', '0133', '013315'),
+(1790, '013315021', 'Daking', '01', '0133', '013315'),
+(1791, '013316001', 'Allangigan', '01', '0133', '013316'),
+(1792, '013316002', 'Aludaid', '01', '0133', '013316'),
+(1793, '013316003', 'Bacsayan', '01', '0133', '013316'),
+(1794, '013316004', 'Balballosa', '01', '0133', '013316'),
+(1795, '013316005', 'Bambanay', '01', '0133', '013316'),
+(1796, '013316006', 'Bugbugcao', '01', '0133', '013316'),
+(1797, '013316007', 'Caarusipan', '01', '0133', '013316'),
+(1798, '013316008', 'Cabaroan', '01', '0133', '013316'),
+(1799, '013316009', 'Cabugnayan', '01', '0133', '013316'),
+(1800, '013316010', 'Cacapian', '01', '0133', '013316'),
+(1801, '013316011', 'Caculangan', '01', '0133', '013316'),
+(1802, '013316012', 'Calincamasan', '01', '0133', '013316'),
+(1803, '013316013', 'Casilagan', '01', '0133', '013316'),
+(1804, '013316014', 'Catdongan', '01', '0133', '013316'),
+(1805, '013316015', 'Dangdangla', '01', '0133', '013316'),
+(1806, '013316016', 'Dasay', '01', '0133', '013316'),
+(1807, '013316017', 'Dinanum', '01', '0133', '013316'),
+(1808, '013316018', 'Duplas', '01', '0133', '013316'),
+(1809, '013316019', 'Guinguinabang', '01', '0133', '013316'),
+(1810, '013316020', 'Ili Norte (Pob.)', '01', '0133', '013316'),
+(1811, '013316021', 'Ili Sur (Pob.)', '01', '0133', '013316'),
+(1812, '013316022', 'Legleg', '01', '0133', '013316'),
+(1813, '013316023', 'Lubing', '01', '0133', '013316'),
+(1814, '013316024', 'Nadsaag', '01', '0133', '013316'),
+(1815, '013316025', 'Nagsabaran', '01', '0133', '013316'),
+(1816, '013316026', 'Naguirangan', '01', '0133', '013316'),
+(1817, '013316027', 'Naguituban', '01', '0133', '013316'),
+(1818, '013316028', 'Nagyubuyuban', '01', '0133', '013316'),
+(1819, '013316029', 'Oaquing', '01', '0133', '013316'),
+(1820, '013316030', 'Pacpacac', '01', '0133', '013316'),
+(1821, '013316031', 'Pagdildilan', '01', '0133', '013316'),
+(1822, '013316032', 'Panicsican', '01', '0133', '013316'),
+(1823, '013316033', 'Quidem', '01', '0133', '013316'),
+(1824, '013316035', 'San Felipe', '01', '0133', '013316'),
+(1825, '013316036', 'Santa Rosa', '01', '0133', '013316'),
+(1826, '013316037', 'Santo Rosario', '01', '0133', '013316'),
+(1827, '013316038', 'Saracat', '01', '0133', '013316'),
+(1828, '013316039', 'Sinapangan', '01', '0133', '013316'),
+(1829, '013316040', 'Taboc', '01', '0133', '013316'),
+(1830, '013316041', 'Talogtog', '01', '0133', '013316'),
+(1831, '013316042', 'Urbiztondo', '01', '0133', '013316'),
+(1832, '013317001', 'Ambitacay', '01', '0133', '013317'),
+(1833, '013317002', 'Bail', '01', '0133', '013317'),
+(1834, '013317003', 'Balaoc', '01', '0133', '013317'),
+(1835, '013317004', 'Balsaan', '01', '0133', '013317'),
+(1836, '013317005', 'Baybay', '01', '0133', '013317'),
+(1837, '013317006', 'Cabaruan', '01', '0133', '013317'),
+(1838, '013317007', 'Casantaan', '01', '0133', '013317'),
+(1839, '013317008', 'Casilagan', '01', '0133', '013317'),
+(1840, '013317009', 'Cupang', '01', '0133', '013317'),
+(1841, '013317010', 'Damortis', '01', '0133', '013317'),
+(1842, '013317011', 'Fernando', '01', '0133', '013317'),
+(1843, '013317012', 'Linong', '01', '0133', '013317'),
+(1844, '013317013', 'Lomboy', '01', '0133', '013317'),
+(1845, '013317014', 'Malabago', '01', '0133', '013317'),
+(1846, '013317015', 'Namboongan', '01', '0133', '013317'),
+(1847, '013317016', 'Namonitan', '01', '0133', '013317'),
+(1848, '013317017', 'Narvacan', '01', '0133', '013317'),
+(1849, '013317018', 'Patac', '01', '0133', '013317'),
+(1850, '013317019', 'Poblacion', '01', '0133', '013317'),
+(1851, '013317020', 'Pongpong', '01', '0133', '013317'),
+(1852, '013317021', 'Raois', '01', '0133', '013317'),
+(1853, '013317022', 'Tubod', '01', '0133', '013317'),
+(1854, '013317023', 'Tococ', '01', '0133', '013317'),
+(1855, '013317024', 'Ubagan', '01', '0133', '013317'),
+(1856, '013318002', 'Corrooy', '01', '0133', '013318'),
+(1857, '013318003', 'Lettac Norte', '01', '0133', '013318'),
+(1858, '013318004', 'Lettac Sur', '01', '0133', '013318'),
+(1859, '013318005', 'Mangaan', '01', '0133', '013318'),
+(1860, '013318008', 'Paagan', '01', '0133', '013318'),
+(1861, '013318010', 'Poblacion', '01', '0133', '013318'),
+(1862, '013318011', 'Puguil', '01', '0133', '013318'),
+(1863, '013318012', 'Ramot', '01', '0133', '013318'),
+(1864, '013318013', 'Sapdaan', '01', '0133', '013318'),
+(1865, '013318014', 'Sasaba', '01', '0133', '013318'),
+(1866, '013318015', 'Tubaday', '01', '0133', '013318'),
+(1867, '013319001', 'Bigbiga', '01', '0133', '013319'),
+(1868, '013319002', 'Castro', '01', '0133', '013319'),
+(1869, '013319003', 'Duplas', '01', '0133', '013319'),
+(1870, '013319004', 'Ipet', '01', '0133', '013319'),
+(1871, '013319005', 'Ilocano', '01', '0133', '013319'),
+(1872, '013319006', 'Maliclico', '01', '0133', '013319'),
+(1873, '013319007', 'Old Central', '01', '0133', '013319'),
+(1874, '013319008', 'Namaltugan', '01', '0133', '013319'),
+(1875, '013319010', 'Poblacion', '01', '0133', '013319'),
+(1876, '013319011', 'Porporiket', '01', '0133', '013319'),
+(1877, '013319013', 'San Francisco Norte', '01', '0133', '013319'),
+(1878, '013319014', 'San Francisco Sur', '01', '0133', '013319'),
+(1879, '013319015', 'San Jose', '01', '0133', '013319'),
+(1880, '013319017', 'Sengngat', '01', '0133', '013319'),
+(1881, '013319018', 'Turod', '01', '0133', '013319'),
+(1882, '013319019', 'Up-uplas', '01', '0133', '013319'),
+(1883, '013319020', 'Bulalaan', '01', '0133', '013319'),
+(1884, '013320001', 'Amallapay', '01', '0133', '013320'),
+(1885, '013320002', 'Anduyan', '01', '0133', '013320'),
+(1886, '013320003', 'Caoigue', '01', '0133', '013320'),
+(1887, '013320004', 'Francia Sur', '01', '0133', '013320'),
+(1888, '013320005', 'Francia West', '01', '0133', '013320'),
+(1889, '013320006', 'Garcia', '01', '0133', '013320'),
+(1890, '013320007', 'Gonzales', '01', '0133', '013320'),
+(1891, '013320008', 'Halog East', '01', '0133', '013320'),
+(1892, '013320009', 'Halog West', '01', '0133', '013320'),
+(1893, '013320010', 'Leones East', '01', '0133', '013320'),
+(1894, '013320011', 'Leones West', '01', '0133', '013320'),
+(1895, '013320012', 'Linapew', '01', '0133', '013320'),
+(1896, '013320015', 'Magsaysay', '01', '0133', '013320'),
+(1897, '013320016', 'Pideg', '01', '0133', '013320'),
+(1898, '013320017', 'Poblacion', '01', '0133', '013320'),
+(1899, '013320018', 'Rizal', '01', '0133', '013320'),
+(1900, '013320019', 'Santa Teresa', '01', '0133', '013320'),
+(1901, '013320020', 'Lloren', '01', '0133', '013320'),
+(1902, '015501001', 'Allabon', '01', '0155', '015501'),
+(1903, '015501002', 'Aloleng', '01', '0155', '015501'),
+(1904, '015501003', 'Bangan-Oda', '01', '0155', '015501'),
+(1905, '015501004', 'Baruan', '01', '0155', '015501'),
+(1906, '015501005', 'Boboy', '01', '0155', '015501'),
+(1907, '015501006', 'Cayungnan', '01', '0155', '015501'),
+(1908, '015501007', 'Dangley', '01', '0155', '015501'),
+(1909, '015501009', 'Gayusan', '01', '0155', '015501'),
+(1910, '015501010', 'Macaboboni', '01', '0155', '015501'),
+(1911, '015501011', 'Magsaysay', '01', '0155', '015501'),
+(1912, '015501012', 'Namatucan', '01', '0155', '015501'),
+(1913, '015501013', 'Patar', '01', '0155', '015501'),
+(1914, '015501014', 'Poblacion East', '01', '0155', '015501'),
+(1915, '015501015', 'Poblacion West', '01', '0155', '015501'),
+(1916, '015501016', 'San Juan', '01', '0155', '015501'),
+(1917, '015501017', 'Tupa', '01', '0155', '015501'),
+(1918, '015501018', 'Viga', '01', '0155', '015501'),
+(1919, '015502002', 'Bayaoas', '01', '0155', '015502'),
+(1920, '015502003', 'Baybay', '01', '0155', '015502'),
+(1921, '015502004', 'Bocacliw', '01', '0155', '015502'),
+(1922, '015502006', 'Bocboc East', '01', '0155', '015502'),
+(1923, '015502007', 'Bocboc West', '01', '0155', '015502'),
+(1924, '015502008', 'Buer', '01', '0155', '015502'),
+(1925, '015502009', 'Calsib', '01', '0155', '015502'),
+(1926, '015502010', 'Ninoy', '01', '0155', '015502'),
+(1927, '015502011', 'Poblacion', '01', '0155', '015502'),
+(1928, '015502012', 'Pogomboa', '01', '0155', '015502'),
+(1929, '015502013', 'Pogonsili', '01', '0155', '015502'),
+(1930, '015502014', 'San Jose', '01', '0155', '015502'),
+(1931, '015502016', 'Tampac', '01', '0155', '015502'),
+(1932, '015502017', 'Laoag', '01', '0155', '015502'),
+(1933, '015502018', 'Manlocboc', '01', '0155', '015502'),
+(1934, '015502019', 'Panacol', '01', '0155', '015502'),
+(1935, '015503001', 'Alos', '01', '0155', '015503'),
+(1936, '015503002', 'Amandiego', '01', '0155', '015503'),
+(1937, '015503003', 'Amangbangan', '01', '0155', '015503'),
+(1938, '015503004', 'Balangobong', '01', '0155', '015503'),
+(1939, '015503005', 'Balayang', '01', '0155', '015503'),
+(1940, '015503006', 'Bisocol', '01', '0155', '015503'),
+(1941, '015503007', 'Bolaney', '01', '0155', '015503'),
+(1942, '015503008', 'Baleyadaan', '01', '0155', '015503'),
+(1943, '015503009', 'Bued', '01', '0155', '015503'),
+(1944, '015503010', 'Cabatuan', '01', '0155', '015503'),
+(1945, '015503011', 'Cayucay', '01', '0155', '015503'),
+(1946, '015503012', 'Dulacac', '01', '0155', '015503'),
+(1947, '015503013', 'Inerangan', '01', '0155', '015503'),
+(1948, '015503014', 'Linmansangan', '01', '0155', '015503'),
+(1949, '015503015', 'Lucap', '01', '0155', '015503'),
+(1950, '015503016', 'Macatiw', '01', '0155', '015503'),
+(1951, '015503017', 'Magsaysay', '01', '0155', '015503'),
+(1952, '015503018', 'Mona', '01', '0155', '015503'),
+(1953, '015503019', 'Palamis', '01', '0155', '015503'),
+(1954, '015503020', 'Pangapisan', '01', '0155', '015503'),
+(1955, '015503021', 'Poblacion', '01', '0155', '015503'),
+(1956, '015503022', 'Pocalpocal', '01', '0155', '015503'),
+(1957, '015503023', 'Pogo', '01', '0155', '015503'),
+(1958, '015503024', 'Polo', '01', '0155', '015503'),
+(1959, '015503025', 'Quibuar', '01', '0155', '015503'),
+(1960, '015503026', 'Sabangan', '01', '0155', '015503'),
+(1961, '015503029', 'San Jose', '01', '0155', '015503'),
+(1962, '015503030', 'San Roque', '01', '0155', '015503'),
+(1963, '015503031', 'San Vicente', '01', '0155', '015503'),
+(1964, '015503032', 'Santa Maria', '01', '0155', '015503'),
+(1965, '015503033', 'Tanaytay', '01', '0155', '015503'),
+(1966, '015503034', 'Tangcarang', '01', '0155', '015503'),
+(1967, '015503035', 'Tawintawin', '01', '0155', '015503'),
+(1968, '015503036', 'Telbang', '01', '0155', '015503'),
+(1969, '015503037', 'Victoria', '01', '0155', '015503'),
+(1970, '015503038', 'Landoc', '01', '0155', '015503'),
+(1971, '015503039', 'Maawi', '01', '0155', '015503'),
+(1972, '015503040', 'Pandan', '01', '0155', '015503'),
+(1973, '015503041', 'San Antonio (R. Magsaysay)', '01', '0155', '015503'),
+(1974, '015504001', 'Anulid', '01', '0155', '015504'),
+(1975, '015504003', 'Atainan', '01', '0155', '015504'),
+(1976, '015504004', 'Bersamin', '01', '0155', '015504'),
+(1977, '015504005', 'Canarvacanan', '01', '0155', '015504'),
+(1978, '015504006', 'Caranglaan', '01', '0155', '015504'),
+(1979, '015504007', 'Curareng', '01', '0155', '015504'),
+(1980, '015504008', 'Gualsic', '01', '0155', '015504'),
+(1981, '015504009', 'Kasikis', '01', '0155', '015504'),
+(1982, '015504010', 'Laoac', '01', '0155', '015504'),
+(1983, '015504011', 'Macayo', '01', '0155', '015504'),
+(1984, '015504012', 'Pindangan Centro', '01', '0155', '015504'),
+(1985, '015504013', 'Pindangan East', '01', '0155', '015504'),
+(1986, '015504014', 'Pindangan West', '01', '0155', '015504'),
+(1987, '015504015', 'Poblacion East', '01', '0155', '015504'),
+(1988, '015504016', 'Poblacion West', '01', '0155', '015504'),
+(1989, '015504017', 'San Juan', '01', '0155', '015504'),
+(1990, '015504018', 'San Nicolas', '01', '0155', '015504'),
+(1991, '015504019', 'San Pedro Apartado', '01', '0155', '015504'),
+(1992, '015504020', 'San Pedro IlI', '01', '0155', '015504'),
+(1993, '015504021', 'San Vicente', '01', '0155', '015504'),
+(1994, '015504022', 'Vacante', '01', '0155', '015504'),
+(1995, '015505002', 'Awile', '01', '0155', '015505'),
+(1996, '015505003', 'Awag', '01', '0155', '015505'),
+(1997, '015505004', 'Batiarao', '01', '0155', '015505'),
+(1998, '015505005', 'Cabungan', '01', '0155', '015505'),
+(1999, '015505006', 'Carot', '01', '0155', '015505'),
+(2000, '015505007', 'Dolaoan', '01', '0155', '015505'),
+(2001, '015505008', 'Imbo', '01', '0155', '015505'),
+(2002, '015505009', 'Macaleeng', '01', '0155', '015505'),
+(2003, '015505010', 'Macandocandong', '01', '0155', '015505'),
+(2004, '015505011', 'Mal-ong', '01', '0155', '015505'),
+(2005, '015505012', 'Namagbagan', '01', '0155', '015505'),
+(2006, '015505014', 'Poblacion', '01', '0155', '015505'),
+(2007, '015505015', 'Roxas', '01', '0155', '015505'),
+(2008, '015505016', 'Sablig', '01', '0155', '015505'),
+(2009, '015505018', 'San Jose', '01', '0155', '015505'),
+(2010, '015505019', 'Siapar', '01', '0155', '015505'),
+(2011, '015505020', 'Tondol', '01', '0155', '015505'),
+(2012, '015505021', 'Toritori', '01', '0155', '015505'),
+(2013, '015506002', 'Ariston Este', '01', '0155', '015506'),
+(2014, '015506003', 'Ariston Weste', '01', '0155', '015506'),
+(2015, '015506004', 'Bantog', '01', '0155', '015506'),
+(2016, '015506005', 'Baro', '01', '0155', '015506'),
+(2017, '015506006', 'Bobonan', '01', '0155', '015506'),
+(2018, '015506007', 'Cabalitian', '01', '0155', '015506'),
+(2019, '015506008', 'Calepaan', '01', '0155', '015506'),
+(2020, '015506009', 'Carosucan Norte', '01', '0155', '015506'),
+(2021, '015506010', 'Carosucan Sur', '01', '0155', '015506'),
+(2022, '015506011', 'Coldit', '01', '0155', '015506'),
+(2023, '015506012', 'Domanpot', '01', '0155', '015506'),
+(2024, '015506013', 'Dupac', '01', '0155', '015506'),
+(2025, '015506014', 'Macalong', '01', '0155', '015506'),
+(2026, '015506015', 'Palaris', '01', '0155', '015506'),
+(2027, '015506016', 'Poblacion East', '01', '0155', '015506'),
+(2028, '015506017', 'Poblacion West', '01', '0155', '015506'),
+(2029, '015506018', 'San Vicente Este', '01', '0155', '015506'),
+(2030, '015506019', 'San Vicente Weste', '01', '0155', '015506'),
+(2031, '015506020', 'Sanchez', '01', '0155', '015506'),
+(2032, '015506021', 'Sobol', '01', '0155', '015506'),
+(2033, '015506022', 'Toboy', '01', '0155', '015506'),
+(2034, '015507001', 'Angayan Norte', '01', '0155', '015507'),
+(2035, '015507002', 'Angayan Sur', '01', '0155', '015507'),
+(2036, '015507003', 'Capulaan', '01', '0155', '015507'),
+(2037, '015507004', 'Esmeralda', '01', '0155', '015507'),
+(2038, '015507005', 'Kita-kita', '01', '0155', '015507'),
+(2039, '015507006', 'Mabini', '01', '0155', '015507'),
+(2040, '015507007', 'Mauban', '01', '0155', '015507'),
+(2041, '015507008', 'Poblacion', '01', '0155', '015507'),
+(2042, '015507009', 'Pugaro', '01', '0155', '015507'),
+(2043, '015507010', 'Rajal', '01', '0155', '015507'),
+(2044, '015507011', 'San Andres', '01', '0155', '015507'),
+(2045, '015507012', 'San Aurelio 1st', '01', '0155', '015507'),
+(2046, '015507013', 'San Aurelio 2nd', '01', '0155', '015507'),
+(2047, '015507014', 'San Aurelio 3rd', '01', '0155', '015507'),
+(2048, '015507015', 'San Joaquin', '01', '0155', '015507'),
+(2049, '015507016', 'San Julian', '01', '0155', '015507'),
+(2050, '015507017', 'San Leon', '01', '0155', '015507'),
+(2051, '015507018', 'San Marcelino', '01', '0155', '015507'),
+(2052, '015507019', 'San Miguel', '01', '0155', '015507'),
+(2053, '015507020', 'San Raymundo', '01', '0155', '015507'),
+(2054, '015508001', 'Ambabaay', '01', '0155', '015508'),
+(2055, '015508002', 'Aporao', '01', '0155', '015508'),
+(2056, '015508003', 'Arwas', '01', '0155', '015508'),
+(2057, '015508004', 'Ballag', '01', '0155', '015508'),
+(2058, '015508005', 'Banog Norte', '01', '0155', '015508'),
+(2059, '015508006', 'Banog Sur', '01', '0155', '015508'),
+(2060, '015508007', 'Centro Toma', '01', '0155', '015508'),
+(2061, '015508008', 'Colayo', '01', '0155', '015508'),
+(2062, '015508009', 'Dacap Norte', '01', '0155', '015508'),
+(2063, '015508010', 'Dacap Sur', '01', '0155', '015508'),
+(2064, '015508011', 'Garrita', '01', '0155', '015508'),
+(2065, '015508012', 'Luac', '01', '0155', '015508'),
+(2066, '015508013', 'Macabit', '01', '0155', '015508'),
+(2067, '015508014', 'Masidem', '01', '0155', '015508'),
+(2068, '015508015', 'Poblacion', '01', '0155', '015508'),
+(2069, '015508016', 'Quinaoayanan', '01', '0155', '015508'),
+(2070, '015508017', 'Ranao', '01', '0155', '015508'),
+(2071, '015508018', 'Ranom Iloco', '01', '0155', '015508'),
+(2072, '015508019', 'San Jose', '01', '0155', '015508'),
+(2073, '015508020', 'San Miguel', '01', '0155', '015508'),
+(2074, '015508021', 'San Simon', '01', '0155', '015508'),
+(2075, '015508022', 'San Vicente', '01', '0155', '015508'),
+(2076, '015508023', 'Tiep', '01', '0155', '015508'),
+(2077, '015508024', 'Tipor', '01', '0155', '015508'),
+(2078, '015508025', 'Tugui Grande', '01', '0155', '015508'),
+(2079, '015508026', 'Tugui Norte', '01', '0155', '015508'),
+(2080, '015508027', 'Calabeng', '01', '0155', '015508'),
+(2081, '015509001', 'Anambongan', '01', '0155', '015509'),
+(2082, '015509002', 'Bayoyong', '01', '0155', '015509'),
+(2083, '015509003', 'Cabeldatan', '01', '0155', '015509'),
+(2084, '015509004', 'Dumpay', '01', '0155', '015509'),
+(2085, '015509005', 'Malimpec East', '01', '0155', '015509'),
+(2086, '015509006', 'Mapolopolo', '01', '0155', '015509'),
+(2087, '015509007', 'Nalneran', '01', '0155', '015509'),
+(2088, '015509008', 'Navatat', '01', '0155', '015509'),
+(2089, '015509009', 'Obong', '01', '0155', '015509'),
+(2090, '015509010', 'Osmena Sr.', '01', '0155', '015509'),
+(2091, '015509011', 'Palma', '01', '0155', '015509'),
+(2092, '015509012', 'Patacbo', '01', '0155', '015509'),
+(2093, '015509013', 'Poblacion', '01', '0155', '015509'),
+(2094, '015510001', 'Artacho', '01', '0155', '015510'),
+(2095, '015510003', 'Cabuaan', '01', '0155', '015510'),
+(2096, '015510004', 'Cacandongan', '01', '0155', '015510'),
+(2097, '015510006', 'Diaz', '01', '0155', '015510'),
+(2098, '015510007', 'Nandacan', '01', '0155', '015510'),
+(2099, '015510009', 'Nibaliw Norte', '01', '0155', '015510'),
+(2100, '015510010', 'Nibaliw Sur', '01', '0155', '015510'),
+(2101, '015510011', 'Palisoc', '01', '0155', '015510'),
+(2102, '015510012', 'Poblacion East', '01', '0155', '015510'),
+(2103, '015510013', 'Poblacion West', '01', '0155', '015510'),
+(2104, '015510014', 'Pogo', '01', '0155', '015510'),
+(2105, '015510015', 'Poponto', '01', '0155', '015510'),
+(2106, '015510016', 'Primicias', '01', '0155', '015510'),
+(2107, '015510017', 'Ketegan', '01', '0155', '015510'),
+(2108, '015510018', 'Sinabaan', '01', '0155', '015510'),
+(2109, '015510019', 'Vacante', '01', '0155', '015510'),
+(2110, '015510020', 'Villanueva', '01', '0155', '015510'),
+(2111, '015510021', 'Baluyot', '01', '0155', '015510'),
+(2112, '015511001', 'Alinggan', '01', '0155', '015511'),
+(2113, '015511002', 'Amamperez', '01', '0155', '015511'),
+(2114, '015511003', 'Amancosiling Norte', '01', '0155', '015511'),
+(2115, '015511004', 'Amancosiling Sur', '01', '0155', '015511'),
+(2116, '015511005', 'Ambayat I', '01', '0155', '015511'),
+(2117, '015511006', 'Ambayat II', '01', '0155', '015511'),
+(2118, '015511007', 'Apalen', '01', '0155', '015511'),
+(2119, '015511008', 'Asin', '01', '0155', '015511'),
+(2120, '015511009', 'Ataynan', '01', '0155', '015511'),
+(2121, '015511010', 'Bacnono', '01', '0155', '015511'),
+(2122, '015511011', 'Balaybuaya', '01', '0155', '015511'),
+(2123, '015511012', 'Banaban', '01', '0155', '015511'),
+(2124, '015511013', 'Bani', '01', '0155', '015511'),
+(2125, '015511014', 'Batangcawa', '01', '0155', '015511'),
+(2126, '015511015', 'Beleng', '01', '0155', '015511'),
+(2127, '015511016', 'Bical Norte', '01', '0155', '015511'),
+(2128, '015511017', 'Bical Sur', '01', '0155', '015511'),
+(2129, '015511018', 'Bongato East', '01', '0155', '015511'),
+(2130, '015511019', 'Bongato West', '01', '0155', '015511'),
+(2131, '015511020', 'Buayaen', '01', '0155', '015511'),
+(2132, '015511021', 'Buenlag 1st', '01', '0155', '015511'),
+(2133, '015511022', 'Buenlag 2nd', '01', '0155', '015511'),
+(2134, '015511023', 'Cadre Site', '01', '0155', '015511'),
+(2135, '015511024', 'Carungay', '01', '0155', '015511'),
+(2136, '015511025', 'Caturay', '01', '0155', '015511'),
+(2137, '015511027', 'Duera', '01', '0155', '015511'),
+(2138, '015511028', 'Dusoc', '01', '0155', '015511'),
+(2139, '015511029', 'Hermoza', '01', '0155', '015511'),
+(2140, '015511030', 'Idong', '01', '0155', '015511'),
+(2141, '015511031', 'Inanlorenzana', '01', '0155', '015511'),
+(2142, '015511032', 'Inirangan', '01', '0155', '015511'),
+(2143, '015511033', 'Iton', '01', '0155', '015511'),
+(2144, '015511034', 'Langiran', '01', '0155', '015511'),
+(2145, '015511035', 'Ligue', '01', '0155', '015511'),
+(2146, '015511036', 'M. H. del Pilar', '01', '0155', '015511'),
+(2147, '015511037', 'Macayocayo', '01', '0155', '015511'),
+(2148, '015511038', 'Magsaysay', '01', '0155', '015511'),
+(2149, '015511039', 'Maigpa', '01', '0155', '015511'),
+(2150, '015511040', 'Malimpec', '01', '0155', '015511'),
+(2151, '015511041', 'Malioer', '01', '0155', '015511'),
+(2152, '015511042', 'Managos', '01', '0155', '015511'),
+(2153, '015511043', 'Manambong Norte', '01', '0155', '015511'),
+(2154, '015511044', 'Manambong Parte', '01', '0155', '015511'),
+(2155, '015511045', 'Manambong Sur', '01', '0155', '015511'),
+(2156, '015511046', 'Mangayao', '01', '0155', '015511'),
+(2157, '015511047', 'Nalsian Norte', '01', '0155', '015511'),
+(2158, '015511048', 'Nalsian Sur', '01', '0155', '015511'),
+(2159, '015511049', 'Pangdel', '01', '0155', '015511'),
+(2160, '015511050', 'Pantol', '01', '0155', '015511'),
+(2161, '015511051', 'Paragos', '01', '0155', '015511'),
+(2162, '015511053', 'Poblacion Sur', '01', '0155', '015511'),
+(2163, '015511054', 'Pugo', '01', '0155', '015511'),
+(2164, '015511055', 'Reynado', '01', '0155', '015511'),
+(2165, '015511056', 'San Gabriel 1st', '01', '0155', '015511'),
+(2166, '015511057', 'San Gabriel 2nd', '01', '0155', '015511'),
+(2167, '015511058', 'San Vicente', '01', '0155', '015511'),
+(2168, '015511059', 'Sangcagulis', '01', '0155', '015511'),
+(2169, '015511060', 'Sanlibo', '01', '0155', '015511'),
+(2170, '015511061', 'Sapang', '01', '0155', '015511'),
+(2171, '015511062', 'Tamaro', '01', '0155', '015511'),
+(2172, '015511063', 'Tambac', '01', '0155', '015511'),
+(2173, '015511064', 'Tampog', '01', '0155', '015511'),
+(2174, '015511065', 'Darawey (Tangal)', '01', '0155', '015511'),
+(2175, '015511066', 'Tanolong', '01', '0155', '015511'),
+(2176, '015511067', 'Tatarao', '01', '0155', '015511'),
+(2177, '015511068', 'Telbang', '01', '0155', '015511'),
+(2178, '015511069', 'Tococ East', '01', '0155', '015511'),
+(2179, '015511070', 'Tococ West', '01', '0155', '015511'),
+(2180, '015511071', 'Warding', '01', '0155', '015511'),
+(2181, '015511072', 'Wawa', '01', '0155', '015511'),
+(2182, '015511073', 'Zone I (Pob.)', '01', '0155', '015511'),
+(2183, '015511074', 'Zone II (Pob.)', '01', '0155', '015511'),
+(2184, '015511075', 'Zone III (Pob.)', '01', '0155', '015511'),
+(2185, '015511076', 'Zone IV (Pob.)', '01', '0155', '015511'),
+(2186, '015511077', 'Zone V (Pob.)', '01', '0155', '015511'),
+(2187, '015511078', 'Zone VI (Pob.)', '01', '0155', '015511'),
+(2188, '015511079', 'Zone VII (Pob.)', '01', '0155', '015511'),
+(2189, '015512001', 'Balangobong', '01', '0155', '015512'),
+(2190, '015512002', 'Bued', '01', '0155', '015512'),
+(2191, '015512003', 'Bugayong', '01', '0155', '015512'),
+(2192, '015512004', 'Camangaan', '01', '0155', '015512'),
+(2193, '015512005', 'Canarvacanan', '01', '0155', '015512'),
+(2194, '015512006', 'Capas', '01', '0155', '015512'),
+(2195, '015512007', 'Cili', '01', '0155', '015512'),
+(2196, '015512008', 'Dumayat', '01', '0155', '015512'),
+(2197, '015512009', 'Linmansangan', '01', '0155', '015512'),
+(2198, '015512011', 'Mangcasuy', '01', '0155', '015512'),
+(2199, '015512012', 'Moreno', '01', '0155', '015512'),
+(2200, '015512013', 'Pasileng Norte', '01', '0155', '015512'),
+(2201, '015512014', 'Pasileng Sur', '01', '0155', '015512'),
+(2202, '015512015', 'Poblacion', '01', '0155', '015512'),
+(2203, '015512016', 'San Felipe Central', '01', '0155', '015512'),
+(2204, '015512017', 'San Felipe Sur', '01', '0155', '015512'),
+(2205, '015512019', 'San Pablo', '01', '0155', '015512'),
+(2206, '015512020', 'Santa Catalina', '01', '0155', '015512'),
+(2207, '015512021', 'Santa Maria Norte', '01', '0155', '015512'),
+(2208, '015512022', 'Santiago', '01', '0155', '015512'),
+(2209, '015512023', 'Santo Niño', '01', '0155', '015512'),
+(2210, '015512024', 'Sumabnit', '01', '0155', '015512'),
+(2211, '015512025', 'Tabuyoc', '01', '0155', '015512'),
+(2212, '015512026', 'Vacante', '01', '0155', '015512'),
+(2213, '015513001', 'Amancoro', '01', '0155', '015513'),
+(2214, '015513002', 'Balagan', '01', '0155', '015513'),
+(2215, '015513003', 'Balogo', '01', '0155', '015513'),
+(2216, '015513004', 'Basing', '01', '0155', '015513'),
+(2217, '015513005', 'Baybay Lopez', '01', '0155', '015513'),
+(2218, '015513006', 'Baybay Polong', '01', '0155', '015513'),
+(2219, '015513007', 'Biec', '01', '0155', '015513'),
+(2220, '015513008', 'Buenlag', '01', '0155', '015513'),
+(2221, '015513009', 'Calit', '01', '0155', '015513'),
+(2222, '015513010', 'Caloocan Norte', '01', '0155', '015513'),
+(2223, '015513011', 'Caloocan Sur', '01', '0155', '015513'),
+(2224, '015513012', 'Camaley', '01', '0155', '015513'),
+(2225, '015513013', 'Canaoalan', '01', '0155', '015513'),
+(2226, '015513014', 'Dulag', '01', '0155', '015513'),
+(2227, '015513015', 'Gayaman', '01', '0155', '015513'),
+(2228, '015513016', 'Linoc', '01', '0155', '015513'),
+(2229, '015513017', 'Lomboy', '01', '0155', '015513'),
+(2230, '015513018', 'Nagpalangan', '01', '0155', '015513'),
+(2231, '015513019', 'Malindong', '01', '0155', '015513'),
+(2232, '015513020', 'Manat', '01', '0155', '015513'),
+(2233, '015513021', 'Naguilayan', '01', '0155', '015513'),
+(2234, '015513022', 'Pallas', '01', '0155', '015513'),
+(2235, '015513023', 'Papagueyan', '01', '0155', '015513'),
+(2236, '015513024', 'Parayao', '01', '0155', '015513'),
+(2237, '015513026', 'Poblacion', '01', '0155', '015513'),
+(2238, '015513027', 'Pototan', '01', '0155', '015513'),
+(2239, '015513028', 'Sabangan', '01', '0155', '015513'),
+(2240, '015513029', 'Salapingao', '01', '0155', '015513'),
+(2241, '015513030', 'San Isidro Norte', '01', '0155', '015513'),
+(2242, '015513031', 'San Isidro Sur', '01', '0155', '015513'),
+(2243, '015513032', 'Santa Rosa', '01', '0155', '015513'),
+(2244, '015513033', 'Tombor', '01', '0155', '015513'),
+(2245, '015513034', 'Caloocan Dupo', '01', '0155', '015513'),
+(2246, '015514001', 'Arnedo', '01', '0155', '015514'),
+(2247, '015514002', 'Balingasay', '01', '0155', '015514'),
+(2248, '015514003', 'Binabalian', '01', '0155', '015514'),
+(2249, '015514004', 'Cabuyao', '01', '0155', '015514'),
+(2250, '015514005', 'Catuday', '01', '0155', '015514'),
+(2251, '015514006', 'Catungi', '01', '0155', '015514'),
+(2252, '015514007', 'Concordia (Pob.)', '01', '0155', '015514'),
+(2253, '015514008', 'Culang', '01', '0155', '015514'),
+(2254, '015514009', 'Dewey', '01', '0155', '015514'),
+(2255, '015514010', 'Estanza', '01', '0155', '015514'),
+(2256, '015514011', 'Germinal (Pob.)', '01', '0155', '015514'),
+(2257, '015514012', 'Goyoden', '01', '0155', '015514'),
+(2258, '015514013', 'Ilogmalino', '01', '0155', '015514'),
+(2259, '015514014', 'Lambes (Lames)', '01', '0155', '015514'),
+(2260, '015514015', 'Liwa-liwa', '01', '0155', '015514'),
+(2261, '015514016', 'Lucero', '01', '0155', '015514'),
+(2262, '015514017', 'Luciente 1.0', '01', '0155', '015514'),
+(2263, '015514018', 'Luciente 2.0', '01', '0155', '015514'),
+(2264, '015514019', 'Luna', '01', '0155', '015514'),
+(2265, '015514020', 'Patar', '01', '0155', '015514'),
+(2266, '015514021', 'Pilar', '01', '0155', '015514'),
+(2267, '015514023', 'Salud', '01', '0155', '015514'),
+(2268, '015514024', 'Samang Norte', '01', '0155', '015514'),
+(2269, '015514025', 'Samang Sur', '01', '0155', '015514'),
+(2270, '015514026', 'Sampaloc', '01', '0155', '015514'),
+(2271, '015514027', 'San Roque', '01', '0155', '015514'),
+(2272, '015514028', 'Tara', '01', '0155', '015514'),
+(2273, '015514029', 'Tupa', '01', '0155', '015514'),
+(2274, '015514030', 'Victory', '01', '0155', '015514'),
+(2275, '015514031', 'Zaragoza', '01', '0155', '015514'),
+(2276, '015515001', 'Angarian', '01', '0155', '015515'),
+(2277, '015515002', 'Asinan', '01', '0155', '015515'),
+(2278, '015515003', 'Banaga', '01', '0155', '015515'),
+(2279, '015515004', 'Bacabac', '01', '0155', '015515'),
+(2280, '015515005', 'Bolaoen', '01', '0155', '015515'),
+(2281, '015515006', 'Buenlag', '01', '0155', '015515'),
+(2282, '015515007', 'Cabayaoasan', '01', '0155', '015515'),
+(2283, '015515008', 'Cayanga', '01', '0155', '015515'),
+(2284, '015515009', 'Gueset', '01', '0155', '015515'),
+(2285, '015515010', 'Hacienda', '01', '0155', '015515'),
+(2286, '015515011', 'Laguit Centro', '01', '0155', '015515'),
+(2287, '015515012', 'Laguit Padilla', '01', '0155', '015515'),
+(2288, '015515013', 'Magtaking', '01', '0155', '015515'),
+(2289, '015515014', 'Pangascasan', '01', '0155', '015515'),
+(2290, '015515015', 'Pantal', '01', '0155', '015515'),
+(2291, '015515016', 'Poblacion', '01', '0155', '015515'),
+(2292, '015515017', 'Polong', '01', '0155', '015515'),
+(2293, '015515018', 'Portic', '01', '0155', '015515'),
+(2294, '015515019', 'Salasa', '01', '0155', '015515'),
+(2295, '015515020', 'Salomague Norte', '01', '0155', '015515'),
+(2296, '015515021', 'Salomague Sur', '01', '0155', '015515'),
+(2297, '015515022', 'Samat', '01', '0155', '015515'),
+(2298, '015515023', 'San Francisco', '01', '0155', '015515'),
+(2299, '015515024', 'Umanday', '01', '0155', '015515'),
+(2300, '015516001', 'Anapao (Bur Anapac)', '01', '0155', '015516'),
+(2301, '015516003', 'Cacayasen', '01', '0155', '015516'),
+(2302, '015516004', 'Concordia', '01', '0155', '015516'),
+(2303, '015516005', 'Ilio-ilio (Iliw-iliw)', '01', '0155', '015516'),
+(2304, '015516006', 'Papallasen', '01', '0155', '015516'),
+(2305, '015516007', 'Poblacion', '01', '0155', '015516'),
+(2306, '015516008', 'Pogoruac', '01', '0155', '015516'),
+(2307, '015516009', 'Don Matias', '01', '0155', '015516'),
+(2308, '015516010', 'San Miguel', '01', '0155', '015516'),
+(2309, '015516011', 'San Pascual', '01', '0155', '015516'),
+(2310, '015516012', 'San Vicente', '01', '0155', '015516'),
+(2311, '015516013', 'Sapa Grande', '01', '0155', '015516'),
+(2312, '015516014', 'Sapa Pequeña', '01', '0155', '015516'),
+(2313, '015516015', 'Tambacan', '01', '0155', '015516'),
+(2314, '015517001', 'Ambonao', '01', '0155', '015517'),
+(2315, '015517002', 'Ambuetel', '01', '0155', '015517'),
+(2316, '015517003', 'Banaoang', '01', '0155', '015517'),
+(2317, '015517004', 'Bued', '01', '0155', '015517'),
+(2318, '015517005', 'Buenlag', '01', '0155', '015517'),
+(2319, '015517006', 'Cabilocaan', '01', '0155', '015517'),
+(2320, '015517007', 'Dinalaoan', '01', '0155', '015517'),
+(2321, '015517008', 'Doyong', '01', '0155', '015517'),
+(2322, '015517009', 'Gabon', '01', '0155', '015517'),
+(2323, '015517010', 'Lasip', '01', '0155', '015517'),
+(2324, '015517011', 'Longos', '01', '0155', '015517'),
+(2325, '015517012', 'Lumbang', '01', '0155', '015517'),
+(2326, '015517013', 'Macabito', '01', '0155', '015517'),
+(2327, '015517014', 'Malabago', '01', '0155', '015517'),
+(2328, '015517015', 'Mancup', '01', '0155', '015517'),
+(2329, '015517016', 'Nagsaing', '01', '0155', '015517'),
+(2330, '015517017', 'Nalsian', '01', '0155', '015517'),
+(2331, '015517018', 'Poblacion East', '01', '0155', '015517'),
+(2332, '015517019', 'Poblacion West', '01', '0155', '015517'),
+(2333, '015517020', 'Quesban', '01', '0155', '015517'),
+(2334, '015517022', 'San Miguel', '01', '0155', '015517'),
+(2335, '015517023', 'San Vicente', '01', '0155', '015517'),
+(2336, '015517024', 'Songkoy', '01', '0155', '015517'),
+(2337, '015517025', 'Talibaew', '01', '0155', '015517'),
+(2338, '015518001', 'Bacayao Norte', '01', '0155', '015518'),
+(2339, '015518002', 'Bacayao Sur', '01', '0155', '015518'),
+(2340, '015518003', 'Barangay II (Nueva)', '01', '0155', '015518'),
+(2341, '015518004', 'Barangay IV (Zamora)', '01', '0155', '015518'),
+(2342, '015518006', 'Bolosan', '01', '0155', '015518'),
+(2343, '015518007', 'Bonuan Binloc', '01', '0155', '015518'),
+(2344, '015518008', 'Bonuan Boquig', '01', '0155', '015518'),
+(2345, '015518009', 'Bonuan Gueset', '01', '0155', '015518'),
+(2346, '015518010', 'Calmay', '01', '0155', '015518'),
+(2347, '015518011', 'Carael', '01', '0155', '015518'),
+(2348, '015518012', 'Caranglaan', '01', '0155', '015518'),
+(2349, '015518013', 'Herrero', '01', '0155', '015518'),
+(2350, '015518014', 'Lasip Chico', '01', '0155', '015518'),
+(2351, '015518015', 'Lasip Grande', '01', '0155', '015518'),
+(2352, '015518016', 'Lomboy', '01', '0155', '015518'),
+(2353, '015518017', 'Lucao', '01', '0155', '015518'),
+(2354, '015518018', 'Malued', '01', '0155', '015518'),
+(2355, '015518019', 'Mamalingling', '01', '0155', '015518'),
+(2356, '015518020', 'Mangin', '01', '0155', '015518'),
+(2357, '015518021', 'Mayombo', '01', '0155', '015518'),
+(2358, '015518022', 'Pantal', '01', '0155', '015518'),
+(2359, '015518023', 'Poblacion Oeste', '01', '0155', '015518'),
+(2360, '015518024', 'Barangay I (T. Bugallon)', '01', '0155', '015518'),
+(2361, '015518025', 'Pogo Chico', '01', '0155', '015518'),
+(2362, '015518026', 'Pogo Grande', '01', '0155', '015518'),
+(2363, '015518027', 'Pugaro Suit', '01', '0155', '015518'),
+(2364, '015518028', 'Salapingao', '01', '0155', '015518'),
+(2365, '015518029', 'Salisay', '01', '0155', '015518'),
+(2366, '015518030', 'Tambac', '01', '0155', '015518'),
+(2367, '015518031', 'Tapuac', '01', '0155', '015518'),
+(2368, '015518032', 'Tebeng', '01', '0155', '015518'),
+(2369, '015519001', 'Alilao', '01', '0155', '015519'),
+(2370, '015519002', 'Amalbalan', '01', '0155', '015519'),
+(2371, '015519003', 'Bobonot', '01', '0155', '015519'),
+(2372, '015519004', 'Eguia', '01', '0155', '015519'),
+(2373, '015519005', 'Gais-Guipe', '01', '0155', '015519'),
+(2374, '015519006', 'Hermosa', '01', '0155', '015519'),
+(2375, '015519007', 'Macalang', '01', '0155', '015519'),
+(2376, '015519008', 'Magsaysay', '01', '0155', '015519'),
+(2377, '015519010', 'Malacapas', '01', '0155', '015519'),
+(2378, '015519011', 'Malimpin', '01', '0155', '015519'),
+(2379, '015519012', 'Osmeña', '01', '0155', '015519'),
+(2380, '015519013', 'Petal', '01', '0155', '015519'),
+(2381, '015519014', 'Poblacion', '01', '0155', '015519'),
+(2382, '015519015', 'San Vicente', '01', '0155', '015519'),
+(2383, '015519016', 'Tambac', '01', '0155', '015519'),
+(2384, '015519017', 'Tambobong', '01', '0155', '015519'),
+(2385, '015519018', 'Uli', '01', '0155', '015519'),
+(2386, '015519019', 'Viga', '01', '0155', '015519'),
+(2387, '015520002', 'Bamban', '01', '0155', '015520'),
+(2388, '015520003', 'Batang', '01', '0155', '015520'),
+(2389, '015520004', 'Bayambang', '01', '0155', '015520'),
+(2390, '015520005', 'Cato', '01', '0155', '015520'),
+(2391, '015520006', 'Doliman', '01', '0155', '015520'),
+(2392, '015520007', 'Fatima', '01', '0155', '015520'),
+(2393, '015520008', 'Maya', '01', '0155', '015520'),
+(2394, '015520009', 'Nangalisan', '01', '0155', '015520'),
+(2395, '015520010', 'Nayom', '01', '0155', '015520'),
+(2396, '015520011', 'Pita', '01', '0155', '015520'),
+(2397, '015520012', 'Poblacion', '01', '0155', '015520'),
+(2398, '015520013', 'Potol', '01', '0155', '015520'),
+(2399, '015520014', 'Babuyan', '01', '0155', '015520'),
+(2400, '015521001', 'Bolo', '01', '0155', '015521'),
+(2401, '015521002', 'Bongalon', '01', '0155', '015521'),
+(2402, '015521003', 'Dulig', '01', '0155', '015521'),
+(2403, '015521004', 'Laois', '01', '0155', '015521'),
+(2404, '015521005', 'Magsaysay', '01', '0155', '015521'),
+(2405, '015521006', 'Poblacion', '01', '0155', '015521'),
+(2406, '015521007', 'San Gonzalo', '01', '0155', '015521'),
+(2407, '015521008', 'San Jose', '01', '0155', '015521'),
+(2408, '015521009', 'Tobuan', '01', '0155', '015521'),
+(2409, '015521010', 'Uyong', '01', '0155', '015521'),
+(2410, '015522001', 'Aliwekwek', '01', '0155', '015522'),
+(2411, '015522002', 'Baay', '01', '0155', '015522'),
+(2412, '015522003', 'Balangobong', '01', '0155', '015522'),
+(2413, '015522004', 'Balococ', '01', '0155', '015522'),
+(2414, '015522006', 'Bantayan', '01', '0155', '015522'),
+(2415, '015522007', 'Basing', '01', '0155', '015522'),
+(2416, '015522008', 'Capandanan', '01', '0155', '015522'),
+(2417, '015522009', 'Domalandan Center', '01', '0155', '015522'),
+(2418, '015522010', 'Domalandan East', '01', '0155', '015522'),
+(2419, '015522011', 'Domalandan West', '01', '0155', '015522'),
+(2420, '015522013', 'Dorongan', '01', '0155', '015522'),
+(2421, '015522014', 'Dulag', '01', '0155', '015522'),
+(2422, '015522015', 'Estanza', '01', '0155', '015522'),
+(2423, '015522016', 'Lasip', '01', '0155', '015522'),
+(2424, '015522017', 'Libsong East', '01', '0155', '015522'),
+(2425, '015522018', 'Libsong West', '01', '0155', '015522'),
+(2426, '015522019', 'Malawa', '01', '0155', '015522'),
+(2427, '015522020', 'Malimpuec', '01', '0155', '015522'),
+(2428, '015522021', 'Maniboc', '01', '0155', '015522'),
+(2429, '015522022', 'Matalava', '01', '0155', '015522'),
+(2430, '015522023', 'Naguelguel', '01', '0155', '015522'),
+(2431, '015522025', 'Namolan', '01', '0155', '015522'),
+(2432, '015522026', 'Pangapisan North', '01', '0155', '015522'),
+(2433, '015522027', 'Pangapisan Sur', '01', '0155', '015522'),
+(2434, '015522028', 'Poblacion', '01', '0155', '015522'),
+(2435, '015522029', 'Quibaol', '01', '0155', '015522'),
+(2436, '015522030', 'Rosario', '01', '0155', '015522'),
+(2437, '015522031', 'Sabangan', '01', '0155', '015522'),
+(2438, '015522032', 'Talogtog', '01', '0155', '015522'),
+(2439, '015522033', 'Tonton', '01', '0155', '015522'),
+(2440, '015522034', 'Tumbar', '01', '0155', '015522'),
+(2441, '015522035', 'Wawa', '01', '0155', '015522'),
+(2442, '015523002', 'Bacnit', '01', '0155', '015523'),
+(2443, '015523003', 'Barlo', '01', '0155', '015523'),
+(2444, '015523005', 'Caabiangaan', '01', '0155', '015523'),
+(2445, '015523006', 'Cabanaetan', '01', '0155', '015523'),
+(2446, '015523007', 'Cabinuangan', '01', '0155', '015523'),
+(2447, '015523008', 'Calzada', '01', '0155', '015523'),
+(2448, '015523009', 'Caranglaan', '01', '0155', '015523'),
+(2449, '015523010', 'De Guzman', '01', '0155', '015523'),
+(2450, '015523012', 'Luna', '01', '0155', '015523'),
+(2451, '015523013', 'Magalong', '01', '0155', '015523'),
+(2452, '015523014', 'Nibaliw', '01', '0155', '015523'),
+(2453, '015523015', 'Patar', '01', '0155', '015523'),
+(2454, '015523016', 'Poblacion', '01', '0155', '015523'),
+(2455, '015523017', 'San Pedro', '01', '0155', '015523'),
+(2456, '015523018', 'Tagudin', '01', '0155', '015523'),
+(2457, '015523020', 'Villacorta', '01', '0155', '015523'),
+(2458, '015524001', 'Abonagan', '01', '0155', '015524'),
+(2459, '015524002', 'Agdao', '01', '0155', '015524'),
+(2460, '015524003', 'Alacan', '01', '0155', '015524'),
+(2461, '015524004', 'Aliaga', '01', '0155', '015524'),
+(2462, '015524005', 'Amacalan', '01', '0155', '015524'),
+(2463, '015524006', 'Anolid', '01', '0155', '015524'),
+(2464, '015524007', 'Apaya', '01', '0155', '015524'),
+(2465, '015524008', 'Asin Este', '01', '0155', '015524'),
+(2466, '015524009', 'Asin Weste', '01', '0155', '015524'),
+(2467, '015524010', 'Bacundao Este', '01', '0155', '015524'),
+(2468, '015524011', 'Bacundao Weste', '01', '0155', '015524'),
+(2469, '015524012', 'Bakitiw', '01', '0155', '015524'),
+(2470, '015524013', 'Balite', '01', '0155', '015524'),
+(2471, '015524014', 'Banawang', '01', '0155', '015524'),
+(2472, '015524015', 'Barang', '01', '0155', '015524'),
+(2473, '015524016', 'Bawer', '01', '0155', '015524'),
+(2474, '015524017', 'Binalay', '01', '0155', '015524'),
+(2475, '015524018', 'Bobon', '01', '0155', '015524'),
+(2476, '015524019', 'Bolaoit', '01', '0155', '015524'),
+(2477, '015524020', 'Bongar', '01', '0155', '015524'),
+(2478, '015524021', 'Butao', '01', '0155', '015524'),
+(2479, '015524022', 'Cabatling', '01', '0155', '015524'),
+(2480, '015524023', 'Cabueldatan', '01', '0155', '015524'),
+(2481, '015524026', 'Calbueg', '01', '0155', '015524'),
+(2482, '015524027', 'Canan Norte', '01', '0155', '015524'),
+(2483, '015524028', 'Canan Sur', '01', '0155', '015524'),
+(2484, '015524029', 'Cawayan Bogtong', '01', '0155', '015524'),
+(2485, '015524031', 'Don Pedro', '01', '0155', '015524'),
+(2486, '015524032', 'Gatang', '01', '0155', '015524'),
+(2487, '015524033', 'Goliman', '01', '0155', '015524'),
+(2488, '015524034', 'Gomez', '01', '0155', '015524'),
+(2489, '015524035', 'Guilig', '01', '0155', '015524'),
+(2490, '015524036', 'Ican', '01', '0155', '015524'),
+(2491, '015524037', 'Ingalagala', '01', '0155', '015524'),
+(2492, '015524038', 'Lareg-lareg', '01', '0155', '015524'),
+(2493, '015524039', 'Lasip', '01', '0155', '015524'),
+(2494, '015524040', 'Lepa', '01', '0155', '015524'),
+(2495, '015524041', 'Loqueb Este', '01', '0155', '015524'),
+(2496, '015524042', 'Loqueb Norte', '01', '0155', '015524'),
+(2497, '015524043', 'Loqueb Sur', '01', '0155', '015524'),
+(2498, '015524044', 'Lunec', '01', '0155', '015524'),
+(2499, '015524045', 'Mabulitec', '01', '0155', '015524'),
+(2500, '015524047', 'Malimpec', '01', '0155', '015524'),
+(2501, '015524048', 'Manggan-Dampay', '01', '0155', '015524'),
+(2502, '015524049', 'Nancapian', '01', '0155', '015524'),
+(2503, '015524050', 'Nalsian Norte', '01', '0155', '015524'),
+(2504, '015524051', 'Nalsian Sur', '01', '0155', '015524'),
+(2505, '015524053', 'Nansangaan', '01', '0155', '015524'),
+(2506, '015524054', 'Olea', '01', '0155', '015524'),
+(2507, '015524055', 'Pacuan', '01', '0155', '015524'),
+(2508, '015524056', 'Palapar Norte', '01', '0155', '015524'),
+(2509, '015524057', 'Palapar Sur', '01', '0155', '015524'),
+(2510, '015524058', 'Palong', '01', '0155', '015524'),
+(2511, '015524059', 'Pamaranum', '01', '0155', '015524'),
+(2512, '015524060', 'Pasima', '01', '0155', '015524'),
+(2513, '015524061', 'Payar', '01', '0155', '015524'),
+(2514, '015524062', 'Poblacion', '01', '0155', '015524'),
+(2515, '015524063', 'Polong Norte', '01', '0155', '015524'),
+(2516, '015524064', 'Polong Sur', '01', '0155', '015524'),
+(2517, '015524065', 'Potiocan', '01', '0155', '015524'),
+(2518, '015524066', 'San Julian', '01', '0155', '015524'),
+(2519, '015524067', 'Tabo-Sili', '01', '0155', '015524'),
+(2520, '015524068', 'Tobor', '01', '0155', '015524'),
+(2521, '015524069', 'Talospatang', '01', '0155', '015524'),
+(2522, '015524070', 'Taloy', '01', '0155', '015524'),
+(2523, '015524071', 'Taloyan', '01', '0155', '015524'),
+(2524, '015524072', 'Tambac', '01', '0155', '015524'),
+(2525, '015524073', 'Tolonguat', '01', '0155', '015524'),
+(2526, '015524074', 'Tomling', '01', '0155', '015524'),
+(2527, '015524075', 'Umando', '01', '0155', '015524'),
+(2528, '015524076', 'Viado', '01', '0155', '015524'),
+(2529, '015524077', 'Waig', '01', '0155', '015524'),
+(2530, '015524078', 'Warey', '01', '0155', '015524'),
+(2531, '015525002', 'Babasit', '01', '0155', '015525'),
+(2532, '015525003', 'Baguinay', '01', '0155', '015525'),
+(2533, '015525004', 'Baritao', '01', '0155', '015525'),
+(2534, '015525005', 'Bisal', '01', '0155', '015525'),
+(2535, '015525007', 'Bucao', '01', '0155', '015525'),
+(2536, '015525009', 'Cabanbanan', '01', '0155', '015525'),
+(2537, '015525014', 'Calaocan', '01', '0155', '015525'),
+(2538, '015525019', 'Inamotan', '01', '0155', '015525'),
+(2539, '015525023', 'Lelemaan', '01', '0155', '015525'),
+(2540, '015525024', 'Licsi', '01', '0155', '015525'),
+(2541, '015525025', 'Lipit Norte', '01', '0155', '015525'),
+(2542, '015525026', 'Lipit Sur', '01', '0155', '015525'),
+(2543, '015525027', 'Parian', '01', '0155', '015525'),
+(2544, '015525028', 'Matolong', '01', '0155', '015525'),
+(2545, '015525030', 'Mermer', '01', '0155', '015525'),
+(2546, '015525031', 'Nalsian', '01', '0155', '015525'),
+(2547, '015525033', 'Oraan East', '01', '0155', '015525'),
+(2548, '015525034', 'Oraan West', '01', '0155', '015525'),
+(2549, '015525036', 'Pantal', '01', '0155', '015525'),
+(2550, '015525037', 'Pao', '01', '0155', '015525'),
+(2551, '015525039', 'Poblacion', '01', '0155', '015525'),
+(2552, '015525040', 'Pugaro', '01', '0155', '015525'),
+(2553, '015525041', 'San Ramon', '01', '0155', '015525'),
+(2554, '015525042', 'Santa Ines', '01', '0155', '015525'),
+(2555, '015525043', 'Sapang', '01', '0155', '015525'),
+(2556, '015525045', 'Tebuel', '01', '0155', '015525'),
+(2557, '015526001', 'Alitaya', '01', '0155', '015526'),
+(2558, '015526002', 'Amansabina', '01', '0155', '015526'),
+(2559, '015526003', 'Anolid', '01', '0155', '015526'),
+(2560, '015526004', 'Banaoang', '01', '0155', '015526'),
+(2561, '015526005', 'Bantayan', '01', '0155', '015526'),
+(2562, '015526006', 'Bari', '01', '0155', '015526'),
+(2563, '015526007', 'Bateng', '01', '0155', '015526'),
+(2564, '015526008', 'Buenlag', '01', '0155', '015526'),
+(2565, '015526009', 'David', '01', '0155', '015526'),
+(2566, '015526010', 'Embarcadero', '01', '0155', '015526'),
+(2567, '015526011', 'Gueguesangen', '01', '0155', '015526'),
+(2568, '015526012', 'Guesang', '01', '0155', '015526'),
+(2569, '015526013', 'Guiguilonen', '01', '0155', '015526'),
+(2570, '015526014', 'Guilig', '01', '0155', '015526'),
+(2571, '015526015', 'Inlambo', '01', '0155', '015526'),
+(2572, '015526016', 'Lanas', '01', '0155', '015526'),
+(2573, '015526017', 'Landas', '01', '0155', '015526'),
+(2574, '015526018', 'Maasin', '01', '0155', '015526'),
+(2575, '015526019', 'Macayug', '01', '0155', '015526'),
+(2576, '015526020', 'Malabago', '01', '0155', '015526'),
+(2577, '015526021', 'Navaluan', '01', '0155', '015526'),
+(2578, '015526022', 'Nibaliw', '01', '0155', '015526'),
+(2579, '015526023', 'Osiem', '01', '0155', '015526'),
+(2580, '015526024', 'Palua', '01', '0155', '015526'),
+(2581, '015526025', 'Poblacion', '01', '0155', '015526'),
+(2582, '015526026', 'Pogo', '01', '0155', '015526'),
+(2583, '015526027', 'Salaan', '01', '0155', '015526'),
+(2584, '015526028', 'Salay', '01', '0155', '015526'),
+(2585, '015526029', 'Tebag', '01', '0155', '015526'),
+(2586, '015526030', 'Talogtog', '01', '0155', '015526'),
+(2587, '015527001', 'Andangin', '01', '0155', '015527'),
+(2588, '015527002', 'Arellano Street (Pob.)', '01', '0155', '015527'),
+(2589, '015527003', 'Bantay', '01', '0155', '015527'),
+(2590, '015527004', 'Bantocaling', '01', '0155', '015527'),
+(2591, '015527005', 'Baracbac', '01', '0155', '015527'),
+(2592, '015527006', 'Peania Pedania (Bedania)', '01', '0155', '015527'),
+(2593, '015527007', 'Bogtong Bolo', '01', '0155', '015527'),
+(2594, '015527008', 'Bogtong Bunao', '01', '0155', '015527'),
+(2595, '015527009', 'Bogtong Centro', '01', '0155', '015527'),
+(2596, '015527010', 'Bogtong Niog', '01', '0155', '015527'),
+(2597, '015527011', 'Bogtong Silag', '01', '0155', '015527'),
+(2598, '015527012', 'Buaya', '01', '0155', '015527'),
+(2599, '015527013', 'Buenlag', '01', '0155', '015527'),
+(2600, '015527014', 'Bueno', '01', '0155', '015527'),
+(2601, '015527015', 'Bunagan', '01', '0155', '015527'),
+(2602, '015527017', 'Bunlalacao', '01', '0155', '015527'),
+(2603, '015527018', 'Burgos Street (Pob.)', '01', '0155', '015527'),
+(2604, '015527019', 'Cabaluyan 1st', '01', '0155', '015527'),
+(2605, '015527020', 'Cabaluyan 2nd', '01', '0155', '015527'),
+(2606, '015527021', 'Cabarabuan', '01', '0155', '015527'),
+(2607, '015527022', 'Cabaruan', '01', '0155', '015527'),
+(2608, '015527023', 'Cabayaoasan', '01', '0155', '015527'),
+(2609, '015527024', 'Cabayugan', '01', '0155', '015527'),
+(2610, '015527025', 'Cacaoiten', '01', '0155', '015527'),
+(2611, '015527026', 'Calumboyan Norte', '01', '0155', '015527'),
+(2612, '015527027', 'Calumboyan Sur', '01', '0155', '015527'),
+(2613, '015527028', 'Calvo (Pob.)', '01', '0155', '015527'),
+(2614, '015527029', 'Casilagan', '01', '0155', '015527'),
+(2615, '015527030', 'Catarataraan', '01', '0155', '015527'),
+(2616, '015527031', 'Caturay Norte', '01', '0155', '015527'),
+(2617, '015527032', 'Caturay Sur', '01', '0155', '015527'),
+(2618, '015527033', 'Caviernesan', '01', '0155', '015527'),
+(2619, '015527034', 'Dorongan Ketaket', '01', '0155', '015527'),
+(2620, '015527035', 'Dorongan Linmansangan', '01', '0155', '015527'),
+(2621, '015527036', 'Dorongan Punta', '01', '0155', '015527'),
+(2622, '015527037', 'Dorongan Sawat', '01', '0155', '015527'),
+(2623, '015527038', 'Dorongan Valerio', '01', '0155', '015527'),
+(2624, '015527039', 'General Luna (Pob.)', '01', '0155', '015527'),
+(2625, '015527040', 'Historia', '01', '0155', '015527'),
+(2626, '015527041', 'Lawak Langka', '01', '0155', '015527'),
+(2627, '015527042', 'Linmansangan', '01', '0155', '015527'),
+(2628, '015527043', 'Lopez (Pob.)', '01', '0155', '015527'),
+(2629, '015527044', 'Mabini (Pob.)', '01', '0155', '015527'),
+(2630, '015527045', 'Macarang', '01', '0155', '015527'),
+(2631, '015527046', 'Malabobo', '01', '0155', '015527'),
+(2632, '015527047', 'Malibong', '01', '0155', '015527'),
+(2633, '015527048', 'Malunec', '01', '0155', '015527'),
+(2634, '015527049', 'Maravilla (Pob.)', '01', '0155', '015527'),
+(2635, '015527050', 'Maravilla-Arellano Ext. (Pob.)', '01', '0155', '015527'),
+(2636, '015527051', 'Muelang', '01', '0155', '015527'),
+(2637, '015527052', 'Naguilayan East', '01', '0155', '015527'),
+(2638, '015527053', 'Naguilayan West', '01', '0155', '015527'),
+(2639, '015527054', 'Nancasalan', '01', '0155', '015527'),
+(2640, '015527055', 'Niog-Cabison-Bulaney', '01', '0155', '015527');
+INSERT INTO `barangay` (`barangay_id`, `brgyCode`, `brgyDesc`, `regCode`, `provCode`, `citymunCode`) VALUES
+(2641, '015527056', 'Olegario-Caoile (Pob.)', '01', '0155', '015527'),
+(2642, '015527057', 'Olo Cacamposan', '01', '0155', '015527'),
+(2643, '015527058', 'Olo Cafabrosan', '01', '0155', '015527'),
+(2644, '015527059', 'Olo Cagarlitan', '01', '0155', '015527'),
+(2645, '015527060', 'Osmeña (Pob.)', '01', '0155', '015527'),
+(2646, '015527061', 'Pacalat', '01', '0155', '015527'),
+(2647, '015527062', 'Pampano', '01', '0155', '015527'),
+(2648, '015527063', 'Parian', '01', '0155', '015527'),
+(2649, '015527064', 'Paul', '01', '0155', '015527'),
+(2650, '015527065', 'Pogon-Aniat', '01', '0155', '015527'),
+(2651, '015527066', 'Pogon-Lomboy (Pob.)', '01', '0155', '015527'),
+(2652, '015527067', 'Ponglo-Baleg', '01', '0155', '015527'),
+(2653, '015527068', 'Ponglo-Muelag', '01', '0155', '015527'),
+(2654, '015527069', 'Quetegan (Pogon-Baleg)', '01', '0155', '015527'),
+(2655, '015527070', 'Quezon (Pob.)', '01', '0155', '015527'),
+(2656, '015527071', 'Salavante', '01', '0155', '015527'),
+(2657, '015527072', 'Sapang', '01', '0155', '015527'),
+(2658, '015527073', 'Sonson Ongkit', '01', '0155', '015527'),
+(2659, '015527074', 'Suaco', '01', '0155', '015527'),
+(2660, '015527075', 'Tagac', '01', '0155', '015527'),
+(2661, '015527076', 'Takipan', '01', '0155', '015527'),
+(2662, '015527077', 'Talogtog', '01', '0155', '015527'),
+(2663, '015527078', 'Tococ Barikir', '01', '0155', '015527'),
+(2664, '015527079', 'Torre 1st', '01', '0155', '015527'),
+(2665, '015527080', 'Torre 2nd', '01', '0155', '015527'),
+(2666, '015527081', 'Torres Bugallon (Pob.)', '01', '0155', '015527'),
+(2667, '015527082', 'Umangan', '01', '0155', '015527'),
+(2668, '015527083', 'Zamora (Pob.)', '01', '0155', '015527'),
+(2669, '015528001', 'Amanoaoac', '01', '0155', '015528'),
+(2670, '015528002', 'Apaya', '01', '0155', '015528'),
+(2671, '015528003', 'Aserda', '01', '0155', '015528'),
+(2672, '015528004', 'Baloling', '01', '0155', '015528'),
+(2673, '015528006', 'Coral', '01', '0155', '015528'),
+(2674, '015528007', 'Golden', '01', '0155', '015528'),
+(2675, '015528008', 'Jimenez', '01', '0155', '015528'),
+(2676, '015528009', 'Lambayan', '01', '0155', '015528'),
+(2677, '015528010', 'Luyan (Luyan South)', '01', '0155', '015528'),
+(2678, '015528012', 'Nilombot', '01', '0155', '015528'),
+(2679, '015528013', 'Pias', '01', '0155', '015528'),
+(2680, '015528014', 'Poblacion', '01', '0155', '015528'),
+(2681, '015528015', 'Primicias', '01', '0155', '015528'),
+(2682, '015528016', 'Santa Maria (Luyan North)', '01', '0155', '015528'),
+(2683, '015528018', 'Torres', '01', '0155', '015528'),
+(2684, '015529001', 'Barangobong', '01', '0155', '015529'),
+(2685, '015529003', 'Batchelor East', '01', '0155', '015529'),
+(2686, '015529004', 'Batchelor West', '01', '0155', '015529'),
+(2687, '015529005', 'Burgos (San Narciso)', '01', '0155', '015529'),
+(2688, '015529006', 'Cacandungan', '01', '0155', '015529'),
+(2689, '015529007', 'Calapugan', '01', '0155', '015529'),
+(2690, '015529008', 'Canarem', '01', '0155', '015529'),
+(2691, '015529009', 'Luna', '01', '0155', '015529'),
+(2692, '015529011', 'Poblacion East', '01', '0155', '015529'),
+(2693, '015529012', 'Poblacion West', '01', '0155', '015529'),
+(2694, '015529013', 'Rizal', '01', '0155', '015529'),
+(2695, '015529014', 'Salud', '01', '0155', '015529'),
+(2696, '015529015', 'San Eugenio', '01', '0155', '015529'),
+(2697, '015529017', 'San Macario Norte', '01', '0155', '015529'),
+(2698, '015529018', 'San Macario Sur', '01', '0155', '015529'),
+(2699, '015529019', 'San Maximo', '01', '0155', '015529'),
+(2700, '015529020', 'San Miguel', '01', '0155', '015529'),
+(2701, '015529022', 'Silag', '01', '0155', '015529'),
+(2702, '015530001', 'Alipangpang', '01', '0155', '015530'),
+(2703, '015530002', 'Amagbagan', '01', '0155', '015530'),
+(2704, '015530003', 'Balacag', '01', '0155', '015530'),
+(2705, '015530004', 'Banding', '01', '0155', '015530'),
+(2706, '015530006', 'Bantugan', '01', '0155', '015530'),
+(2707, '015530007', 'Batakil', '01', '0155', '015530'),
+(2708, '015530008', 'Bobonan', '01', '0155', '015530'),
+(2709, '015530009', 'Buneg', '01', '0155', '015530'),
+(2710, '015530010', 'Cablong', '01', '0155', '015530'),
+(2711, '015530011', 'Castaño', '01', '0155', '015530'),
+(2712, '015530012', 'Dilan', '01', '0155', '015530'),
+(2713, '015530013', 'Don Benito', '01', '0155', '015530'),
+(2714, '015530014', 'Haway', '01', '0155', '015530'),
+(2715, '015530015', 'Imbalbalatong', '01', '0155', '015530'),
+(2716, '015530016', 'Inoman', '01', '0155', '015530'),
+(2717, '015530017', 'Laoac', '01', '0155', '015530'),
+(2718, '015530018', 'Maambal', '01', '0155', '015530'),
+(2719, '015530019', 'Malasin', '01', '0155', '015530'),
+(2720, '015530020', 'Malokiat', '01', '0155', '015530'),
+(2721, '015530021', 'Manaol', '01', '0155', '015530'),
+(2722, '015530022', 'Nama', '01', '0155', '015530'),
+(2723, '015530023', 'Nantangalan', '01', '0155', '015530'),
+(2724, '015530024', 'Palacpalac', '01', '0155', '015530'),
+(2725, '015530025', 'Palguyod', '01', '0155', '015530'),
+(2726, '015530026', 'Poblacion I', '01', '0155', '015530'),
+(2727, '015530027', 'Poblacion II', '01', '0155', '015530'),
+(2728, '015530028', 'Poblacion III', '01', '0155', '015530'),
+(2729, '015530029', 'Poblacion IV', '01', '0155', '015530'),
+(2730, '015530030', 'Rosario', '01', '0155', '015530'),
+(2731, '015530031', 'Sugcong', '01', '0155', '015530'),
+(2732, '015530032', 'Talogtog', '01', '0155', '015530'),
+(2733, '015530033', 'Tulnac', '01', '0155', '015530'),
+(2734, '015530034', 'Villegas', '01', '0155', '015530'),
+(2735, '015530035', 'Casanfernandoan', '01', '0155', '015530'),
+(2736, '015531001', 'Acop', '01', '0155', '015531'),
+(2737, '015531002', 'Bakitbakit', '01', '0155', '015531'),
+(2738, '015531003', 'Balingcanaway', '01', '0155', '015531'),
+(2739, '015531004', 'Cabalaoangan Norte', '01', '0155', '015531'),
+(2740, '015531005', 'Cabalaoangan Sur', '01', '0155', '015531'),
+(2741, '015531006', 'Camangaan', '01', '0155', '015531'),
+(2742, '015531007', 'Capitan Tomas', '01', '0155', '015531'),
+(2743, '015531008', 'Carmay West', '01', '0155', '015531'),
+(2744, '015531009', 'Carmen East', '01', '0155', '015531'),
+(2745, '015531010', 'Carmen West', '01', '0155', '015531'),
+(2746, '015531012', 'Casanicolasan', '01', '0155', '015531'),
+(2747, '015531013', 'Coliling', '01', '0155', '015531'),
+(2748, '015531014', 'Calanutan (Don Felix Coloma)', '01', '0155', '015531'),
+(2749, '015531015', 'Guiling', '01', '0155', '015531'),
+(2750, '015531016', 'Palakipak', '01', '0155', '015531'),
+(2751, '015531017', 'Pangaoan', '01', '0155', '015531'),
+(2752, '015531018', 'Rabago', '01', '0155', '015531'),
+(2753, '015531019', 'Rizal', '01', '0155', '015531'),
+(2754, '015531020', 'Salvacion', '01', '0155', '015531'),
+(2755, '015531021', 'San Antonio', '01', '0155', '015531'),
+(2756, '015531022', 'San Bartolome', '01', '0155', '015531'),
+(2757, '015531023', 'San Isidro', '01', '0155', '015531'),
+(2758, '015531024', 'San Luis', '01', '0155', '015531'),
+(2759, '015531025', 'San Pedro East', '01', '0155', '015531'),
+(2760, '015531026', 'San Pedro West', '01', '0155', '015531'),
+(2761, '015531027', 'San Vicente', '01', '0155', '015531'),
+(2762, '015531028', 'San Angel', '01', '0155', '015531'),
+(2763, '015531029', 'Station District', '01', '0155', '015531'),
+(2764, '015531031', 'Tomana East', '01', '0155', '015531'),
+(2765, '015531032', 'Tomana West', '01', '0155', '015531'),
+(2766, '015531033', 'Zone I (Pob.)', '01', '0155', '015531'),
+(2767, '015531034', 'Zone IV (Pob.)', '01', '0155', '015531'),
+(2768, '015531035', 'Carmay East', '01', '0155', '015531'),
+(2769, '015531036', 'Don Antonio Village', '01', '0155', '015531'),
+(2770, '015531037', 'Zone II (Pob.)', '01', '0155', '015531'),
+(2771, '015531038', 'Zone III (Pob.)', '01', '0155', '015531'),
+(2772, '015531039', 'Zone V (Pob.)', '01', '0155', '015531'),
+(2773, '015532001', 'Abanon', '01', '0155', '015532'),
+(2774, '015532002', 'Agdao', '01', '0155', '015532'),
+(2775, '015532003', 'Anando', '01', '0155', '015532'),
+(2776, '015532004', 'Ano', '01', '0155', '015532'),
+(2777, '015532005', 'Antipangol', '01', '0155', '015532'),
+(2778, '015532006', 'Aponit', '01', '0155', '015532'),
+(2779, '015532007', 'Bacnar', '01', '0155', '015532'),
+(2780, '015532008', 'Balaya', '01', '0155', '015532'),
+(2781, '015532009', 'Balayong', '01', '0155', '015532'),
+(2782, '015532010', 'Baldog', '01', '0155', '015532'),
+(2783, '015532011', 'Balite Sur', '01', '0155', '015532'),
+(2784, '015532012', 'Balococ', '01', '0155', '015532'),
+(2785, '015532013', 'Bani', '01', '0155', '015532'),
+(2786, '015532014', 'Bega', '01', '0155', '015532'),
+(2787, '015532015', 'Bocboc', '01', '0155', '015532'),
+(2788, '015532016', 'Bugallon-Posadas Street (Pob.)', '01', '0155', '015532'),
+(2789, '015532017', 'Bogaoan', '01', '0155', '015532'),
+(2790, '015532018', 'Bolingit', '01', '0155', '015532'),
+(2791, '015532019', 'Bolosan', '01', '0155', '015532'),
+(2792, '015532020', 'Bonifacio (Pob.)', '01', '0155', '015532'),
+(2793, '015532021', 'Buenglat', '01', '0155', '015532'),
+(2794, '015532022', 'Burgos Padlan (Pob.)', '01', '0155', '015532'),
+(2795, '015532023', 'Cacaritan', '01', '0155', '015532'),
+(2796, '015532024', 'Caingal', '01', '0155', '015532'),
+(2797, '015532025', 'Calobaoan', '01', '0155', '015532'),
+(2798, '015532026', 'Calomboyan', '01', '0155', '015532'),
+(2799, '015532027', 'Capataan', '01', '0155', '015532'),
+(2800, '015532028', 'Caoayan-Kiling', '01', '0155', '015532'),
+(2801, '015532029', 'Cobol', '01', '0155', '015532'),
+(2802, '015532030', 'Coliling', '01', '0155', '015532'),
+(2803, '015532031', 'Cruz', '01', '0155', '015532'),
+(2804, '015532032', 'Doyong', '01', '0155', '015532'),
+(2805, '015532035', 'Gamata', '01', '0155', '015532'),
+(2806, '015532036', 'Guelew', '01', '0155', '015532'),
+(2807, '015532037', 'Ilang', '01', '0155', '015532'),
+(2808, '015532038', 'Inerangan', '01', '0155', '015532'),
+(2809, '015532039', 'Isla', '01', '0155', '015532'),
+(2810, '015532040', 'Libas', '01', '0155', '015532'),
+(2811, '015532041', 'Lilimasan', '01', '0155', '015532'),
+(2812, '015532043', 'Longos', '01', '0155', '015532'),
+(2813, '015532044', 'Lucban (Pob.)', '01', '0155', '015532'),
+(2814, '015532045', 'Mabalbalino', '01', '0155', '015532'),
+(2815, '015532046', 'Mabini (Pob.)', '01', '0155', '015532'),
+(2816, '015532047', 'Magtaking', '01', '0155', '015532'),
+(2817, '015532048', 'Malacañang', '01', '0155', '015532'),
+(2818, '015532050', 'Maliwara', '01', '0155', '015532'),
+(2819, '015532051', 'Mamarlao', '01', '0155', '015532'),
+(2820, '015532052', 'Manzon', '01', '0155', '015532'),
+(2821, '015532053', 'Matagdem', '01', '0155', '015532'),
+(2822, '015532054', 'Mestizo Norte', '01', '0155', '015532'),
+(2823, '015532055', 'Naguilayan', '01', '0155', '015532'),
+(2824, '015532056', 'Nilentap', '01', '0155', '015532'),
+(2825, '015532057', 'Padilla-Gomez', '01', '0155', '015532'),
+(2826, '015532058', 'Pagal', '01', '0155', '015532'),
+(2827, '015532060', 'Palaming', '01', '0155', '015532'),
+(2828, '015532061', 'Palaris (Pob.)', '01', '0155', '015532'),
+(2829, '015532062', 'Palospos', '01', '0155', '015532'),
+(2830, '015532063', 'Pangalangan', '01', '0155', '015532'),
+(2831, '015532064', 'Pangoloan', '01', '0155', '015532'),
+(2832, '015532065', 'Pangpang', '01', '0155', '015532'),
+(2833, '015532066', 'Paitan-Panoypoy', '01', '0155', '015532'),
+(2834, '015532067', 'Parayao', '01', '0155', '015532'),
+(2835, '015532069', 'Payapa', '01', '0155', '015532'),
+(2836, '015532070', 'Payar', '01', '0155', '015532'),
+(2837, '015532071', 'Perez Boulevard (Pob.)', '01', '0155', '015532'),
+(2838, '015532072', 'Polo', '01', '0155', '015532'),
+(2839, '015532073', 'Quezon Boulevard (Pob.)', '01', '0155', '015532'),
+(2840, '015532074', 'Quintong', '01', '0155', '015532'),
+(2841, '015532075', 'Rizal (Pob.)', '01', '0155', '015532'),
+(2842, '015532076', 'Roxas Boulevard (Pob.)', '01', '0155', '015532'),
+(2843, '015532077', 'Salinap', '01', '0155', '015532'),
+(2844, '015532078', 'San Juan', '01', '0155', '015532'),
+(2845, '015532079', 'San Pedro-Taloy', '01', '0155', '015532'),
+(2846, '015532080', 'Sapinit', '01', '0155', '015532'),
+(2847, '015532081', 'PNR Station Site', '01', '0155', '015532'),
+(2848, '015532082', 'Supo', '01', '0155', '015532'),
+(2849, '015532083', 'Talang', '01', '0155', '015532'),
+(2850, '015532084', 'Tamayo', '01', '0155', '015532'),
+(2851, '015532085', 'Tandoc', '01', '0155', '015532'),
+(2852, '015532086', 'Tarece', '01', '0155', '015532'),
+(2853, '015532087', 'Tarectec', '01', '0155', '015532'),
+(2854, '015532088', 'Tayambani', '01', '0155', '015532'),
+(2855, '015532089', 'Tebag', '01', '0155', '015532'),
+(2856, '015532090', 'Turac', '01', '0155', '015532'),
+(2857, '015532091', 'M. Soriano', '01', '0155', '015532'),
+(2858, '015532092', 'Tandang Sora', '01', '0155', '015532'),
+(2859, '015533001', 'Ambalangan-Dalin', '01', '0155', '015533'),
+(2860, '015533002', 'Angio', '01', '0155', '015533'),
+(2861, '015533003', 'Anonang', '01', '0155', '015533'),
+(2862, '015533004', 'Aramal', '01', '0155', '015533'),
+(2863, '015533006', 'Bigbiga', '01', '0155', '015533'),
+(2864, '015533007', 'Binday', '01', '0155', '015533'),
+(2865, '015533008', 'Bolaoen', '01', '0155', '015533'),
+(2866, '015533009', 'Bolasi', '01', '0155', '015533'),
+(2867, '015533010', 'Cayanga', '01', '0155', '015533'),
+(2868, '015533011', 'Gomot', '01', '0155', '015533'),
+(2869, '015533012', 'Inmalog', '01', '0155', '015533'),
+(2870, '015533013', 'Lekep-Butao', '01', '0155', '015533'),
+(2871, '015533014', 'Longos', '01', '0155', '015533'),
+(2872, '015533015', 'Mabilao', '01', '0155', '015533'),
+(2873, '015533016', 'Nibaliw Central', '01', '0155', '015533'),
+(2874, '015533017', 'Nibaliw East', '01', '0155', '015533'),
+(2875, '015533018', 'Nibaliw Magliba', '01', '0155', '015533'),
+(2876, '015533019', 'Palapad', '01', '0155', '015533'),
+(2877, '015533020', 'Poblacion', '01', '0155', '015533'),
+(2878, '015533021', 'Rabon', '01', '0155', '015533'),
+(2879, '015533022', 'Sagud-Bahley', '01', '0155', '015533'),
+(2880, '015533023', 'Sobol', '01', '0155', '015533'),
+(2881, '015533024', 'Tempra-Guilig', '01', '0155', '015533'),
+(2882, '015533025', 'Tocok', '01', '0155', '015533'),
+(2883, '015533027', 'Lipit-Tomeeng', '01', '0155', '015533'),
+(2884, '015533028', 'Colisao', '01', '0155', '015533'),
+(2885, '015533029', 'Nibaliw Narvarte (Nibaliw West Compound)', '01', '0155', '015533'),
+(2886, '015533030', 'Nibaliw Vidal (Nibaliw West Proper)', '01', '0155', '015533'),
+(2887, '015533031', 'Alacan', '01', '0155', '015533'),
+(2888, '015533032', 'Cabaruan', '01', '0155', '015533'),
+(2889, '015533033', 'Inmalog Norte', '01', '0155', '015533'),
+(2890, '015533034', 'Longos-Amangonan-Parac-Parac Fabrica', '01', '0155', '015533'),
+(2891, '015533035', 'Longos Proper', '01', '0155', '015533'),
+(2892, '015533036', 'Tiblong', '01', '0155', '015533'),
+(2893, '015534001', 'Awai', '01', '0155', '015534'),
+(2894, '015534002', 'Bolo', '01', '0155', '015534'),
+(2895, '015534003', 'Capaoay (Pob.)', '01', '0155', '015534'),
+(2896, '015534004', 'Casibong', '01', '0155', '015534'),
+(2897, '015534005', 'Imelda (Decrito)', '01', '0155', '015534'),
+(2898, '015534006', 'Guibel', '01', '0155', '015534'),
+(2899, '015534007', 'Labney', '01', '0155', '015534'),
+(2900, '015534009', 'Magsaysay (Capay)', '01', '0155', '015534'),
+(2901, '015534010', 'Lobong', '01', '0155', '015534'),
+(2902, '015534011', 'Macayug', '01', '0155', '015534'),
+(2903, '015534013', 'Bagong Pag-asa (Poblacion East)', '01', '0155', '015534'),
+(2904, '015534014', 'San Guillermo (Poblacion West)', '01', '0155', '015534'),
+(2905, '015534015', 'San Jose', '01', '0155', '015534'),
+(2906, '015534016', 'San Juan', '01', '0155', '015534'),
+(2907, '015534017', 'San Roque', '01', '0155', '015534'),
+(2908, '015534018', 'San Vicente', '01', '0155', '015534'),
+(2909, '015534019', 'Santa Cruz', '01', '0155', '015534'),
+(2910, '015534020', 'Santa Maria', '01', '0155', '015534'),
+(2911, '015534021', 'Santo Tomas', '01', '0155', '015534'),
+(2912, '015535001', 'San Antonio-Arzadon', '01', '0155', '015535'),
+(2913, '015535003', 'Cabacaraan', '01', '0155', '015535'),
+(2914, '015535004', 'Cabaritan', '01', '0155', '015535'),
+(2915, '015535005', 'Flores', '01', '0155', '015535'),
+(2916, '015535007', 'Guiset Norte (Pob.)', '01', '0155', '015535'),
+(2917, '015535008', 'Guiset Sur (Pob.)', '01', '0155', '015535'),
+(2918, '015535009', 'Lapalo', '01', '0155', '015535'),
+(2919, '015535010', 'Nagsaag', '01', '0155', '015535'),
+(2920, '015535011', 'Narra', '01', '0155', '015535'),
+(2921, '015535013', 'San Bonifacio', '01', '0155', '015535'),
+(2922, '015535014', 'San Juan', '01', '0155', '015535'),
+(2923, '015535015', 'San Roque', '01', '0155', '015535'),
+(2924, '015535016', 'San Vicente', '01', '0155', '015535'),
+(2925, '015535018', 'Santo Domingo', '01', '0155', '015535'),
+(2926, '015536001', 'Bensican', '01', '0155', '015536'),
+(2927, '015536002', 'Cabitnongan', '01', '0155', '015536'),
+(2928, '015536003', 'Caboloan', '01', '0155', '015536'),
+(2929, '015536005', 'Cacabugaoan', '01', '0155', '015536'),
+(2930, '015536006', 'Calanutian', '01', '0155', '015536'),
+(2931, '015536007', 'Calaocan', '01', '0155', '015536'),
+(2932, '015536008', 'Camanggaan', '01', '0155', '015536'),
+(2933, '015536009', 'Camindoroan', '01', '0155', '015536'),
+(2934, '015536010', 'Casaratan', '01', '0155', '015536'),
+(2935, '015536011', 'Dalumpinas', '01', '0155', '015536'),
+(2936, '015536013', 'Fianza', '01', '0155', '015536'),
+(2937, '015536015', 'Lungao', '01', '0155', '015536'),
+(2938, '015536016', 'Malico', '01', '0155', '015536'),
+(2939, '015536017', 'Malilion', '01', '0155', '015536'),
+(2940, '015536018', 'Nagkaysa', '01', '0155', '015536'),
+(2941, '015536019', 'Nining', '01', '0155', '015536'),
+(2942, '015536020', 'Poblacion East', '01', '0155', '015536'),
+(2943, '015536021', 'Poblacion West', '01', '0155', '015536'),
+(2944, '015536022', 'Salingcob', '01', '0155', '015536'),
+(2945, '015536023', 'Salpad', '01', '0155', '015536'),
+(2946, '015536024', 'San Felipe East', '01', '0155', '015536'),
+(2947, '015536025', 'San Felipe West', '01', '0155', '015536'),
+(2948, '015536026', 'San Isidro (Sta. Cruzan)', '01', '0155', '015536'),
+(2949, '015536027', 'San Jose', '01', '0155', '015536'),
+(2950, '015536028', 'San Rafael Centro', '01', '0155', '015536'),
+(2951, '015536029', 'San Rafael East', '01', '0155', '015536'),
+(2952, '015536030', 'San Rafael West', '01', '0155', '015536'),
+(2953, '015536031', 'San Roque', '01', '0155', '015536'),
+(2954, '015536032', 'Santa Maria East', '01', '0155', '015536'),
+(2955, '015536033', 'Santa Maria West', '01', '0155', '015536'),
+(2956, '015536034', 'Santo Tomas', '01', '0155', '015536'),
+(2957, '015536035', 'Siblot', '01', '0155', '015536'),
+(2958, '015536036', 'Sobol', '01', '0155', '015536'),
+(2959, '015537001', 'Alac', '01', '0155', '015537'),
+(2960, '015537002', 'Baligayan', '01', '0155', '015537'),
+(2961, '015537004', 'Bantog', '01', '0155', '015537'),
+(2962, '015537005', 'Bolintaguen', '01', '0155', '015537'),
+(2963, '015537006', 'Cabangaran', '01', '0155', '015537'),
+(2964, '015537007', 'Cabalaoangan', '01', '0155', '015537'),
+(2965, '015537009', 'Calomboyan', '01', '0155', '015537'),
+(2966, '015537010', 'Carayacan', '01', '0155', '015537'),
+(2967, '015537011', 'Casantamarian', '01', '0155', '015537'),
+(2968, '015537012', 'Gonzalo', '01', '0155', '015537'),
+(2969, '015537013', 'Labuan', '01', '0155', '015537'),
+(2970, '015537014', 'Lagasit', '01', '0155', '015537'),
+(2971, '015537015', 'Lumayao', '01', '0155', '015537'),
+(2972, '015537016', 'Mabini', '01', '0155', '015537'),
+(2973, '015537017', 'Mantacdang', '01', '0155', '015537'),
+(2974, '015537018', 'Nangapugan', '01', '0155', '015537'),
+(2975, '015537020', 'San Pedro', '01', '0155', '015537'),
+(2976, '015537021', 'Ungib', '01', '0155', '015537'),
+(2977, '015537022', 'Poblacion Zone I', '01', '0155', '015537'),
+(2978, '015537023', 'Poblacion Zone II', '01', '0155', '015537'),
+(2979, '015537024', 'Poblacion Zone III', '01', '0155', '015537'),
+(2980, '015538001', 'Alibago', '01', '0155', '015538'),
+(2981, '015538002', 'Balingueo', '01', '0155', '015538'),
+(2982, '015538003', 'Banaoang', '01', '0155', '015538'),
+(2983, '015538004', 'Banzal', '01', '0155', '015538'),
+(2984, '015538005', 'Botao', '01', '0155', '015538'),
+(2985, '015538006', 'Cablong', '01', '0155', '015538'),
+(2986, '015538007', 'Carusocan', '01', '0155', '015538'),
+(2987, '015538008', 'Dalongue', '01', '0155', '015538'),
+(2988, '015538009', 'Erfe', '01', '0155', '015538'),
+(2989, '015538010', 'Gueguesangen', '01', '0155', '015538'),
+(2990, '015538011', 'Leet', '01', '0155', '015538'),
+(2991, '015538012', 'Malanay', '01', '0155', '015538'),
+(2992, '015538013', 'Maningding', '01', '0155', '015538'),
+(2993, '015538014', 'Maronong', '01', '0155', '015538'),
+(2994, '015538015', 'Maticmatic', '01', '0155', '015538'),
+(2995, '015538016', 'Minien East', '01', '0155', '015538'),
+(2996, '015538017', 'Minien West', '01', '0155', '015538'),
+(2997, '015538018', 'Nilombot', '01', '0155', '015538'),
+(2998, '015538019', 'Patayac', '01', '0155', '015538'),
+(2999, '015538020', 'Payas', '01', '0155', '015538'),
+(3000, '015538021', 'Poblacion Norte', '01', '0155', '015538'),
+(3001, '015538022', 'Poblacion Sur', '01', '0155', '015538'),
+(3002, '015538023', 'Sapang', '01', '0155', '015538'),
+(3003, '015538024', 'Sonquil', '01', '0155', '015538'),
+(3004, '015538025', 'Tebag East', '01', '0155', '015538'),
+(3005, '015538026', 'Tebag West', '01', '0155', '015538'),
+(3006, '015538027', 'Tuliao', '01', '0155', '015538'),
+(3007, '015538028', 'Ventinilla (Ventinilla East)', '01', '0155', '015538'),
+(3008, '015538029', 'Primicias (Ventinilla West)', '01', '0155', '015538'),
+(3009, '015539001', 'Bal-loy', '01', '0155', '015539'),
+(3010, '015539002', 'Bantog', '01', '0155', '015539'),
+(3011, '015539003', 'Caboluan', '01', '0155', '015539'),
+(3012, '015539004', 'Cal-litang', '01', '0155', '015539'),
+(3013, '015539005', 'Capandanan', '01', '0155', '015539'),
+(3014, '015539006', 'Cauplasan', '01', '0155', '015539'),
+(3015, '015539008', 'Dalayap', '01', '0155', '015539'),
+(3016, '015539009', 'Libsong', '01', '0155', '015539'),
+(3017, '015539010', 'Namagbagan', '01', '0155', '015539'),
+(3018, '015539011', 'Paitan', '01', '0155', '015539'),
+(3019, '015539012', 'Pataquid', '01', '0155', '015539'),
+(3020, '015539013', 'Pilar', '01', '0155', '015539'),
+(3021, '015539014', 'Poblacion East', '01', '0155', '015539'),
+(3022, '015539015', 'Poblacion West', '01', '0155', '015539'),
+(3023, '015539016', 'Pugot', '01', '0155', '015539'),
+(3024, '015539017', 'Samon', '01', '0155', '015539'),
+(3025, '015539018', 'San Alejandro', '01', '0155', '015539'),
+(3026, '015539020', 'San Mariano', '01', '0155', '015539'),
+(3027, '015539021', 'San Pablo', '01', '0155', '015539'),
+(3028, '015539022', 'San Patricio', '01', '0155', '015539'),
+(3029, '015539023', 'San Vicente', '01', '0155', '015539'),
+(3030, '015539024', 'Santa Cruz', '01', '0155', '015539'),
+(3031, '015539025', 'Santa Rosa', '01', '0155', '015539'),
+(3032, '015540001', 'La Luna', '01', '0155', '015540'),
+(3033, '015540002', 'Poblacion East', '01', '0155', '015540'),
+(3034, '015540003', 'Poblacion West', '01', '0155', '015540'),
+(3035, '015540004', 'Salvacion', '01', '0155', '015540'),
+(3036, '015540005', 'San Agustin', '01', '0155', '015540'),
+(3037, '015540006', 'San Antonio', '01', '0155', '015540'),
+(3038, '015540007', 'San Jose', '01', '0155', '015540'),
+(3039, '015540008', 'San Marcos', '01', '0155', '015540'),
+(3040, '015540009', 'Santo Domingo', '01', '0155', '015540'),
+(3041, '015540010', 'Santo Niño', '01', '0155', '015540'),
+(3042, '015541001', 'Agat', '01', '0155', '015541'),
+(3043, '015541002', 'Alibeng', '01', '0155', '015541'),
+(3044, '015541003', 'Amagbagan', '01', '0155', '015541'),
+(3045, '015541004', 'Artacho', '01', '0155', '015541'),
+(3046, '015541005', 'Asan Norte', '01', '0155', '015541'),
+(3047, '015541006', 'Asan Sur', '01', '0155', '015541'),
+(3048, '015541007', 'Bantay Insik', '01', '0155', '015541'),
+(3049, '015541008', 'Bila', '01', '0155', '015541'),
+(3050, '015541009', 'Binmeckeg', '01', '0155', '015541'),
+(3051, '015541010', 'Bulaoen East', '01', '0155', '015541'),
+(3052, '015541011', 'Bulaoen West', '01', '0155', '015541'),
+(3053, '015541012', 'Cabaritan', '01', '0155', '015541'),
+(3054, '015541013', 'Calunetan', '01', '0155', '015541'),
+(3055, '015541014', 'Camangaan', '01', '0155', '015541'),
+(3056, '015541015', 'Cauringan', '01', '0155', '015541'),
+(3057, '015541016', 'Dungon', '01', '0155', '015541'),
+(3058, '015541017', 'Esperanza', '01', '0155', '015541'),
+(3059, '015541018', 'Killo', '01', '0155', '015541'),
+(3060, '015541019', 'Labayug', '01', '0155', '015541'),
+(3061, '015541021', 'Paldit', '01', '0155', '015541'),
+(3062, '015541022', 'Pindangan', '01', '0155', '015541'),
+(3063, '015541023', 'Pinmilapil', '01', '0155', '015541'),
+(3064, '015541024', 'Poblacion Central', '01', '0155', '015541'),
+(3065, '015541025', 'Poblacion Norte', '01', '0155', '015541'),
+(3066, '015541026', 'Poblacion Sur', '01', '0155', '015541'),
+(3067, '015541027', 'Sagunto', '01', '0155', '015541'),
+(3068, '015541028', 'Inmalog', '01', '0155', '015541'),
+(3069, '015541029', 'Tara-tara', '01', '0155', '015541'),
+(3070, '015542001', 'Baquioen', '01', '0155', '015542'),
+(3071, '015542002', 'Baybay Norte', '01', '0155', '015542'),
+(3072, '015542003', 'Baybay Sur', '01', '0155', '015542'),
+(3073, '015542004', 'Bolaoen', '01', '0155', '015542'),
+(3074, '015542005', 'Cabalitian', '01', '0155', '015542'),
+(3075, '015542006', 'Calumbuyan', '01', '0155', '015542'),
+(3076, '015542007', 'Camagsingalan', '01', '0155', '015542'),
+(3077, '015542008', 'Caoayan', '01', '0155', '015542'),
+(3078, '015542009', 'Capantolan', '01', '0155', '015542'),
+(3079, '015542010', 'Macaycayawan', '01', '0155', '015542'),
+(3080, '015542011', 'Paitan East', '01', '0155', '015542'),
+(3081, '015542012', 'Paitan West', '01', '0155', '015542'),
+(3082, '015542013', 'Pangascasan', '01', '0155', '015542'),
+(3083, '015542014', 'Poblacion', '01', '0155', '015542'),
+(3084, '015542015', 'Santo Domingo', '01', '0155', '015542'),
+(3085, '015542016', 'Seselangen', '01', '0155', '015542'),
+(3086, '015542018', 'Sioasio East', '01', '0155', '015542'),
+(3087, '015542019', 'Sioasio West', '01', '0155', '015542'),
+(3088, '015542020', 'Victoria', '01', '0155', '015542'),
+(3089, '015543001', 'Agno', '01', '0155', '015543'),
+(3090, '015543002', 'Amistad', '01', '0155', '015543'),
+(3091, '015543003', 'Barangobong', '01', '0155', '015543'),
+(3092, '015543004', 'Carriedo', '01', '0155', '015543'),
+(3093, '015543005', 'C. Lichauco', '01', '0155', '015543'),
+(3094, '015543006', 'Evangelista', '01', '0155', '015543'),
+(3095, '015543007', 'Guzon', '01', '0155', '015543'),
+(3096, '015543008', 'Lawak', '01', '0155', '015543'),
+(3097, '015543009', 'Legaspi', '01', '0155', '015543'),
+(3098, '015543010', 'Libertad', '01', '0155', '015543'),
+(3099, '015543012', 'Magallanes', '01', '0155', '015543'),
+(3100, '015543013', 'Panganiban', '01', '0155', '015543'),
+(3101, '015543014', 'Barangay A (Pob.)', '01', '0155', '015543'),
+(3102, '015543015', 'Barangay B (Pob.)', '01', '0155', '015543'),
+(3103, '015543016', 'Barangay C (Pob.)', '01', '0155', '015543'),
+(3104, '015543017', 'Barangay D (Pob.)', '01', '0155', '015543'),
+(3105, '015543019', 'Saleng', '01', '0155', '015543'),
+(3106, '015543020', 'Santo Domingo', '01', '0155', '015543'),
+(3107, '015543022', 'Toketec', '01', '0155', '015543'),
+(3108, '015543023', 'Trenchera', '01', '0155', '015543'),
+(3109, '015543024', 'Zamora', '01', '0155', '015543'),
+(3110, '015544001', 'Abot Molina', '01', '0155', '015544'),
+(3111, '015544002', 'Alo-o', '01', '0155', '015544'),
+(3112, '015544003', 'Amaronan', '01', '0155', '015544'),
+(3113, '015544004', 'Annam', '01', '0155', '015544'),
+(3114, '015544005', 'Bantug', '01', '0155', '015544'),
+(3115, '015544006', 'Baracbac', '01', '0155', '015544'),
+(3116, '015544007', 'Barat', '01', '0155', '015544'),
+(3117, '015544008', 'Buenavista', '01', '0155', '015544'),
+(3118, '015544010', 'Cabalitian', '01', '0155', '015544'),
+(3119, '015544011', 'Cabaruan', '01', '0155', '015544'),
+(3120, '015544012', 'Cabatuan', '01', '0155', '015544'),
+(3121, '015544013', 'Cadiz', '01', '0155', '015544'),
+(3122, '015544014', 'Calitlitan', '01', '0155', '015544'),
+(3123, '015544015', 'Capas', '01', '0155', '015544'),
+(3124, '015544017', 'Carosalesan', '01', '0155', '015544'),
+(3125, '015544018', 'Casilan', '01', '0155', '015544'),
+(3126, '015544019', 'Caurdanetaan', '01', '0155', '015544'),
+(3127, '015544020', 'Concepcion', '01', '0155', '015544'),
+(3128, '015544021', 'Decreto', '01', '0155', '015544'),
+(3129, '015544022', 'Diaz', '01', '0155', '015544'),
+(3130, '015544023', 'Diket', '01', '0155', '015544'),
+(3131, '015544024', 'Don Justo Abalos (Caroan)', '01', '0155', '015544'),
+(3132, '015544025', 'Don Montano', '01', '0155', '015544'),
+(3133, '015544026', 'Esperanza', '01', '0155', '015544'),
+(3134, '015544027', 'Evangelista', '01', '0155', '015544'),
+(3135, '015544028', 'Flores', '01', '0155', '015544'),
+(3136, '015544029', 'Fulgosino', '01', '0155', '015544'),
+(3137, '015544030', 'Gonzales', '01', '0155', '015544'),
+(3138, '015544031', 'La Paz', '01', '0155', '015544'),
+(3139, '015544032', 'Labuan', '01', '0155', '015544'),
+(3140, '015544033', 'Lauren', '01', '0155', '015544'),
+(3141, '015544034', 'Lubong', '01', '0155', '015544'),
+(3142, '015544035', 'Luna Weste', '01', '0155', '015544'),
+(3143, '015544036', 'Luna Este', '01', '0155', '015544'),
+(3144, '015544037', 'Mantacdang', '01', '0155', '015544'),
+(3145, '015544038', 'Maseil-seil', '01', '0155', '015544'),
+(3146, '015544039', 'Nampalcan', '01', '0155', '015544'),
+(3147, '015544040', 'Nancalabasaan', '01', '0155', '015544'),
+(3148, '015544041', 'Pangangaan', '01', '0155', '015544'),
+(3149, '015544042', 'Papallasen', '01', '0155', '015544'),
+(3150, '015544044', 'Pemienta', '01', '0155', '015544'),
+(3151, '015544046', 'Poblacion East', '01', '0155', '015544'),
+(3152, '015544047', 'Poblacion West', '01', '0155', '015544'),
+(3153, '015544048', 'Prado', '01', '0155', '015544'),
+(3154, '015544049', 'Resurreccion', '01', '0155', '015544'),
+(3155, '015544050', 'Ricos', '01', '0155', '015544'),
+(3156, '015544051', 'San Andres', '01', '0155', '015544'),
+(3157, '015544052', 'San Juan', '01', '0155', '015544'),
+(3158, '015544053', 'San Leon', '01', '0155', '015544'),
+(3159, '015544054', 'San Pablo', '01', '0155', '015544'),
+(3160, '015544055', 'San Vicente', '01', '0155', '015544'),
+(3161, '015544056', 'Santa Maria', '01', '0155', '015544'),
+(3162, '015544057', 'Santa Rosa', '01', '0155', '015544'),
+(3163, '015544058', 'Sinabaan', '01', '0155', '015544'),
+(3164, '015544059', 'Tanggal Sawang', '01', '0155', '015544'),
+(3165, '015544060', 'Cabangaran', '01', '0155', '015544'),
+(3166, '015544061', 'Carayungan Sur', '01', '0155', '015544'),
+(3167, '015544062', 'Del Rosario', '01', '0155', '015544'),
+(3168, '015545001', 'Angatel', '01', '0155', '015545'),
+(3169, '015545002', 'Balangay', '01', '0155', '015545'),
+(3170, '015545003', 'Batangcaoa', '01', '0155', '015545'),
+(3171, '015545004', 'Baug', '01', '0155', '015545'),
+(3172, '015545005', 'Bayaoas', '01', '0155', '015545'),
+(3173, '015545006', 'Bituag', '01', '0155', '015545'),
+(3174, '015545007', 'Camambugan', '01', '0155', '015545'),
+(3175, '015545008', 'Dalangiring', '01', '0155', '015545'),
+(3176, '015545009', 'Duplac', '01', '0155', '015545'),
+(3177, '015545010', 'Galarin', '01', '0155', '015545'),
+(3178, '015545011', 'Gueteb', '01', '0155', '015545'),
+(3179, '015545012', 'Malaca', '01', '0155', '015545'),
+(3180, '015545013', 'Malayo', '01', '0155', '015545'),
+(3181, '015545014', 'Malibong', '01', '0155', '015545'),
+(3182, '015545015', 'Pasibi East', '01', '0155', '015545'),
+(3183, '015545016', 'Pasibi West', '01', '0155', '015545'),
+(3184, '015545017', 'Pisuac', '01', '0155', '015545'),
+(3185, '015545018', 'Poblacion', '01', '0155', '015545'),
+(3186, '015545019', 'Real', '01', '0155', '015545'),
+(3187, '015545020', 'Salavante', '01', '0155', '015545'),
+(3188, '015545021', 'Sawat', '01', '0155', '015545'),
+(3189, '015546001', 'Anonas', '01', '0155', '015546'),
+(3190, '015546003', 'Bactad East', '01', '0155', '015546'),
+(3191, '015546004', 'Dr. Pedro T. Orata (Bactad Proper)', '01', '0155', '015546'),
+(3192, '015546005', 'Bayaoas', '01', '0155', '015546'),
+(3193, '015546007', 'Bolaoen', '01', '0155', '015546'),
+(3194, '015546008', 'Cabaruan', '01', '0155', '015546'),
+(3195, '015546009', 'Cabuloan', '01', '0155', '015546'),
+(3196, '015546011', 'Camanang', '01', '0155', '015546'),
+(3197, '015546012', 'Camantiles', '01', '0155', '015546'),
+(3198, '015546014', 'Casantaan', '01', '0155', '015546'),
+(3199, '015546015', 'Catablan', '01', '0155', '015546'),
+(3200, '015546016', 'Cayambanan', '01', '0155', '015546'),
+(3201, '015546017', 'Consolacion', '01', '0155', '015546'),
+(3202, '015546018', 'Dilan Paurido', '01', '0155', '015546'),
+(3203, '015546019', 'Labit Proper', '01', '0155', '015546'),
+(3204, '015546020', 'Labit West', '01', '0155', '015546'),
+(3205, '015546022', 'Mabanogbog', '01', '0155', '015546'),
+(3206, '015546023', 'Macalong', '01', '0155', '015546'),
+(3207, '015546024', 'Nancalobasaan', '01', '0155', '015546'),
+(3208, '015546025', 'Nancamaliran East', '01', '0155', '015546'),
+(3209, '015546026', 'Nancamaliran West', '01', '0155', '015546'),
+(3210, '015546027', 'Nancayasan', '01', '0155', '015546'),
+(3211, '015546028', 'Oltama', '01', '0155', '015546'),
+(3212, '015546029', 'Palina East', '01', '0155', '015546'),
+(3213, '015546030', 'Palina West', '01', '0155', '015546'),
+(3214, '015546031', 'Pinmaludpod', '01', '0155', '015546'),
+(3215, '015546032', 'Poblacion', '01', '0155', '015546'),
+(3216, '015546033', 'San Jose', '01', '0155', '015546'),
+(3217, '015546034', 'San Vicente', '01', '0155', '015546'),
+(3218, '015546035', 'Santa Lucia', '01', '0155', '015546'),
+(3219, '015546036', 'Santo Domingo', '01', '0155', '015546'),
+(3220, '015546037', 'Sugcong', '01', '0155', '015546'),
+(3221, '015546038', 'Tipuso', '01', '0155', '015546'),
+(3222, '015546039', 'Tulong', '01', '0155', '015546'),
+(3223, '015547001', 'Amamperez', '01', '0155', '015547'),
+(3224, '015547002', 'Bacag', '01', '0155', '015547'),
+(3225, '015547003', 'Barangobong', '01', '0155', '015547'),
+(3226, '015547004', 'Barraca', '01', '0155', '015547'),
+(3227, '015547005', 'Capulaan', '01', '0155', '015547'),
+(3228, '015547006', 'Caramutan', '01', '0155', '015547'),
+(3229, '015547007', 'La Paz', '01', '0155', '015547'),
+(3230, '015547008', 'Labit', '01', '0155', '015547'),
+(3231, '015547009', 'Lipay', '01', '0155', '015547'),
+(3232, '015547010', 'Lomboy', '01', '0155', '015547'),
+(3233, '015547011', 'Piaz (Plaza)', '01', '0155', '015547'),
+(3234, '015547012', 'Zone V (Pob.)', '01', '0155', '015547'),
+(3235, '015547013', 'Zone I (Pob.)', '01', '0155', '015547'),
+(3236, '015547014', 'Zone II (Pob.)', '01', '0155', '015547'),
+(3237, '015547015', 'Zone III (Pob.)', '01', '0155', '015547'),
+(3238, '015547016', 'Zone IV (Pob.)', '01', '0155', '015547'),
+(3239, '015547017', 'Puelay', '01', '0155', '015547'),
+(3240, '015547018', 'San Blas', '01', '0155', '015547'),
+(3241, '015547019', 'San Nicolas', '01', '0155', '015547'),
+(3242, '015547020', 'Tombod', '01', '0155', '015547'),
+(3243, '015547021', 'Unzad', '01', '0155', '015547'),
+(3244, '015548001', 'Anis', '01', '0155', '015548'),
+(3245, '015548002', 'Botique', '01', '0155', '015548'),
+(3246, '015548003', 'Caaringayan', '01', '0155', '015548'),
+(3247, '015548004', 'Domingo Alarcio (Cabilaoan East)', '01', '0155', '015548'),
+(3248, '015548005', 'Cabilaoan West', '01', '0155', '015548'),
+(3249, '015548006', 'Cabulalaan', '01', '0155', '015548'),
+(3250, '015548007', 'Calaoagan', '01', '0155', '015548'),
+(3251, '015548008', 'Calmay', '01', '0155', '015548'),
+(3252, '015548009', 'Casampagaan', '01', '0155', '015548'),
+(3253, '015548010', 'Casanestebanan', '01', '0155', '015548'),
+(3254, '015548011', 'Casantiagoan', '01', '0155', '015548'),
+(3255, '015548012', 'Inmanduyan', '01', '0155', '015548'),
+(3256, '015548013', 'Poblacion (Laoac)', '01', '0155', '015548'),
+(3257, '015548014', 'Lebueg', '01', '0155', '015548'),
+(3258, '015548015', 'Maraboc', '01', '0155', '015548'),
+(3259, '015548016', 'Nanbagatan', '01', '0155', '015548'),
+(3260, '015548017', 'Panaga', '01', '0155', '015548'),
+(3261, '015548018', 'Talogtog', '01', '0155', '015548'),
+(3262, '015548019', 'Turko', '01', '0155', '015548'),
+(3263, '015548020', 'Yatyat', '01', '0155', '015548'),
+(3264, '015548021', 'Balligi', '01', '0155', '015548'),
+(3265, '015548022', 'Banuar', '01', '0155', '015548');
 
+-- --------------------------------------------------------
 
-CREATE TABLE `dish_type` (
-  `type_id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(15) DEFAULT NULL,
-  `main_` varchar(20) DEFAULT NULL,
-  `weight` int(4) DEFAULT NULL,
-  PRIMARY KEY (`type_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-INSERT INTO dish_type VALUES("1","Platter","Beef","250");
-INSERT INTO dish_type VALUES("2","Platter","Chicken","250");
-INSERT INTO dish_type VALUES("6","silog","","0");
-
-
+--
+-- Table structure for table `dishes`
+--
 
 CREATE TABLE `dishes` (
-  `dish_id` int(2) NOT NULL AUTO_INCREMENT,
+  `dish_id` int(2) NOT NULL,
   `dish_name` varchar(30) DEFAULT NULL,
   `main_` varchar(15) DEFAULT NULL,
   `weight` int(4) DEFAULT NULL,
   `price` decimal(10,2) DEFAULT NULL,
-  `status` varchar(11) DEFAULT NULL,
-  PRIMARY KEY (`dish_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `status` varchar(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO dishes VALUES("3","Pork Steak","Pork","250","189.00","Unavailable");
-INSERT INTO dishes VALUES("4","Igado","Pork","250","229.00","Unavailable");
-INSERT INTO dishes VALUES("5","Sinigang","Pork","250","249.00","Available");
-INSERT INTO dishes VALUES("6","Crispy Pata","Pork","1000","569.00","Available");
-INSERT INTO dishes VALUES("7","Pata Tim","Pork","1000","619.00","Available");
-INSERT INTO dishes VALUES("10","Adobo","Chicken","250","205.00","Available");
-INSERT INTO dishes VALUES("11","Tinola","Chicken","250","219.00","Available");
-INSERT INTO dishes VALUES("13","Paksiw Bangus","Bangus","250","219.00","Available");
-INSERT INTO dishes VALUES("14","Sinigang Bangus","Bangus","250","229.00","Unavailable");
-INSERT INTO dishes VALUES("15","Buttered Shrimp","Shrimp","250","249.00","Available");
-INSERT INTO dishes VALUES("16","Sinigang Shrimp","Shrimp","250","269.00","Available");
-INSERT INTO dishes VALUES("17","Tapa","Beef","250","249.00","Unavailable");
-INSERT INTO dishes VALUES("18","Beef Steak","Beef","250","350.00","Available");
-INSERT INTO dishes VALUES("19","Beef Ampalaya","Beef","250","329.00","Unavailable");
-INSERT INTO dishes VALUES("24","Afritada","Chicken","250","229.00","Unavailable");
+--
+-- Dumping data for table `dishes`
+--
 
+INSERT INTO `dishes` (`dish_id`, `dish_name`, `main_`, `weight`, `price`, `status`) VALUES
+(3, 'Pork Steak', 'Pork', 250, 189.00, 'Available'),
+(4, 'Igado', 'Pork', 250, 229.00, 'Available'),
+(5, 'Sinigang', 'Pork', 250, 249.00, 'Available'),
+(6, 'Crispy Pata', 'Pork', 1000, 569.00, 'Available'),
+(7, 'Pata Tim', 'Pork', 1000, 619.00, 'Available'),
+(10, 'Adobo', 'Chicken', 250, 205.00, 'Available'),
+(11, 'Tinola', 'Chicken', 250, 219.00, 'Available'),
+(13, 'Paksiw Bangus', 'Bangus', 250, 219.00, 'Available'),
+(14, 'Sinigang Bangus', 'Bangus', 250, 229.00, 'Available'),
+(15, 'Buttered Shrimp', 'Shrimp', 250, 249.00, 'Available'),
+(16, 'Sinigang Shrimp', 'Shrimp', 250, 269.00, 'Available'),
+(17, 'Tapa', 'Beef', 250, 249.00, 'Available'),
+(18, 'Beef Steak', 'Beef', 250, 350.00, 'Available'),
+(19, 'Beef Ampalaya', 'Beef', 250, 329.00, 'Available'),
+(24, 'Afritada', 'Chicken', 250, 229.00, 'Available');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dishes_ordered`
+--
 
 CREATE TABLE `dishes_ordered` (
+  `id` int(11) NOT NULL,
   `trans_id` int(11) NOT NULL,
   `dish_id` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
   `price` decimal(10,2) NOT NULL,
-  `subtotal` decimal(10,2) NOT NULL
+  `subtotal` decimal(10,2) NOT NULL,
+  `created_at` date DEFAULT current_timestamp(),
+  `updated_at` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO dishes_ordered VALUES("2","16","2","269.00","538.00");
-INSERT INTO dishes_ordered VALUES("2","7","1","619.00","619.00");
-INSERT INTO dishes_ordered VALUES("2","15","1","249.00","249.00");
-INSERT INTO dishes_ordered VALUES("2","6","3","569.00","1707.00");
-INSERT INTO dishes_ordered VALUES("1","10","1","205.00","205.00");
-INSERT INTO dishes_ordered VALUES("1","18","2","289.00","578.00");
-INSERT INTO dishes_ordered VALUES("1","15","1","249.00","249.00");
-INSERT INTO dishes_ordered VALUES("1","7","3","619.00","1857.00");
-INSERT INTO dishes_ordered VALUES("4","11","1","219.00","219.00");
-INSERT INTO dishes_ordered VALUES("4","5","2","249.00","498.00");
-INSERT INTO dishes_ordered VALUES("4","16","1","269.00","269.00");
-INSERT INTO dishes_ordered VALUES("4","6","3","569.00","1707.00");
-INSERT INTO dishes_ordered VALUES("4","18","2","289.00","578.00");
-INSERT INTO dishes_ordered VALUES("5","13","1","219.00","219.00");
-INSERT INTO dishes_ordered VALUES("7","10","1","205.00","205.00");
-INSERT INTO dishes_ordered VALUES("7","18","3","289.00","867.00");
-INSERT INTO dishes_ordered VALUES("7","15","2","249.00","498.00");
-INSERT INTO dishes_ordered VALUES("9","10","3","205.00","615.00");
-INSERT INTO dishes_ordered VALUES("9","18","1","289.00","289.00");
-INSERT INTO dishes_ordered VALUES("9","15","4","249.00","996.00");
-INSERT INTO dishes_ordered VALUES("9","6","1","569.00","569.00");
-INSERT INTO dishes_ordered VALUES("9","13","2","219.00","438.00");
-INSERT INTO dishes_ordered VALUES("9","7","1","619.00","619.00");
-INSERT INTO dishes_ordered VALUES("9","5","3","249.00","747.00");
-INSERT INTO dishes_ordered VALUES("9","11","1","219.00","219.00");
-INSERT INTO dishes_ordered VALUES("9","16","2","269.00","538.00");
-INSERT INTO dishes_ordered VALUES("3","10","1","205.00","205.00");
-INSERT INTO dishes_ordered VALUES("3","18","2","289.00","578.00");
-INSERT INTO dishes_ordered VALUES("3","15","2","249.00","498.00");
-INSERT INTO dishes_ordered VALUES("3","6","2","569.00","1138.00");
-INSERT INTO dishes_ordered VALUES("3","7","3","619.00","1857.00");
-INSERT INTO dishes_ordered VALUES("11","15","1","249.00","249.00");
-INSERT INTO dishes_ordered VALUES("11","13","4","219.00","876.00");
-INSERT INTO dishes_ordered VALUES("11","7","2","619.00","1238.00");
-INSERT INTO dishes_ordered VALUES("11","5","1","249.00","249.00");
-INSERT INTO dishes_ordered VALUES("11","11","2","219.00","438.00");
-INSERT INTO dishes_ordered VALUES("10","15","20","249.00","4980.00");
+--
+-- Dumping data for table `dishes_ordered`
+--
 
+INSERT INTO `dishes_ordered` (`id`, `trans_id`, `dish_id`, `quantity`, `price`, `subtotal`, `created_at`, `updated_at`) VALUES
+(1, 2, 16, 2, 269.00, 538.00, '2024-05-18', NULL),
+(2, 2, 7, 1, 619.00, 619.00, '2024-05-18', NULL),
+(3, 2, 16, 1, 249.00, 249.00, '2024-05-18', NULL),
+(4, 2, 6, 3, 569.00, 1707.00, '2024-05-18', NULL),
+(5, 1, 10, 1, 205.00, 205.00, '2024-05-18', NULL),
+(6, 1, 18, 2, 289.00, 578.00, '2024-05-18', NULL),
+(7, 1, 15, 1, 249.00, 249.00, '2024-05-18', NULL),
+(8, 1, 7, 3, 619.00, 1857.00, '2024-05-18', NULL),
+(9, 4, 11, 1, 219.00, 219.00, '2024-05-18', NULL),
+(10, 4, 5, 2, 249.00, 498.00, '2024-05-18', NULL),
+(11, 4, 16, 1, 269.00, 269.00, '2024-05-18', NULL),
+(12, 4, 6, 3, 569.00, 1707.00, '2024-05-18', NULL),
+(13, 4, 18, 2, 289.00, 578.00, '2024-05-18', NULL),
+(14, 5, 13, 1, 219.00, 219.00, '2024-05-18', NULL),
+(15, 7, 10, 1, 205.00, 205.00, '2024-05-18', NULL),
+(16, 7, 18, 3, 289.00, 867.00, '2024-05-18', NULL),
+(17, 7, 15, 2, 249.00, 498.00, '2024-05-18', NULL),
+(18, 9, 10, 3, 205.00, 615.00, '2024-05-18', NULL),
+(19, 9, 18, 1, 289.00, 289.00, '2024-05-18', NULL),
+(20, 9, 15, 4, 249.00, 996.00, '2024-05-18', NULL),
+(21, 9, 6, 1, 569.00, 569.00, '2024-05-18', NULL),
+(22, 9, 13, 2, 219.00, 438.00, '2024-05-18', NULL),
+(23, 9, 7, 1, 619.00, 619.00, '2024-05-18', NULL),
+(24, 9, 5, 3, 249.00, 747.00, '2024-05-18', NULL),
+(25, 9, 11, 1, 219.00, 219.00, '2024-05-18', NULL),
+(26, 9, 16, 2, 269.00, 538.00, '2024-05-18', NULL),
+(27, 3, 10, 1, 205.00, 205.00, '2024-05-18', NULL),
+(28, 3, 18, 2, 289.00, 578.00, '2024-05-18', NULL),
+(29, 3, 15, 2, 249.00, 498.00, '2024-05-18', NULL),
+(30, 3, 6, 2, 569.00, 1138.00, '2024-05-18', NULL),
+(31, 3, 7, 3, 619.00, 1857.00, '2024-05-18', NULL),
+(32, 11, 15, 1, 249.00, 249.00, '2024-05-18', NULL),
+(33, 11, 13, 4, 219.00, 876.00, '2024-05-18', NULL),
+(34, 11, 7, 2, 619.00, 1238.00, '2024-05-18', NULL),
+(35, 11, 5, 1, 249.00, 249.00, '2024-05-18', NULL),
+(36, 11, 11, 2, 219.00, 438.00, '2024-05-18', NULL),
+(38, 12, 10, 1, 205.00, 205.00, '2024-05-18', NULL),
+(39, 12, 18, 1, 350.00, 350.00, '2024-05-18', NULL),
+(40, 12, 6, 2, 569.00, 1138.00, '2024-05-18', NULL),
+(41, 13, 10, 1, 205.00, 205.00, '2024-05-18', NULL),
+(42, 13, 18, 1, 350.00, 350.00, '2024-05-18', NULL),
+(43, 14, 10, 2, 205.00, 410.00, '2024-05-18', NULL),
+(44, 15, 18, 1, 350.00, 350.00, '2024-05-21', NULL),
+(45, 15, 13, 1, 219.00, 219.00, '2024-05-21', NULL),
+(46, 16, 14, 1, 229.00, 229.00, '2024-05-21', NULL),
+(47, 16, 13, 2, 219.00, 438.00, '2024-05-21', NULL),
+(48, 17, 19, 1, 329.00, 329.00, '2024-05-21', NULL),
+(49, 17, 18, 1, 350.00, 350.00, '2024-05-21', NULL),
+(50, 17, 6, 2, 569.00, 1138.00, '2024-05-21', NULL),
+(51, 18, 11, 1, 219.00, 219.00, '2024-05-21', NULL),
+(52, 19, 6, 1, 569.00, 569.00, '2024-05-22', NULL),
+(53, 19, 4, 2, 229.00, 458.00, '2024-05-22', NULL),
+(57, 20, 10, 3, 205.00, 615.00, '2024-05-22', NULL),
+(58, 20, 3, 2, 189.00, 378.00, '2024-05-22', NULL),
+(59, 20, 7, 1, 619.00, 619.00, '2024-05-22', NULL),
+(60, 20, 19, 2, 329.00, 658.00, '2024-05-22', NULL),
+(61, 22, 24, 1, 229.00, 229.00, '2024-05-22', NULL),
+(62, 22, 19, 2, 329.00, 658.00, '2024-05-22', NULL);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dish_type`
+--
+
+CREATE TABLE `dish_type` (
+  `type_id` int(11) NOT NULL,
+  `name` varchar(15) DEFAULT NULL,
+  `main_` varchar(20) DEFAULT NULL,
+  `weight` int(4) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `dish_type`
+--
+
+INSERT INTO `dish_type` (`type_id`, `name`, `main_`, `weight`) VALUES
+(1, 'Platter', 'Beef', 250),
+(2, 'Platter', 'Chicken', 250),
+(6, 'silog', '', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inventory_condiments`
+--
 
 CREATE TABLE `inventory_condiments` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `item_name` varchar(15) DEFAULT NULL,
+  `id` int(11) NOT NULL,
+  `item_name` varchar(30) DEFAULT NULL,
   `quantity` int(3) DEFAULT 0,
-  `unit` varchar(15) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `unit` varchar(15) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO inventory_condiments VALUES("4","Salt","5","bags");
-INSERT INTO inventory_condiments VALUES("5","vinegar","10","bottles");
-INSERT INTO inventory_condiments VALUES("6","Pepper","25","sachets");
-INSERT INTO inventory_condiments VALUES("7","Vetsin","40","sachets");
+--
+-- Dumping data for table `inventory_condiments`
+--
 
+INSERT INTO `inventory_condiments` (`id`, `item_name`, `quantity`, `unit`) VALUES
+(4, 'Salt', 5, 'bag'),
+(5, 'Datu Puti vinegar', 10, 'bottle'),
+(6, 'Pepper', 25, 'sachet'),
+(7, 'Ajinomoto seasoning', 40, 'sachet'),
+(11, 'Silver Swan soy sauce', 3, 'bottle');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inventory_perishable`
+--
 
 CREATE TABLE `inventory_perishable` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `item_name` varchar(15) DEFAULT NULL,
   `quantity` decimal(10,2) DEFAULT 0.00,
-  `unit` varchar(15) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `unit` varchar(15) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO inventory_perishable VALUES("21","Bangus","16.00","");
-INSERT INTO inventory_perishable VALUES("22","Beef","10.00","");
-INSERT INTO inventory_perishable VALUES("23","Chicken","15.00","");
-INSERT INTO inventory_perishable VALUES("24","Pork","5.00","");
-INSERT INTO inventory_perishable VALUES("28","Shrimp","15.00","");
-INSERT INTO inventory_perishable VALUES("29","Salmon","5.00","");
+--
+-- Dumping data for table `inventory_perishable`
+--
 
+INSERT INTO `inventory_perishable` (`id`, `item_name`, `quantity`, `unit`) VALUES
+(21, 'Bangus', 16.00, ''),
+(22, 'Beef', 10.00, ''),
+(23, 'Chicken', 15.00, ''),
+(24, 'Pork', 5.00, ''),
+(28, 'Shrimp', 15.00, ''),
+(29, 'Salmon', 5.00, '');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `logs`
+--
 
 CREATE TABLE `logs` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `timestamp` datetime DEFAULT current_timestamp(),
   `user_id` int(11) DEFAULT NULL,
   `name` varchar(50) DEFAULT NULL,
   `action` varchar(20) DEFAULT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=482 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `description` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO logs VALUES("1","2023-08-31 23:07:14","1","Rodelio Is-isa","Login","Login session started");
-INSERT INTO logs VALUES("2","2023-08-31 23:08:23","1","Rodelio Is-isa","Log out","Login session ended");
-INSERT INTO logs VALUES("3","2023-08-31 23:10:01","1","Rodelio Is-isa","Login","Login session started");
-INSERT INTO logs VALUES("4","2023-08-31 23:10:24","1","Rodelio Is-isa","Save Changes","Edited a user profile");
-INSERT INTO logs VALUES("5","2023-08-31 23:12:45","1","Rodelio Is-isa","Save Changes","Added a new user profile");
-INSERT INTO logs VALUES("6","2023-08-31 23:13:10","1","Rodelio Is-isa","Delete Profile","Deleted a user profile");
-INSERT INTO logs VALUES("7","2023-08-31 23:14:54","1","Rodelio Is-isa","Save Changes","Edited their profile");
-INSERT INTO logs VALUES("8","2023-08-31 23:15:29","1","Rodelio Is-isa","Change Password","Changed their username or password");
-INSERT INTO logs VALUES("9","2023-08-31 23:15:38","1","Rodelio Is-isa","Log out","Login session ended");
-INSERT INTO logs VALUES("10","2023-08-31 23:15:55","2","Carl Justin Arciaga","Login","Login session started");
-INSERT INTO logs VALUES("11","2023-08-31 23:16:35","2","Carl Justin Arciaga","Save Changes","Edited their profile");
-INSERT INTO logs VALUES("12","2023-08-31 23:16:46","2","Carl Justin Arciaga","Log out","Login session ended");
-INSERT INTO logs VALUES("13","2023-08-31 23:17:07","1","Rodelio Is-isa","Login","Login session started");
-INSERT INTO logs VALUES("14","2023-08-31 23:17:19","1","Rodelio Is-isa","Change Password","Changed their username or password");
-INSERT INTO logs VALUES("15","2023-08-31 23:17:23","1","Rodelio Is-isa","Log out","Login session ended");
-INSERT INTO logs VALUES("16","2023-08-31 23:17:30","1","Rodelio Is-isa","Login","Login session started");
-INSERT INTO logs VALUES("17","2023-09-01 00:51:28","1","Rodelio Is-isa","Save Changes","Edited their profile");
-INSERT INTO logs VALUES("18","2023-09-01 00:58:58","1","Rodelio Is-isa","Initiate Backup","Created a system backup");
-INSERT INTO logs VALUES("19","2023-09-01 01:14:06","1","Rodelio Is-isa","Log out","Login session ended");
-INSERT INTO logs VALUES("20","2023-09-01 01:14:12","2","Carl Justin Arciaga","Log in","Login session started");
-INSERT INTO logs VALUES("21","2023-09-01 01:14:19","2","Carl Justin Arciaga","Log out","Login session ended");
-INSERT INTO logs VALUES("22","2023-09-01 01:14:24","1","Rodelio Is-isa","Log in","Login session started");
-INSERT INTO logs VALUES("23","2023-09-01 01:19:36","1","Rodelio Is-isa","Log out","Login session ended");
-INSERT INTO logs VALUES("24","2023-09-01 06:53:54","1","Rodelio Is-isa","Log in","Login session started");
-INSERT INTO logs VALUES("25","2023-09-01 07:04:25","1","Rodelio Is-isa","Initiate Backup","Created a system backup");
-INSERT INTO logs VALUES("26","2023-09-01 07:12:20","1","Rodelio Is-isa","Initiate Backup","Created a system backup");
-INSERT INTO logs VALUES("27","2023-09-01 07:19:05","1","Rodelio Is-isa","Log out","Login session ended");
-INSERT INTO logs VALUES("28","2023-09-01 09:29:50","1","Rodelio Is-isa","Log in","Login session started");
-INSERT INTO logs VALUES("29","2023-09-01 09:30:54","2","Carl Justin Arciaga","Log in","Login session started");
-INSERT INTO logs VALUES("30","2023-09-01 09:31:08","2","Carl Justin Arciaga","Log out","Login session ended");
-INSERT INTO logs VALUES("31","2023-09-01 09:32:30","1","Rodelio Is-isa","Initiate Backup","Created a system backup");
-INSERT INTO logs VALUES("32","2023-09-01 11:10:55","1","Rodelio Is-isa","Log out","Login session ended");
-INSERT INTO logs VALUES("33","2023-09-01 11:11:00","1","Rodelio Is-isa","Log in","Login session started");
-INSERT INTO logs VALUES("34","2023-09-01 11:21:47","1","Rodelio Is-isa","Log out","Login session ended");
-INSERT INTO logs VALUES("35","2023-09-01 20:08:17","1","Rodelio Is-isa","Log in","Login session started");
-INSERT INTO logs VALUES("36","2023-09-01 23:38:32","1","Rodelio Is-isa","Log out","Login session ended");
-INSERT INTO logs VALUES("37","2023-09-02 16:07:20","1","Rodelio Is-isa","Log in","Login session started");
-INSERT INTO logs VALUES("38","2023-09-04 13:26:52","1","Rodelio Is-isa","Log in","Login session started");
-INSERT INTO logs VALUES("39","2023-09-04 13:27:24","1","Rodelio Is-isa","Log out","Login session ended");
-INSERT INTO logs VALUES("40","2023-09-04 13:27:38","1","Rodelio Is-isa","Log in","Login session started");
-INSERT INTO logs VALUES("41","2023-09-04 13:29:43","1","Rodelio Is-isa","Log out","Login session ended");
-INSERT INTO logs VALUES("42","2023-09-04 13:29:48","2","Carl Justin Arciaga","Log in","Login session started");
-INSERT INTO logs VALUES("43","2023-09-04 13:29:57","2","Carl Justin Arciaga","Log out","Login session ended");
-INSERT INTO logs VALUES("44","2023-09-04 13:30:44","1","Rodelio Is-isa","Log in","Login session started");
-INSERT INTO logs VALUES("45","2023-09-04 13:53:51","1","Rodelio Is-isa","Log out","Login session ended");
-INSERT INTO logs VALUES("46","2023-09-04 13:53:59","2","Carl Justin Arciaga","Log in","Login session started");
-INSERT INTO logs VALUES("47","2023-09-04 13:55:15","2","Carl Justin Arciaga","Log out","Login session ended");
-INSERT INTO logs VALUES("48","2023-09-04 13:55:21","1","Rodelio Is-isa","Log in","Login session started");
-INSERT INTO logs VALUES("49","2023-09-04 17:26:46","1","Rodelio Is-isa","Log out","Login session ended");
-INSERT INTO logs VALUES("50","2023-09-05 18:18:14","1","Rodelio Is-isa","Log in","Login session started");
-INSERT INTO logs VALUES("51","2023-09-05 18:44:34","1","Rodelio Is-isa","Log out","Login session ended");
-INSERT INTO logs VALUES("52","2023-09-05 18:45:42","1","Rodelio Is-isa","Log in","Login session started");
-INSERT INTO logs VALUES("53","2023-09-06 03:12:16","1","Rodelio Is-isa","Log in","Login session started");
-INSERT INTO logs VALUES("54","2023-09-06 05:45:41","1","Rodelio Is-isa","Log out","Login session ended");
-INSERT INTO logs VALUES("55","2023-09-06 06:09:06","1","Rodelio Is-isa","Log in","Login session started");
-INSERT INTO logs VALUES("56","2023-09-06 06:11:10","1","Rodelio Is-isa","Initiate Backup","Created a system backup");
-INSERT INTO logs VALUES("57","2023-09-06 06:16:11","1","Rodelio Is-isa","Log out","Login session ended");
-INSERT INTO logs VALUES("58","2023-09-06 09:23:40","1","Rodelio Is-isa","Log in","Login session started");
-INSERT INTO logs VALUES("59","2023-09-06 09:23:56","1","Rodelio Is-isa","Log out","Login session ended");
-INSERT INTO logs VALUES("60","2023-09-06 09:24:04","2","Carl Justin Arciaga","Log in","Login session started");
-INSERT INTO logs VALUES("61","2023-09-06 09:24:11","2","Carl Justin Arciaga","Log out","Login session ended");
-INSERT INTO logs VALUES("62","2023-09-06 09:24:18","1","Rodelio Is-isa","Log in","Login session started");
-INSERT INTO logs VALUES("63","2023-09-06 09:30:28","1","Rodelio Is-isa","Initiate Backup","Created a system backup");
-INSERT INTO logs VALUES("64","2023-09-06 09:30:29","1","Rodelio Is-isa","Initiate Backup","Created a system backup");
-INSERT INTO logs VALUES("65","2023-09-06 09:31:18","1","Rodelio Is-isa","Log out","Login session ended");
-INSERT INTO logs VALUES("66","2023-09-06 10:00:03","1","Rodelio Is-isa","Log in","Login session started");
-INSERT INTO logs VALUES("67","2023-09-06 10:04:24","1","Rodelio Is-isa","Log out","Login session ended");
-INSERT INTO logs VALUES("68","2023-09-08 21:17:48","1","Rodelio Is-isa","Log in","Login session started");
-INSERT INTO logs VALUES("69","2023-09-08 21:25:31","1","Rodelio Is-isa","Log out","Login session ended");
-INSERT INTO logs VALUES("70","2023-09-08 21:27:10","1","Rodelio Is-isa","Log in","Login session started");
-INSERT INTO logs VALUES("71","2023-09-08 21:37:45","1","Rodelio Is-isa","Log out","Login session ended");
-INSERT INTO logs VALUES("72","2023-09-09 23:42:20","1","Rodelio Is-isa","Log in","Login session started");
-INSERT INTO logs VALUES("73","2023-09-09 23:42:31","1","Rodelio Is-isa","Log out","Login session ended");
-INSERT INTO logs VALUES("74","2023-09-10 19:28:59","1","Rodelio Is-isa","Log in","Login session started");
-INSERT INTO logs VALUES("75","2023-09-10 20:08:08","1","Rodelio Is-isa","Log in","Login session started");
-INSERT INTO logs VALUES("76","2023-09-10 21:38:47","1","Rodelio Is-isa","Log out","Login session ended");
-INSERT INTO logs VALUES("77","2023-09-10 21:38:51","2","Carl Justin Arciaga","Log in","Login session started");
-INSERT INTO logs VALUES("78","2023-09-10 21:39:06","2","Carl Justin Arciaga","Log out","Login session ended");
-INSERT INTO logs VALUES("79","2023-09-10 21:39:21","1","Rodelio Is-isa","Log in","Login session started");
-INSERT INTO logs VALUES("80","2023-09-10 21:56:54","1","Rodelio Is-isa","Log out","Login session ended");
-INSERT INTO logs VALUES("81","2023-09-10 21:59:06","1","Rodelio Is-isa","Log in","Login session started");
-INSERT INTO logs VALUES("82","2023-09-10 22:35:22","1","Rodelio Is-isa","Add User","Added a new user profile");
-INSERT INTO logs VALUES("83","2023-09-11 17:22:11","1","Rodelio Is-isa","Log out","Login session ended");
-INSERT INTO logs VALUES("84","2023-09-11 17:22:16","2","Carl Justin Arciaga","Log in","Login session started");
-INSERT INTO logs VALUES("85","2023-09-11 17:24:51","2","Carl Justin Arciaga","Log out","Login session ended");
-INSERT INTO logs VALUES("86","2023-09-11 17:24:57","1","Rodelio Is-isa","Log in","Login session started");
-INSERT INTO logs VALUES("87","2023-09-11 20:04:49","1","Rodelio Is-isa","Log out","Login session ended");
-INSERT INTO logs VALUES("88","2023-09-11 20:04:55","2","Carl Justin Arciaga","Log in","Login session started");
-INSERT INTO logs VALUES("89","2023-09-11 20:06:05","2","Carl Justin Arciaga","Log out","Login session ended");
-INSERT INTO logs VALUES("90","2023-09-11 20:06:09","1","Rodelio Is-isa","Log in","Login session started");
-INSERT INTO logs VALUES("91","2023-09-11 20:06:31","1","Rodelio Is-isa","Log out","Login session ended");
-INSERT INTO logs VALUES("92","2023-09-12 18:18:46","1","Rodelio Is-isa","Log in","Login session started");
-INSERT INTO logs VALUES("93","2023-09-12 18:23:02","1","Rodelio Is-isa","Log out","Login session ended");
-INSERT INTO logs VALUES("94","2023-09-12 18:25:22","2","Carl Justin Arciaga","Log in","Login session started");
-INSERT INTO logs VALUES("95","2023-09-12 18:25:55","2","Carl Justin Arciaga","Log out","Login session ended");
-INSERT INTO logs VALUES("96","2023-09-12 18:26:00","1","Rodelio Is-isa","Log in","Login session started");
-INSERT INTO logs VALUES("97","2023-09-12 20:34:43","1","Rodelio Is-isa","Log out","Login session ended");
-INSERT INTO logs VALUES("98","2023-09-12 20:38:36","1","Rodelio Is-isa","Log in","Login session started");
-INSERT INTO logs VALUES("99","2023-09-12 20:51:45","1","Rodelio Is-isa","Log out","Login session ended");
-INSERT INTO logs VALUES("100","2023-09-12 21:21:59","1","Rodelio Is-isa","Log in","Login session started");
-INSERT INTO logs VALUES("101","2023-09-12 21:22:02","1","Rodelio Is-isa","Log out","Login session ended");
-INSERT INTO logs VALUES("102","2023-09-12 21:29:23","1","Rodelio Is-isa","Log in","Login session started");
-INSERT INTO logs VALUES("103","2023-09-12 21:47:33","1","Rodelio Is-isa","Log in","Login session started");
-INSERT INTO logs VALUES("104","2023-09-12 21:47:45","1","Rodelio Is-isa","Log out","Login session ended");
-INSERT INTO logs VALUES("105","2023-09-13 09:28:05","1","Rodelio Is-isa","Log in","Login session started");
-INSERT INTO logs VALUES("106","2023-09-13 09:28:14","1","Rodelio Is-isa","Log out","Login session ended");
-INSERT INTO logs VALUES("107","2023-09-13 10:18:11","1","Rodelio Is-isa","Log in","Login session started");
-INSERT INTO logs VALUES("108","2023-09-13 12:53:22","1","Rodelio Is-isa","Log in","Login session started");
-INSERT INTO logs VALUES("109","2023-09-13 12:53:47","1","Rodelio Is-isa","Log out","Login session ended");
-INSERT INTO logs VALUES("110","2023-09-13 21:28:22","1","Rodelio Is-isa","Log in","Login session started");
-INSERT INTO logs VALUES("111","2023-09-13 21:28:22","1","Rodelio Is-isa","Log in","Login session started");
-INSERT INTO logs VALUES("112","2023-09-14 10:52:30","1","Rodelio Is-isa","Log out","Login session ended");
-INSERT INTO logs VALUES("113","2023-09-14 10:52:35","1","Rodelio Is-isa","Log in","Login session started");
-INSERT INTO logs VALUES("114","2023-09-14 10:52:40","1","Rodelio Is-isa","Log out","Login session ended");
-INSERT INTO logs VALUES("115","2023-09-14 21:37:16","1","Rodelio Is-isa","Log in","Login session started");
-INSERT INTO logs VALUES("116","2023-09-14 21:37:21","1","Rodelio Is-isa","Log out","Login session ended");
-INSERT INTO logs VALUES("117","2023-09-14 21:40:23","1","Rodelio Is-isa","Log in","Login session started");
-INSERT INTO logs VALUES("118","2023-09-14 21:40:27","1","Rodelio Is-isa","Log out","Login session ended");
-INSERT INTO logs VALUES("119","2023-09-14 23:46:35","2","Carl Justin Arciaga","Log in","Login session started");
-INSERT INTO logs VALUES("120","2023-09-14 23:46:38","2","Carl Justin Arciaga","Log out","Login session ended");
-INSERT INTO logs VALUES("121","2023-09-14 23:53:55","2","Carl Justin Arciaga","Log in","Login session started");
-INSERT INTO logs VALUES("122","2023-09-14 23:54:00","2","Carl Justin Arciaga","Log out","Login session ended");
-INSERT INTO logs VALUES("123","2023-09-14 23:55:39","2","Carl Justin Arciaga","Log in","Login session started");
-INSERT INTO logs VALUES("124","2023-09-14 23:55:42","2","Carl Justin Arciaga","Log out","Login session ended");
-INSERT INTO logs VALUES("125","2023-09-15 11:23:51","1","Rodelio Is-isa","Log in","Login session started");
-INSERT INTO logs VALUES("126","2023-09-15 11:24:03","1","Rodelio Is-isa","Log out","Login session ended");
-INSERT INTO logs VALUES("127","2023-09-15 11:26:41","1","Rodelio Is-isa","Log in","Login session started");
-INSERT INTO logs VALUES("128","2023-09-15 14:33:28","1","Rodelio Is-isa","Log in","Login session started");
-INSERT INTO logs VALUES("129","2023-09-15 14:50:03","1","Rodelio Is-isa","Log out","Login session ended");
-INSERT INTO logs VALUES("130","2023-09-15 14:50:50","2","Carl Justin Arciaga","Reset Password","Reset their password");
-INSERT INTO logs VALUES("131","2023-09-15 14:50:58","1","Rodelio Is-isa","Log in","Login session started");
-INSERT INTO logs VALUES("132","2023-09-15 15:02:13","1","Rodelio Is-isa","Log out","Logged out of their account");
-INSERT INTO logs VALUES("133","2023-09-15 15:02:23","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("134","2023-09-15 15:03:07","1","Rodelio Is-isa","Edit Profile","Edited their profile");
-INSERT INTO logs VALUES("135","2023-09-15 15:03:42","1","Rodelio Is-isa","Change Password","Changed their username or password");
-INSERT INTO logs VALUES("136","2023-09-15 15:04:51","1","Rodelio Is-isa","Add User","Added a new user profile");
-INSERT INTO logs VALUES("137","2023-09-15 15:05:27","1","Rodelio Is-isa","Edit Profile","Edited a user profile");
-INSERT INTO logs VALUES("138","2023-09-15 15:05:35","1","Rodelio Is-isa","Delete Profile","Deleted a user profile");
-INSERT INTO logs VALUES("139","2023-09-15 15:05:45","1","Rodelio Is-isa","System Backup","Created a system backup");
-INSERT INTO logs VALUES("140","2023-09-15 15:09:34","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("141","2023-09-15 16:11:43","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("142","2023-09-15 16:11:59","1","Rodelio Is-isa","Change Password","Changed their username or password");
-INSERT INTO logs VALUES("143","2023-09-15 16:22:44","1","Rodelio Is-isa","Edit Profile","Edited their profile");
-INSERT INTO logs VALUES("144","2023-09-15 16:31:55","1","Rodelio Is-isa","Edit Profile","Edited a user profile");
-INSERT INTO logs VALUES("145","2023-09-15 19:29:55","1","Rodelio Is-isa","Add User","Added a new user profile");
-INSERT INTO logs VALUES("146","2023-09-15 19:39:13","1","Rodelio Is-isa","Edit Profile","Edited a user profile");
-INSERT INTO logs VALUES("147","2023-09-15 19:42:01","1","Rodelio Is-isa","Edit Profile","Edited a user profile");
-INSERT INTO logs VALUES("148","2023-09-15 19:42:42","1","Rodelio Is-isa","Edit Profile","Edited a user profile");
-INSERT INTO logs VALUES("149","2023-09-15 19:46:23","1","Rodelio Is-isa","Edit Profile","Edited a user profile");
-INSERT INTO logs VALUES("150","2023-09-15 19:52:39","1","Rodelio Is-isa","Delete Profile","Deleted a user profile");
-INSERT INTO logs VALUES("151","2023-09-15 19:56:20","1","Rodelio Is-isa","Add User","Added a new user profile");
-INSERT INTO logs VALUES("152","2023-09-15 19:56:30","1","Rodelio Is-isa","Delete Profile","Deleted a user profile");
-INSERT INTO logs VALUES("153","2023-09-15 20:04:45","1","Rodelio Is-isa","Add User","Added a new user profile");
-INSERT INTO logs VALUES("154","2023-09-15 20:05:05","1","Rodelio Is-isa","Edit Profile","Edited a user profile");
-INSERT INTO logs VALUES("155","2023-09-15 20:06:49","1","Rodelio Is-isa","Edit Profile","Edited a user profile");
-INSERT INTO logs VALUES("156","2023-09-15 20:07:11","1","Rodelio Is-isa","Edit Profile","Edited a user profile");
-INSERT INTO logs VALUES("157","2023-09-15 20:08:35","1","Rodelio Is-isa","Delete Profile","Deleted a user profile");
-INSERT INTO logs VALUES("158","2023-09-15 20:20:34","1","Rodelio Is-isa","Add User","Added a new user profile");
-INSERT INTO logs VALUES("159","2023-09-15 20:20:40","1","Rodelio Is-isa","Delete Profile","Deleted a user profile");
-INSERT INTO logs VALUES("160","2023-09-15 20:33:50","1","Rodelio Is-isa","Edit Profile","Edited their profile");
-INSERT INTO logs VALUES("161","2023-09-15 20:34:04","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("162","2023-09-15 20:34:09","2","Carl Justin Arciaga","Log In","Logged into their account");
-INSERT INTO logs VALUES("163","2023-09-15 20:34:27","2","Carl Justin Arciaga","Edit Profile","Edited their profile");
-INSERT INTO logs VALUES("164","2023-09-15 20:34:33","2","Carl Justin Arciaga","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("165","2023-09-15 20:34:37","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("166","2023-09-15 20:36:13","1","Rodelio Is-isa","Change Password","Changed their username or password");
-INSERT INTO logs VALUES("167","2023-09-15 20:37:17","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("168","2023-09-15 20:37:21","2","Carl Justin Arciaga","Log In","Logged into their account");
-INSERT INTO logs VALUES("169","2023-09-15 20:37:33","2","Carl Justin Arciaga","Change Password","Changed their username or password");
-INSERT INTO logs VALUES("170","2023-09-15 20:37:50","2","Carl Justin Arciaga","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("171","2023-09-15 20:37:56","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("172","2023-09-15 20:40:23","1","Rodelio Is-isa","Edit Profile","Edited their profile");
-INSERT INTO logs VALUES("173","2023-09-15 20:41:36","1","Rodelio Is-isa","Change Password","Changed their username or password");
-INSERT INTO logs VALUES("174","2023-09-15 20:42:59","1","Rodelio Is-isa","Change Password","Changed their username or password");
-INSERT INTO logs VALUES("175","2023-09-15 20:45:14","1","Rodelio Is-isa","Change Password","Changed their username or password");
-INSERT INTO logs VALUES("176","2023-09-15 20:49:08","1","Rodelio Is-isa","Change Password","Changed their username or password");
-INSERT INTO logs VALUES("177","2023-09-15 20:49:56","1","Rodelio Is-isa","Change Password","Changed their username or password");
-INSERT INTO logs VALUES("178","2023-09-15 20:52:47","1","Rodelio Is-isa","Edit Profile","Edited a user profile");
-INSERT INTO logs VALUES("179","2023-09-15 20:53:12","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("180","2023-09-15 20:54:42","2","Carl Justin Arciaga","Password Reset","Reset their password");
-INSERT INTO logs VALUES("181","2023-09-15 20:54:56","2","Carl Justin Arciaga","Log In","Logged into their account");
-INSERT INTO logs VALUES("182","2023-09-15 20:55:34","2","Carl Justin Arciaga","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("183","2023-09-15 20:55:41","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("184","2023-09-15 21:03:39","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("185","2023-09-15 21:11:35","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("186","2023-09-15 21:16:27","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("187","2023-09-15 23:29:01","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("188","2023-09-16 20:52:06","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("189","2023-09-16 20:53:25","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("190","2023-09-16 21:41:38","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("191","2023-09-17 07:29:21","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("192","2023-09-17 07:30:48","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("193","2023-09-17 07:31:36","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("194","2023-09-17 07:31:43","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("195","2023-09-17 16:44:57","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("196","2023-09-17 16:45:02","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("197","2023-09-18 10:23:07","1","Rodelio Is-isa","System Backup","Created a system backup");
-INSERT INTO logs VALUES("198","2023-09-18 13:33:58","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("199","2023-09-18 13:34:05","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("200","2023-09-18 13:34:42","1","Rodelio Is-isa","System Backup","Created a system backup");
-INSERT INTO logs VALUES("201","2023-09-18 13:35:13","1","Rodelio Is-isa","System Backup","Created a system backup");
-INSERT INTO logs VALUES("202","2023-09-18 13:35:37","1","Rodelio Is-isa","System Backup","Created a system backup");
-INSERT INTO logs VALUES("203","2023-09-18 13:58:58","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("204","2023-09-18 14:04:55","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("205","2023-09-18 22:39:38","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("206","2023-09-18 22:39:46","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("207","2023-09-19 10:19:54","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("208","2023-09-19 10:21:17","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("209","2023-09-19 10:22:17","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("210","2023-09-19 10:32:59","1","Rodelio Is-isa","Password Reset","Reset their password");
-INSERT INTO logs VALUES("211","2023-09-19 10:33:11","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("212","2023-09-19 10:33:34","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("213","2023-09-19 10:33:38","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("214","2023-09-19 10:34:37","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("215","2023-09-19 10:35:55","1","Rodelio Is-isa","Password Reset","Reset their password");
-INSERT INTO logs VALUES("216","2023-09-19 10:36:00","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("217","2023-09-19 10:36:04","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("218","2023-09-19 10:43:05","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("219","2023-09-19 10:48:31","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("220","2023-09-19 12:10:10","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("221","2023-09-19 14:50:12","1","Rodelio Is-isa","System Backup","Created a system backup");
-INSERT INTO logs VALUES("222","2023-09-19 14:54:24","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("223","2023-09-19 15:00:57","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("224","2023-09-19 15:01:08","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("225","2023-09-22 03:42:03","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("226","2023-09-23 14:01:20","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("227","2023-09-23 14:01:33","1","Rodelio Is-isa","System Backup","Created a system backup");
-INSERT INTO logs VALUES("228","2023-09-23 14:08:12","1","Rodelio Is-isa","Edit Profile","Edited their profile");
-INSERT INTO logs VALUES("229","2023-09-23 14:12:04","1","Rodelio Is-isa","Edit Profile","Edited their profile");
-INSERT INTO logs VALUES("230","2023-09-23 14:26:29","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("231","2023-09-23 15:01:28","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("232","2023-09-23 15:02:27","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("233","2023-09-23 15:02:47","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("234","2023-09-25 08:30:38","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("235","2023-09-25 08:31:12","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("236","2023-09-25 08:31:35","1","Rodelio Is-isa","Change Password","Changed their username or password");
-INSERT INTO logs VALUES("237","2023-09-25 08:40:50","1","Rodelio Is-isa","System Backup","Created a system backup");
-INSERT INTO logs VALUES("238","2023-09-25 09:14:04","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("239","2023-09-25 09:15:17","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("240","2023-09-25 09:15:45","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("241","2023-09-25 09:17:14","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("242","2023-09-25 09:17:36","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("243","2023-11-01 11:55:04","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("244","2023-11-01 15:40:32","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("245","2023-11-02 14:57:37","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("246","2023-11-02 21:41:15","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("247","2023-11-03 14:23:01","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("248","2023-11-03 14:23:07","2","Carl Justin Arciaga","Log In","Logged into their account");
-INSERT INTO logs VALUES("249","2023-11-03 14:23:19","2","Carl Justin Arciaga","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("250","2023-11-03 14:23:23","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("251","2023-11-03 15:51:37","1","Rodelio Is-isa","Edit Profile","Edited their profile");
-INSERT INTO logs VALUES("252","2023-11-03 15:52:32","1","Rodelio Is-isa","Edit Profile","Edited their profile");
-INSERT INTO logs VALUES("253","2023-11-03 17:42:42","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("254","2023-11-03 18:41:24","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("255","2023-11-03 22:27:52","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("256","2023-11-03 22:36:13","1","Rodelio Is-isa","Password Reset","Reset their password");
-INSERT INTO logs VALUES("257","2023-11-03 22:36:25","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("258","2023-11-03 23:01:03","1","Rodelio Is-isa","Password Reset","Reset their password");
-INSERT INTO logs VALUES("259","2023-11-03 23:01:30","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("260","2023-11-05 00:17:37","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("261","2023-11-05 09:24:56","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("262","2023-11-05 16:22:48","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("263","2023-11-05 16:23:14","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("264","2023-11-05 16:24:49","1","Rodelio Is-isa","Edit Profile","Edited their profile");
-INSERT INTO logs VALUES("265","2023-11-05 16:26:19","1","Rodelio Is-isa","Edit Profile","Edited a user profile");
-INSERT INTO logs VALUES("266","2023-11-05 18:06:15","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("267","2023-11-05 18:06:51","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("268","2023-11-06 00:04:42","1","Rodelio Is-isa","Add Item","Added Salmon into inventory of perishables");
-INSERT INTO logs VALUES("269","2023-11-06 00:10:23","1","Rodelio Is-isa","Update Item","Updated Salmon details in the inventory of perishables");
-INSERT INTO logs VALUES("270","2023-11-06 00:13:46","1","Rodelio Is-isa","Remove Item","Removed Salmon from inventory of perishables");
-INSERT INTO logs VALUES("271","2023-11-06 00:17:16","1","Rodelio Is-isa","Remove Item","Removed Shrimp from inventory of perishables");
-INSERT INTO logs VALUES("272","2023-11-06 00:17:36","1","Rodelio Is-isa","Add Item","Added Shrimp into inventory of perishables");
-INSERT INTO logs VALUES("273","2023-11-06 00:22:05","1","Rodelio Is-isa","Add Item","Added Soy sauce into inventory of condiments");
-INSERT INTO logs VALUES("274","2023-11-06 00:22:26","1","Rodelio Is-isa","Update Item","Updated Soy sauce details in the inventory of condiments");
-INSERT INTO logs VALUES("275","2023-11-06 00:22:46","1","Rodelio Is-isa","Remove Item","Removed Soy sauce from inventory of condiments");
-INSERT INTO logs VALUES("276","2023-11-06 00:24:04","1","Rodelio Is-isa","Remove Item","Removed Bagoong from inventory of condiments");
-INSERT INTO logs VALUES("277","2023-11-06 00:24:39","1","Rodelio Is-isa","Update Item","Updated Salt details in the inventory of condiments");
-INSERT INTO logs VALUES("278","2023-11-06 00:32:25","1","Rodelio Is-isa","Add Dish","Added Sisig into food menu");
-INSERT INTO logs VALUES("279","2023-11-06 00:33:08","1","Rodelio Is-isa","Update Dish","Updated Sisig details in food menu");
-INSERT INTO logs VALUES("280","2023-11-06 00:33:37","1","Rodelio Is-isa","Remove Dish","Removed Sisig from food menu");
-INSERT INTO logs VALUES("281","2023-11-06 00:39:44","1","Rodelio Is-isa","Remove Dish","Removed Fried Chicken [H] from food menu");
-INSERT INTO logs VALUES("282","2023-11-06 00:39:54","1","Rodelio Is-isa","Remove Dish","Removed Fried Chicken [W] from food menu");
-INSERT INTO logs VALUES("283","2023-11-06 00:41:05","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("284","2023-11-06 08:25:55","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("285","2023-11-06 17:04:50","1","Rodelio Is-isa","Update Dish","Updated Igado details in food menu");
-INSERT INTO logs VALUES("286","2023-11-06 17:11:53","1","Rodelio Is-isa","Update Dish","Updated Pork Steak details in food menu");
-INSERT INTO logs VALUES("287","2023-11-06 17:15:16","1","Rodelio Is-isa","Add Dish","Added Afritada into food menu");
-INSERT INTO logs VALUES("288","2023-11-06 17:17:47","1","Rodelio Is-isa","Update Dish","Updated Afritada details in food menu");
-INSERT INTO logs VALUES("289","2023-11-06 18:10:49","1","Rodelio Is-isa","Update Dish","Updated Tapa details in food menu");
-INSERT INTO logs VALUES("290","2023-11-06 18:10:59","1","Rodelio Is-isa","Update Dish","Updated Beef Ampalaya details in food menu");
-INSERT INTO logs VALUES("291","2023-11-06 18:11:12","1","Rodelio Is-isa","Update Dish","Updated Sinigang Bangus details in food menu");
-INSERT INTO logs VALUES("292","2023-11-07 06:36:45","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("293","2023-11-07 09:09:24","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("294","2023-11-07 10:57:23","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("295","2023-11-07 13:13:25","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("296","2023-11-07 13:20:59","1","Rodelio Is-isa","Edit Profile","Edited a user profile");
-INSERT INTO logs VALUES("297","2023-11-07 13:21:23","1","Rodelio Is-isa","Edit Profile","Edited a user profile");
-INSERT INTO logs VALUES("298","2023-11-07 13:59:32","1","Rodelio Is-isa","Edit Profile","Edited a user profile");
-INSERT INTO logs VALUES("299","2023-11-07 14:01:22","1","Rodelio Is-isa","Edit Profile","Edited a user profile");
-INSERT INTO logs VALUES("300","2023-11-07 14:04:27","1","Rodelio Is-isa","Delete Profile","Deleted a user profile");
-INSERT INTO logs VALUES("301","2023-11-07 14:06:10","1","Rodelio Is-isa","Delete Profile","Deleted a user profile");
-INSERT INTO logs VALUES("302","2023-11-07 14:07:20","1","Rodelio Is-isa","Add User","Added a new user profile");
-INSERT INTO logs VALUES("303","2023-11-07 14:13:29","1","Rodelio Is-isa","Edit Profile","Edited their profile");
-INSERT INTO logs VALUES("304","2023-11-07 14:13:45","1","Rodelio Is-isa","Edit Profile","Edited their profile");
-INSERT INTO logs VALUES("305","2023-11-07 14:15:30","1","Rodelio Is-isa","Edit Profile","Edited their profile");
-INSERT INTO logs VALUES("306","2023-11-07 14:18:01","1","Rodelio Is-isa","Change Password","Changed their username or password");
-INSERT INTO logs VALUES("307","2023-11-07 14:19:24","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("308","2023-11-07 14:19:30","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("309","2023-11-07 14:19:49","1","Rodelio Is-isa","Change Password","Changed their username or password");
-INSERT INTO logs VALUES("310","2023-11-07 14:20:19","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("311","2023-11-07 14:20:24","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("312","2023-11-07 14:21:10","1","Rodelio Is-isa","Change Password","Changed their username or password");
-INSERT INTO logs VALUES("313","2023-11-07 14:22:16","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("314","2023-11-07 14:23:03","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("315","2023-11-07 15:00:20","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("316","2023-11-07 15:01:42","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("317","2023-11-07 15:02:21","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("318","2023-11-07 15:02:44","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("319","2023-11-07 15:34:48","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("320","2023-11-07 16:03:31","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("321","2023-11-08 15:20:16","1","Rodelio Is-isa","Change Password","Changed their username or password");
-INSERT INTO logs VALUES("322","2023-11-08 15:22:10","1","Rodelio Is-isa","Change Password","Changed their username or password");
-INSERT INTO logs VALUES("323","2023-11-08 15:23:44","1","Rodelio Is-isa","Edit Profile","Edited their profile");
-INSERT INTO logs VALUES("324","2023-11-08 15:23:58","1","Rodelio Is-isa","Change Password","Changed their username or password");
-INSERT INTO logs VALUES("325","2023-11-08 15:24:32","1","Rodelio Is-isa","Edit Profile","Edited their profile");
-INSERT INTO logs VALUES("326","2023-11-08 15:24:45","1","Rodelio Is-isa","Change Password","Changed their username or password");
-INSERT INTO logs VALUES("327","2023-11-08 20:58:47","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("328","2023-11-08 21:00:04","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("329","2023-11-09 21:20:36","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("330","2023-11-11 16:37:22","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("331","2023-11-11 16:37:45","2","Carl Justin Arciaga","Log In","Logged into their account");
-INSERT INTO logs VALUES("332","2023-11-11 16:38:12","2","Carl Justin Arciaga","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("333","2023-11-11 16:38:21","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("334","2023-11-11 17:58:55","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("335","2023-11-11 17:59:01","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("336","2023-11-12 00:15:26","1","Rodelio Is-isa","Edit Profile","Edited a user profile");
-INSERT INTO logs VALUES("337","2023-11-12 00:15:57","1","Rodelio Is-isa","Edit Profile","Edited a user profile");
-INSERT INTO logs VALUES("338","2023-11-12 00:16:15","1","Rodelio Is-isa","Edit Profile","Edited a user profile");
-INSERT INTO logs VALUES("339","2023-11-12 00:18:21","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("340","2023-11-12 00:25:35","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("341","2023-11-12 00:34:49","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("342","2023-11-12 00:34:55","2","Carl Justin Arciaga","Log In","Logged into their account");
-INSERT INTO logs VALUES("343","2023-11-12 00:47:03","2","Carl Justin Arciaga","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("344","2023-11-12 00:47:27","2","Carl Justin Arciaga","Log In","Logged into their account");
-INSERT INTO logs VALUES("345","2023-11-12 01:13:25","2","Carl Justin Arciaga","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("346","2023-11-12 01:13:30","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("347","2023-11-12 02:16:55","1","Rodelio Is-isa","Update Dish","Updated Adobo details in food menu");
-INSERT INTO logs VALUES("348","2023-11-12 02:17:29","1","Rodelio Is-isa","Update Dish","Updated Adobo details in food menu");
-INSERT INTO logs VALUES("349","2023-11-12 02:51:37","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("350","2023-11-12 02:51:48","2","Carl Justin Arciaga","Log In","Logged into their account");
-INSERT INTO logs VALUES("351","2023-11-12 10:08:27","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("352","2023-11-13 05:43:13","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("353","2023-11-13 09:03:07","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("354","2023-11-13 09:03:43","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("355","2023-11-13 09:04:12","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("356","2023-11-13 09:04:21","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("357","2023-11-13 09:04:25","2","Carl Justin Arciaga","Log In","Logged into their account");
-INSERT INTO logs VALUES("358","2023-11-13 09:04:38","2","Carl Justin Arciaga","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("359","2023-11-13 09:04:43","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("360","2023-11-13 09:17:43","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("361","2023-11-13 09:18:47","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("362","2023-11-13 09:19:55","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("363","2023-11-13 09:20:42","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("364","2023-11-13 09:21:13","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("365","2023-11-13 09:34:01","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("366","2023-11-13 09:47:06","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("367","2023-11-13 22:39:45","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("368","2023-11-14 06:25:27","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("369","2023-11-14 06:27:46","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("370","2023-11-14 06:27:56","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("371","2023-11-14 17:28:17","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("372","2023-11-14 17:37:48","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("373","2023-11-14 17:54:21","1","Rodelio Is-isa","Password Reset","Reset their password");
-INSERT INTO logs VALUES("374","2023-11-14 17:58:18","1","Rodelio Is-isa","Password Reset","Reset their password");
-INSERT INTO logs VALUES("375","2023-11-14 18:03:41","1","Rodelio Is-isa","Password Reset","Reset their password");
-INSERT INTO logs VALUES("376","2023-11-14 18:04:46","1","Rodelio Is-isa","Password Reset","Reset their password");
-INSERT INTO logs VALUES("377","2023-11-14 18:08:36","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("378","2023-11-14 18:25:39","1","Rodelio Is-isa","Change Password","Changed their username or password");
-INSERT INTO logs VALUES("379","2023-11-14 18:46:06","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("380","2023-11-14 18:47:08","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("381","2023-11-14 19:04:03","1","Rodelio Is-isa","Change Password","Changed their username or password");
-INSERT INTO logs VALUES("382","2023-11-14 19:04:18","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("383","2023-11-14 19:30:12","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("384","2023-11-14 22:05:38","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("385","2023-11-15 22:02:16","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("386","2023-11-16 19:50:54","1","Administrator","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("387","2023-11-16 19:51:08","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("388","2023-11-16 20:05:27","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("389","2023-11-16 20:05:34","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("390","2023-11-16 20:06:50","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("391","2023-11-16 20:13:52","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("392","2023-11-16 20:16:06","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("393","2023-11-16 20:16:12","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("394","2023-11-20 13:32:14","1","Administrator","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("395","2023-11-20 13:32:41","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("396","2023-11-20 13:32:48","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("397","2023-11-20 13:33:02","2","Carl Justin Arciaga","Log In","Logged into their account");
-INSERT INTO logs VALUES("398","2023-11-20 13:35:30","2","Carl Justin Arciaga","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("399","2023-11-20 13:35:42","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("400","2023-11-20 15:11:27","1","Rodelio Is-isa","Update Item","Updated Bangus details in the inventory of perishables");
-INSERT INTO logs VALUES("401","2023-11-20 15:18:08","1","Rodelio Is-isa","Update Dish","Updated Adobo details in food menu");
-INSERT INTO logs VALUES("402","2023-11-20 15:39:11","1","Rodelio Is-isa","Add Item","Added Salmon into inventory of perishables");
-INSERT INTO logs VALUES("403","2023-11-20 15:39:28","1","Rodelio Is-isa","Update Item","Updated Salmon details in the inventory of perishables");
-INSERT INTO logs VALUES("404","2023-11-20 20:04:59","1","Rodelio Is-isa","Update Dish","Updated Adobo details in food menu");
-INSERT INTO logs VALUES("405","2023-11-21 12:32:23","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("406","2023-11-21 12:33:03","1","Rodelio Is-isa","System Backup","Created a system backup");
-INSERT INTO logs VALUES("407","2023-11-21 12:35:37","1","Rodelio Is-isa","System Backup","Created a system backup");
-INSERT INTO logs VALUES("408","2023-11-21 12:58:22","1","Rodelio Is-isa","Update Dish","Updated Adobo details in food menu");
-INSERT INTO logs VALUES("409","2023-11-21 17:37:41","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("410","2023-11-22 08:28:54","1","Rodelio Is-isa","Update Dish","Updated Crispy Pata details in food menu");
-INSERT INTO logs VALUES("411","2023-11-22 08:29:19","1","Rodelio Is-isa","Update Dish","Updated Crispy Pata details in food menu");
-INSERT INTO logs VALUES("412","2023-11-22 11:15:11","1","Rodelio Is-isa","Update Dish","Updated Adobo details in food menu");
-INSERT INTO logs VALUES("413","2023-11-22 17:55:16","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("414","2023-11-22 19:38:30","1","Rodelio Is-isa","Update Item","Deducted from Pepper: 4 sachets(s)");
-INSERT INTO logs VALUES("415","2023-11-22 19:43:12","1","Rodelio Is-isa","Update Item","Deducted 14 sachets(s) to/from Vetsin");
-INSERT INTO logs VALUES("416","2023-11-22 19:43:55","1","Rodelio Is-isa","Update Item","Added 4 bags(s) to Salt");
-INSERT INTO logs VALUES("417","2023-11-22 19:47:46","1","Rodelio Is-isa","Update Item","Deducted 5 sachets(s) of Pepper from the inventory of condiments");
-INSERT INTO logs VALUES("418","2023-11-22 19:48:20","1","Rodelio Is-isa","Update Item","Added 0 sachet(s) of Pepper into the inventory of condiments");
-INSERT INTO logs VALUES("419","2023-11-22 19:49:02","1","Rodelio Is-isa","Update Item","Added 0 sachets(s) of Pepper into the inventory of condiments");
-INSERT INTO logs VALUES("420","2023-11-22 19:49:19","1","Rodelio Is-isa","Update Item","Added 6 bottles of vinegar into the inventory of condiments");
-INSERT INTO logs VALUES("421","2023-11-22 19:55:17","1","Rodelio Is-isa","Update Item","Added 6 kilograms of Chicken into the inventory of perishables");
-INSERT INTO logs VALUES("422","2023-11-22 19:55:53","1","Rodelio Is-isa","Update Item","Deducted 6 kilograms of Pork from the inventory of perishables");
-INSERT INTO logs VALUES("423","2023-11-23 06:31:38","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("424","2023-11-23 06:31:51","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("425","2023-11-23 06:32:11","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("426","2023-11-23 10:30:40","1","Rodelio Is-isa","Update Dish","Updated Adobo details in food menu");
-INSERT INTO logs VALUES("427","2023-11-23 11:03:43","1","Rodelio Is-isa","System Backup","Created a system backup");
-INSERT INTO logs VALUES("428","2023-11-26 11:03:08","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("429","2023-11-27 10:16:16","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("430","2023-11-27 11:28:50","1","Rodelio Is-isa","System Backup","Created a system backup");
-INSERT INTO logs VALUES("431","2023-11-27 11:36:47","1","Rodelio Is-isa","System Backup","Created a system backup");
-INSERT INTO logs VALUES("432","2023-11-27 11:38:26","1","Rodelio Is-isa","System Backup","Created a system backup");
-INSERT INTO logs VALUES("433","2023-11-27 11:38:31","1","Rodelio Is-isa","System Backup","Created a system backup");
-INSERT INTO logs VALUES("434","2023-11-27 11:38:59","1","Rodelio Is-isa","System Backup","Created a system backup");
-INSERT INTO logs VALUES("435","2023-11-27 11:39:49","1","Rodelio Is-isa","System Backup","Created a system backup");
-INSERT INTO logs VALUES("436","2023-11-27 11:39:50","1","Rodelio Is-isa","System Backup","Created a system backup");
-INSERT INTO logs VALUES("437","2023-11-27 11:58:45","1","Rodelio Is-isa","System Backup","Created a system backup");
-INSERT INTO logs VALUES("438","2023-11-27 21:47:18","1","Rodelio Is-isa","New Transaction","Listed new transaction with Edgie Alturas");
-INSERT INTO logs VALUES("439","2023-11-27 22:04:59","1","Rodelio Is-isa","Edit Customer Name","Edited Edgie Alturas's name to Edgie Alturaseses ()");
-INSERT INTO logs VALUES("440","2023-11-27 22:05:40","1","Rodelio Is-isa","Edit Customer Name","Edited Edgie Alturaseses's name to Edgie Alturas");
-INSERT INTO logs VALUES("441","2023-11-27 22:14:40","1","Rodelio Is-isa","Take Order","Listed dishes ordered by Edgie Alturas and updated transaction details");
-INSERT INTO logs VALUES("442","2023-11-27 22:17:19","1","Rodelio Is-isa","Confirm Payment","Received payment from Edgie Alturas");
-INSERT INTO logs VALUES("443","2023-11-27 22:19:06","1","Rodelio Is-isa","Complete Transaction","Confirmed completion of transaction with Edgie Alturas");
-INSERT INTO logs VALUES("444","2023-11-27 22:19:41","1","Rodelio Is-isa","New Transaction","Listed new transaction with Ezekiel Griel Tejada");
-INSERT INTO logs VALUES("445","2023-11-27 22:20:53","1","Rodelio Is-isa","Cancel Transaction","Confirmed cancellation of transaction with Ezekiel Griel Tejada");
-INSERT INTO logs VALUES("446","2023-11-27 23:38:41","1","Rodelio Is-isa","System Backup","Created a system backup");
-INSERT INTO logs VALUES("447","2023-11-27 23:39:37","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("448","2023-11-27 23:40:11","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("449","2023-11-27 23:40:34","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("450","2023-11-27 23:40:43","2","Carl Justin Arciaga","Log In","Logged into their account");
-INSERT INTO logs VALUES("451","2023-11-28 07:37:42","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("452","2023-11-28 07:39:15","1","Rodelio Is-isa","Edit Profile","Edited their profile");
-INSERT INTO logs VALUES("453","2023-11-28 07:40:06","1","Rodelio Is-isa","Change Password","Changed their username or password");
-INSERT INTO logs VALUES("454","2023-11-28 07:40:21","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("455","2023-11-28 07:40:48","1","Rodelio Is-isa","Password Reset","Reset their password");
-INSERT INTO logs VALUES("456","2023-11-28 07:41:24","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("457","2023-11-28 07:42:20","1","Rodelio Is-isa","Edit Profile","Edited a user profile");
-INSERT INTO logs VALUES("458","2023-11-28 07:47:21","1","Rodelio Is-isa","New Transaction","Listed new transaction with Rufo Baro");
-INSERT INTO logs VALUES("459","2023-11-28 07:48:05","1","Rodelio Is-isa","Take Order","Listed dishes ordered by Rufo Baro and updated transaction details");
-INSERT INTO logs VALUES("460","2023-11-28 07:48:19","1","Rodelio Is-isa","Confirm Payment","Received payment from Rufo Baro with the amount ₱5030.00");
-INSERT INTO logs VALUES("461","2023-11-28 08:26:54","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("462","2023-11-28 08:33:55","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("463","2023-11-28 08:34:13","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("464","2023-11-28 08:36:18","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("465","2023-11-28 08:47:48","1","Rodelio Is-isa","Confirm Payment","Received payment from Carl Justin Arciaga with the amount ₱2889.00");
-INSERT INTO logs VALUES("466","2023-11-28 08:56:00","1","Rodelio Is-isa","Take Order","Listed dishes ordered by Jade Russel Nones and updated transaction details");
-INSERT INTO logs VALUES("467","2023-11-28 08:56:12","1","Rodelio Is-isa","Confirm Payment","Received payment from Jade Russel Nones with the amount ₱4276.00");
-INSERT INTO logs VALUES("468","2023-11-28 08:59:00","1","Rodelio Is-isa","New Transaction","Listed new transaction with Jessie");
-INSERT INTO logs VALUES("469","2023-11-28 08:59:36","1","Rodelio Is-isa","Take Order","Listed dishes ordered by Jessie and updated transaction details");
-INSERT INTO logs VALUES("470","2023-11-28 09:10:44","1","Rodelio Is-isa","Update Dish","Updated Beef Steak details in food menu");
-INSERT INTO logs VALUES("471","2023-11-28 09:11:39","1","Rodelio Is-isa","Take Order","Listed dishes ordered by Jessie and updated transaction details");
-INSERT INTO logs VALUES("472","2023-11-28 09:13:11","1","Rodelio Is-isa","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("473","2023-11-28 09:13:18","2","Carl Justin Arciaga","Log In","Logged into their account");
-INSERT INTO logs VALUES("474","2023-11-28 09:13:32","2","Carl Justin Arciaga","New Transaction","Listed new transaction with Genesis");
-INSERT INTO logs VALUES("475","2023-11-28 09:15:00","2","Carl Justin Arciaga","Take Order","Listed dishes ordered by Genesis and updated transaction details");
-INSERT INTO logs VALUES("476","2023-11-28 09:15:39","2","Carl Justin Arciaga","Confirm Payment","Received payment from Genesis with the amount ₱3050.00");
-INSERT INTO logs VALUES("477","2023-11-28 09:17:19","2","Carl Justin Arciaga","Complete Transaction","Confirmed completion of transaction with Genesis");
-INSERT INTO logs VALUES("478","2023-11-28 09:19:33","2","Carl Justin Arciaga","Log Out","Logged out of their account");
-INSERT INTO logs VALUES("479","2023-11-28 09:19:38","1","Rodelio Is-isa","Log In","Logged into their account");
-INSERT INTO logs VALUES("480","2023-11-28 09:19:55","1","Rodelio Is-isa","System Backup","Created a system backup");
-INSERT INTO logs VALUES("481","2023-11-28 09:22:25","1","Rodelio Is-isa","Take Order","Listed dishes ordered by Jessie and updated transaction details");
+--
+-- Dumping data for table `logs`
+--
 
+INSERT INTO `logs` (`id`, `timestamp`, `user_id`, `name`, `action`, `description`) VALUES
+(1, '2023-08-31 23:07:14', 1, 'Rodelio Is-isa', 'Login', 'Login session started'),
+(2, '2023-08-31 23:08:23', 1, 'Rodelio Is-isa', 'Log out', 'Login session ended'),
+(3, '2023-08-31 23:10:01', 1, 'Rodelio Is-isa', 'Login', 'Login session started'),
+(4, '2023-08-31 23:10:24', 1, 'Rodelio Is-isa', 'Save Changes', 'Edited a user profile'),
+(5, '2023-08-31 23:12:45', 1, 'Rodelio Is-isa', 'Save Changes', 'Added a new user profile'),
+(6, '2023-08-31 23:13:10', 1, 'Rodelio Is-isa', 'Delete Profile', 'Deleted a user profile'),
+(7, '2023-08-31 23:14:54', 1, 'Rodelio Is-isa', 'Save Changes', 'Edited their profile'),
+(8, '2023-08-31 23:15:29', 1, 'Rodelio Is-isa', 'Change Password', 'Changed their username or password'),
+(9, '2023-08-31 23:15:38', 1, 'Rodelio Is-isa', 'Log out', 'Login session ended'),
+(10, '2023-08-31 23:15:55', 2, 'Carl Justin Arciaga', 'Login', 'Login session started'),
+(11, '2023-08-31 23:16:35', 2, 'Carl Justin Arciaga', 'Save Changes', 'Edited their profile'),
+(12, '2023-08-31 23:16:46', 2, 'Carl Justin Arciaga', 'Log out', 'Login session ended'),
+(13, '2023-08-31 23:17:07', 1, 'Rodelio Is-isa', 'Login', 'Login session started'),
+(14, '2023-08-31 23:17:19', 1, 'Rodelio Is-isa', 'Change Password', 'Changed their username or password'),
+(15, '2023-08-31 23:17:23', 1, 'Rodelio Is-isa', 'Log out', 'Login session ended'),
+(16, '2023-08-31 23:17:30', 1, 'Rodelio Is-isa', 'Login', 'Login session started'),
+(17, '2023-09-01 00:51:28', 1, 'Rodelio Is-isa', 'Save Changes', 'Edited their profile'),
+(18, '2023-09-01 00:58:58', 1, 'Rodelio Is-isa', 'Initiate Backup', 'Created a system backup'),
+(19, '2023-09-01 01:14:06', 1, 'Rodelio Is-isa', 'Log out', 'Login session ended'),
+(20, '2023-09-01 01:14:12', 2, 'Carl Justin Arciaga', 'Log in', 'Login session started'),
+(21, '2023-09-01 01:14:19', 2, 'Carl Justin Arciaga', 'Log out', 'Login session ended'),
+(22, '2023-09-01 01:14:24', 1, 'Rodelio Is-isa', 'Log in', 'Login session started'),
+(23, '2023-09-01 01:19:36', 1, 'Rodelio Is-isa', 'Log out', 'Login session ended'),
+(24, '2023-09-01 06:53:54', 1, 'Rodelio Is-isa', 'Log in', 'Login session started'),
+(25, '2023-09-01 07:04:25', 1, 'Rodelio Is-isa', 'Initiate Backup', 'Created a system backup'),
+(26, '2023-09-01 07:12:20', 1, 'Rodelio Is-isa', 'Initiate Backup', 'Created a system backup'),
+(27, '2023-09-01 07:19:05', 1, 'Rodelio Is-isa', 'Log out', 'Login session ended'),
+(28, '2023-09-01 09:29:50', 1, 'Rodelio Is-isa', 'Log in', 'Login session started'),
+(29, '2023-09-01 09:30:54', 2, 'Carl Justin Arciaga', 'Log in', 'Login session started'),
+(30, '2023-09-01 09:31:08', 2, 'Carl Justin Arciaga', 'Log out', 'Login session ended'),
+(31, '2023-09-01 09:32:30', 1, 'Rodelio Is-isa', 'Initiate Backup', 'Created a system backup'),
+(32, '2023-09-01 11:10:55', 1, 'Rodelio Is-isa', 'Log out', 'Login session ended'),
+(33, '2023-09-01 11:11:00', 1, 'Rodelio Is-isa', 'Log in', 'Login session started'),
+(34, '2023-09-01 11:21:47', 1, 'Rodelio Is-isa', 'Log out', 'Login session ended'),
+(35, '2023-09-01 20:08:17', 1, 'Rodelio Is-isa', 'Log in', 'Login session started'),
+(36, '2023-09-01 23:38:32', 1, 'Rodelio Is-isa', 'Log out', 'Login session ended'),
+(37, '2023-09-02 16:07:20', 1, 'Rodelio Is-isa', 'Log in', 'Login session started'),
+(38, '2023-09-04 13:26:52', 1, 'Rodelio Is-isa', 'Log in', 'Login session started'),
+(39, '2023-09-04 13:27:24', 1, 'Rodelio Is-isa', 'Log out', 'Login session ended'),
+(40, '2023-09-04 13:27:38', 1, 'Rodelio Is-isa', 'Log in', 'Login session started'),
+(41, '2023-09-04 13:29:43', 1, 'Rodelio Is-isa', 'Log out', 'Login session ended'),
+(42, '2023-09-04 13:29:48', 2, 'Carl Justin Arciaga', 'Log in', 'Login session started'),
+(43, '2023-09-04 13:29:57', 2, 'Carl Justin Arciaga', 'Log out', 'Login session ended'),
+(44, '2023-09-04 13:30:44', 1, 'Rodelio Is-isa', 'Log in', 'Login session started'),
+(45, '2023-09-04 13:53:51', 1, 'Rodelio Is-isa', 'Log out', 'Login session ended'),
+(46, '2023-09-04 13:53:59', 2, 'Carl Justin Arciaga', 'Log in', 'Login session started'),
+(47, '2023-09-04 13:55:15', 2, 'Carl Justin Arciaga', 'Log out', 'Login session ended'),
+(48, '2023-09-04 13:55:21', 1, 'Rodelio Is-isa', 'Log in', 'Login session started'),
+(49, '2023-09-04 17:26:46', 1, 'Rodelio Is-isa', 'Log out', 'Login session ended'),
+(50, '2023-09-05 18:18:14', 1, 'Rodelio Is-isa', 'Log in', 'Login session started'),
+(51, '2023-09-05 18:44:34', 1, 'Rodelio Is-isa', 'Log out', 'Login session ended'),
+(52, '2023-09-05 18:45:42', 1, 'Rodelio Is-isa', 'Log in', 'Login session started'),
+(53, '2023-09-06 03:12:16', 1, 'Rodelio Is-isa', 'Log in', 'Login session started'),
+(54, '2023-09-06 05:45:41', 1, 'Rodelio Is-isa', 'Log out', 'Login session ended'),
+(55, '2023-09-06 06:09:06', 1, 'Rodelio Is-isa', 'Log in', 'Login session started'),
+(56, '2023-09-06 06:11:10', 1, 'Rodelio Is-isa', 'Initiate Backup', 'Created a system backup'),
+(57, '2023-09-06 06:16:11', 1, 'Rodelio Is-isa', 'Log out', 'Login session ended'),
+(58, '2023-09-06 09:23:40', 1, 'Rodelio Is-isa', 'Log in', 'Login session started'),
+(59, '2023-09-06 09:23:56', 1, 'Rodelio Is-isa', 'Log out', 'Login session ended'),
+(60, '2023-09-06 09:24:04', 2, 'Carl Justin Arciaga', 'Log in', 'Login session started'),
+(61, '2023-09-06 09:24:11', 2, 'Carl Justin Arciaga', 'Log out', 'Login session ended'),
+(62, '2023-09-06 09:24:18', 1, 'Rodelio Is-isa', 'Log in', 'Login session started'),
+(63, '2023-09-06 09:30:28', 1, 'Rodelio Is-isa', 'Initiate Backup', 'Created a system backup'),
+(64, '2023-09-06 09:30:29', 1, 'Rodelio Is-isa', 'Initiate Backup', 'Created a system backup'),
+(65, '2023-09-06 09:31:18', 1, 'Rodelio Is-isa', 'Log out', 'Login session ended'),
+(66, '2023-09-06 10:00:03', 1, 'Rodelio Is-isa', 'Log in', 'Login session started'),
+(67, '2023-09-06 10:04:24', 1, 'Rodelio Is-isa', 'Log out', 'Login session ended'),
+(68, '2023-09-08 21:17:48', 1, 'Rodelio Is-isa', 'Log in', 'Login session started'),
+(69, '2023-09-08 21:25:31', 1, 'Rodelio Is-isa', 'Log out', 'Login session ended'),
+(70, '2023-09-08 21:27:10', 1, 'Rodelio Is-isa', 'Log in', 'Login session started'),
+(71, '2023-09-08 21:37:45', 1, 'Rodelio Is-isa', 'Log out', 'Login session ended'),
+(72, '2023-09-09 23:42:20', 1, 'Rodelio Is-isa', 'Log in', 'Login session started'),
+(73, '2023-09-09 23:42:31', 1, 'Rodelio Is-isa', 'Log out', 'Login session ended'),
+(74, '2023-09-10 19:28:59', 1, 'Rodelio Is-isa', 'Log in', 'Login session started'),
+(75, '2023-09-10 20:08:08', 1, 'Rodelio Is-isa', 'Log in', 'Login session started'),
+(76, '2023-09-10 21:38:47', 1, 'Rodelio Is-isa', 'Log out', 'Login session ended'),
+(77, '2023-09-10 21:38:51', 2, 'Carl Justin Arciaga', 'Log in', 'Login session started'),
+(78, '2023-09-10 21:39:06', 2, 'Carl Justin Arciaga', 'Log out', 'Login session ended'),
+(79, '2023-09-10 21:39:21', 1, 'Rodelio Is-isa', 'Log in', 'Login session started'),
+(80, '2023-09-10 21:56:54', 1, 'Rodelio Is-isa', 'Log out', 'Login session ended'),
+(81, '2023-09-10 21:59:06', 1, 'Rodelio Is-isa', 'Log in', 'Login session started'),
+(82, '2023-09-10 22:35:22', 1, 'Rodelio Is-isa', 'Add User', 'Added a new user profile'),
+(83, '2023-09-11 17:22:11', 1, 'Rodelio Is-isa', 'Log out', 'Login session ended'),
+(84, '2023-09-11 17:22:16', 2, 'Carl Justin Arciaga', 'Log in', 'Login session started'),
+(85, '2023-09-11 17:24:51', 2, 'Carl Justin Arciaga', 'Log out', 'Login session ended'),
+(86, '2023-09-11 17:24:57', 1, 'Rodelio Is-isa', 'Log in', 'Login session started'),
+(87, '2023-09-11 20:04:49', 1, 'Rodelio Is-isa', 'Log out', 'Login session ended'),
+(88, '2023-09-11 20:04:55', 2, 'Carl Justin Arciaga', 'Log in', 'Login session started'),
+(89, '2023-09-11 20:06:05', 2, 'Carl Justin Arciaga', 'Log out', 'Login session ended'),
+(90, '2023-09-11 20:06:09', 1, 'Rodelio Is-isa', 'Log in', 'Login session started'),
+(91, '2023-09-11 20:06:31', 1, 'Rodelio Is-isa', 'Log out', 'Login session ended'),
+(92, '2023-09-12 18:18:46', 1, 'Rodelio Is-isa', 'Log in', 'Login session started'),
+(93, '2023-09-12 18:23:02', 1, 'Rodelio Is-isa', 'Log out', 'Login session ended'),
+(94, '2023-09-12 18:25:22', 2, 'Carl Justin Arciaga', 'Log in', 'Login session started'),
+(95, '2023-09-12 18:25:55', 2, 'Carl Justin Arciaga', 'Log out', 'Login session ended'),
+(96, '2023-09-12 18:26:00', 1, 'Rodelio Is-isa', 'Log in', 'Login session started'),
+(97, '2023-09-12 20:34:43', 1, 'Rodelio Is-isa', 'Log out', 'Login session ended'),
+(98, '2023-09-12 20:38:36', 1, 'Rodelio Is-isa', 'Log in', 'Login session started'),
+(99, '2023-09-12 20:51:45', 1, 'Rodelio Is-isa', 'Log out', 'Login session ended'),
+(100, '2023-09-12 21:21:59', 1, 'Rodelio Is-isa', 'Log in', 'Login session started'),
+(101, '2023-09-12 21:22:02', 1, 'Rodelio Is-isa', 'Log out', 'Login session ended'),
+(102, '2023-09-12 21:29:23', 1, 'Rodelio Is-isa', 'Log in', 'Login session started'),
+(103, '2023-09-12 21:47:33', 1, 'Rodelio Is-isa', 'Log in', 'Login session started'),
+(104, '2023-09-12 21:47:45', 1, 'Rodelio Is-isa', 'Log out', 'Login session ended'),
+(105, '2023-09-13 09:28:05', 1, 'Rodelio Is-isa', 'Log in', 'Login session started'),
+(106, '2023-09-13 09:28:14', 1, 'Rodelio Is-isa', 'Log out', 'Login session ended'),
+(107, '2023-09-13 10:18:11', 1, 'Rodelio Is-isa', 'Log in', 'Login session started'),
+(108, '2023-09-13 12:53:22', 1, 'Rodelio Is-isa', 'Log in', 'Login session started'),
+(109, '2023-09-13 12:53:47', 1, 'Rodelio Is-isa', 'Log out', 'Login session ended'),
+(110, '2023-09-13 21:28:22', 1, 'Rodelio Is-isa', 'Log in', 'Login session started'),
+(111, '2023-09-13 21:28:22', 1, 'Rodelio Is-isa', 'Log in', 'Login session started'),
+(112, '2023-09-14 10:52:30', 1, 'Rodelio Is-isa', 'Log out', 'Login session ended'),
+(113, '2023-09-14 10:52:35', 1, 'Rodelio Is-isa', 'Log in', 'Login session started'),
+(114, '2023-09-14 10:52:40', 1, 'Rodelio Is-isa', 'Log out', 'Login session ended'),
+(115, '2023-09-14 21:37:16', 1, 'Rodelio Is-isa', 'Log in', 'Login session started'),
+(116, '2023-09-14 21:37:21', 1, 'Rodelio Is-isa', 'Log out', 'Login session ended'),
+(117, '2023-09-14 21:40:23', 1, 'Rodelio Is-isa', 'Log in', 'Login session started'),
+(118, '2023-09-14 21:40:27', 1, 'Rodelio Is-isa', 'Log out', 'Login session ended'),
+(119, '2023-09-14 23:46:35', 2, 'Carl Justin Arciaga', 'Log in', 'Login session started'),
+(120, '2023-09-14 23:46:38', 2, 'Carl Justin Arciaga', 'Log out', 'Login session ended'),
+(121, '2023-09-14 23:53:55', 2, 'Carl Justin Arciaga', 'Log in', 'Login session started'),
+(122, '2023-09-14 23:54:00', 2, 'Carl Justin Arciaga', 'Log out', 'Login session ended'),
+(123, '2023-09-14 23:55:39', 2, 'Carl Justin Arciaga', 'Log in', 'Login session started'),
+(124, '2023-09-14 23:55:42', 2, 'Carl Justin Arciaga', 'Log out', 'Login session ended'),
+(125, '2023-09-15 11:23:51', 1, 'Rodelio Is-isa', 'Log in', 'Login session started'),
+(126, '2023-09-15 11:24:03', 1, 'Rodelio Is-isa', 'Log out', 'Login session ended'),
+(127, '2023-09-15 11:26:41', 1, 'Rodelio Is-isa', 'Log in', 'Login session started'),
+(128, '2023-09-15 14:33:28', 1, 'Rodelio Is-isa', 'Log in', 'Login session started'),
+(129, '2023-09-15 14:50:03', 1, 'Rodelio Is-isa', 'Log out', 'Login session ended'),
+(130, '2023-09-15 14:50:50', 2, 'Carl Justin Arciaga', 'Reset Password', 'Reset their password'),
+(131, '2023-09-15 14:50:58', 1, 'Rodelio Is-isa', 'Log in', 'Login session started'),
+(132, '2023-09-15 15:02:13', 1, 'Rodelio Is-isa', 'Log out', 'Logged out of their account'),
+(133, '2023-09-15 15:02:23', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(134, '2023-09-15 15:03:07', 1, 'Rodelio Is-isa', 'Edit Profile', 'Edited their profile'),
+(135, '2023-09-15 15:03:42', 1, 'Rodelio Is-isa', 'Change Password', 'Changed their username or password'),
+(136, '2023-09-15 15:04:51', 1, 'Rodelio Is-isa', 'Add User', 'Added a new user profile'),
+(137, '2023-09-15 15:05:27', 1, 'Rodelio Is-isa', 'Edit Profile', 'Edited a user profile'),
+(138, '2023-09-15 15:05:35', 1, 'Rodelio Is-isa', 'Delete Profile', 'Deleted a user profile'),
+(139, '2023-09-15 15:05:45', 1, 'Rodelio Is-isa', 'System Backup', 'Created a system backup'),
+(140, '2023-09-15 15:09:34', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(141, '2023-09-15 16:11:43', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(142, '2023-09-15 16:11:59', 1, 'Rodelio Is-isa', 'Change Password', 'Changed their username or password'),
+(143, '2023-09-15 16:22:44', 1, 'Rodelio Is-isa', 'Edit Profile', 'Edited their profile'),
+(144, '2023-09-15 16:31:55', 1, 'Rodelio Is-isa', 'Edit Profile', 'Edited a user profile'),
+(145, '2023-09-15 19:29:55', 1, 'Rodelio Is-isa', 'Add User', 'Added a new user profile'),
+(146, '2023-09-15 19:39:13', 1, 'Rodelio Is-isa', 'Edit Profile', 'Edited a user profile'),
+(147, '2023-09-15 19:42:01', 1, 'Rodelio Is-isa', 'Edit Profile', 'Edited a user profile'),
+(148, '2023-09-15 19:42:42', 1, 'Rodelio Is-isa', 'Edit Profile', 'Edited a user profile'),
+(149, '2023-09-15 19:46:23', 1, 'Rodelio Is-isa', 'Edit Profile', 'Edited a user profile'),
+(150, '2023-09-15 19:52:39', 1, 'Rodelio Is-isa', 'Delete Profile', 'Deleted a user profile'),
+(151, '2023-09-15 19:56:20', 1, 'Rodelio Is-isa', 'Add User', 'Added a new user profile'),
+(152, '2023-09-15 19:56:30', 1, 'Rodelio Is-isa', 'Delete Profile', 'Deleted a user profile'),
+(153, '2023-09-15 20:04:45', 1, 'Rodelio Is-isa', 'Add User', 'Added a new user profile'),
+(154, '2023-09-15 20:05:05', 1, 'Rodelio Is-isa', 'Edit Profile', 'Edited a user profile'),
+(155, '2023-09-15 20:06:49', 1, 'Rodelio Is-isa', 'Edit Profile', 'Edited a user profile'),
+(156, '2023-09-15 20:07:11', 1, 'Rodelio Is-isa', 'Edit Profile', 'Edited a user profile'),
+(157, '2023-09-15 20:08:35', 1, 'Rodelio Is-isa', 'Delete Profile', 'Deleted a user profile'),
+(158, '2023-09-15 20:20:34', 1, 'Rodelio Is-isa', 'Add User', 'Added a new user profile'),
+(159, '2023-09-15 20:20:40', 1, 'Rodelio Is-isa', 'Delete Profile', 'Deleted a user profile'),
+(160, '2023-09-15 20:33:50', 1, 'Rodelio Is-isa', 'Edit Profile', 'Edited their profile'),
+(161, '2023-09-15 20:34:04', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(162, '2023-09-15 20:34:09', 2, 'Carl Justin Arciaga', 'Log In', 'Logged into their account'),
+(163, '2023-09-15 20:34:27', 2, 'Carl Justin Arciaga', 'Edit Profile', 'Edited their profile'),
+(164, '2023-09-15 20:34:33', 2, 'Carl Justin Arciaga', 'Log Out', 'Logged out of their account'),
+(165, '2023-09-15 20:34:37', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(166, '2023-09-15 20:36:13', 1, 'Rodelio Is-isa', 'Change Password', 'Changed their username or password'),
+(167, '2023-09-15 20:37:17', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(168, '2023-09-15 20:37:21', 2, 'Carl Justin Arciaga', 'Log In', 'Logged into their account'),
+(169, '2023-09-15 20:37:33', 2, 'Carl Justin Arciaga', 'Change Password', 'Changed their username or password'),
+(170, '2023-09-15 20:37:50', 2, 'Carl Justin Arciaga', 'Log Out', 'Logged out of their account'),
+(171, '2023-09-15 20:37:56', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(172, '2023-09-15 20:40:23', 1, 'Rodelio Is-isa', 'Edit Profile', 'Edited their profile'),
+(173, '2023-09-15 20:41:36', 1, 'Rodelio Is-isa', 'Change Password', 'Changed their username or password'),
+(174, '2023-09-15 20:42:59', 1, 'Rodelio Is-isa', 'Change Password', 'Changed their username or password'),
+(175, '2023-09-15 20:45:14', 1, 'Rodelio Is-isa', 'Change Password', 'Changed their username or password'),
+(176, '2023-09-15 20:49:08', 1, 'Rodelio Is-isa', 'Change Password', 'Changed their username or password'),
+(177, '2023-09-15 20:49:56', 1, 'Rodelio Is-isa', 'Change Password', 'Changed their username or password'),
+(178, '2023-09-15 20:52:47', 1, 'Rodelio Is-isa', 'Edit Profile', 'Edited a user profile'),
+(179, '2023-09-15 20:53:12', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(180, '2023-09-15 20:54:42', 2, 'Carl Justin Arciaga', 'Password Reset', 'Reset their password'),
+(181, '2023-09-15 20:54:56', 2, 'Carl Justin Arciaga', 'Log In', 'Logged into their account'),
+(182, '2023-09-15 20:55:34', 2, 'Carl Justin Arciaga', 'Log Out', 'Logged out of their account'),
+(183, '2023-09-15 20:55:41', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(184, '2023-09-15 21:03:39', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(185, '2023-09-15 21:11:35', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(186, '2023-09-15 21:16:27', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(187, '2023-09-15 23:29:01', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(188, '2023-09-16 20:52:06', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(189, '2023-09-16 20:53:25', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(190, '2023-09-16 21:41:38', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(191, '2023-09-17 07:29:21', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(192, '2023-09-17 07:30:48', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(193, '2023-09-17 07:31:36', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(194, '2023-09-17 07:31:43', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(195, '2023-09-17 16:44:57', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(196, '2023-09-17 16:45:02', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(197, '2023-09-18 10:23:07', 1, 'Rodelio Is-isa', 'System Backup', 'Created a system backup'),
+(198, '2023-09-18 13:33:58', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(199, '2023-09-18 13:34:05', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(200, '2023-09-18 13:34:42', 1, 'Rodelio Is-isa', 'System Backup', 'Created a system backup'),
+(201, '2023-09-18 13:35:13', 1, 'Rodelio Is-isa', 'System Backup', 'Created a system backup'),
+(202, '2023-09-18 13:35:37', 1, 'Rodelio Is-isa', 'System Backup', 'Created a system backup'),
+(203, '2023-09-18 13:58:58', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(204, '2023-09-18 14:04:55', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(205, '2023-09-18 22:39:38', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(206, '2023-09-18 22:39:46', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(207, '2023-09-19 10:19:54', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(208, '2023-09-19 10:21:17', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(209, '2023-09-19 10:22:17', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(210, '2023-09-19 10:32:59', 1, 'Rodelio Is-isa', 'Password Reset', 'Reset their password'),
+(211, '2023-09-19 10:33:11', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(212, '2023-09-19 10:33:34', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(213, '2023-09-19 10:33:38', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(214, '2023-09-19 10:34:37', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(215, '2023-09-19 10:35:55', 1, 'Rodelio Is-isa', 'Password Reset', 'Reset their password'),
+(216, '2023-09-19 10:36:00', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(217, '2023-09-19 10:36:04', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(218, '2023-09-19 10:43:05', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(219, '2023-09-19 10:48:31', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(220, '2023-09-19 12:10:10', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(221, '2023-09-19 14:50:12', 1, 'Rodelio Is-isa', 'System Backup', 'Created a system backup'),
+(222, '2023-09-19 14:54:24', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(223, '2023-09-19 15:00:57', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(224, '2023-09-19 15:01:08', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(225, '2023-09-22 03:42:03', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(226, '2023-09-23 14:01:20', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(227, '2023-09-23 14:01:33', 1, 'Rodelio Is-isa', 'System Backup', 'Created a system backup'),
+(228, '2023-09-23 14:08:12', 1, 'Rodelio Is-isa', 'Edit Profile', 'Edited their profile'),
+(229, '2023-09-23 14:12:04', 1, 'Rodelio Is-isa', 'Edit Profile', 'Edited their profile'),
+(230, '2023-09-23 14:26:29', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(231, '2023-09-23 15:01:28', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(232, '2023-09-23 15:02:27', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(233, '2023-09-23 15:02:47', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(234, '2023-09-25 08:30:38', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(235, '2023-09-25 08:31:12', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(236, '2023-09-25 08:31:35', 1, 'Rodelio Is-isa', 'Change Password', 'Changed their username or password'),
+(237, '2023-09-25 08:40:50', 1, 'Rodelio Is-isa', 'System Backup', 'Created a system backup'),
+(238, '2023-09-25 09:14:04', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(239, '2023-09-25 09:15:17', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(240, '2023-09-25 09:15:45', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(241, '2023-09-25 09:17:14', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(242, '2023-09-25 09:17:36', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(243, '2023-11-01 11:55:04', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(244, '2023-11-01 15:40:32', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(245, '2023-11-02 14:57:37', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(246, '2023-11-02 21:41:15', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(247, '2023-11-03 14:23:01', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(248, '2023-11-03 14:23:07', 2, 'Carl Justin Arciaga', 'Log In', 'Logged into their account'),
+(249, '2023-11-03 14:23:19', 2, 'Carl Justin Arciaga', 'Log Out', 'Logged out of their account'),
+(250, '2023-11-03 14:23:23', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(251, '2023-11-03 15:51:37', 1, 'Rodelio Is-isa', 'Edit Profile', 'Edited their profile'),
+(252, '2023-11-03 15:52:32', 1, 'Rodelio Is-isa', 'Edit Profile', 'Edited their profile'),
+(253, '2023-11-03 17:42:42', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(254, '2023-11-03 18:41:24', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(255, '2023-11-03 22:27:52', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(256, '2023-11-03 22:36:13', 1, 'Rodelio Is-isa', 'Password Reset', 'Reset their password'),
+(257, '2023-11-03 22:36:25', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(258, '2023-11-03 23:01:03', 1, 'Rodelio Is-isa', 'Password Reset', 'Reset their password'),
+(259, '2023-11-03 23:01:30', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(260, '2023-11-05 00:17:37', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(261, '2023-11-05 09:24:56', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(262, '2023-11-05 16:22:48', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(263, '2023-11-05 16:23:14', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(264, '2023-11-05 16:24:49', 1, 'Rodelio Is-isa', 'Edit Profile', 'Edited their profile'),
+(265, '2023-11-05 16:26:19', 1, 'Rodelio Is-isa', 'Edit Profile', 'Edited a user profile'),
+(266, '2023-11-05 18:06:15', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(267, '2023-11-05 18:06:51', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(268, '2023-11-06 00:04:42', 1, 'Rodelio Is-isa', 'Add Item', 'Added Salmon into inventory of perishables'),
+(269, '2023-11-06 00:10:23', 1, 'Rodelio Is-isa', 'Update Item', 'Updated Salmon details in the inventory of perishables'),
+(270, '2023-11-06 00:13:46', 1, 'Rodelio Is-isa', 'Remove Item', 'Removed Salmon from inventory of perishables'),
+(271, '2023-11-06 00:17:16', 1, 'Rodelio Is-isa', 'Remove Item', 'Removed Shrimp from inventory of perishables'),
+(272, '2023-11-06 00:17:36', 1, 'Rodelio Is-isa', 'Add Item', 'Added Shrimp into inventory of perishables'),
+(273, '2023-11-06 00:22:05', 1, 'Rodelio Is-isa', 'Add Item', 'Added Soy sauce into inventory of condiments'),
+(274, '2023-11-06 00:22:26', 1, 'Rodelio Is-isa', 'Update Item', 'Updated Soy sauce details in the inventory of condiments'),
+(275, '2023-11-06 00:22:46', 1, 'Rodelio Is-isa', 'Remove Item', 'Removed Soy sauce from inventory of condiments'),
+(276, '2023-11-06 00:24:04', 1, 'Rodelio Is-isa', 'Remove Item', 'Removed Bagoong from inventory of condiments'),
+(277, '2023-11-06 00:24:39', 1, 'Rodelio Is-isa', 'Update Item', 'Updated Salt details in the inventory of condiments'),
+(278, '2023-11-06 00:32:25', 1, 'Rodelio Is-isa', 'Add Dish', 'Added Sisig into food menu'),
+(279, '2023-11-06 00:33:08', 1, 'Rodelio Is-isa', 'Update Dish', 'Updated Sisig details in food menu'),
+(280, '2023-11-06 00:33:37', 1, 'Rodelio Is-isa', 'Remove Dish', 'Removed Sisig from food menu'),
+(281, '2023-11-06 00:39:44', 1, 'Rodelio Is-isa', 'Remove Dish', 'Removed Fried Chicken [H] from food menu'),
+(282, '2023-11-06 00:39:54', 1, 'Rodelio Is-isa', 'Remove Dish', 'Removed Fried Chicken [W] from food menu'),
+(283, '2023-11-06 00:41:05', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(284, '2023-11-06 08:25:55', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(285, '2023-11-06 17:04:50', 1, 'Rodelio Is-isa', 'Update Dish', 'Updated Igado details in food menu'),
+(286, '2023-11-06 17:11:53', 1, 'Rodelio Is-isa', 'Update Dish', 'Updated Pork Steak details in food menu'),
+(287, '2023-11-06 17:15:16', 1, 'Rodelio Is-isa', 'Add Dish', 'Added Afritada into food menu'),
+(288, '2023-11-06 17:17:47', 1, 'Rodelio Is-isa', 'Update Dish', 'Updated Afritada details in food menu'),
+(289, '2023-11-06 18:10:49', 1, 'Rodelio Is-isa', 'Update Dish', 'Updated Tapa details in food menu'),
+(290, '2023-11-06 18:10:59', 1, 'Rodelio Is-isa', 'Update Dish', 'Updated Beef Ampalaya details in food menu'),
+(291, '2023-11-06 18:11:12', 1, 'Rodelio Is-isa', 'Update Dish', 'Updated Sinigang Bangus details in food menu'),
+(292, '2023-11-07 06:36:45', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(293, '2023-11-07 09:09:24', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(294, '2023-11-07 10:57:23', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(295, '2023-11-07 13:13:25', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(296, '2023-11-07 13:20:59', 1, 'Rodelio Is-isa', 'Edit Profile', 'Edited a user profile'),
+(297, '2023-11-07 13:21:23', 1, 'Rodelio Is-isa', 'Edit Profile', 'Edited a user profile'),
+(298, '2023-11-07 13:59:32', 1, 'Rodelio Is-isa', 'Edit Profile', 'Edited a user profile'),
+(299, '2023-11-07 14:01:22', 1, 'Rodelio Is-isa', 'Edit Profile', 'Edited a user profile'),
+(300, '2023-11-07 14:04:27', 1, 'Rodelio Is-isa', 'Delete Profile', 'Deleted a user profile'),
+(301, '2023-11-07 14:06:10', 1, 'Rodelio Is-isa', 'Delete Profile', 'Deleted a user profile'),
+(302, '2023-11-07 14:07:20', 1, 'Rodelio Is-isa', 'Add User', 'Added a new user profile'),
+(303, '2023-11-07 14:13:29', 1, 'Rodelio Is-isa', 'Edit Profile', 'Edited their profile'),
+(304, '2023-11-07 14:13:45', 1, 'Rodelio Is-isa', 'Edit Profile', 'Edited their profile'),
+(305, '2023-11-07 14:15:30', 1, 'Rodelio Is-isa', 'Edit Profile', 'Edited their profile'),
+(306, '2023-11-07 14:18:01', 1, 'Rodelio Is-isa', 'Change Password', 'Changed their username or password'),
+(307, '2023-11-07 14:19:24', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(308, '2023-11-07 14:19:30', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(309, '2023-11-07 14:19:49', 1, 'Rodelio Is-isa', 'Change Password', 'Changed their username or password'),
+(310, '2023-11-07 14:20:19', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(311, '2023-11-07 14:20:24', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(312, '2023-11-07 14:21:10', 1, 'Rodelio Is-isa', 'Change Password', 'Changed their username or password'),
+(313, '2023-11-07 14:22:16', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(314, '2023-11-07 14:23:03', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(315, '2023-11-07 15:00:20', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(316, '2023-11-07 15:01:42', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(317, '2023-11-07 15:02:21', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(318, '2023-11-07 15:02:44', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(319, '2023-11-07 15:34:48', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(320, '2023-11-07 16:03:31', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(321, '2023-11-08 15:20:16', 1, 'Rodelio Is-isa', 'Change Password', 'Changed their username or password'),
+(322, '2023-11-08 15:22:10', 1, 'Rodelio Is-isa', 'Change Password', 'Changed their username or password'),
+(323, '2023-11-08 15:23:44', 1, 'Rodelio Is-isa', 'Edit Profile', 'Edited their profile'),
+(324, '2023-11-08 15:23:58', 1, 'Rodelio Is-isa', 'Change Password', 'Changed their username or password'),
+(325, '2023-11-08 15:24:32', 1, 'Rodelio Is-isa', 'Edit Profile', 'Edited their profile'),
+(326, '2023-11-08 15:24:45', 1, 'Rodelio Is-isa', 'Change Password', 'Changed their username or password'),
+(327, '2023-11-08 20:58:47', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(328, '2023-11-08 21:00:04', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(329, '2023-11-09 21:20:36', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(330, '2023-11-11 16:37:22', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(331, '2023-11-11 16:37:45', 2, 'Carl Justin Arciaga', 'Log In', 'Logged into their account'),
+(332, '2023-11-11 16:38:12', 2, 'Carl Justin Arciaga', 'Log Out', 'Logged out of their account'),
+(333, '2023-11-11 16:38:21', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(334, '2023-11-11 17:58:55', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(335, '2023-11-11 17:59:01', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(336, '2023-11-12 00:15:26', 1, 'Rodelio Is-isa', 'Edit Profile', 'Edited a user profile'),
+(337, '2023-11-12 00:15:57', 1, 'Rodelio Is-isa', 'Edit Profile', 'Edited a user profile'),
+(338, '2023-11-12 00:16:15', 1, 'Rodelio Is-isa', 'Edit Profile', 'Edited a user profile'),
+(339, '2023-11-12 00:18:21', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(340, '2023-11-12 00:25:35', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(341, '2023-11-12 00:34:49', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(342, '2023-11-12 00:34:55', 2, 'Carl Justin Arciaga', 'Log In', 'Logged into their account'),
+(343, '2023-11-12 00:47:03', 2, 'Carl Justin Arciaga', 'Log Out', 'Logged out of their account'),
+(344, '2023-11-12 00:47:27', 2, 'Carl Justin Arciaga', 'Log In', 'Logged into their account'),
+(345, '2023-11-12 01:13:25', 2, 'Carl Justin Arciaga', 'Log Out', 'Logged out of their account'),
+(346, '2023-11-12 01:13:30', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(347, '2023-11-12 02:16:55', 1, 'Rodelio Is-isa', 'Update Dish', 'Updated Adobo details in food menu'),
+(348, '2023-11-12 02:17:29', 1, 'Rodelio Is-isa', 'Update Dish', 'Updated Adobo details in food menu'),
+(349, '2023-11-12 02:51:37', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(350, '2023-11-12 02:51:48', 2, 'Carl Justin Arciaga', 'Log In', 'Logged into their account'),
+(351, '2023-11-12 10:08:27', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(352, '2023-11-13 05:43:13', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(353, '2023-11-13 09:03:07', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(354, '2023-11-13 09:03:43', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(355, '2023-11-13 09:04:12', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(356, '2023-11-13 09:04:21', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(357, '2023-11-13 09:04:25', 2, 'Carl Justin Arciaga', 'Log In', 'Logged into their account'),
+(358, '2023-11-13 09:04:38', 2, 'Carl Justin Arciaga', 'Log Out', 'Logged out of their account'),
+(359, '2023-11-13 09:04:43', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(360, '2023-11-13 09:17:43', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(361, '2023-11-13 09:18:47', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(362, '2023-11-13 09:19:55', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(363, '2023-11-13 09:20:42', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(364, '2023-11-13 09:21:13', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(365, '2023-11-13 09:34:01', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(366, '2023-11-13 09:47:06', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(367, '2023-11-13 22:39:45', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(368, '2023-11-14 06:25:27', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(369, '2023-11-14 06:27:46', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(370, '2023-11-14 06:27:56', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(371, '2023-11-14 17:28:17', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(372, '2023-11-14 17:37:48', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(373, '2023-11-14 17:54:21', 1, 'Rodelio Is-isa', 'Password Reset', 'Reset their password'),
+(374, '2023-11-14 17:58:18', 1, 'Rodelio Is-isa', 'Password Reset', 'Reset their password'),
+(375, '2023-11-14 18:03:41', 1, 'Rodelio Is-isa', 'Password Reset', 'Reset their password'),
+(376, '2023-11-14 18:04:46', 1, 'Rodelio Is-isa', 'Password Reset', 'Reset their password'),
+(377, '2023-11-14 18:08:36', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(378, '2023-11-14 18:25:39', 1, 'Rodelio Is-isa', 'Change Password', 'Changed their username or password'),
+(379, '2023-11-14 18:46:06', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(380, '2023-11-14 18:47:08', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(381, '2023-11-14 19:04:03', 1, 'Rodelio Is-isa', 'Change Password', 'Changed their username or password'),
+(382, '2023-11-14 19:04:18', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(383, '2023-11-14 19:30:12', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(384, '2023-11-14 22:05:38', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(385, '2023-11-15 22:02:16', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(386, '2023-11-16 19:50:54', 1, 'Administrator', 'Log Out', 'Logged out of their account'),
+(387, '2023-11-16 19:51:08', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(388, '2023-11-16 20:05:27', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(389, '2023-11-16 20:05:34', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(390, '2023-11-16 20:06:50', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(391, '2023-11-16 20:13:52', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(392, '2023-11-16 20:16:06', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(393, '2023-11-16 20:16:12', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(394, '2023-11-20 13:32:14', 1, 'Administrator', 'Log Out', 'Logged out of their account'),
+(395, '2023-11-20 13:32:41', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(396, '2023-11-20 13:32:48', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(397, '2023-11-20 13:33:02', 2, 'Carl Justin Arciaga', 'Log In', 'Logged into their account'),
+(398, '2023-11-20 13:35:30', 2, 'Carl Justin Arciaga', 'Log Out', 'Logged out of their account'),
+(399, '2023-11-20 13:35:42', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(400, '2023-11-20 15:11:27', 1, 'Rodelio Is-isa', 'Update Item', 'Updated Bangus details in the inventory of perishables'),
+(401, '2023-11-20 15:18:08', 1, 'Rodelio Is-isa', 'Update Dish', 'Updated Adobo details in food menu'),
+(402, '2023-11-20 15:39:11', 1, 'Rodelio Is-isa', 'Add Item', 'Added Salmon into inventory of perishables'),
+(403, '2023-11-20 15:39:28', 1, 'Rodelio Is-isa', 'Update Item', 'Updated Salmon details in the inventory of perishables'),
+(404, '2023-11-20 20:04:59', 1, 'Rodelio Is-isa', 'Update Dish', 'Updated Adobo details in food menu'),
+(405, '2023-11-21 12:32:23', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(406, '2023-11-21 12:33:03', 1, 'Rodelio Is-isa', 'System Backup', 'Created a system backup'),
+(407, '2023-11-21 12:35:37', 1, 'Rodelio Is-isa', 'System Backup', 'Created a system backup'),
+(408, '2023-11-21 12:58:22', 1, 'Rodelio Is-isa', 'Update Dish', 'Updated Adobo details in food menu'),
+(409, '2023-11-21 17:37:41', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(410, '2023-11-22 08:28:54', 1, 'Rodelio Is-isa', 'Update Dish', 'Updated Crispy Pata details in food menu'),
+(411, '2023-11-22 08:29:19', 1, 'Rodelio Is-isa', 'Update Dish', 'Updated Crispy Pata details in food menu'),
+(412, '2023-11-22 11:15:11', 1, 'Rodelio Is-isa', 'Update Dish', 'Updated Adobo details in food menu'),
+(413, '2023-11-22 17:55:16', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(414, '2023-11-22 19:38:30', 1, 'Rodelio Is-isa', 'Update Item', 'Deducted from Pepper: 4 sachets(s)'),
+(415, '2023-11-22 19:43:12', 1, 'Rodelio Is-isa', 'Update Item', 'Deducted 14 sachets(s) to/from Vetsin'),
+(416, '2023-11-22 19:43:55', 1, 'Rodelio Is-isa', 'Update Item', 'Added 4 bags(s) to Salt'),
+(417, '2023-11-22 19:47:46', 1, 'Rodelio Is-isa', 'Update Item', 'Deducted 5 sachets(s) of Pepper from the inventory of condiments'),
+(418, '2023-11-22 19:48:20', 1, 'Rodelio Is-isa', 'Update Item', 'Added 0 sachet(s) of Pepper into the inventory of condiments'),
+(419, '2023-11-22 19:49:02', 1, 'Rodelio Is-isa', 'Update Item', 'Added 0 sachets(s) of Pepper into the inventory of condiments'),
+(420, '2023-11-22 19:49:19', 1, 'Rodelio Is-isa', 'Update Item', 'Added 6 bottles of vinegar into the inventory of condiments'),
+(421, '2023-11-22 19:55:17', 1, 'Rodelio Is-isa', 'Update Item', 'Added 6 kilograms of Chicken into the inventory of perishables'),
+(422, '2023-11-22 19:55:53', 1, 'Rodelio Is-isa', 'Update Item', 'Deducted 6 kilograms of Pork from the inventory of perishables'),
+(423, '2023-11-23 06:31:38', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(424, '2023-11-23 06:31:51', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(425, '2023-11-23 06:32:11', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(426, '2023-11-23 10:30:40', 1, 'Rodelio Is-isa', 'Update Dish', 'Updated Adobo details in food menu'),
+(427, '2023-11-23 11:03:43', 1, 'Rodelio Is-isa', 'System Backup', 'Created a system backup'),
+(428, '2023-11-26 11:03:08', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(429, '2023-11-27 10:16:16', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(430, '2023-11-27 11:28:50', 1, 'Rodelio Is-isa', 'System Backup', 'Created a system backup'),
+(431, '2023-11-27 11:36:47', 1, 'Rodelio Is-isa', 'System Backup', 'Created a system backup'),
+(432, '2023-11-27 11:38:26', 1, 'Rodelio Is-isa', 'System Backup', 'Created a system backup'),
+(433, '2023-11-27 11:38:31', 1, 'Rodelio Is-isa', 'System Backup', 'Created a system backup'),
+(434, '2023-11-27 11:38:59', 1, 'Rodelio Is-isa', 'System Backup', 'Created a system backup'),
+(435, '2023-11-27 11:39:49', 1, 'Rodelio Is-isa', 'System Backup', 'Created a system backup'),
+(436, '2023-11-27 11:39:50', 1, 'Rodelio Is-isa', 'System Backup', 'Created a system backup'),
+(437, '2023-11-27 11:58:45', 1, 'Rodelio Is-isa', 'System Backup', 'Created a system backup'),
+(438, '2023-11-27 21:47:18', 1, 'Rodelio Is-isa', 'New Transaction', 'Listed new transaction with Edgie Alturas'),
+(439, '2023-11-27 22:04:59', 1, 'Rodelio Is-isa', 'Edit Customer Name', 'Edited Edgie Alturas\'s name to Edgie Alturaseses ()'),
+(440, '2023-11-27 22:05:40', 1, 'Rodelio Is-isa', 'Edit Customer Name', 'Edited Edgie Alturaseses\'s name to Edgie Alturas'),
+(441, '2023-11-27 22:14:40', 1, 'Rodelio Is-isa', 'Take Order', 'Listed dishes ordered by Edgie Alturas and updated transaction details'),
+(442, '2023-11-27 22:17:19', 1, 'Rodelio Is-isa', 'Confirm Payment', 'Received payment from Edgie Alturas'),
+(443, '2023-11-27 22:19:06', 1, 'Rodelio Is-isa', 'Complete Transaction', 'Confirmed completion of transaction with Edgie Alturas'),
+(444, '2023-11-27 22:19:41', 1, 'Rodelio Is-isa', 'New Transaction', 'Listed new transaction with Ezekiel Griel Tejada'),
+(445, '2023-11-27 22:20:53', 1, 'Rodelio Is-isa', 'Cancel Transaction', 'Confirmed cancellation of transaction with Ezekiel Griel Tejada'),
+(446, '2023-11-27 23:38:41', 1, 'Rodelio Is-isa', 'System Backup', 'Created a system backup'),
+(447, '2023-11-27 23:39:37', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(448, '2023-11-27 23:40:11', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(449, '2023-11-27 23:40:34', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(450, '2023-11-27 23:40:43', 2, 'Carl Justin Arciaga', 'Log In', 'Logged into their account'),
+(451, '2023-11-28 07:37:42', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(452, '2023-11-28 07:39:15', 1, 'Rodelio Is-isa', 'Edit Profile', 'Edited their profile'),
+(453, '2023-11-28 07:40:06', 1, 'Rodelio Is-isa', 'Change Password', 'Changed their username or password'),
+(454, '2023-11-28 07:40:21', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(455, '2023-11-28 07:40:48', 1, 'Rodelio Is-isa', 'Password Reset', 'Reset their password'),
+(456, '2023-11-28 07:41:24', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(457, '2023-11-28 07:42:20', 1, 'Rodelio Is-isa', 'Edit Profile', 'Edited a user profile'),
+(458, '2023-11-28 07:47:21', 1, 'Rodelio Is-isa', 'New Transaction', 'Listed new transaction with Rufo Baro'),
+(459, '2023-11-28 07:48:05', 1, 'Rodelio Is-isa', 'Take Order', 'Listed dishes ordered by Rufo Baro and updated transaction details'),
+(460, '2023-11-28 07:48:19', 1, 'Rodelio Is-isa', 'Confirm Payment', 'Received payment from Rufo Baro with the amount ₱5030.00'),
+(461, '2023-11-28 08:26:54', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(462, '2023-11-28 08:33:55', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(463, '2023-11-28 08:34:13', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(464, '2023-11-28 08:36:18', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(465, '2023-11-28 08:47:48', 1, 'Rodelio Is-isa', 'Confirm Payment', 'Received payment from Carl Justin Arciaga with the amount ₱2889.00'),
+(466, '2023-11-28 08:56:00', 1, 'Rodelio Is-isa', 'Take Order', 'Listed dishes ordered by Jade Russel Nones and updated transaction details'),
+(467, '2023-11-28 08:56:12', 1, 'Rodelio Is-isa', 'Confirm Payment', 'Received payment from Jade Russel Nones with the amount ₱4276.00'),
+(468, '2023-11-28 08:59:00', 1, 'Rodelio Is-isa', 'New Transaction', 'Listed new transaction with Jessie'),
+(469, '2023-11-28 08:59:36', 1, 'Rodelio Is-isa', 'Take Order', 'Listed dishes ordered by Jessie and updated transaction details'),
+(470, '2023-11-28 09:10:44', 1, 'Rodelio Is-isa', 'Update Dish', 'Updated Beef Steak details in food menu'),
+(471, '2023-11-28 09:11:39', 1, 'Rodelio Is-isa', 'Take Order', 'Listed dishes ordered by Jessie and updated transaction details'),
+(472, '2023-11-28 09:13:11', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(473, '2023-11-28 09:13:18', 2, 'Carl Justin Arciaga', 'Log In', 'Logged into their account'),
+(474, '2023-11-28 09:13:32', 2, 'Carl Justin Arciaga', 'New Transaction', 'Listed new transaction with Genesis'),
+(475, '2023-11-28 09:15:00', 2, 'Carl Justin Arciaga', 'Take Order', 'Listed dishes ordered by Genesis and updated transaction details'),
+(476, '2023-11-28 09:15:39', 2, 'Carl Justin Arciaga', 'Confirm Payment', 'Received payment from Genesis with the amount ₱3050.00'),
+(477, '2023-11-28 09:17:19', 2, 'Carl Justin Arciaga', 'Complete Transaction', 'Confirmed completion of transaction with Genesis'),
+(478, '2023-11-28 09:19:33', 2, 'Carl Justin Arciaga', 'Log Out', 'Logged out of their account'),
+(479, '2023-11-28 09:19:38', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(480, '2023-11-28 09:19:55', 1, 'Rodelio Is-isa', 'System Backup', 'Created a system backup'),
+(481, '2023-11-28 09:22:25', 1, 'Rodelio Is-isa', 'Take Order', 'Listed dishes ordered by Jessie and updated transaction details'),
+(482, '2023-11-28 09:58:09', 1, 'Rodelio Is-isa', 'System Backup', 'Created a system backup'),
+(483, '2023-11-28 10:01:43', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(484, '2024-05-14 21:19:18', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(485, '2024-05-14 21:20:25', 1, 'Rodelio Is-isa', 'New Transaction', 'Listed new transaction with Kyla'),
+(486, '2024-05-14 21:20:54', 1, 'Rodelio Is-isa', 'Take Order', 'Listed dishes ordered by Kyla and updated transaction details'),
+(487, '2024-05-14 21:21:00', 1, 'Rodelio Is-isa', 'Confirm Payment', 'Received payment from Kyla with the amount ₱1693.00'),
+(488, '2024-05-14 21:21:06', 1, 'Rodelio Is-isa', 'Complete Transaction', 'Confirmed completion of transaction with Kyla'),
+(489, '2024-05-14 21:22:42', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(490, '2024-05-14 21:22:51', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(491, '2024-05-18 10:40:52', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(492, '2024-05-18 11:15:50', 1, 'Rodelio Is-isa', 'System Backup', 'Created a system backup'),
+(493, '2024-05-18 14:52:19', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(494, '2024-05-18 16:01:09', 1, 'Rodelio Is-isa', 'Take Order', 'Listed dishes ordered by Jessie and updated transaction details'),
+(495, '2024-05-18 16:04:00', 1, 'Rodelio Is-isa', 'Take Order', 'Listed dishes ordered by Jessie and updated transaction details'),
+(496, '2024-05-18 16:19:00', 1, 'Rodelio Is-isa', 'New Transaction', 'Listed new transaction with aping'),
+(497, '2024-05-18 16:22:23', 1, 'Rodelio Is-isa', 'Take Order', 'Listed dishes ordered by aping and updated transaction details'),
+(498, '2024-05-18 16:26:01', 1, 'Rodelio Is-isa', 'New Transaction', 'Listed new transaction with Reiss Akira'),
+(499, '2024-05-18 16:26:34', 1, 'Rodelio Is-isa', 'Take Order', 'Listed dishes ordered by Reiss Akira and updated transaction details'),
+(500, '2024-05-18 17:17:12', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(501, '2024-05-18 18:53:47', 1, 'Rodelio Is-isa', 'Take Order', 'Listed dishes ordered by John Paul Aquino and updated transaction details'),
+(502, '2024-05-18 20:23:04', 1, 'Rodelio Is-isa', 'Update Item', 'Added 0 sachet(s) of Ajinomoto into inventory of condiments'),
+(503, '2024-05-18 20:23:09', 1, 'Rodelio Is-isa', 'Update Item', 'Added 0 sachet(s) of Pepper into inventory of condiments'),
+(504, '2024-05-18 20:23:17', 1, 'Rodelio Is-isa', 'Update Item', 'Added 0 bag(s) of Salt into inventory of condiments'),
+(505, '2024-05-18 20:23:27', 1, 'Rodelio Is-isa', 'Update Item', 'Added 0 bottle(s) of vinegar into inventory of condiments'),
+(506, '2024-05-18 20:24:32', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(507, '2024-05-20 20:17:14', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(508, '2024-05-21 10:16:03', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(509, '2024-05-21 10:41:17', 1, 'Rodelio Is-isa', 'New Transaction', 'Listed new transaction with Jay'),
+(510, '2024-05-21 10:41:55', 1, 'Rodelio Is-isa', 'Take Order', 'Listed dishes ordered by Jay and updated transaction details'),
+(511, '2024-05-21 11:08:40', 1, 'Rodelio Is-isa', 'Confirm Payment', 'Received payment from Jay with the amount ₱569.00'),
+(512, '2024-05-21 11:08:46', 1, 'Rodelio Is-isa', 'Confirm Payment', 'Received payment from Reiss Akira with the amount ₱410.00'),
+(513, '2024-05-21 11:08:51', 1, 'Rodelio Is-isa', 'Confirm Payment', 'Received payment from aping with the amount ₱555.00'),
+(514, '2024-05-21 11:08:56', 1, 'Rodelio Is-isa', 'Complete Transaction', 'Confirmed completion of transaction with Rufo Baro'),
+(515, '2024-05-21 11:08:56', 1, 'Rodelio Is-isa', 'Complete Transaction', 'Confirmed completion of transaction with Rufo Baro'),
+(516, '2024-05-21 12:40:56', 1, 'Rodelio Is-isa', 'New Transaction', 'Listed new transaction with Steve'),
+(517, '2024-05-21 12:41:14', 1, 'Rodelio Is-isa', 'Take Order', 'Listed dishes ordered by Steve and updated transaction details'),
+(518, '2024-05-21 14:45:34', 1, 'Rodelio Is-isa', 'New Transaction', 'Listed new transaction with Pogi'),
+(519, '2024-05-21 14:45:51', 1, 'Rodelio Is-isa', 'Take Order', 'Listed dishes ordered by Pogi and updated transaction details'),
+(520, '2024-05-21 14:45:55', 1, 'Rodelio Is-isa', 'Confirm Payment', 'Received payment from Pogi with the amount ₱1817.00'),
+(521, '2024-05-21 15:50:12', 1, 'Rodelio Is-isa', 'New Transaction', 'Listed new transaction with John'),
+(522, '2024-05-21 15:50:23', 1, 'Rodelio Is-isa', 'Take Order', 'Listed dishes ordered by John and updated transaction details'),
+(523, '2024-05-21 15:50:28', 1, 'Rodelio Is-isa', 'Confirm Payment', 'Received payment from John with the amount ₱219.00'),
+(524, '2024-05-21 18:54:29', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(525, '2024-05-22 12:47:29', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(526, '2024-05-22 12:51:50', 1, 'Rodelio Is-isa', 'New Transaction', 'Listed new transaction with Troy'),
+(527, '2024-05-22 13:49:39', 1, 'Rodelio Is-isa', 'Take Order', 'Listed dishes ordered by Troy and updated transaction details');
+INSERT INTO `logs` (`id`, `timestamp`, `user_id`, `name`, `action`, `description`) VALUES
+(528, '2024-05-22 13:53:29', 1, 'Rodelio Is-isa', 'Cancel Transaction', 'Troy'),
+(529, '2024-05-22 14:03:20', 1, 'Rodelio Is-isa', 'Add Item', 'Added 3 bottle(s) of Silver Swan soy sauce into inventory of condiments'),
+(530, '2024-05-22 14:09:14', 1, 'Rodelio Is-isa', 'New Transaction', 'Listed new transaction with Me'),
+(531, '2024-05-22 15:04:42', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(532, '2024-05-22 15:04:50', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(533, '2024-05-22 15:05:00', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(534, '2024-05-22 15:05:05', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(535, '2024-05-22 15:05:10', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(536, '2024-05-22 15:08:17', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(537, '2024-05-22 15:12:03', 1, 'Rodelio Is-isa', 'Change Password', 'Changed their username or password'),
+(538, '2024-05-22 15:12:10', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(539, '2024-05-22 15:12:14', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(540, '2024-05-22 15:13:53', 1, 'Rodelio Is-isa', 'Take Order', 'Listed dishes ordered by Me and updated transaction details'),
+(541, '2024-05-22 15:14:18', 1, 'Rodelio Is-isa', 'Take Order', 'Listed dishes ordered by Me and updated transaction details'),
+(542, '2024-05-22 15:22:07', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(543, '2024-05-22 15:22:15', 2, 'Carl Justin Arciaga', 'Log In', 'Logged into their account'),
+(544, '2024-05-22 15:23:29', 2, 'Carl Justin Arciaga', 'New Transaction', 'Listed new transaction with Mangaser'),
+(545, '2024-05-22 15:25:04', 2, 'Carl Justin Arciaga', 'New Transaction', 'Listed new transaction with ggggg'),
+(546, '2024-05-22 15:29:07', 2, 'Carl Justin Arciaga', 'Take Order', 'Listed dishes ordered by ggggg and updated transaction details'),
+(547, '2024-05-22 15:30:09', 2, 'Carl Justin Arciaga', 'Confirm Payment', 'Received payment from ggggg with the amount ₱887.00'),
+(548, '2024-05-22 15:30:31', 2, 'Carl Justin Arciaga', 'Complete Transaction', 'Confirmed completion of transaction with ggggg'),
+(549, '2024-05-22 15:39:32', 2, 'Carl Justin Arciaga', 'Log Out', 'Logged out of their account'),
+(550, '2024-05-22 15:39:47', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(551, '2024-05-22 15:41:49', 1, 'Rodelio Is-isa', 'Add User', 'Added a new user profile'),
+(552, '2024-05-22 15:42:05', 1, 'Rodelio Is-isa', 'Delete Account', 'Deleted a user account'),
+(553, '2024-05-22 15:42:20', 1, 'Rodelio Is-isa', 'Delete Account', 'Deleted a user account'),
+(554, '2024-05-22 15:48:29', 1, 'Rodelio Is-isa', 'Log Out', 'Logged out of their account'),
+(555, '2024-05-22 15:57:38', 1, 'Rodelio Is-isa', 'Log In', 'Logged into their account'),
+(556, '2024-05-22 16:09:01', 1, 'Rodelio Is-isa', 'New Transaction', 'Listed new transaction with Jessie'),
+(557, '2024-05-22 16:10:22', 1, 'Rodelio Is-isa', 'Confirm Payment', 'Received payment from Steve with the amount ₱667.00');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `municipality`
+--
 
 CREATE TABLE `municipality` (
-  `municipality_id` int(255) NOT NULL AUTO_INCREMENT,
+  `municipality_id` int(255) NOT NULL,
   `psgcCode` varchar(255) DEFAULT NULL,
   `citymunDesc` text DEFAULT NULL,
   `regCode` varchar(255) DEFAULT NULL,
   `provCode` varchar(255) DEFAULT NULL,
-  `citymunCode` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`municipality_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=1648 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `citymunCode` varchar(255) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
-INSERT INTO municipality VALUES("1","012801000","Adams","01","0128","012801");
-INSERT INTO municipality VALUES("2","012802000","Bacarra","01","0128","012802");
-INSERT INTO municipality VALUES("3","012803000","Badoc","01","0128","012803");
-INSERT INTO municipality VALUES("4","012804000","Bangui","01","0128","012804");
-INSERT INTO municipality VALUES("5","012805000","City of Batac","01","0128","012805");
-INSERT INTO municipality VALUES("6","012806000","Burgos","01","0128","012806");
-INSERT INTO municipality VALUES("7","012807000","Carasi","01","0128","012807");
-INSERT INTO municipality VALUES("8","012808000","Currimao","01","0128","012808");
-INSERT INTO municipality VALUES("9","012809000","Dingras","01","0128","012809");
-INSERT INTO municipality VALUES("10","012810000","Dumalneg","01","0128","012810");
-INSERT INTO municipality VALUES("11","012811000","Banna (Espiritu)","01","0128","012811");
-INSERT INTO municipality VALUES("12","012812000","Laoag City (Capital)","01","0128","012812");
-INSERT INTO municipality VALUES("13","012813000","Marcos","01","0128","012813");
-INSERT INTO municipality VALUES("14","012814000","Nueva Era","01","0128","012814");
-INSERT INTO municipality VALUES("15","012815000","Pagudpud","01","0128","012815");
-INSERT INTO municipality VALUES("16","012816000","Paoay","01","0128","012816");
-INSERT INTO municipality VALUES("17","012817000","Pasuquin","01","0128","012817");
-INSERT INTO municipality VALUES("18","012818000","Piddig","01","0128","012818");
-INSERT INTO municipality VALUES("19","012819000","Pinili","01","0128","012819");
-INSERT INTO municipality VALUES("20","012820000","San Nicolas","01","0128","012820");
-INSERT INTO municipality VALUES("21","012821000","Sarrat","01","0128","012821");
-INSERT INTO municipality VALUES("22","012822000","Solsona","01","0128","012822");
-INSERT INTO municipality VALUES("23","012823000","Vintar","01","0128","012823");
-INSERT INTO municipality VALUES("24","012901000","Alilem","01","0129","012901");
-INSERT INTO municipality VALUES("25","012902000","Banayoyo","01","0129","012902");
-INSERT INTO municipality VALUES("26","012903000","Bantay","01","0129","012903");
-INSERT INTO municipality VALUES("27","012904000","Burgos","01","0129","012904");
-INSERT INTO municipality VALUES("28","012905000","Cabugao","01","0129","012905");
-INSERT INTO municipality VALUES("29","012906000","City of Candon","01","0129","012906");
-INSERT INTO municipality VALUES("30","012907000","Caoayan","01","0129","012907");
-INSERT INTO municipality VALUES("31","012908000","Cervantes","01","0129","012908");
-INSERT INTO municipality VALUES("32","012909000","Galimuyod","01","0129","012909");
-INSERT INTO municipality VALUES("33","012910000","Gregorio del Pilar (Concepcion)","01","0129","012910");
-INSERT INTO municipality VALUES("34","012911000","Lidlidda","01","0129","012911");
-INSERT INTO municipality VALUES("35","012912000","Magsingal","01","0129","012912");
-INSERT INTO municipality VALUES("36","012913000","Nagbukel","01","0129","012913");
-INSERT INTO municipality VALUES("37","012914000","Narvacan","01","0129","012914");
-INSERT INTO municipality VALUES("38","012915000","Quirino (Angkaki)","01","0129","012915");
-INSERT INTO municipality VALUES("39","012916000","Salcedo (Baugen)","01","0129","012916");
-INSERT INTO municipality VALUES("40","012917000","San Emilio","01","0129","012917");
-INSERT INTO municipality VALUES("41","012918000","San Esteban","01","0129","012918");
-INSERT INTO municipality VALUES("42","012919000","San Ildefonso","01","0129","012919");
-INSERT INTO municipality VALUES("43","012920000","San Juan (Lapog)","01","0129","012920");
-INSERT INTO municipality VALUES("44","012921000","San Vicente","01","0129","012921");
-INSERT INTO municipality VALUES("45","012922000","Santa","01","0129","012922");
-INSERT INTO municipality VALUES("46","012923000","Santa Catalina","01","0129","012923");
-INSERT INTO municipality VALUES("47","012924000","Santa Cruz","01","0129","012924");
-INSERT INTO municipality VALUES("48","012925000","Santa Lucia","01","0129","012925");
-INSERT INTO municipality VALUES("49","012926000","Santa Maria","01","0129","012926");
-INSERT INTO municipality VALUES("50","012927000","Santiago","01","0129","012927");
-INSERT INTO municipality VALUES("51","012928000","Santo Domingo","01","0129","012928");
-INSERT INTO municipality VALUES("52","012929000","Sigay","01","0129","012929");
-INSERT INTO municipality VALUES("53","012930000","Sinait","01","0129","012930");
-INSERT INTO municipality VALUES("54","012931000","Sugpon","01","0129","012931");
-INSERT INTO municipality VALUES("55","012932000","Suyo","01","0129","012932");
-INSERT INTO municipality VALUES("56","012933000","Tagudin","01","0129","012933");
-INSERT INTO municipality VALUES("57","012934000","City of Vigan (Capital)","01","0129","012934");
-INSERT INTO municipality VALUES("58","013301000","Agoo","01","0133","013301");
-INSERT INTO municipality VALUES("59","013302000","Aringay","01","0133","013302");
-INSERT INTO municipality VALUES("60","013303000","Bacnotan","01","0133","013303");
-INSERT INTO municipality VALUES("61","013304000","Bagulin","01","0133","013304");
-INSERT INTO municipality VALUES("62","013305000","Balaoan","01","0133","013305");
-INSERT INTO municipality VALUES("63","013306000","Bangar","01","0133","013306");
-INSERT INTO municipality VALUES("64","013307000","Bauang","01","0133","013307");
-INSERT INTO municipality VALUES("65","013308000","Burgos","01","0133","013308");
-INSERT INTO municipality VALUES("66","013309000","Caba","01","0133","013309");
-INSERT INTO municipality VALUES("67","013310000","Luna","01","0133","013310");
-INSERT INTO municipality VALUES("68","013311000","Naguilian","01","0133","013311");
-INSERT INTO municipality VALUES("69","013312000","Pugo","01","0133","013312");
-INSERT INTO municipality VALUES("70","013313000","Rosario","01","0133","013313");
-INSERT INTO municipality VALUES("71","013314000","City of San Fernando (Capital)","01","0133","013314");
-INSERT INTO municipality VALUES("72","013315000","San Gabriel","01","0133","013315");
-INSERT INTO municipality VALUES("73","013316000","San Juan","01","0133","013316");
-INSERT INTO municipality VALUES("74","013317000","Santo Tomas","01","0133","013317");
-INSERT INTO municipality VALUES("75","013318000","Santol","01","0133","013318");
-INSERT INTO municipality VALUES("76","013319000","Sudipen","01","0133","013319");
-INSERT INTO municipality VALUES("77","013320000","Tubao","01","0133","013320");
-INSERT INTO municipality VALUES("78","015501000","Agno","01","0155","015501");
-INSERT INTO municipality VALUES("79","015502000","Aguilar","01","0155","015502");
-INSERT INTO municipality VALUES("80","015503000","City of Alaminos","01","0155","015503");
-INSERT INTO municipality VALUES("81","015504000","Alcala","01","0155","015504");
-INSERT INTO municipality VALUES("82","015505000","Anda","01","0155","015505");
-INSERT INTO municipality VALUES("83","015506000","Asingan","01","0155","015506");
-INSERT INTO municipality VALUES("84","015507000","Balungao","01","0155","015507");
-INSERT INTO municipality VALUES("85","015508000","Bani","01","0155","015508");
-INSERT INTO municipality VALUES("86","015509000","Basista","01","0155","015509");
-INSERT INTO municipality VALUES("87","015510000","Bautista","01","0155","015510");
-INSERT INTO municipality VALUES("88","015511000","Bayambang","01","0155","015511");
-INSERT INTO municipality VALUES("89","015512000","Binalonan","01","0155","015512");
-INSERT INTO municipality VALUES("90","015513000","Binmaley","01","0155","015513");
-INSERT INTO municipality VALUES("91","015514000","Bolinao","01","0155","015514");
-INSERT INTO municipality VALUES("92","015515000","Bugallon","01","0155","015515");
-INSERT INTO municipality VALUES("93","015516000","Burgos","01","0155","015516");
-INSERT INTO municipality VALUES("94","015517000","Calasiao","01","0155","015517");
-INSERT INTO municipality VALUES("95","015518000","Dagupan City","01","0155","015518");
-INSERT INTO municipality VALUES("96","015519000","Dasol","01","0155","015519");
-INSERT INTO municipality VALUES("97","015520000","Infanta","01","0155","015520");
-INSERT INTO municipality VALUES("98","015521000","Labrador","01","0155","015521");
-INSERT INTO municipality VALUES("99","015522000","Lingayen (Capital)","01","0155","015522");
-INSERT INTO municipality VALUES("100","015523000","Mabini","01","0155","015523");
-INSERT INTO municipality VALUES("101","015524000","Malasiqui","01","0155","015524");
-INSERT INTO municipality VALUES("102","015525000","Manaoag","01","0155","015525");
-INSERT INTO municipality VALUES("103","015526000","Mangaldan","01","0155","015526");
-INSERT INTO municipality VALUES("104","015527000","Mangatarem","01","0155","015527");
-INSERT INTO municipality VALUES("105","015528000","Mapandan","01","0155","015528");
-INSERT INTO municipality VALUES("106","015529000","Natividad","01","0155","015529");
-INSERT INTO municipality VALUES("107","015530000","Pozorrubio","01","0155","015530");
-INSERT INTO municipality VALUES("108","015531000","Rosales","01","0155","015531");
-INSERT INTO municipality VALUES("109","015532000","San Carlos City","01","0155","015532");
-INSERT INTO municipality VALUES("110","015533000","San Fabian","01","0155","015533");
-INSERT INTO municipality VALUES("111","015534000","San Jacinto","01","0155","015534");
-INSERT INTO municipality VALUES("112","015535000","San Manuel","01","0155","015535");
-INSERT INTO municipality VALUES("113","015536000","San Nicolas","01","0155","015536");
-INSERT INTO municipality VALUES("114","015537000","San Quintin","01","0155","015537");
-INSERT INTO municipality VALUES("115","015538000","Santa Barbara","01","0155","015538");
-INSERT INTO municipality VALUES("116","015539000","Santa Maria","01","0155","015539");
-INSERT INTO municipality VALUES("117","015540000","Santo Tomas","01","0155","015540");
-INSERT INTO municipality VALUES("118","015541000","Sison","01","0155","015541");
-INSERT INTO municipality VALUES("119","015542000","Sual","01","0155","015542");
-INSERT INTO municipality VALUES("120","015543000","Tayug","01","0155","015543");
-INSERT INTO municipality VALUES("121","015544000","Umingan","01","0155","015544");
-INSERT INTO municipality VALUES("122","015545000","Urbiztondo","01","0155","015545");
-INSERT INTO municipality VALUES("123","015546000","City of Urdaneta","01","0155","015546");
-INSERT INTO municipality VALUES("124","015547000","Villasis","01","0155","015547");
-INSERT INTO municipality VALUES("125","015548000","Laoac","01","0155","015548");
+--
+-- Dumping data for table `municipality`
+--
 
+INSERT INTO `municipality` (`municipality_id`, `psgcCode`, `citymunDesc`, `regCode`, `provCode`, `citymunCode`) VALUES
+(1, '012801000', 'Adams', '01', '0128', '012801'),
+(2, '012802000', 'Bacarra', '01', '0128', '012802'),
+(3, '012803000', 'Badoc', '01', '0128', '012803'),
+(4, '012804000', 'Bangui', '01', '0128', '012804'),
+(5, '012805000', 'City of Batac', '01', '0128', '012805'),
+(6, '012806000', 'Burgos', '01', '0128', '012806'),
+(7, '012807000', 'Carasi', '01', '0128', '012807'),
+(8, '012808000', 'Currimao', '01', '0128', '012808'),
+(9, '012809000', 'Dingras', '01', '0128', '012809'),
+(10, '012810000', 'Dumalneg', '01', '0128', '012810'),
+(11, '012811000', 'Banna (Espiritu)', '01', '0128', '012811'),
+(12, '012812000', 'Laoag City (Capital)', '01', '0128', '012812'),
+(13, '012813000', 'Marcos', '01', '0128', '012813'),
+(14, '012814000', 'Nueva Era', '01', '0128', '012814'),
+(15, '012815000', 'Pagudpud', '01', '0128', '012815'),
+(16, '012816000', 'Paoay', '01', '0128', '012816'),
+(17, '012817000', 'Pasuquin', '01', '0128', '012817'),
+(18, '012818000', 'Piddig', '01', '0128', '012818'),
+(19, '012819000', 'Pinili', '01', '0128', '012819'),
+(20, '012820000', 'San Nicolas', '01', '0128', '012820'),
+(21, '012821000', 'Sarrat', '01', '0128', '012821'),
+(22, '012822000', 'Solsona', '01', '0128', '012822'),
+(23, '012823000', 'Vintar', '01', '0128', '012823'),
+(24, '012901000', 'Alilem', '01', '0129', '012901'),
+(25, '012902000', 'Banayoyo', '01', '0129', '012902'),
+(26, '012903000', 'Bantay', '01', '0129', '012903'),
+(27, '012904000', 'Burgos', '01', '0129', '012904'),
+(28, '012905000', 'Cabugao', '01', '0129', '012905'),
+(29, '012906000', 'City of Candon', '01', '0129', '012906'),
+(30, '012907000', 'Caoayan', '01', '0129', '012907'),
+(31, '012908000', 'Cervantes', '01', '0129', '012908'),
+(32, '012909000', 'Galimuyod', '01', '0129', '012909'),
+(33, '012910000', 'Gregorio del Pilar (Concepcion)', '01', '0129', '012910'),
+(34, '012911000', 'Lidlidda', '01', '0129', '012911'),
+(35, '012912000', 'Magsingal', '01', '0129', '012912'),
+(36, '012913000', 'Nagbukel', '01', '0129', '012913'),
+(37, '012914000', 'Narvacan', '01', '0129', '012914'),
+(38, '012915000', 'Quirino (Angkaki)', '01', '0129', '012915'),
+(39, '012916000', 'Salcedo (Baugen)', '01', '0129', '012916'),
+(40, '012917000', 'San Emilio', '01', '0129', '012917'),
+(41, '012918000', 'San Esteban', '01', '0129', '012918'),
+(42, '012919000', 'San Ildefonso', '01', '0129', '012919'),
+(43, '012920000', 'San Juan (Lapog)', '01', '0129', '012920'),
+(44, '012921000', 'San Vicente', '01', '0129', '012921'),
+(45, '012922000', 'Santa', '01', '0129', '012922'),
+(46, '012923000', 'Santa Catalina', '01', '0129', '012923'),
+(47, '012924000', 'Santa Cruz', '01', '0129', '012924'),
+(48, '012925000', 'Santa Lucia', '01', '0129', '012925'),
+(49, '012926000', 'Santa Maria', '01', '0129', '012926'),
+(50, '012927000', 'Santiago', '01', '0129', '012927'),
+(51, '012928000', 'Santo Domingo', '01', '0129', '012928'),
+(52, '012929000', 'Sigay', '01', '0129', '012929'),
+(53, '012930000', 'Sinait', '01', '0129', '012930'),
+(54, '012931000', 'Sugpon', '01', '0129', '012931'),
+(55, '012932000', 'Suyo', '01', '0129', '012932'),
+(56, '012933000', 'Tagudin', '01', '0129', '012933'),
+(57, '012934000', 'City of Vigan (Capital)', '01', '0129', '012934'),
+(58, '013301000', 'Agoo', '01', '0133', '013301'),
+(59, '013302000', 'Aringay', '01', '0133', '013302'),
+(60, '013303000', 'Bacnotan', '01', '0133', '013303'),
+(61, '013304000', 'Bagulin', '01', '0133', '013304'),
+(62, '013305000', 'Balaoan', '01', '0133', '013305'),
+(63, '013306000', 'Bangar', '01', '0133', '013306'),
+(64, '013307000', 'Bauang', '01', '0133', '013307'),
+(65, '013308000', 'Burgos', '01', '0133', '013308'),
+(66, '013309000', 'Caba', '01', '0133', '013309'),
+(67, '013310000', 'Luna', '01', '0133', '013310'),
+(68, '013311000', 'Naguilian', '01', '0133', '013311'),
+(69, '013312000', 'Pugo', '01', '0133', '013312'),
+(70, '013313000', 'Rosario', '01', '0133', '013313'),
+(71, '013314000', 'City of San Fernando (Capital)', '01', '0133', '013314'),
+(72, '013315000', 'San Gabriel', '01', '0133', '013315'),
+(73, '013316000', 'San Juan', '01', '0133', '013316'),
+(74, '013317000', 'Santo Tomas', '01', '0133', '013317'),
+(75, '013318000', 'Santol', '01', '0133', '013318'),
+(76, '013319000', 'Sudipen', '01', '0133', '013319'),
+(77, '013320000', 'Tubao', '01', '0133', '013320'),
+(78, '015501000', 'Agno', '01', '0155', '015501'),
+(79, '015502000', 'Aguilar', '01', '0155', '015502'),
+(80, '015503000', 'City of Alaminos', '01', '0155', '015503'),
+(81, '015504000', 'Alcala', '01', '0155', '015504'),
+(82, '015505000', 'Anda', '01', '0155', '015505'),
+(83, '015506000', 'Asingan', '01', '0155', '015506'),
+(84, '015507000', 'Balungao', '01', '0155', '015507'),
+(85, '015508000', 'Bani', '01', '0155', '015508'),
+(86, '015509000', 'Basista', '01', '0155', '015509'),
+(87, '015510000', 'Bautista', '01', '0155', '015510'),
+(88, '015511000', 'Bayambang', '01', '0155', '015511'),
+(89, '015512000', 'Binalonan', '01', '0155', '015512'),
+(90, '015513000', 'Binmaley', '01', '0155', '015513'),
+(91, '015514000', 'Bolinao', '01', '0155', '015514'),
+(92, '015515000', 'Bugallon', '01', '0155', '015515'),
+(93, '015516000', 'Burgos', '01', '0155', '015516'),
+(94, '015517000', 'Calasiao', '01', '0155', '015517'),
+(95, '015518000', 'Dagupan City', '01', '0155', '015518'),
+(96, '015519000', 'Dasol', '01', '0155', '015519'),
+(97, '015520000', 'Infanta', '01', '0155', '015520'),
+(98, '015521000', 'Labrador', '01', '0155', '015521'),
+(99, '015522000', 'Lingayen (Capital)', '01', '0155', '015522'),
+(100, '015523000', 'Mabini', '01', '0155', '015523'),
+(101, '015524000', 'Malasiqui', '01', '0155', '015524'),
+(102, '015525000', 'Manaoag', '01', '0155', '015525'),
+(103, '015526000', 'Mangaldan', '01', '0155', '015526'),
+(104, '015527000', 'Mangatarem', '01', '0155', '015527'),
+(105, '015528000', 'Mapandan', '01', '0155', '015528'),
+(106, '015529000', 'Natividad', '01', '0155', '015529'),
+(107, '015530000', 'Pozorrubio', '01', '0155', '015530'),
+(108, '015531000', 'Rosales', '01', '0155', '015531'),
+(109, '015532000', 'San Carlos City', '01', '0155', '015532'),
+(110, '015533000', 'San Fabian', '01', '0155', '015533'),
+(111, '015534000', 'San Jacinto', '01', '0155', '015534'),
+(112, '015535000', 'San Manuel', '01', '0155', '015535'),
+(113, '015536000', 'San Nicolas', '01', '0155', '015536'),
+(114, '015537000', 'San Quintin', '01', '0155', '015537'),
+(115, '015538000', 'Santa Barbara', '01', '0155', '015538'),
+(116, '015539000', 'Santa Maria', '01', '0155', '015539'),
+(117, '015540000', 'Santo Tomas', '01', '0155', '015540'),
+(118, '015541000', 'Sison', '01', '0155', '015541'),
+(119, '015542000', 'Sual', '01', '0155', '015542'),
+(120, '015543000', 'Tayug', '01', '0155', '015543'),
+(121, '015544000', 'Umingan', '01', '0155', '015544'),
+(122, '015545000', 'Urbiztondo', '01', '0155', '015545'),
+(123, '015546000', 'City of Urdaneta', '01', '0155', '015546'),
+(124, '015547000', 'Villasis', '01', '0155', '015547'),
+(125, '015548000', 'Laoac', '01', '0155', '015548');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `password_reset`
+--
 
 CREATE TABLE `password_reset` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `email` varchar(50) NOT NULL,
   `reset_token` varchar(50) NOT NULL,
-  `token_expiry` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=87 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `token_expiry` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
 
-
+--
+-- Table structure for table `province`
+--
 
 CREATE TABLE `province` (
-  `province_id` int(11) NOT NULL AUTO_INCREMENT,
+  `province_id` int(11) NOT NULL,
   `psgcCode` varchar(255) DEFAULT NULL,
   `provDesc` text DEFAULT NULL,
   `regCode` varchar(255) DEFAULT NULL,
-  `provCode` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`province_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=89 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `provCode` varchar(255) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
-INSERT INTO province VALUES("1","012800000","Ilocos Norte","01","0128");
-INSERT INTO province VALUES("2","012900000","Ilocos Sur","01","0129");
-INSERT INTO province VALUES("3","013300000","La Union","01","0133");
-INSERT INTO province VALUES("4","015500000","Pangasinan","01","0155");
+--
+-- Dumping data for table `province`
+--
 
+INSERT INTO `province` (`province_id`, `psgcCode`, `provDesc`, `regCode`, `provCode`) VALUES
+(1, '012800000', 'Ilocos Norte', '01', '0128'),
+(2, '012900000', 'Ilocos Sur', '01', '0129'),
+(3, '013300000', 'La Union', '01', '0133'),
+(4, '015500000', 'Pangasinan', '01', '0155');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `transactions`
+--
 
 CREATE TABLE `transactions` (
-  `trans_id` int(11) NOT NULL AUTO_INCREMENT,
+  `trans_id` int(11) NOT NULL,
   `date` datetime NOT NULL DEFAULT current_timestamp(),
   `customer` varchar(30) NOT NULL,
   `total_price` decimal(10,2) NOT NULL,
   `user_id` int(11) NOT NULL,
   `status` varchar(11) NOT NULL,
-  `delivery_method` varchar(20) NOT NULL,
+  `delivery_method` varchar(20) DEFAULT NULL,
+  `address` varchar(70) DEFAULT NULL,
   `delivery_date` date DEFAULT NULL,
   `date_paid` datetime NOT NULL,
   `date_delivered` datetime NOT NULL,
-  PRIMARY KEY (`trans_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `date_cancelled` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO transactions VALUES("1","2023-11-26 12:52:04","Carl Justin Arciaga","2889.00","1","Paid","For Pickup","2023-11-28","2023-11-28 08:47:48","0000-00-00 00:00:00");
-INSERT INTO transactions VALUES("2","2023-11-26 12:53:53","Bryan Ordoño","3113.00","1","Completed","For Delivery","2023-11-30","2023-11-26 12:55:20","2023-11-26 13:00:36");
-INSERT INTO transactions VALUES("3","2023-11-26 12:54:43","Jade Russel Nones","4276.00","1","Paid","For Delivery","2023-11-30","2023-11-28 08:56:12","0000-00-00 00:00:00");
-INSERT INTO transactions VALUES("4","2023-11-26 12:55:11","Randy Dangle","3271.00","1","Paid","For Delivery","2023-11-30","2023-11-26 13:00:20","0000-00-00 00:00:00");
-INSERT INTO transactions VALUES("5","2023-11-26 13:05:33","Bernard John Laron","219.00","1","Cancelled","For Pickup","2023-11-28","0000-00-00 00:00:00","0000-00-00 00:00:00");
-INSERT INTO transactions VALUES("6","2023-11-26 13:06:33","John Paul Aquino","0.00","1","Cancelled","","0000-00-00","0000-00-00 00:00:00","0000-00-00 00:00:00");
-INSERT INTO transactions VALUES("7","2023-11-27 21:47:18","Edgie Alturas","1570.00","1","Completed","For Delivery","2023-11-29","2023-11-27 22:17:19","2023-11-27 22:19:06");
-INSERT INTO transactions VALUES("8","2023-11-27 22:19:41","Ezekiel Griel Tejada","0.00","1","Cancelled","","","0000-00-00 00:00:00","0000-00-00 00:00:00");
-INSERT INTO transactions VALUES("9","2023-11-28 07:47:21","Rufo Baro","5030.00","1","Paid","For Delivery","2023-12-01","2023-11-28 07:48:19","0000-00-00 00:00:00");
-INSERT INTO transactions VALUES("10","2023-11-28 08:59:00","Jessie","4980.00","1","Pending","For Pickup","2023-11-30","0000-00-00 00:00:00","0000-00-00 00:00:00");
-INSERT INTO transactions VALUES("11","2023-11-28 09:13:32","Genesis","3050.00","2","Completed","For Pickup","2023-11-30","2023-11-28 09:15:39","2023-11-28 09:17:19");
+--
+-- Dumping data for table `transactions`
+--
 
+INSERT INTO `transactions` (`trans_id`, `date`, `customer`, `total_price`, `user_id`, `status`, `delivery_method`, `address`, `delivery_date`, `date_paid`, `date_delivered`, `date_cancelled`) VALUES
+(1, '2023-11-26 12:52:04', 'Carl Justin Arciaga', 2889.00, 1, 'Pending', 'For Pickup', NULL, '2024-05-20', '2023-11-28 08:47:48', '0000-00-00 00:00:00', '2024-05-22 13:52:56'),
+(2, '2023-11-26 12:53:53', 'Bryan Ordoño', 3113.00, 1, 'Pending', 'For Delivery', NULL, '2024-05-18', '2023-11-26 12:55:20', '2023-11-26 13:00:36', '2024-05-22 13:52:56'),
+(3, '2023-11-26 12:54:43', 'Jade Russel Nones', 4276.00, 1, 'Paid', 'For Delivery', NULL, '2023-11-30', '2023-11-28 08:56:12', '0000-00-00 00:00:00', '2024-05-22 13:52:56'),
+(4, '2023-11-26 12:55:11', 'Randy Dangle', 3271.00, 1, 'Paid', 'For Delivery', NULL, '2023-11-30', '2023-11-26 13:00:20', '0000-00-00 00:00:00', '2024-05-22 13:52:56'),
+(5, '2023-11-26 13:05:33', 'Bernard John Laron', 219.00, 1, 'Pending', 'For Pickup', NULL, '2024-05-19', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2024-05-22 13:52:56'),
+(6, '2023-11-26 13:06:33', 'John Paul Aquino', 0.00, 1, 'Pending', 'For Pickup', '', '2024-05-19', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2024-05-22 13:52:56'),
+(7, '2023-11-27 21:47:18', 'Edgie Alturas', 1570.00, 8, 'Completed', 'For Delivery', NULL, '2023-11-29', '2023-11-27 22:17:19', '2023-11-27 22:19:06', '2024-05-22 13:52:56'),
+(8, '2023-11-27 22:19:41', 'Ezekiel Griel Tejada', 0.00, 1, 'Cancelled', '', NULL, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2024-05-22 13:52:56'),
+(9, '2023-11-28 07:47:21', 'Rufo Baro', 5030.00, 8, 'Completed', 'For Delivery', NULL, '2023-12-01', '2023-11-28 07:48:19', '2024-05-21 11:08:56', '2024-05-22 13:52:56'),
+(10, '2023-11-28 08:59:00', 'Jessie', 4980.00, 3, 'Pending', 'For Delivery', 'Butubut', '2023-11-30', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2024-05-22 13:52:56'),
+(11, '2023-11-28 09:13:32', 'Genesis', 3050.00, 5, 'Completed', 'For Pickup', NULL, '2024-05-30', '2023-11-28 09:15:39', '2023-11-28 09:17:19', '2024-05-22 13:52:56'),
+(12, '2024-05-14 21:20:25', 'Kyla', 1693.00, 4, 'Completed', 'For Pickup', NULL, '2024-05-16', '2024-05-14 21:21:00', '2024-05-14 21:21:06', '2024-05-22 13:52:56'),
+(13, '2024-05-18 16:19:00', 'aping', 555.00, 3, 'Paid', 'For Delivery', 'Balaoan La Union', '2024-05-30', '2024-05-21 11:08:51', '0000-00-00 00:00:00', '2024-05-22 13:52:56'),
+(14, '2024-05-18 16:26:01', 'Reiss Akira', 410.00, 2, 'Paid', 'For Delivery', 'Sapilang ', '2024-05-24', '2024-05-21 11:08:46', '0000-00-00 00:00:00', '2024-05-22 13:52:56'),
+(15, '2024-05-21 10:41:17', 'Jay', 569.00, 1, 'Paid', 'For Delivery', 'masupe', '2024-05-22', '2024-05-21 11:08:40', '0000-00-00 00:00:00', '2024-05-22 13:52:56'),
+(16, '2024-05-21 12:40:56', 'Steve', 667.00, 1, 'Paid', 'For Pickup', '', '2024-05-22', '2024-05-22 16:10:22', '0000-00-00 00:00:00', '2024-05-22 13:52:56'),
+(17, '2024-05-21 14:45:34', 'Pogi', 1817.00, 1, 'Paid', 'For Pickup', '', '2024-05-23', '2024-05-21 14:45:55', '0000-00-00 00:00:00', '2024-05-22 13:52:56'),
+(18, '2024-05-21 15:50:12', 'John', 219.00, 1, 'Paid', 'For Pickup', '', '2024-05-30', '2024-05-21 15:50:28', '0000-00-00 00:00:00', '2024-05-22 13:52:56'),
+(19, '2024-05-22 12:51:50', 'Troy', 1027.00, 1, 'Cancelled', 'For Delivery', 'Cabaruan', '2024-05-23', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2024-05-22 13:53:29'),
+(20, '2024-05-22 14:09:14', 'Me', 2270.00, 1, 'Pending', 'For Delivery', 'Sapilang', '2024-05-23', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(21, '2024-05-22 15:23:29', 'Mangaser', 0.00, 2, 'Pending', NULL, NULL, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(22, '2024-05-22 15:25:04', 'ggggg', 887.00, 2, 'Completed', 'For Pickup', '', '2024-05-24', '2024-05-22 15:30:09', '2024-05-22 15:30:31', '0000-00-00 00:00:00'),
+(23, '2024-05-22 16:09:01', 'Jessie', 0.00, 1, 'Pending', NULL, NULL, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
 
 CREATE TABLE `users` (
-  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
   `role` varchar(5) DEFAULT NULL,
   `fname` varchar(30) DEFAULT NULL,
   `mname` varchar(30) DEFAULT NULL,
@@ -4128,14 +4365,185 @@ CREATE TABLE `users` (
   `contact_no` varchar(11) DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
   `username` varchar(50) DEFAULT NULL,
-  `password` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `password` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO users VALUES("1","Admin","Rodelio","M.","Is-isa","1996-08-23","Male","La Union","Balaoan","Calliat","09123456789","carljustin.arciaga@student.dmmmsu.edu.ph","admin123","25d55ad283aa400af464c76d713c07ad");
-INSERT INTO users VALUES("2","Staff","Carl Justin","Bulagay","Arciaga","2001-12-05","Male","La Union","Balaoan","Masupe","09385949676","carljustin.arciaga@gmail.com","carl123","25d55ad283aa400af464c76d713c07ad");
-INSERT INTO users VALUES("3","Staff","Bryan","Ocampo","Ordoño","2001-09-14","Male","La Union","Balaoan","Camiling","09100028299","example@example.com","bryan123","25d55ad283aa400af464c76d713c07ad");
-INSERT INTO users VALUES("4","Staff","Jasmine","Navalta","Ilagan","1995-12-02","Female","La Union","Bacnotan","Casiaman","09123456789","example@example.com","jasmine123","25d55ad283aa400af464c76d713c07ad");
-INSERT INTO users VALUES("5","Staff","Adrian","Navalta","Asis","2001-12-12","Male","La Union","Santol","Paagan","09123456789","example@example.com","adrian123","25d55ad283aa400af464c76d713c07ad");
-INSERT INTO users VALUES("8","Staff","Excel","Villanueva","Cabrera","2001-01-01","Female","La Union","Bacnotan","Sapilang","09123456789","ecabrera@dmmmsu.edu.ph","janina123","25d55ad283aa400af464c76d713c07ad");
+--
+-- Dumping data for table `users`
+--
 
+INSERT INTO `users` (`user_id`, `role`, `fname`, `mname`, `lname`, `bdate`, `sex`, `province`, `municipality`, `barangay`, `contact_no`, `email`, `username`, `password`) VALUES
+(1, 'Admin', 'Rodelio', 'M.', 'Is-isa', '1996-08-23', 'Male', 'La Union', 'Balaoan', 'Calliat', '09123456789', 'carljustin.arciaga@student.dmmmsu.edu.ph', 'admin123', 'd6bf4bb9a66419380a7e8b034270d381'),
+(2, 'Staff', 'Carl Justin', 'Bulagay', 'Arciaga', '2001-12-05', 'Male', 'La Union', 'Balaoan', 'Masupe', '09385949676', 'carljustin.arciaga@gmail.com', 'carl123', '25d55ad283aa400af464c76d713c07ad'),
+(3, 'Staff', 'Bryan', 'Ocampo', 'Ordoño', '2001-09-14', 'Male', 'La Union', 'Balaoan', 'Camiling', '09100028299', 'example@example.com', 'bryan123', '25d55ad283aa400af464c76d713c07ad'),
+(4, 'Staff', 'Jasmine', 'Navalta', 'Ilagan', '1995-12-02', 'Female', 'La Union', 'Bacnotan', 'Casiaman', '09123456789', 'example@example.com', 'jasmine123', '25d55ad283aa400af464c76d713c07ad'),
+(5, 'Staff', 'Adrian', 'Navalta', 'Asis', '2001-12-12', 'Male', 'La Union', 'Santol', 'Paagan', '09123456789', 'example@example.com', 'adrian123', '25d55ad283aa400af464c76d713c07ad');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `audit_trail`
+--
+ALTER TABLE `audit_trail`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `barangay`
+--
+ALTER TABLE `barangay`
+  ADD PRIMARY KEY (`barangay_id`);
+
+--
+-- Indexes for table `dishes`
+--
+ALTER TABLE `dishes`
+  ADD PRIMARY KEY (`dish_id`);
+
+--
+-- Indexes for table `dishes_ordered`
+--
+ALTER TABLE `dishes_ordered`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `dish_type`
+--
+ALTER TABLE `dish_type`
+  ADD PRIMARY KEY (`type_id`);
+
+--
+-- Indexes for table `inventory_condiments`
+--
+ALTER TABLE `inventory_condiments`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `inventory_perishable`
+--
+ALTER TABLE `inventory_perishable`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `logs`
+--
+ALTER TABLE `logs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `municipality`
+--
+ALTER TABLE `municipality`
+  ADD PRIMARY KEY (`municipality_id`);
+
+--
+-- Indexes for table `password_reset`
+--
+ALTER TABLE `password_reset`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `province`
+--
+ALTER TABLE `province`
+  ADD PRIMARY KEY (`province_id`);
+
+--
+-- Indexes for table `transactions`
+--
+ALTER TABLE `transactions`
+  ADD PRIMARY KEY (`trans_id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`user_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `audit_trail`
+--
+ALTER TABLE `audit_trail`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `barangay`
+--
+ALTER TABLE `barangay`
+  MODIFY `barangay_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42030;
+
+--
+-- AUTO_INCREMENT for table `dishes`
+--
+ALTER TABLE `dishes`
+  MODIFY `dish_id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT for table `dishes_ordered`
+--
+ALTER TABLE `dishes_ordered`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+
+--
+-- AUTO_INCREMENT for table `dish_type`
+--
+ALTER TABLE `dish_type`
+  MODIFY `type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `inventory_condiments`
+--
+ALTER TABLE `inventory_condiments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `inventory_perishable`
+--
+ALTER TABLE `inventory_perishable`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+
+--
+-- AUTO_INCREMENT for table `logs`
+--
+ALTER TABLE `logs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=558;
+
+--
+-- AUTO_INCREMENT for table `municipality`
+--
+ALTER TABLE `municipality`
+  MODIFY `municipality_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1648;
+
+--
+-- AUTO_INCREMENT for table `password_reset`
+--
+ALTER TABLE `password_reset`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+
+--
+-- AUTO_INCREMENT for table `province`
+--
+ALTER TABLE `province`
+  MODIFY `province_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
+
+--
+-- AUTO_INCREMENT for table `transactions`
+--
+ALTER TABLE `transactions`
+  MODIFY `trans_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

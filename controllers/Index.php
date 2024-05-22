@@ -15,7 +15,8 @@ class db
     public function totalTransactionSalesMonth()
     {
         $currentMonth = date('m');
-        $sql = "SELECT COUNT(*) AS totalSales FROM transactions WHERE (status <> 'Cancelled') AND MONTH(delivery_date) = $currentMonth";
+        $currentYear = date('Y');
+        $sql = "SELECT COUNT(*) AS totalSales FROM transactions WHERE (status <> 'Cancelled') AND MONTH(date) = $currentMonth AND YEAR(date) = $currentYear";
         $result = mysqli_query($this->con, $sql);
         if ($result) {
             $row = mysqli_fetch_assoc($result);
@@ -28,7 +29,8 @@ class db
     public function totalGrossSalesThisMonth()
     {
         $currentMonth = date('m');
-        $sql = "SELECT SUM(total_price) AS totalGrossSales FROM transactions WHERE status IN ('Paid', 'Completed') AND MONTH(delivery_date) = $currentMonth";
+        $currentYear = date('Y');
+        $sql = "SELECT SUM(total_price) AS totalGrossSales FROM transactions WHERE status IN ('Paid', 'Completed') AND MONTH(date_paid) = $currentMonth AND YEAR(date_paid) = $currentYear";
         $result = mysqli_query($this->con, $sql);
         if ($result) {
             $row = mysqli_fetch_assoc($result);
@@ -42,7 +44,8 @@ class db
     public function totalDishedSoldMonth()
     {
         $currentMonth = date('m');
-        $sql = "SELECT COUNT(*) AS totalDishes FROM dishes_ordered LEFT JOIN transactions ON transactions.trans_id = dishes_ordered.trans_id WHERE (status = 'Paid' OR status = 'Completed') AND MONTH(delivery_date) = $currentMonth";
+        $currentYear = date('Y');
+        $sql = "SELECT COUNT(*) AS totalDishes FROM dishes_ordered LEFT JOIN transactions ON transactions.trans_id = dishes_ordered.trans_id WHERE (status = 'Paid' OR status = 'Completed') AND MONTH(date_paid) = $currentMonth AND YEAR(date_paid) = $currentYear";
         $result = mysqli_query($this->con, $sql);
         if ($result) {
             $row = mysqli_fetch_assoc($result);
@@ -90,7 +93,7 @@ class db
     {
         $startOfWeek = date('Y-m-d', strtotime('monday this week'));
         $endOfWeek = date('Y-m-d', strtotime('sunday this week'));
-        $sql = "SELECT COUNT(*) AS totalSales FROM transactions WHERE (status <> 'Cancelled') AND delivery_date BETWEEN '$startOfWeek' AND '$endOfWeek'";
+        $sql = "SELECT COUNT(*) AS totalSales FROM transactions WHERE (status <> 'Cancelled') AND date BETWEEN '$startOfWeek' AND '$endOfWeek'";
         $result = mysqli_query($this->con, $sql);
         if ($result) {
             $row = mysqli_fetch_assoc($result);
@@ -104,7 +107,7 @@ class db
     {
         $startOfWeek = date('Y-m-d', strtotime('monday this week'));
         $endOfWeek = date('Y-m-d', strtotime('sunday this week'));
-        $sql = "SELECT SUM(total_price) AS totalGrossSales FROM transactions WHERE status IN ('Paid', 'Completed') AND delivery_date BETWEEN '$startOfWeek' AND '$endOfWeek'";
+        $sql = "SELECT SUM(total_price) AS totalGrossSales FROM transactions WHERE status IN ('Paid', 'Completed') AND date_paid BETWEEN '$startOfWeek' AND '$endOfWeek'";
         $result = mysqli_query($this->con, $sql);
         if ($result) {
             $row = mysqli_fetch_assoc($result);
@@ -119,7 +122,7 @@ class db
     {
         $startOfWeek = date('Y-m-d', strtotime('monday this week'));
         $endOfWeek = date('Y-m-d', strtotime('sunday this week'));
-        $sql = "SELECT COUNT(*) AS totalDishes FROM dishes_ordered LEFT JOIN transactions ON transactions.trans_id = dishes_ordered.trans_id WHERE (status = 'Paid' OR status = 'Completed') AND delivery_date BETWEEN '$startOfWeek' AND '$endOfWeek'";
+        $sql = "SELECT COUNT(*) AS totalDishes FROM dishes_ordered LEFT JOIN transactions ON transactions.trans_id = dishes_ordered.trans_id WHERE (status = 'Paid' OR status = 'Completed') AND date_paid BETWEEN '$startOfWeek' AND '$endOfWeek'";
         $result = mysqli_query($this->con, $sql);
         if ($result) {
             $row = mysqli_fetch_assoc($result);
@@ -133,7 +136,7 @@ class db
     public function totalTransactionSalesYearly()
     {
         $currentYear = date('Y');
-        $sql = "SELECT COUNT(*) AS totalSales FROM transactions WHERE (status <> 'Cancelled') AND YEAR(delivery_date) = $currentYear";
+        $sql = "SELECT COUNT(*) AS totalSales FROM transactions WHERE (status <> 'Cancelled') AND YEAR(date) = $currentYear";
         $result = mysqli_query($this->con, $sql);
         if ($result) {
             $row = mysqli_fetch_assoc($result);
@@ -146,7 +149,7 @@ class db
     public function totalGrossSalesThisYear()
     {
         $currentYear = date('Y');
-        $sql = "SELECT SUM(total_price) AS totalGrossSales FROM transactions WHERE status IN ('Paid', 'Completed') AND YEAR(delivery_date) = $currentYear";
+        $sql = "SELECT SUM(total_price) AS totalGrossSales FROM transactions WHERE status IN ('Paid', 'Completed') AND YEAR(date_paid) = $currentYear";
         $result = mysqli_query($this->con, $sql);
         if ($result) {
             $row = mysqli_fetch_assoc($result);
@@ -160,7 +163,7 @@ class db
     public function totalDishedSoldYearly()
     {
         $currentYear = date('Y');
-        $sql = "SELECT COUNT(*) AS totalDishes FROM dishes_ordered LEFT JOIN transactions ON transactions.trans_id = dishes_ordered.trans_id WHERE (status = 'Paid' OR status = 'Completed') AND YEAR(delivery_date) = $currentYear";
+        $sql = "SELECT COUNT(*) AS totalDishes FROM dishes_ordered LEFT JOIN transactions ON transactions.trans_id = dishes_ordered.trans_id WHERE (status = 'Paid' OR status = 'Completed') AND YEAR(date_paid) = $currentYear";
         $result = mysqli_query($this->con, $sql);
         if ($result) {
             $row = mysqli_fetch_assoc($result);
@@ -191,7 +194,8 @@ class db
                 JOIN dishes ON dishes_ordered.dish_id = dishes.dish_id 
                 JOIN transactions ON dishes_ordered.trans_id = transactions.trans_id 
                 WHERE transactions.status IN ('Paid', 'Completed') 
-                AND MONTH(transactions.date_paid) = MONTH(CURDATE()) -- Filter transactions within current week
+                    AND MONTH(transactions.date_paid) = MONTH(CURDATE())
+                    AND YEAR(transactions.date_paid) = YEAR(CURDATE())
                 GROUP BY dishes_ordered.dish_id
                 ORDER BY total_sales DESC LIMIT $limit";
         $result = mysqli_query($this->con, $sql);

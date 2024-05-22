@@ -69,8 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 label: function(context) {
                   const label = context.label || '';
                   const value = context.raw || 0;
-                  const percentage = ((value / total) * 100).toFixed(2);
-                  return `${label}: ${value} (${percentage}%)`;
+                  return `${label}: ${value}`;
                 }
               }
             }
