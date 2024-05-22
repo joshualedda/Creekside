@@ -19,14 +19,14 @@ $daysInMonth = cal_days_in_month(CAL_GREGORIAN, $selectedMonth, $startYear);
 $startYearDate = date('Y-m-d', mktime(0, 0, 0, $selectedMonth, 1, $startYear));
 $endYearDate = date('Y-m-d', mktime(0, 0, 0, $selectedMonth, $daysInMonth, $endYear));
 
-$query = "SELECT dishes.dish_name AS label, SUM(dishes_ordered.quantity) AS value
+$query = "SELECT dishes.dish_name AS label, SUM(dishes_ordered.subtotal) AS value
           FROM transactions
           JOIN dishes_ordered ON transactions.trans_id = dishes_ordered.trans_id
           JOIN dishes ON dishes_ordered.dish_id = dishes.dish_id
-          WHERE transactions.delivery_date >= '$startYearDate' 
-            AND transactions.delivery_date <= '$endYearDate'
+          WHERE transactions.date >= '$startYearDate' 
+            AND transactions.date <= '$endYearDate'
             AND (transactions.status = 'Paid' OR transactions.status = 'Completed')
-          GROUP BY dishes.dish_name";
+          GROUP BY dishes.dish_id";
 
 $result = mysqli_query($conn->con, $query);
 

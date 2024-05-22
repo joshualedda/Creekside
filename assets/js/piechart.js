@@ -64,12 +64,18 @@ document.addEventListener("DOMContentLoaded", () => {
         }]
       },
       options: {
-        tooltips: {
-          callbacks: {
-            label: function(context) {
-              const label = context.label || '';
-              const value = context.raw || 0;
-              return `${label}: ${value}`;
+        plugins:{
+          legend: {
+            position: 'right',
+            align: 'start'
+          },
+          tooltips: {
+            callbacks: {
+              label: function(context) {
+                const label = context.label || '';
+                const value = context.raw || 0;
+                return `${value}`;
+              }
             }
           }
         }

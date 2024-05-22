@@ -68,9 +68,9 @@ class db
     public function topWeeklySellingDishes($limit = 5)
     {
         $sql = "SELECT dishes.dish_name, SUM(dishes_ordered.subtotal) AS total_sales 
-                FROM dishes_ordered 
+                FROM transactions 
+                JOIN dishes_ordered ON transactions.trans_id = dishes_ordered.trans_id 
                 JOIN dishes ON dishes_ordered.dish_id = dishes.dish_id 
-                JOIN transactions ON dishes_ordered.trans_id = transactions.trans_id 
                 WHERE transactions.status IN ('Paid', 'Completed') 
                 AND WEEK(transactions.date_paid) = WEEK(CURDATE()) -- Filter transactions within current week
                 GROUP BY dishes_ordered.dish_id

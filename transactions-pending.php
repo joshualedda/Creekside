@@ -76,7 +76,7 @@
                 <th scope="col">Attendant</th>
                 <th scope="col">Total Price (₱)</th>
                 <th scope="col">Delivery Method</th>
-                <th scope="col">Delivery Address</th>
+                <!-- <th scope="col">Delivery Address</th> -->
 
                 <th scope="col">Status</th>
                 <th scope="col">Actions</th>
@@ -134,7 +134,7 @@
                           echo $formattedDate ?></td>
                     <?php } ?>
 
-                    <td><?= $address  ?></td>
+                    <!-- <td><?= $address  ?></td> -->
                     <?php if ($status == 'Pending') { ?>
                       <td>
                         <font class="badge bg-warning rounded-pill"><b><?php echo $status ?></b></font>
@@ -146,17 +146,15 @@
                       </td>
                     <?php } ?>
                     <td>
-                      <button class="btn btn-secondary btn-sm " data-bs-toggle="modal" data-bs-target="#editCustomer-<?php echo $trans_id ?>" <?php echo ($status == 'Paid') ? 'disabled' : '' ?> data-bs-toggle="tooltip" title="Edit name"><i class="bi bi-pencil-square"></i> </button>
-                      <?php if ($status == 'Paid') { ?>
-                        <button class="btn btn2 btn-sm " data-bs-toggle="modal" data-bs-target="#viewDishes-<?php echo $trans_id ?>"><i class="ri ri-restaurant-fill" data-bs-toggle="tooltip" title="View dishes"></i> </button>
-                      <?php } else { ?>
-                        <button class="btn btn2 btn-sm " data-bs-toggle="modal" data-bs-target="#addDishes-<?php echo $trans_id ?>"><i class="ri ri-restaurant-fill" data-bs-toggle="tooltip" title="Order dishes"></i> </button>
-                      <?php } ?>
-                      <button class="btn btn-primary btn-sm paid-btn" data-bs-toggle="modal" data-bs-target="#paid-<?php echo $trans_id ?>" <?php echo ($total_price == 0.00) ? 'disabled' : '' ?> <?php echo ($status == 'Paid') ? 'hidden' : '' ?> data-bs-toggle="tooltip" title="Confirm payment">
-                        <font style="padding: 2px;">₱</font>
+                      <button class="btn btn-secondary btn-sm " data-bs-toggle="modal" data-bs-target="#editCustomer-<?php echo $trans_id ?>" <?php echo ($status == 'Paid') ? 'disabled' : '' ?>><i class="bi bi-pencil-square" data-bs-toggle="tooltip" title="Edit name"></i> </button>
+                      <button class="btn btn2 btn-sm" data-bs-toggle="modal" data-bs-target="#<?php echo ($status === 'Paid') ? 'viewDishes' : 'addDishes'; ?>-<?php echo $trans_id ?>">
+                        <i class="ri ri-restaurant-fill" data-bs-toggle="tooltip" title="<?php echo ($status === 'Paid') ? 'View dishes' : 'Order dishes'; ?>"></i>
+                      </button>
+                      <button class="btn btn-primary btn-sm paid-btn" data-bs-toggle="modal" data-bs-target="#paid-<?php echo $trans_id ?>" <?php echo ($total_price == 0.00) ? 'disabled' : '' ?> <?php echo ($status == 'Paid') ? 'hidden' : '' ?>>
+                        <font style="padding: 2px;" data-bs-toggle="tooltip" title="Confirm payment">₱</font>
                       </button>
                       <button class="btn btn-success btn-sm complete-btn" data-bs-toggle="modal" data-bs-target="#completeOrder-<?php echo $trans_id ?>" <?php echo ($status == 'Pending') ? 'hidden' : '' ?>><i class="bi bi-check-circle" data-bs-toggle="tooltip" title="Complete transaction"></i></button>
-                      <button class="btn btn-danger btn-sm " data-bs-toggle="modal" data-bs-target="#cancelOrder-<?php echo $trans_id ?>" <?php echo ($status == 'Paid') ? 'disabled' : '' ?> data-bs-toggle="tooltip" title="Cancel transaction"><i class="bi bi-x-circle"></i></button>
+                      <button class="btn btn-danger btn-sm " data-bs-toggle="modal" data-bs-target="#cancelOrder-<?php echo $trans_id ?>" <?php echo ($status == 'Paid') ? 'disabled' : '' ?>><i class="bi bi-x-circle" data-bs-toggle="tooltip" title="Cancel transaction"></i></button>
 
                       <!-- Edit customer Modal -->
                       <div class="modal fade" id="editCustomer-<?php echo $trans_id ?>" tabindex="-1">
