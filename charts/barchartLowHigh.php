@@ -8,6 +8,7 @@ $query = "SELECT dishes.dish_name AS label, SUM(dishes_ordered.subtotal) AS valu
           FROM transactions
           LEFT JOIN dishes_ordered ON transactions.trans_id = dishes_ordered.trans_id
           LEFT JOIN dishes ON dishes_ordered.dish_id = dishes.dish_id
+          WHERE dishes_ordered.subtotal > 0
           GROUP BY dishes.dish_id 
           ORDER BY value ASC 
           LIMIT 5";

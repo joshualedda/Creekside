@@ -74,7 +74,7 @@
                 <th scope="col">Date & Time</th>
                 <th scope="col">Customer Name</th>
                 <th scope="col">Transaction Attendant</th>
-                <th scope="col">Total Price (₱)</th>
+                <th scope="col">Total Price</th>
                 <th scope="col">Date Cancelled</th>
                 <th scope="col">Status</th>
                 <th scope="col">Actions</th>
@@ -101,7 +101,7 @@
                   $status = $row['status']; ?>
                   <tr>
                     <!-- <td><?php echo $x++ ?></td> -->
-                    <td><?php echo date('F j, Y', strtotime($date)); ?></td>
+                    <td><?php echo $date; ?></td>
 
 
                     <td><?php echo $customer ?></td>
@@ -204,9 +204,9 @@
                                 <div>
                                                       <?php
                                                       $dbDate = $delivery_date;
-                                                        $date = new DateTime($dbDate);
-                                                        $formattedDate = $date->format("F j, Y");
-                                                        ?>
+                                                      $date = new DateTime($dbDate);
+                                                      $formattedDate = $date->format("F j, Y");
+                                                      ?>
                                   <b><?php echo $delivery_method ?></b> on <b><?php echo $formattedDate ?></b>
                                 </div>
  -->

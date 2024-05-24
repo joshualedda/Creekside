@@ -25,6 +25,15 @@ $forDelivery = $db->forDelivery();
 $forPickup = $db->forPickup();
 ?>
 
+<style>
+  .right {
+    text-align: right !important;
+  }
+
+  .center {
+    text-align: center !important;
+  }
+</style>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -634,11 +643,11 @@ $forPickup = $db->forPickup();
                     <h5 class="card-title">Recent Sales <span>| This Week</span></h5>
                     <table class="table table-borderless table-hover ">
                       <thead>
-                        <tr>
-                          <th scope="col">#</th>
+                        <tr style="white-space: nowrap;">
+                          <th scope="col">Transaction Date</th>
                           <th scope="col">Customer</th>
                           <th scope="col">Total Price</th>
-                          <th scope="col">Status</th>
+                          <th scope="col">Date Paid</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -648,10 +657,10 @@ $forPickup = $db->forPickup();
                           $counter = 1;
                           while ($row = mysqli_fetch_array($result)) {
                             echo '<tr>';
-                            echo '<td>' . $counter++ . '</td>';
+                            echo '<td>' . date('M. j, Y', strtotime($row['date'])) . '</td>';
                             echo '<td>' . $row['customer'] . '</td>';
                             echo '<td>' . $row['total_price'] . '</td>';
-                            echo '<td>' . $row['status'] . '</td>';
+                            echo '<td>' . date('M. j, Y', strtotime($row['date_paid'])) . '</td>';
                             echo '</tr>';
                           }
                         } else {
@@ -678,8 +687,9 @@ $forPickup = $db->forPickup();
                       <thead>
                         <tr>
                           <th scope="col">#</th>
-                          <th scope="col">Dish Name</th>
-                          <th scope="col">Total Sales</th>
+                          <th scope="col" class="center">Dish Name</th>
+                          <th scope="col" class="center">Quantity</th>
+                          <th scope="col" class="right">Total Sales</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -690,8 +700,9 @@ $forPickup = $db->forPickup();
                           foreach ($result as $row) {
                             echo '<tr>';
                             echo '<td>' . $counter++ . '</td>';
-                            echo '<td>' . $row['dish_name'] . '</td>';
-                            echo '<td>₱' . $row['total_sales'] . '</td>';
+                            echo '<td class="center">' . $row['dish_name'] . '</td>';
+                            echo '<td class="center">' . $row['quantity'] . '</td>';
+                            echo '<td class="right">₱' . $row['total_sales'] . '</td>';
                             echo '</tr>';
                           }
                         } else {
@@ -765,8 +776,9 @@ $forPickup = $db->forPickup();
                       <thead>
                         <tr>
                           <th scope="col">#</th>
-                          <th scope="col">Dish Name</th>
-                          <th scope="col">Total Sales</th>
+                          <th scope="col" class="center">Dish Name</th>
+                          <th scope="col" class="center">Quantity</th>
+                          <th scope="col" class="right">Total Sales</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -777,8 +789,9 @@ $forPickup = $db->forPickup();
                           foreach ($result as $row) {
                             echo '<tr>';
                             echo '<td>' . $counter++ . '</td>';
-                            echo '<td>' . $row['dish_name'] . '</td>';
-                            echo '<td>₱' . $row['total_sales'] . '</td>';
+                            echo '<td class="center">' . $row['dish_name'] . '</td>';
+                            echo '<td class="center">' . $row['quantity'] . '</td>';
+                            echo '<td class="right">₱' . $row['total_sales'] . '</td>';
                             echo '</tr>';
                           }
                         } else {
@@ -859,8 +872,9 @@ $forPickup = $db->forPickup();
                       <thead>
                         <tr>
                           <th scope="col">#</th>
-                          <th scope="col">Dish Name</th>
-                          <th scope="col">Total Sales</th>
+                          <th scope="col" class="center">Dish Name</th>
+                          <th scope="col" class="center">Quantity</th>
+                          <th scope="col" class="right">Total Sales</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -871,8 +885,9 @@ $forPickup = $db->forPickup();
                           foreach ($result as $row) {
                             echo '<tr>';
                             echo '<td>' . $counter++ . '</td>';
-                            echo '<td>' . $row['dish_name'] . '</td>';
-                            echo '<td>₱' . $row['total_sales'] . '</td>';
+                            echo '<td class="center">' . $row['dish_name'] . '</td>';
+                            echo '<td class="center">' . $row['quantity'] . '</td>';
+                            echo '<td class="right">₱' . $row['total_sales'] . '</td>';
                             echo '</tr>';
                           }
                         } else {

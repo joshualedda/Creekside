@@ -9,6 +9,15 @@
   include('connection.php');
   ?>
 </head>
+<style>
+  .right {
+    text-align: right !important;
+  }
+
+  .center {
+    text-align: center !important;
+  }
+</style>
 
 <body>
 
@@ -74,7 +83,7 @@
                 <th scope="col">Date & Time</th>
                 <th scope="col">Customer</th>
                 <th scope="col">Attendant</th>
-                <th scope="col">Total Price (₱)</th>
+                <th scope="col">Total Price</th>
                 <th scope="col">Delivery Method</th>
                 <!-- <th scope="col">Delivery Address</th> -->
 
@@ -111,7 +120,7 @@
                   ?>
                   <tr>
                     <!-- <td><?php echo $x++ ?></td> -->
-                    <td><?php echo date('F j, Y', strtotime($date)); ?></td>
+                    <td><?php echo $date; ?></td>
 
 
                     <td><?php echo $customer ?></td>
@@ -122,7 +131,7 @@
                     <?php if ($total_price == '0.00') { ?>
                       <td></td>
                     <?php } else { ?>
-                      <td>₱ <?php echo $total_price ?></td>
+                      <td>₱ <?php echo number_format($total_price, 2); ?></td>
                     <?php } ?>
 
 
@@ -150,11 +159,11 @@
                       <button class="btn btn2 btn-sm" data-bs-toggle="modal" data-bs-target="#<?php echo ($status === 'Paid') ? 'viewDishes' : 'addDishes'; ?>-<?php echo $trans_id ?>">
                         <i class="ri ri-restaurant-fill" data-bs-toggle="tooltip" title="<?php echo ($status === 'Paid') ? 'View dishes' : 'Order dishes'; ?>"></i>
                       </button>
-                      <button class="btn btn-primary btn-sm paid-btn" data-bs-toggle="modal" data-bs-target="#paid-<?php echo $trans_id ?>" <?php echo ($total_price == 0.00) ? 'disabled' : '' ?> <?php echo ($status == 'Paid') ? 'hidden' : '' ?>>
+                      <button class="btn btn-primary btn-sm paid-btn" data-bs-toggle="modal" data-bs-target="#paid-<?php echo $trans_id ?>" <?php echo ($total_price == 0.00) ? 'disabled' : '' ?> <?php echo ($status == 'Paid') ? 'disabled' : '' ?>>
                         <font style="padding: 2px;" data-bs-toggle="tooltip" title="Confirm payment">₱</font>
                       </button>
                       <button class="btn btn-success btn-sm complete-btn" data-bs-toggle="modal" data-bs-target="#completeOrder-<?php echo $trans_id ?>" <?php echo ($status == 'Pending') ? 'hidden' : '' ?>><i class="bi bi-check-circle" data-bs-toggle="tooltip" title="Complete transaction"></i></button>
-                      <button class="btn btn-danger btn-sm " data-bs-toggle="modal" data-bs-target="#cancelOrder-<?php echo $trans_id ?>" <?php echo ($status == 'Paid') ? 'disabled' : '' ?>><i class="bi bi-x-circle" data-bs-toggle="tooltip" title="Cancel transaction"></i></button>
+                      <button class="btn btn-danger btn-sm " data-bs-toggle="modal" data-bs-target="#cancelOrder-<?php echo $trans_id ?>" <?php echo ($status == 'Paid') ? 'hidden' : '' ?>><i class="bi bi-x-circle" data-bs-toggle="tooltip" title="Cancel transaction"></i></button>
 
                       <!-- Edit customer Modal -->
                       <div class="modal fade" id="editCustomer-<?php echo $trans_id ?>" tabindex="-1">
@@ -222,7 +231,7 @@
                                               <th>Dish Name</th>
                                               <th hidden>Main</th>
                                               <th hidden>Weight</th>
-                                              <th>Price (₱)</th>
+                                              <th class="right">Price (₱)</th>
                                               <th>Action</th>
                                             </tr>
                                           </thead>
@@ -247,9 +256,9 @@
                                               <th>Action</th>
                                               <th hidden>Dish ID</th>
                                               <th>Dish Name</th>
-                                              <th>Price (₱)</th>
-                                              <th>Quantity</th>
-                                              <th>Subtotal (₱)</th>
+                                              <th class="">Price (₱)</th>
+                                              <th class="">Quantity</th>
+                                              <th class="right">Subtotal (₱)</th>
                                             </tr>
                                           </thead>
                                           <tbody id="orderTableBody">
@@ -278,8 +287,8 @@
                                                   <td hidden> <?php echo $dish_id ?></td>
                                                   <td><?php echo $dish_name ?></td>
                                                   <td class="price"><?php echo $price ?></td>
-                                                  <td class="col-3"><input type="number" class="form-control quantity-input" value="<?php echo $quantity ?>" min="1"></td>
-                                                  <td class="subtotal" style="text-align: right;"><?php echo $subtotal ?></td>
+                                                  <td class="col-3 right"><input type="number" class="form-control quantity-input" value="<?php echo $quantity ?>" min="1"></td>
+                                                  <td class="subtotal right"><?php echo number_format($subtotal, 2); ?></td>
                                                 </tr>
 
                                             <?php
@@ -293,10 +302,10 @@
                                             <button type="button" class="btn btn-sm btn-danger" id="clearAllRows">Clear All</button>
                                           </div>
                                           <div class="col-auto">
-                                            <label for="total_price" class="col-form-label"><b>Total Price (₱):</b></label>
+                                            <label for="total_price" class="col-form-label"><b>Total Price:</b></label>
                                           </div>
                                           <div class="col-3">
-                                            <input type="text" class="form-control" name="total_price" id="total_price" placeholder="0.00" style="text-align: right;" value="<?php echo $total_price ?>">
+                                            <input type="text" class="form-control" name="total_price" id="total_price" placeholder="0.00" style="text-align: right;" value="₱ <?php echo number_format($total_price, 2); ?>">
                                           </div>
                                         </div>
                                         <hr>
@@ -304,42 +313,36 @@
 
 
                                         <div class="row">
+                                          <div class="col-auto">
+                                            <label class="col-form-label" for="delivery_method">Delivery Method:</label>
+                                          </div>
                                           <div class="col">
-                                            <label for="delivery_method">Delivery Method</label>
                                             <select name="delivery_method" id="delivery_method" class="form-select" required>
                                               <option value="" <?php if (empty($delivery_method)) echo 'selected disabled'; ?>>Select method</option>
                                               <option value="For Pickup" <?php if ($delivery_method === "For Pickup") echo 'selected'; ?>>For Pickup</option>
                                               <option value="For Delivery" <?php if ($delivery_method === "For Delivery") echo 'selected'; ?>>For Delivery</option>
                                             </select>
                                           </div>
+                                          <div class="col-auto"></div>
+                                          <div class="col-auto">
+                                            <label class="col-form-label">Pickup/Delivery Date:</label>
+                                          </div>
+
+                                          <div class="col-3">
+                                            <input name="delivery_date" type="date" class="form-control" value="<?php echo $delivery_date ?>" min="<?php echo date('Y-m-d'); ?>" required>
+                                          </div>
+
                                         </div>
-
-
 
                                         <div class="col" id="address" style="display: none;">
-                                          <label for="">Address</label>
-                                          <input type="text" class="form-control" name="address" value="<?= $address ?>" />
-                                        </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                        <div class="col"></div>
-                                        <div class="col-auto">
-                                          <label class="col-form-label">Pickup/Delivery Date:</label>
-                                        </div>
-                                        <div class="col-3">
-                                          <input name="delivery_date" type="date" class="form-control" value="<?php echo $delivery_date ?>" min="<?php echo date('Y-m-d'); ?>" required>
-
+                                          <div class="row">
+                                            <div class="col-auto">
+                                              <label class="col-form-label">Delivery Address:</label>
+                                            </div>
+                                            <div class="col">
+                                              <input type="text" class="form-control" name="address" value="<?= $address ?>" />
+                                            </div>
+                                          </div>
                                         </div>
                                       </div>
                                     </div>
@@ -408,25 +411,22 @@
                                           <td><?php echo $dish_name ?></td>
                                           <td class="price" style="text-align: right;"><?php echo $price ?></td>
                                           <td class="col-3" style="text-align: right;"><?php echo $quantity ?></td>
-                                          <td class="subtotal" style="text-align: right;"><?php echo $subtotal ?></td>
+                                          <td class="subtotal" style="text-align: right;"><?php echo number_format($subtotal, 2); ?></td>
                                         </tr>
 
                                     <?php
                                       }
                                     }
                                     ?>
+                                    <tr>
+                                      <td><b>Total Price:</b></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td style="text-align: right;">₱ <?php echo number_format($total_price, 2); ?></td>
+                                    </tr>
                                   </tbody>
                                 </table>
-                                <div class="row">
-                                  <div class="col"></div>
-                                  <div class="col-auto">
-                                    <label class="col-form-label"><b>Total Price (₱):</b></label>
-                                  </div>
-                                  <div class="col-auto">
-                                    <label class="col-form-label"><?php echo $total_price ?></label>
-                                  </div>
-                                  <div class="col-auto"></div>
-                                </div>
+
                               </div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
