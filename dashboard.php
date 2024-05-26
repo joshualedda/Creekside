@@ -62,7 +62,7 @@ $forPickup = $db->forPickup();
 
     <div class="row">
       <!-- for pick up -->
-      <!-- <div class="col-lg-6">
+      <div class="col-lg-6">
         <div class="row">
           <div class="col-12">
             <div class="card recent-sales overflow-auto">
@@ -102,10 +102,10 @@ $forPickup = $db->forPickup();
             </div>
           </div>
         </div>
-      </div> -->
+      </div>
 
 
-      <!-- <div class="col-lg-6">
+      <div class="col-lg-6">
         <div class="row">
           <div class="col-12">
             <div class="card recent-sales overflow-auto">
@@ -146,7 +146,7 @@ $forPickup = $db->forPickup();
             </div>
           </div>
         </div>
-      </div> -->
+      </div>
     </div>
 
     <hr>
