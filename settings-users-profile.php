@@ -214,7 +214,7 @@
                               <select class="form-select" aria-label="Default select example" name="sex" id="sex" required>
                                 <option value="" selected disabled>Select Sex</option>
                                 <option value="Male" <?php if ($sex === "Male") echo 'selected'; ?>>Male</option>
-                                <option value="Female <?php if ($sex === "Female") echo 'selected'; ?>">Female</option>
+                                <option value="Female" <?php if ($sex === "Female") echo 'selected'; ?>>Female</option>
                               </select>
                               <div class="invalid-feedback">Please select sex.</div>
                             </div>

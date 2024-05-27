@@ -60,9 +60,9 @@ if (!isset($_SESSION['username'])) {
                 <div>
                   <?php
                   if ($sex === 'Male') {
-                    echo '<img src="assets/img/Male.png" alt="Profile" class="rounded-circle" style="height: 100px;">';
+                    echo '<img src="assets/img/Male.png" alt="Profile" class="rounded-circle pb-2" style="height: 100px;">';
                   } elseif ($sex === 'Female') {
-                    echo '<img src="assets/img/Female.png" alt="Profile" class="rounded-circle" style="height: 100px;">';
+                    echo '<img src="assets/img/Female.png" alt="Profile" class="rounded-circle pb-2" style="height: 100px;">';
                   }
                   ?>
                   <div>

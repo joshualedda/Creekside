@@ -74,7 +74,7 @@
               $email = $row['email'];
               $username = $row['username'];
               $password = $row['password'];
-              $status = $row['status'];
+              $status = $row['activity'];
               $id = $row['user_id'];
               $name = $row['fname'] . " " . $row['lname'];
       ?>
@@ -170,7 +170,7 @@
 
                         <div class="row">
                           <div class="col-lg-3 col-md-4 label">Status</div>
-                          <div class="col-lg-9 col-md-8"><?php echo $row['status'] ?></div>
+                          <div class="col-lg-9 col-md-8"><?php echo $row['activity'] ?></div>
                         </div>
 
                       </div>
@@ -465,7 +465,7 @@
             $email = $row['email'];
             $username = $row['username'];
             $password = $row['password'];
-            $status = $row['status'];
+            $status = $row['activity'];
             $id = $row['user_id'];
             $name = $row['fname'] . " " . $row['lname'];
       ?>
@@ -635,7 +635,7 @@
                               <select class="form-select" aria-label="Default select example" name="sex" id="sex" required>
                                 <option value="" selected disabled>Select Sex</option>
                                 <option value="Male" <?php if ($sex === "Male") echo 'selected'; ?>>Male</option>
-                                <option value="Female <?php if ($sex === "Female") echo 'selected'; ?>">Female</option>
+                                <option value="Female" <?php if ($sex === "Female") echo 'selected'; ?>>Female</option>
                               </select>
                               <div class="invalid-feedback">Please select sex.</div>
                             </div>

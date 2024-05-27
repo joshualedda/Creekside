@@ -21,11 +21,11 @@
     .price-cell {
         text-align: right !important;
     }
-    
+
     .quantity-cell {
         text-align: right !important;
     }
-    
+
     .subtotal-cell {
         text-align: right !important;
     }
@@ -222,7 +222,10 @@
 
                 cell1.innerHTML = i + 1;
                 cell2.innerHTML = data[i].name;
-                cell3.innerHTML = "₱" + parseFloat(data[i].sales).toFixed(2); // Include peso sign for sales
+                cell3.innerHTML = "₱ " + parseFloat(data[i].sales).toLocaleString(undefined, {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                }); // Format with commas
 
                 cell3.classList.add('sales-cell');
 
@@ -237,12 +240,13 @@
 
             totalCell1.innerHTML = "<b>Grand Total</b>";
             totalCell2.innerHTML = "";
-            totalCell3.innerHTML = "<b>₱" + totalSales.toFixed(2) + "</b>"; // Assuming 2 decimal places for sales
+            totalCell3.innerHTML = "<b>₱ " + totalSales.toLocaleString(undefined, {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }) + "</b>"; // Format with commas
 
             totalCell3.classList.add('grandtotal-cell');
-
         }
-
 
         function displaySalesByDish(data, resultTable) {
             // Clear existing content
@@ -271,7 +275,10 @@
 
                 cell1.innerHTML = i + 1;
                 cell2.innerHTML = data[i].name;
-                cell3.innerHTML = "₱" + parseFloat(data[i].sales).toFixed(2); // Include peso sign for sales
+                cell3.innerHTML = "₱ " + parseFloat(data[i].sales).toLocaleString(undefined, {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                }); // Format with commas
 
                 cell3.classList.add('sales-cell');
 
@@ -286,13 +293,13 @@
 
             totalCell1.innerHTML = "<b>Grand Total</b>";
             totalCell2.innerHTML = "";
-            totalCell3.innerHTML = "<b>₱" + totalSales.toFixed(2) + "</b>"; // Assuming 2 decimal places for sales
+            totalCell3.innerHTML = "<b>₱ " + totalSales.toLocaleString(undefined, {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }) + "</b>"; // Format with commas
 
             totalCell3.classList.add('grandtotal-cell');
         }
-
-
-
 
         function displaySalesReports(data, resultTable) {
             // Clear existing content
@@ -330,9 +337,15 @@
 
                 cell1.innerHTML = data[i].date;
                 cell2.innerHTML = data[i].dish_name;
-                cell3.innerHTML = "₱" + parseFloat(data[i].price).toFixed(2); // Include peso sign for price
+                cell3.innerHTML = "₱ " + parseFloat(data[i].price).toLocaleString(undefined, {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                }); // Format with commas
                 cell4.innerHTML = data[i].quantity;
-                cell5.innerHTML = "₱" + parseFloat(data[i].subtotal).toFixed(2);
+                cell5.innerHTML = "₱ " + parseFloat(data[i].subtotal).toLocaleString(undefined, {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                }); // Format with commas
 
                 cell3.classList.add('price-cell');
                 cell4.classList.add('quantity-cell');
@@ -354,10 +367,14 @@
             totalCell2.innerHTML = ""; // Leave blank for the dish name column
             totalCell3.innerHTML = ""; // Leave blank for the quantity column
             totalCell4.innerHTML = ""; // Leave blank for the price column
-            totalCell5.innerHTML = "<b>₱" + totalSubtotal.toFixed(2) + "</b>"; // Assuming 2 decimal places for subtotal
-            
+            totalCell5.innerHTML = "<b>₱ " + totalSubtotal.toLocaleString(undefined, {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }) + "</b>"; // Format with commas
+
             totalCell5.classList.add('grandtotal-cell');
         }
+
 
 
         function generatePDF() {

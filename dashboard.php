@@ -644,14 +644,21 @@ $forPickup = $db->forPickup();
                     <table class="table table-borderless table-hover ">
                       <thead>
                         <tr style="white-space: nowrap;">
-                          <th scope="col">Transaction Date</th>
+                          <th scope="col">Date</th>
                           <th scope="col">Customer</th>
                           <th scope="col">Total Price</th>
-                          <th scope="col">Date Paid</th>
+                          <th scope="col">Status</th>
                         </tr>
                       </thead>
                       <tbody>
                         <?php
+                        $statusClasses = [
+                          'Completed' => 'bg-success',
+                          'Cancelled' => 'bg-danger',
+                          'Pending' => 'bg-warning',
+                          'Paid' => 'bg-info'
+                        ];
+
                         $result = $db->transactionsThisWeek();
                         if ($result) {
                           $counter = 1;
@@ -659,8 +666,13 @@ $forPickup = $db->forPickup();
                             echo '<tr>';
                             echo '<td>' . date('M. j, Y', strtotime($row['date'])) . '</td>';
                             echo '<td>' . $row['customer'] . '</td>';
-                            echo '<td>' . $row['total_price'] . '</td>';
-                            echo '<td>' . date('M. j, Y', strtotime($row['date_paid'])) . '</td>';
+                            echo '<td>₱ ' . number_format($row['total_price'], 2) . '</td>';
+                            $status = $row['status'];
+                            if (isset($statusClasses[$status])) {
+                              echo '<td><font class="badge ' . $statusClasses[$status] . ' rounded-pill"><b>' . $status . '</b></font></td>';
+                            } else {
+                              echo '<td>' . $status . '</td>';
+                            }
                             echo '</tr>';
                           }
                         } else {
@@ -687,9 +699,9 @@ $forPickup = $db->forPickup();
                       <thead>
                         <tr>
                           <th scope="col">#</th>
-                          <th scope="col" class="center">Dish Name</th>
-                          <th scope="col" class="center">Quantity</th>
-                          <th scope="col" class="right">Total Sales</th>
+                          <th scope="col" class="">Dish Name</th>
+                          <th scope="col" class="">Quantity</th>
+                          <th scope="col" class="">Total Sales</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -700,9 +712,9 @@ $forPickup = $db->forPickup();
                           foreach ($result as $row) {
                             echo '<tr>';
                             echo '<td>' . $counter++ . '</td>';
-                            echo '<td class="center">' . $row['dish_name'] . '</td>';
-                            echo '<td class="center">' . $row['quantity'] . '</td>';
-                            echo '<td class="right">₱' . $row['total_sales'] . '</td>';
+                            echo '<td class="">' . $row['dish_name'] . '</td>';
+                            echo '<td class="">' . $row['quantity'] . '</td>';
+                            echo '<td>₱ ' . number_format($row['total_sales'], 2) . '</td>';
                             echo '</tr>';
                           }
                         } else {
@@ -733,7 +745,7 @@ $forPickup = $db->forPickup();
                     <table class="table table-borderless  table-hover">
                       <thead>
                         <tr>
-                          <th scope="col">#</th>
+                          <th scope="col">Date</th>
                           <th scope="col">Customer</th>
                           <th scope="col">Total Price</th>
                           <th scope="col">Status</th>
@@ -741,15 +753,27 @@ $forPickup = $db->forPickup();
                       </thead>
                       <tbody>
                         <?php
+                        $statusClasses = [
+                          'Completed' => 'bg-success',
+                          'Cancelled' => 'bg-danger',
+                          'Pending' => 'bg-warning',
+                          'Paid' => 'bg-info'
+                        ];
+
                         $result = $db->transactionsThisMonth();
                         if ($result) {
                           $counter = 1;
                           while ($row = mysqli_fetch_array($result)) {
                             echo '<tr>';
-                            echo '<td>' . $counter++ . '</td>';
+                            echo '<td>' . date('M. j, Y', strtotime($row['date'])) . '</td>';
                             echo '<td>' . $row['customer'] . '</td>';
-                            echo '<td>' . $row['total_price'] . '</td>';
-                            echo '<td>' . $row['status'] . '</td>';
+                            echo '<td>₱ ' . number_format($row['total_price'], 2) . '</td>';
+                            $status = $row['status'];
+                            if (isset($statusClasses[$status])) {
+                              echo '<td><font class="badge ' . $statusClasses[$status] . ' rounded-pill"><b>' . $status . '</b></font></td>';
+                            } else {
+                              echo '<td>' . $status . '</td>';
+                            }
                             echo '</tr>';
                           }
                         } else {
@@ -776,9 +800,9 @@ $forPickup = $db->forPickup();
                       <thead>
                         <tr>
                           <th scope="col">#</th>
-                          <th scope="col" class="center">Dish Name</th>
-                          <th scope="col" class="center">Quantity</th>
-                          <th scope="col" class="right">Total Sales</th>
+                          <th scope="col" class="">Dish Name</th>
+                          <th scope="col" class="">Quantity</th>
+                          <th scope="col" class="">Total Sales</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -789,9 +813,9 @@ $forPickup = $db->forPickup();
                           foreach ($result as $row) {
                             echo '<tr>';
                             echo '<td>' . $counter++ . '</td>';
-                            echo '<td class="center">' . $row['dish_name'] . '</td>';
-                            echo '<td class="center">' . $row['quantity'] . '</td>';
-                            echo '<td class="right">₱' . $row['total_sales'] . '</td>';
+                            echo '<td class="">' . $row['dish_name'] . '</td>';
+                            echo '<td class="">' . $row['quantity'] . '</td>';
+                            echo '<td>₱ ' . number_format($row['total_sales'], 2) . '</td>';
                             echo '</tr>';
                           }
                         } else {
@@ -829,7 +853,7 @@ $forPickup = $db->forPickup();
                     <table class="table table-borderless table-hover ">
                       <thead>
                         <tr>
-                          <th scope="col">#</th>
+                          <th scope="col">Date</th>
                           <th scope="col">Customer</th>
                           <th scope="col">Total Price</th>
                           <th scope="col">Status</th>
@@ -842,10 +866,15 @@ $forPickup = $db->forPickup();
                           $counter = 1;
                           while ($row = mysqli_fetch_array($result)) {
                             echo '<tr>';
-                            echo '<td>' . $counter++ . '</td>';
+                            echo '<td>' . date('M. j, Y', strtotime($row['date'])) . '</td>';
                             echo '<td>' . $row['customer'] . '</td>';
-                            echo '<td>' . $row['total_price'] . '</td>';
-                            echo '<td>' . $row['status'] . '</td>';
+                            echo '<td>₱ ' . number_format($row['total_price'], 2) . '</td>';
+                            $status = $row['status'];
+                            if (isset($statusClasses[$status])) {
+                              echo '<td><font class="badge ' . $statusClasses[$status] . ' rounded-pill"><b>' . $status . '</b></font></td>';
+                            } else {
+                              echo '<td>' . $status . '</td>';
+                            }
                             echo '</tr>';
                           }
                         } else {
@@ -872,9 +901,9 @@ $forPickup = $db->forPickup();
                       <thead>
                         <tr>
                           <th scope="col">#</th>
-                          <th scope="col" class="center">Dish Name</th>
-                          <th scope="col" class="center">Quantity</th>
-                          <th scope="col" class="right">Total Sales</th>
+                          <th scope="col" class="">Dish Name</th>
+                          <th scope="col" class="">Quantity</th>
+                          <th scope="col" class="">Total Sales</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -885,9 +914,9 @@ $forPickup = $db->forPickup();
                           foreach ($result as $row) {
                             echo '<tr>';
                             echo '<td>' . $counter++ . '</td>';
-                            echo '<td class="center">' . $row['dish_name'] . '</td>';
-                            echo '<td class="center">' . $row['quantity'] . '</td>';
-                            echo '<td class="right">₱' . $row['total_sales'] . '</td>';
+                            echo '<td class="">' . $row['dish_name'] . '</td>';
+                            echo '<td class="">' . $row['quantity'] . '</td>';
+                            echo '<td>₱ ' . number_format($row['total_sales'], 2) . '</td>';
                             echo '</tr>';
                           }
                         } else {

@@ -60,7 +60,7 @@ class db
     {
         $startOfWeek = date('Y-m-d', strtotime('monday this week'));
         $endOfWeek = date('Y-m-d', strtotime('sunday this week'));
-        $sql = "SELECT * FROM transactions WHERE date BETWEEN '$startOfWeek' AND '$endOfWeek' AND status IN ('Paid','Completed') ORDER BY date DESC LIMIT 5";
+        $sql = "SELECT * FROM transactions WHERE date BETWEEN '$startOfWeek' AND '$endOfWeek' AND status IN ('Paid','Completed') ORDER BY date_paid DESC LIMIT 5";
         $result = mysqli_query($this->con, $sql);
         return $result;
     }
@@ -182,7 +182,7 @@ class db
         $currentDate = date('Y-m-d');
         $startOfMonth = date('Y-m-01');
         $endOfMonth = date('Y-m-t');
-        $sql = "SELECT * FROM transactions WHERE date BETWEEN '$startOfMonth' AND '$endOfMonth' AND status IN ('Paid','Completed') ORDER BY date DESC LIMIT 5";
+        $sql = "SELECT * FROM transactions WHERE date BETWEEN '$startOfMonth' AND '$endOfMonth' AND status IN ('Paid','Completed') ORDER BY date_paid DESC LIMIT 5";
         $result = mysqli_query($this->con, $sql);
         return $result;
     }
@@ -217,7 +217,7 @@ class db
         $currentYear = date('Y');
         $startOfYear = date('Y-01-01');
         $endOfYear = date('Y-12-31');
-        $sql = "SELECT * FROM transactions WHERE date BETWEEN '$startOfYear' AND '$endOfYear' AND status IN ('Paid','Completed') ORDER BY date DESC LIMIT 5";
+        $sql = "SELECT * FROM transactions WHERE date BETWEEN '$startOfYear' AND '$endOfYear' AND status IN ('Paid','Completed') ORDER BY date_paid DESC LIMIT 5";
         $result = mysqli_query($this->con, $sql);
         return $result;
     }

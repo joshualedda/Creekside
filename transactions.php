@@ -109,27 +109,20 @@
 
 
 
-                    <?php if ($status === 'Completed') { ?>
-                      <td>
-                        <font class="badge bg-success rounded-pill"><b><?php echo $status ?></b></font>
-                      </td>
                     <?php
-                    } elseif ($status === 'Cancelled') { ?>
+                    $statusClasses = [
+                      'Completed' => 'bg-success',
+                      'Cancelled' => 'bg-danger',
+                      'Pending' => 'bg-warning',
+                      'Paid' => 'bg-info'
+                    ];
+
+                    if (isset($statusClasses[$status])) { ?>
                       <td>
-                        <font class="badge bg-danger rounded-pill"><b><?php echo $status ?></b></font>
+                        <font class="badge <?php echo $statusClasses[$status]; ?> rounded-pill"><b><?php echo $status; ?></b></font>
                       </td>
-                    <?php
-                    } elseif ($status === 'Pending') { ?>
-                      <td>
-                        <font class="badge bg-warning rounded-pill"><b><?php echo $status ?></b></font>
-                      </td>
-                    <?php
-                    } elseif ($status === 'Paid') { ?>
-                      <td>
-                        <font class="badge bg-info rounded-pill"><b><?php echo $status ?></b></font>
-                      </td>
-                    <?php
-                    } ?>
+                    <?php } ?>
+
                     <!-- Add add orders Modal -->
                     <div class="modal fade" id="addDishes-<?php echo $trans_id ?>" tabindex="-1">
                       <div class="modal-dialog modal-xl modal-dialog-centered">

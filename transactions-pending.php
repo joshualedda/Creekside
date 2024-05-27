@@ -302,10 +302,10 @@
                                             <button type="button" class="btn btn-sm btn-danger" id="clearAllRows">Clear All</button>
                                           </div>
                                           <div class="col-auto">
-                                            <label for="total_price" class="col-form-label"><b>Total Price:</b></label>
+                                            <label for="total_price" class="col-form-label"><b>Total Price (₱):</b></label>
                                           </div>
                                           <div class="col-3">
-                                            <input type="text" class="form-control" name="total_price" id="total_price" placeholder="0.00" style="text-align: right;" value="₱ <?php echo number_format($total_price, 2); ?>">
+                                            <input type="text" class="form-control" name="total_price" id="total_price" placeholder="0.00" style="text-align: right;" value="<?php echo number_format($total_price, 2); ?>">
                                           </div>
                                         </div>
                                         <hr>
