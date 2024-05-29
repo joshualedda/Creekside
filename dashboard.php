@@ -438,63 +438,73 @@ $forPickup = $db->forPickup();
                 <div class="col-lg-4">
                   <h5 class="card-title">Delivery Method</h5>
                 </div>
+            
+
+
+
+
+                
                 <div class="col-lg-8 d-flex align-items-center justify-content-end my-3">
-                  <div class="me-3">
-                    <select class="form-select" id="yearOffense" aria-label="Year selection" onchange="fetchDataAndUpdateChart()">
-                      <?php
-                      $currentYear = date('Y');
-                      $startYear = $currentYear - 3;
-                      $endYear = $currentYear + 6;
+  <div class="me-3">
+    <select class="form-select" id="yearFilter" aria-label="Year selection" onchange="fetchDataAndUpdateCharts()">
+      <?php
+      $currentYear = date('Y');
+      $startYear = $currentYear - 3;
+      $endYear = $currentYear + 6;
 
-                      $years = range($startYear, $endYear);
+      $years = range($startYear, $endYear);
 
-                      foreach ($years as $year) {
-                        $selected = ($year == $currentYear) ? 'selected' : '';
-                        echo "<option value=\"$year\" $selected>$year</option>";
-                      }
-                      ?>
-                    </select>
+      foreach ($years as $year) {
+        $selected = ($year == $currentYear) ? 'selected' : '';
+        echo "<option value=\"$year\" $selected>$year</option>";
+      }
+      ?>
+    </select>
+  </div>
+  <div>
+    <select class="form-select monthly-select" id="monthlyFilter" aria-label="Month selection" onchange="fetchDataAndUpdateCharts()">
+      <?php
+      $currentMonth = date('m');
+      $months = [
+        'January' => '01',
+        'February' => '02',
+        'March' => '03',
+        'April' => '04',
+        'May' => '05',
+        'June' => '06',
+        'July' => '07',
+        'August' => '08',
+        'September' => '09',
+        'October' => '10',
+        'November' => '11',
+        'December' => '12'
+      ];
+
+      foreach ($months as $month => $value) {
+        $selected = ($value === $currentMonth) ? 'selected' : '';
+        echo "<option value=\"$value\" $selected>$month</option>";
+      }
+      ?>
+    </select>
+  
+</div>
+</div>
 
 
 
-                  </div>
-                  <div>
-                    <select class="form-select monthly-select" id="monthlyTransaction" aria-label="Month selection" onchange="fetchDataAndUpdateChart()">
-                      <?php
-                      $currentMonth = date('m');
-                      $months = [
-                        'January' => '01',
-                        'February' => '02',
-                        'March' => '03',
-                        'April' => '04',
-                        'May' => '05',
-                        'June' => '06',
-                        'July' => '07',
-                        'August' => '08',
-                        'September' => '09',
-                        'October' => '10',
-                        'November' => '11',
-                        'December' => '12'
-                      ];
-
-                      foreach ($months as $month => $value) {
-                        $selected = ($value === $currentMonth) ? 'selected' : '';
-                        echo "<option value=\"$value\" $selected>$month</option>";
-                      }
-                      ?>
-                    </select>
+<canvas id="pieChartOffense" style="max-height: 300px;"></canvas>
 
 
-                  </div>
-                </div>
-              </div>
 
-              <canvas id="pieChartOffense" style="max-height: 300px;"></canvas>
+
 
 
             </div>
           </div>
-        </div>
+          </div>
+      
+          </div>
+       
 
 
 
@@ -522,62 +532,17 @@ $forPickup = $db->forPickup();
                 <div class="col-lg-4">
                   <h5 class="card-title">Top Dishes</h5>
                 </div>
-                <div class="col-lg-8 d-flex align-items-center justify-content-end my-3">
-                  <div class="me-3">
-                    <select class="form-select" id="yearProduct" aria-label="Year selection" onchange="fetchDataAndUpdateProductChart()">
-                      <?php
-                      $currentYear = date('Y');
-                      $startYear = $currentYear - 3;
-                      $endYear = $currentYear + 6;
-
-                      $years = range($startYear, $endYear);
-
-                      foreach ($years as $year) {
-                        $selected = ($year == $currentYear) ? 'selected' : '';
-                        echo "<option value=\"$year\" $selected>$year</option>";
-                      }
-                      ?>
-                    </select>
-
-                  </div>
-                  <div>
-                    <select class="form-select monthly-select" id="monthlyProduct" aria-label="Month selection" onchange="fetchDataAndUpdateProductChart()">
-                      <?php
-                      $currentMonth = date('m');
-                      $months = [
-                        'January' => '01',
-                        'February' => '02',
-                        'March' => '03',
-                        'April' => '04',
-                        'May' => '05',
-                        'June' => '06',
-                        'July' => '07',
-                        'August' => '08',
-                        'September' => '09',
-                        'October' => '10',
-                        'November' => '11',
-                        'December' => '12'
-                      ];
-
-                      foreach ($months as $month => $value) {
-                        $selected = ($value === $currentMonth) ? 'selected' : '';
-                        echo "<option value=\"$value\" $selected>$month</option>";
-                      }
-                      ?>
-                    </select>
 
 
-                  </div>
-                </div>
-              </div>
-
+            
               <canvas id="pieChartProduct" style="max-height: 300px;"></canvas>
 
 
             </div>
-          </div>
-        </div>
-
+            </div>
+            </div>
+            </div>
+      
 
         <div class="col-lg-6">
           <div class="card">
@@ -608,21 +573,6 @@ $forPickup = $db->forPickup();
             <canvas id="barChartSalesLowHigh"></canvas>
           </div>
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -959,198 +909,320 @@ $forPickup = $db->forPickup();
 
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <!-- Low to high -->
-  <script>
-    $(document).ready(function() {
-      $.ajax({
-        url: "charts/barchartLowHigh.php",
-        method: "GET",
-        data: {},
-        success: function(response) {
-          var labels = [];
-          var values = [];
 
-          $.each(response.data, function(index, item) {
-            labels.push(item.label);
-            values.push(item.value);
-          });
 
-          var ctx = $('#barChartSalesLowHigh');
 
-          var myBarChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-              labels: labels,
-              datasets: [{
-                label: 'Total',
-                data: values,
-                backgroundColor: [
-                  'rgba(255, 99, 132, 0.6)',
-                  'rgba(54, 162, 235, 0.6)',
-                  'rgba(255, 206, 86, 0.6)',
-                  'rgba(75, 192, 192, 0.6)',
-                  'rgba(153, 102, 255, 0.6)',
-                  'rgba(255, 159, 64, 0.6)',
-                  'rgba(255, 0, 255, 0.6)',
-                  'rgba(0, 255, 0, 0.6)',
-                  'rgba(128, 128, 128, 0.6)',
-                  'rgba(0, 0, 255, 0.6)',
-                  'rgba(255, 0, 0, 0.6)',
-                  'rgba(0, 255, 255, 0.6)',
-                  'rgba(255, 255, 0, 0.6)',
-                  'rgba(128, 0, 128, 0.6)',
-                  'rgba(0, 128, 128, 0.6)'
-                ]
-              }]
-            },
-            options: {
-              scales: {
-                y: {
-                  beginAtZero: true,
-                  title: {
-                    display: true,
-                    text: 'Sales (₱)', // Title for Y-axis
-                    font: {
-                      weight: 'bold' // Make the Y-axis title bold
-                    }
-                  }
-                },
-                x: {
-                  title: {
-                    display: true,
-                    text: 'Dishes', // Title for X-axis
-                    font: {
-                      weight: 'bold' // Make the Y-axis title bold
-                    }
-                  }
-                }
-              },
-              plugins: {
-                legend: {
-                  display: false // Hide the legend
-                }
-              }
-            }
-          });
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+  fetchDataAndUpdateCharts();
+});
+
+async function fetchDataAndUpdateCharts() {
+  try {
+    const selectedYear = document.getElementById('yearFilter').value;
+    const selectedMonth = document.getElementById('monthlyFilter').value;
+
+    const startYear = parseInt(selectedYear);
+    const endYear = startYear + 1;
+
+    const [offenseResponse, productResponse, lowHighResponse, salesResponse] = await Promise.all([
+      fetch(`charts/piechart.php?startYear=${startYear}&endYear=${endYear}&month=${selectedMonth}`),
+      fetch(`charts/productPieChart.php?startYear=${startYear}&endYear=${endYear}&month=${selectedMonth}`),
+      fetch(`charts/barchartLowHigh.php?startYear=${startYear}&endYear=${endYear}&month=${selectedMonth}`),
+      fetch(`charts/barchart.php?startYear=${startYear}&endYear=${endYear}&month=${selectedMonth}`)
+    ]);
+
+    const offenseData = await offenseResponse.json();
+    const productData = await productResponse.json();
+    const lowHighData = await lowHighResponse.json();
+    const salesData = await salesResponse.json();
+
+    updateOffensePieChart(offenseData);
+    updateProductPieChart(productData);
+    updateBarChartSalesLowHigh(lowHighData);
+    updateBarChartSales(salesData);
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+}
+
+function updateOffensePieChart(data) {
+  const existingChart = Chart.getChart('pieChartOffense');
+
+  if (existingChart) {
+    existingChart.destroy();
+  }
+
+  if (!data.data || !Array.isArray(data.data)) {
+    console.error('Invalid data format:', data);
+    return;
+  }
+
+  const colors = [
+    'rgba(255, 99, 132, 0.6)',
+    'rgba(54, 162, 235, 0.6)',
+    'rgba(255, 206, 86, 0.6)',
+    'rgba(75, 192, 192, 0.6)',
+    'rgba(153, 102, 255, 0.6)',
+    'rgba(255, 159, 64, 0.6)',
+    'rgba(255, 0, 255, 0.6)',
+    'rgba(0, 255, 0, 0.6)',
+    'rgba(128, 128, 128, 0.6)',
+    'rgba(0, 0, 255, 0.6)',
+    'rgba(255, 0, 0, 0.6)',
+    'rgba(0, 255, 255, 0.6)',
+    'rgba(255, 255, 0, 0.6)',
+    'rgba(128, 0, 128, 0.6)',
+    'rgba(0, 128, 128, 0.6)'
+  ];
+
+  new Chart(document.querySelector('#pieChartOffense'), {
+    type: 'pie',
+    data: {
+      labels: data.data.map(item => item.label),
+      datasets: [{
+        label: 'Total',
+        data: data.data.map(item => item.value),
+        backgroundColor: colors,
+        hoverOffset: 4
+      }]
+    },
+    options: {
+      plugins: {
+        legend: {
+          position: 'right',
+          align: 'start'
         },
-        error: function(xhr, status, error) {
-          console.error("Error fetching data:", error);
-        }
-      });
-    });
-  </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <script>
-    $(document).ready(function() {
-      $.ajax({
-        url: "charts/barchart.php", // Replace with the path to your PHP script
-        method: "GET",
-        data: {},
-        success: function(response) {
-          var labels = [];
-          var values = [];
-
-          $.each(response.data, function(index, item) {
-            labels.push(item.label);
-            values.push(item.value);
-          });
-
-          var ctx = $('#barChartSales');
-
-          var myBarChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-              labels: labels,
-              datasets: [{
-                label: 'Total',
-                data: values,
-                backgroundColor: [
-                  'rgba(255, 99, 132, 0.6)',
-                  'rgba(54, 162, 235, 0.6)',
-                  'rgba(255, 206, 86, 0.6)',
-                  'rgba(75, 192, 192, 0.6)',
-                  'rgba(153, 102, 255, 0.6)',
-                  'rgba(255, 159, 64, 0.6)',
-                  'rgba(255, 0, 255, 0.6)',
-                  'rgba(0, 255, 0, 0.6)',
-                  'rgba(128, 128, 128, 0.6)',
-                  'rgba(0, 0, 255, 0.6)',
-                  'rgba(255, 0, 0, 0.6)',
-                  'rgba(0, 255, 255, 0.6)',
-                  'rgba(255, 255, 0, 0.6)',
-                  'rgba(128, 0, 128, 0.6)',
-                  'rgba(0, 128, 128, 0.6)'
-                ]
-              }]
-            },
-            options: {
-              scales: {
-                y: {
-                  beginAtZero: true,
-                  title: {
-                    display: true,
-                    text: 'Sales (₱)', // Title for Y-axis
-                    font: {
-                      weight: 'bold' // Make the Y-axis title bold
-                    }
-                  }
-                },
-                x: {
-                  title: {
-                    display: true,
-                    text: 'Dishes', // Title for X-axis
-                    font: {
-                      weight: 'bold' // Make the Y-axis title bold
-                    }
-                  }
-                }
-              },
-              plugins: {
-                legend: {
-                  display: false // Hide the legend
-                }
-              }
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              const label = context.label || '';
+              const value = context.raw || 0;
+              return `${label}: ${value}`;
             }
-          });
-        },
-        error: function(xhr, status, error) {
-          console.error("Error fetching data:", error);
+          }
         }
-      });
-    });
-  </script>
+      }
+    }
+  });
+}
+
+function updateProductPieChart(data) {
+  const existingChartProduct = Chart.getChart('pieChartProduct');
+
+  if (existingChartProduct) {
+    existingChartProduct.destroy();
+  }
+
+  if (!data.data || !Array.isArray(data.data)) {
+    console.error('Invalid data format:', data);
+    return;
+  }
+
+  const colors = [
+    'rgba(255, 99, 132, 0.6)',
+    'rgba(54, 162, 235, 0.6)',
+    'rgba(255, 206, 86, 0.6)',
+    'rgba(75, 192, 192, 0.6)',
+    'rgba(153, 102, 255, 0.6)',
+    'rgba(255, 159, 64, 0.6)',
+    'rgba(255, 0, 255, 0.6)',
+    'rgba(0, 255, 0, 0.6)',
+    'rgba(128, 128, 128, 0.6)',
+    'rgba(0, 0, 255, 0.6)',
+    'rgba(255, 0, 0, 0.6)',
+    'rgba(0, 255, 255, 0.6)',
+    'rgba(255, 255, 0, 0.6)',
+    'rgba(128, 0, 128, 0.6)',
+    'rgba(0, 128, 128, 0.6)'
+  ];
+
+  new Chart(document.querySelector('#pieChartProduct'), {
+    type: 'pie',
+    data: {
+      labels: data.data.map(item => item.label),
+      datasets: [{
+        label: 'Products',
+        data: data.data.map(item => item.value),
+        backgroundColor: colors,
+        hoverOffset: 4
+      }]
+    },
+    options: {
+      plugins: {
+        legend: {
+          position: 'right',
+          align: 'start'
+        },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              const label = context.label || '';
+              const value = context.raw || 0;
+              return `Total: ₱${value}`;
+            }
+          }
+        }
+      }
+    }
+  });
+}
+
+function updateBarChartSalesLowHigh(data) {
+  const existingChart = Chart.getChart('barChartSalesLowHigh');
+
+  if (existingChart) {
+    existingChart.destroy();
+  }
+
+  if (!data.data || !Array.isArray(data.data)) {
+    console.error('Invalid data format:', data);
+    return;
+  }
+
+  const labels = data.data.map(item => item.label);
+  const values = data.data.map(item => item.value);
+
+  const colors = [
+    'rgba(255, 99, 132, 0.6)',
+    'rgba(54, 162, 235, 0.6)',
+    'rgba(255, 206, 86, 0.6)',
+    'rgba(75, 192, 192, 0.6)',
+    'rgba(153, 102, 255, 0.6)',
+    'rgba(255, 159, 64, 0.6)',
+    'rgba(255, 0, 255, 0.6)',
+    'rgba(0, 255, 0, 0.6)',
+    'rgba(128, 128, 128, 0.6)',
+    'rgba(0, 0, 255, 0.6)',
+    'rgba(255, 0, 0, 0.6)',
+    'rgba(0, 255, 255, 0.6)',
+    'rgba(255, 255, 0, 0.6)',
+    'rgba(128, 0, 128, 0.6)',
+    'rgba(0, 128, 128, 0.6)'
+  ];
+
+  new Chart(document.querySelector('#barChartSalesLowHigh'), {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: 'Total',
+        data: values,
+        backgroundColor: colors
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: 'Sales (₱)',
+            font: {
+              weight: 'bold'
+            }
+          }
+        },
+        x: {
+          title: {
+            display: true,
+            text: 'Dishes',
+            font: {
+              weight: 'bold'
+            }
+          }
+        }
+      },
+      plugins: {
+        legend: {
+          display: false
+        }
+      }
+    }
+  });
+}
+
+function updateBarChartSales(data) {
+  const existingChart = Chart.getChart('barChartSales');
+
+  if (existingChart) {
+    existingChart.destroy();
+  }
+
+  if (!data.data || !Array.isArray(data.data)) {
+    console.error('Invalid data format:', data);
+    return;
+  }
+
+  const labels = data.data.map(item => item.label);
+  const values = data.data.map(item => item.value);
+
+  const colors = [
+    'rgba(255, 99, 132, 0.6)',
+    'rgba(54, 162, 235, 0.6)',
+    'rgba(255, 206, 86, 0.6)',
+    'rgba(75, 192, 192, 0.6)',
+    'rgba(153, 102, 255, 0.6)',
+    'rgba(255, 159, 64, 0.6)',
+    'rgba(255, 0, 255, 0.6)',
+    'rgba(0, 255, 0, 0.6)',
+    'rgba(128, 128, 128, 0.6)',
+    'rgba(0, 0, 255, 0.6)',
+    'rgba(255, 0, 0, 0.6)',
+    'rgba(0, 255, 255, 0.6)',
+    'rgba(255, 255, 0, 0.6)',
+    'rgba(128, 0, 128, 0.6)',
+    'rgba(0, 128, 128, 0.6)'
+  ];
+
+  new Chart(document.querySelector('#barChartSales'), {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: 'Total',
+        data: values,
+        backgroundColor: colors
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: 'Sales (₱)',
+            font: {
+              weight: 'bold'
+            }
+          }
+        },
+        x: {
+          title: {
+            display: true,
+            text: 'Dishes',
+            font: {
+              weight: 'bold'
+            }
+          }
+        }
+      },
+      plugins: {
+        legend: {
+          display: false
+        }
+      }
+    }
+  });
+}
+
+</script>
 
 
 
   <?php include 'includes/footer.php'; ?>
-  <script src="assets/js/piechart.js"></script>
   <script src="assets/js/pieChartProduct.js"></script>
 
 
