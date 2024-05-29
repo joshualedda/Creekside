@@ -598,6 +598,7 @@ $forPickup = $db->forPickup();
                           <th scope="col">Customer</th>
                           <th scope="col">Total Price</th>
                           <th scope="col">Status</th>
+                          <th scope="col">Manage</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -623,7 +624,14 @@ $forPickup = $db->forPickup();
                             } else {
                               echo '<td>' . $status . '</td>';
                             }
+
+                            echo '<td><button type="button" class="btn btn-2 btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            View
+                          </button></td>';
+                    
+
                             echo '</tr>';
+
                           }
                         } else {
                           echo '<tr><td colspan="4">No transactions found for this week.</td></tr>';
@@ -636,6 +644,26 @@ $forPickup = $db->forPickup();
               </div>
             </div>
           </div>
+
+          
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
@@ -819,13 +847,21 @@ $forPickup = $db->forPickup();
                             echo '<td>' . date('M. j, Y', strtotime($row['date'])) . '</td>';
                             echo '<td>' . $row['customer'] . '</td>';
                             echo '<td>₱ ' . number_format($row['total_price'], 2) . '</td>';
+                            
                             $status = $row['status'];
                             if (isset($statusClasses[$status])) {
                               echo '<td><font class="badge ' . $statusClasses[$status] . ' rounded-pill"><b>' . $status . '</b></font></td>';
                             } else {
                               echo '<td>' . $status . '</td>';
                             }
+         
+
+
+
+
+
                             echo '</tr>';
+
                           }
                         } else {
                           echo '<tr><td colspan="4">No transactions found for this week.</td></tr>';
@@ -920,33 +956,30 @@ $forPickup = $db->forPickup();
 });
 
 async function fetchDataAndUpdateCharts() {
-  try {
-    const selectedYear = document.getElementById('yearFilter').value;
-    const selectedMonth = document.getElementById('monthlyFilter').value;
+    try {
+      const selectedYear = document.getElementById('yearFilter').value;
+      const selectedMonth = document.getElementById('monthlyFilter').value;
 
-    const startYear = parseInt(selectedYear);
-    const endYear = startYear + 1;
+      const [offenseResponse, productResponse, lowHighResponse, salesResponse] = await Promise.all([
+        fetch(`charts/piechart.php?startYear=${selectedYear}&endYear=${parseInt(selectedYear) + 1}&month=${selectedMonth}`),
+        fetch(`charts/productPieChart.php?startYear=${selectedYear}&endYear=${parseInt(selectedYear) + 1}&month=${selectedMonth}`),
+        fetch(`charts/barchartLowHigh.php?startYear=${selectedYear}&endYear=${parseInt(selectedYear) + 1}&month=${selectedMonth}`),
+        fetch(`charts/barchart.php?startYear=${selectedYear}&endYear=${parseInt(selectedYear) + 1}&month=${selectedMonth}`)
+      ]);
 
-    const [offenseResponse, productResponse, lowHighResponse, salesResponse] = await Promise.all([
-      fetch(`charts/piechart.php?startYear=${startYear}&endYear=${endYear}&month=${selectedMonth}`),
-      fetch(`charts/productPieChart.php?startYear=${startYear}&endYear=${endYear}&month=${selectedMonth}`),
-      fetch(`charts/barchartLowHigh.php?startYear=${startYear}&endYear=${endYear}&month=${selectedMonth}`),
-      fetch(`charts/barchart.php?startYear=${startYear}&endYear=${endYear}&month=${selectedMonth}`)
-    ]);
+      const offenseData = await offenseResponse.json();
+      const productData = await productResponse.json();
+      const lowHighData = await lowHighResponse.json();
+      const salesData = await salesResponse.json();
 
-    const offenseData = await offenseResponse.json();
-    const productData = await productResponse.json();
-    const lowHighData = await lowHighResponse.json();
-    const salesData = await salesResponse.json();
-
-    updateOffensePieChart(offenseData);
-    updateProductPieChart(productData);
-    updateBarChartSalesLowHigh(lowHighData);
-    updateBarChartSales(salesData);
-  } catch (error) {
-    console.error('Error fetching data:', error);
+      updateOffensePieChart(offenseData);
+      updateProductPieChart(productData);
+      updateBarChartSalesLowHigh(lowHighData);
+      updateBarChartSales(salesData);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
   }
-}
 
 function updateOffensePieChart(data) {
   const existingChart = Chart.getChart('pieChartOffense');
