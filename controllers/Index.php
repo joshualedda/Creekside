@@ -306,4 +306,84 @@ class db
         $result = mysqli_query($this->con, $sql);
         return $result;
     }
+
+    // Daily
+    public function totalTransactionToday()
+    {
+        $today =  date('Y-m-d');
+        $sql = "SELECT COUNT(*) AS totalSales FROM transactions WHERE (status <> 'Cancelled') AND date_paid = '$today'";
+        $result = mysqli_query($this->con, $sql);
+        if ($result) {
+            $row = mysqli_fetch_assoc($result);
+            return $row['totalSales'];
+        } else {
+            return false;
+        }
+    }
+
+    public function totalGrossSalesToday()
+    {
+        $today =  date('Y-m-d');
+        $sql = "SELECT SUM(total_price) AS totalGrossSales FROM transactions WHERE status IN ('Paid', 'Completed') AND
+        date_paid = '$today'";
+        $result = mysqli_query($this->con, $sql);
+        if ($result) {
+            $row = mysqli_fetch_assoc($result);
+            $totalGrossSales = number_format($row['totalGrossSales'], 2);
+            return $totalGrossSales;
+        } else {
+            return false;
+        }
+    }
+
+    public function totalDishedSoldToday()
+    {
+        $today =  date('Y-m-d');
+        $sql = "SELECT COUNT(*) AS totalDishes FROM dishes_ordered LEFT JOIN
+        transactions ON transactions.trans_id = dishes_ordered.trans_id WHERE
+        (status = 'Paid' OR status = 'Completed') AND date_paid = '$today'";
+        $result = mysqli_query($this->con, $sql);
+        if ($result) {
+            $row = mysqli_fetch_assoc($result);
+            return $row['totalDishes'];
+        } else {
+            return false;
+        }  
+    }
+
+    // Daily
+    public function transactionsToday()
+    {
+        $today =  date('Y-m-d');
+        $sql = "SELECT * FROM transactions WHERE date_paid
+        = '$today' AND status IN ('Paid','Completed') 
+        ORDER BY date_paid DESC LIMIT 5";
+        $result = mysqli_query($this->con, $sql);
+        return $result;
+    }
+
+    public function topSellingDishesToday($limit = 5)
+    {
+        $today =  date('Y-m-d');
+
+        $sql = "SELECT dishes.dish_name, SUM(dishes_ordered.quantity) AS quantity, SUM(dishes_ordered.subtotal) AS total_sales 
+                FROM transactions 
+                JOIN dishes_ordered ON transactions.trans_id = dishes_ordered.trans_id 
+                JOIN dishes ON dishes_ordered.dish_id = dishes.dish_id 
+                WHERE transactions.status IN ('Paid', 'Completed') 
+                AND transactions.date_paid = '$today' -- Filter transactions within current day
+                GROUP BY dishes_ordered.dish_id
+                ORDER BY total_sales DESC LIMIT $limit";
+        $result = mysqli_query($this->con, $sql);
+        if ($result) {
+            $topSellingDishes = [];
+            while ($row = mysqli_fetch_assoc($result)) {
+                $topSellingDishes[] = $row;
+            }
+            return $topSellingDishes;
+        } else {
+            return false;
+        }
+    }
+
 }

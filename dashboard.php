@@ -5,6 +5,13 @@ $conn = $db->con;
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+//Daily
+$totalTransactionToday = $db->totalTransactionToday();
+$totalGrossSalesToday = $db->totalGrossSalesToday();
+$totalDishedSoldToday = $db->totalDishedSoldToday();
+
+
+
 // Monthly
 $totalTransactionSalesMonth = $db->totalTransactionSalesMonth();
 $totalGrossSalesThisMonth = $db->totalGrossSalesThisMonth();
@@ -155,6 +162,7 @@ $forPickup = $db->forPickup();
 
       <div class="col-md-2 my-2">
         <select class="form-select" id="cardSelector" aria-label="Time selection">
+          <option value="daily">Daily</option>
           <option value="weekly">This Week</option>
           <option value="monthly">This Month</option>
           <option value="yearly">This Year</option>
@@ -163,55 +171,92 @@ $forPickup = $db->forPickup();
 
 
 
-
-
-      <!-- <div class="row">
-
-        <div class="col-xxl-6 col-md-6">
-          <div class="card info-card orders-card">
-            <div class="card-body">
-              <h5 class="card-title">For Delivery </h5>
-
-              <div class="d-flex align-items-center">
-                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                  <i class="bi bi-cart3"></i>
-                </div>
-                <div class="ps-3" id="transactions">
-                  <h6><?= $forDelivery ?></h6>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-        <div class="col-xxl-6 col-md-6">
-          <div class="card info-card orders-card">
-            <div class="card-body">
-              <h5 class="card-title">For Pick Up</h5>
-
-              <div class="d-flex align-items-center">
-                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                  <i class="bi bi-cart3"></i>
-                </div>
-                <div class="ps-3" id="transactions">
-                  <h6><?= $forPickup ?></h6>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> -->
-
-
-
-
-
-
       <div class="row">
 
 
-        <div id="weekly">
+
+      <div id="daily">
+
+<div class="row">
+
+  <div class="col-xxl-4 col-md-4">
+    <div class="card info-card orders-card">
+      <div class="card-body">
+        <h5 class="card-title">Total Transactions <span>| Today</span></h5>
+
+        <div class="d-flex align-items-center">
+          <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+            <i class="bi bi-cart3"></i>
+          </div>
+          <div class="ps-3" id="transactions">
+            <h6><?= $totalTransactionToday ?></h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Sales Card -->
+  <div class="col-xxl-4 col-md-4">
+    <div class="card info-card revenue-card">
+      <div class="card-body">
+        <h5 class="card-title">Gross Sales <span>| Today</span></h5>
+
+        <div class="d-flex align-items-center">
+          <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+            <i class="bi bi-cash-coin"></i>
+          </div>
+          <div class="ps-3" id="sales">
+            <h6>₱<?= $totalGrossSalesToday ?></h6>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xxl-4 col-md-4">
+    <div class="card info-card sales-card">
+      <div class="card-body">
+        <h5 class="card-title">Dishes Sold <span>| Today</span></h5>
+
+        <div class="d-flex align-items-center">
+          <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+            <i class="ri ri-restaurant-2-line"></i>
+          </div>
+          <div class="ps-3" id="dishes">
+            <h6><?= $totalDishedSoldToday ?></h6>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div id="weekly" style="display: none;">
 
           <div class="row">
 
@@ -438,73 +483,73 @@ $forPickup = $db->forPickup();
                 <div class="col-lg-4">
                   <h5 class="card-title">Delivery Method</h5>
                 </div>
-            
 
 
 
 
-                
+
+
                 <div class="col-lg-8 d-flex align-items-center justify-content-end my-3">
-  <div class="me-3">
-    <select class="form-select" id="yearFilter" aria-label="Year selection" onchange="fetchDataAndUpdateCharts()">
-      <?php
-      $currentYear = date('Y');
-      $startYear = $currentYear - 3;
-      $endYear = $currentYear + 6;
+                  <div class="me-3">
+                    <select class="form-select" id="yearFilter" aria-label="Year selection" onchange="fetchDataAndUpdateCharts()">
+                      <?php
+                      $currentYear = date('Y');
+                      $startYear = $currentYear - 3;
+                      $endYear = $currentYear + 6;
 
-      $years = range($startYear, $endYear);
+                      $years = range($startYear, $endYear);
 
-      foreach ($years as $year) {
-        $selected = ($year == $currentYear) ? 'selected' : '';
-        echo "<option value=\"$year\" $selected>$year</option>";
-      }
-      ?>
-    </select>
-  </div>
-  <div>
-    <select class="form-select monthly-select" id="monthlyFilter" aria-label="Month selection" onchange="fetchDataAndUpdateCharts()">
-      <?php
-      $currentMonth = date('m');
-      $months = [
-        'January' => '01',
-        'February' => '02',
-        'March' => '03',
-        'April' => '04',
-        'May' => '05',
-        'June' => '06',
-        'July' => '07',
-        'August' => '08',
-        'September' => '09',
-        'October' => '10',
-        'November' => '11',
-        'December' => '12'
-      ];
+                      foreach ($years as $year) {
+                        $selected = ($year == $currentYear) ? 'selected' : '';
+                        echo "<option value=\"$year\" $selected>$year</option>";
+                      }
+                      ?>
+                    </select>
+                  </div>
+                  <div>
+                    <select class="form-select monthly-select" id="monthlyFilter" aria-label="Month selection" onchange="fetchDataAndUpdateCharts()">
+                      <?php
+                      $currentMonth = date('m');
+                      $months = [
+                        'January' => '01',
+                        'February' => '02',
+                        'March' => '03',
+                        'April' => '04',
+                        'May' => '05',
+                        'June' => '06',
+                        'July' => '07',
+                        'August' => '08',
+                        'September' => '09',
+                        'October' => '10',
+                        'November' => '11',
+                        'December' => '12'
+                      ];
 
-      foreach ($months as $month => $value) {
-        $selected = ($value === $currentMonth) ? 'selected' : '';
-        echo "<option value=\"$value\" $selected>$month</option>";
-      }
-      ?>
-    </select>
-  
-</div>
-</div>
+                      foreach ($months as $month => $value) {
+                        $selected = ($value === $currentMonth) ? 'selected' : '';
+                        echo "<option value=\"$value\" $selected>$month</option>";
+                      }
+                      ?>
+                    </select>
 
-
-
-<canvas id="pieChartOffense" style="max-height: 300px;"></canvas>
+                  </div>
+                </div>
 
 
+
+                <canvas id="pieChartOffense" style="max-height: 300px;"></canvas>
 
 
 
 
+
+
+              </div>
             </div>
           </div>
-          </div>
-      
-          </div>
-       
+
+        </div>
+
 
 
 
@@ -534,15 +579,15 @@ $forPickup = $db->forPickup();
                 </div>
 
 
-            
-              <canvas id="pieChartProduct" style="max-height: 300px;"></canvas>
+
+                <canvas id="pieChartProduct" style="max-height: 300px;"></canvas>
 
 
+              </div>
             </div>
-            </div>
-            </div>
-            </div>
-      
+          </div>
+        </div>
+
 
         <div class="col-lg-6">
           <div class="card">
@@ -581,9 +626,122 @@ $forPickup = $db->forPickup();
 
 
 
-      <div id="weeklyTable">
+
+
+
+
+
+
+
+
+
+      <div id="dailyTable">
         <div class="row">
 
+          <div class="col-lg-6">
+            <div class="row">
+              <div class="col-12">
+                <div class="card recent-sales overflow-auto">
+                  <div class="card-body">
+                    <h5 class="card-title">Recent Sales <span>| Today</span></h5>
+                    <table class="table table-borderless table-hover ">
+                      <thead>
+                        <tr style="white-space: nowrap;">
+                          <th scope="col">Date</th>
+                          <th scope="col">Customer</th>
+                          <th scope="col">Total Price</th>
+                          <th scope="col">Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php
+                        $statusClasses = [
+                          'Completed' => 'bg-success',
+                          'Cancelled' => 'bg-danger',
+                          'Pending' => 'bg-warning',
+                          'Paid' => 'bg-info'
+                        ];
+
+                        $result = $db->transactionsToday();
+                        if ($result) {
+                          $counter = 1;
+                          while ($row = mysqli_fetch_array($result)) {
+                            echo '<tr>';
+                            echo '<td>' . date('M. j, Y', strtotime($row['date'])) . '</td>';
+                            echo '<td>' . $row['customer'] . '</td>';
+                            echo '<td>₱ ' . number_format($row['total_price'], 2) . '</td>';
+                            $status = $row['status'];
+                            if (isset($statusClasses[$status])) {
+                              echo '<td><font class="badge ' . $statusClasses[$status] . ' rounded-pill"><b>' . $status . '</b></font></td>';
+                            } else {
+                              echo '<td>' . $status . '</td>';
+                            }
+                            echo '</tr>';
+                          }
+                        } else {
+                          echo '<tr><td colspan="4">No transactions found for this week.</td></tr>';
+                        }
+                        ?>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-lg-6">
+            <div class="row">
+              <div class="col-12">
+                <div class="card recent-sales overflow-auto">
+                  <div class="card-body">
+                    <h5 class="card-title">Top Selling <span>| Today</span></h5>
+                    <table class="table table-borderless table-hover ">
+                      <thead>
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col" class="">Dish Name</th>
+                          <th scope="col" class="">Quantity</th>
+                          <th scope="col" class="">Total Sales</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php
+                        $result = $db->topSellingDishesToday();
+                        if ($result) {
+                          $counter = 1;
+                          foreach ($result as $row) {
+                            echo '<tr>';
+                            echo '<td>' . $counter++ . '</td>';
+                            echo '<td class="">' . $row['dish_name'] . '</td>';
+                            echo '<td class="">' . $row['quantity'] . '</td>';
+                            echo '<td>₱ ' . number_format($row['total_sales'], 2) . '</td>';
+                            echo '</tr>';
+                          }
+                        } else {
+                          echo '<tr><td colspan="3">No data found.</td></tr>';
+                        }
+                        ?>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+      <div id="weeklyTable">
+        <div class="row">
 
           <div class="col-lg-6">
             <div class="row">
@@ -598,7 +756,6 @@ $forPickup = $db->forPickup();
                           <th scope="col">Customer</th>
                           <th scope="col">Total Price</th>
                           <th scope="col">Status</th>
-                          <th scope="col">Manage</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -624,14 +781,7 @@ $forPickup = $db->forPickup();
                             } else {
                               echo '<td>' . $status . '</td>';
                             }
-
-                            echo '<td><button type="button" class="btn btn-2 btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            View
-                          </button></td>';
-                    
-
                             echo '</tr>';
-
                           }
                         } else {
                           echo '<tr><td colspan="4">No transactions found for this week.</td></tr>';
@@ -644,26 +794,6 @@ $forPickup = $db->forPickup();
               </div>
             </div>
           </div>
-
-          
-          <!-- Modal -->
-          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 
 
@@ -847,21 +977,20 @@ $forPickup = $db->forPickup();
                             echo '<td>' . date('M. j, Y', strtotime($row['date'])) . '</td>';
                             echo '<td>' . $row['customer'] . '</td>';
                             echo '<td>₱ ' . number_format($row['total_price'], 2) . '</td>';
-                            
+
                             $status = $row['status'];
                             if (isset($statusClasses[$status])) {
                               echo '<td><font class="badge ' . $statusClasses[$status] . ' rounded-pill"><b>' . $status . '</b></font></td>';
                             } else {
                               echo '<td>' . $status . '</td>';
                             }
-         
+
 
 
 
 
 
                             echo '</tr>';
-
                           }
                         } else {
                           echo '<tr><td colspan="4">No transactions found for this week.</td></tr>';
@@ -950,318 +1079,314 @@ $forPickup = $db->forPickup();
 
 
 
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-  fetchDataAndUpdateCharts();
-});
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      fetchDataAndUpdateCharts();
+    });
 
-async function fetchDataAndUpdateCharts() {
-    try {
-      const selectedYear = document.getElementById('yearFilter').value;
-      const selectedMonth = document.getElementById('monthlyFilter').value;
+    async function fetchDataAndUpdateCharts() {
+      try {
+        const selectedYear = document.getElementById('yearFilter').value;
+        const selectedMonth = document.getElementById('monthlyFilter').value;
 
-      const [offenseResponse, productResponse, lowHighResponse, salesResponse] = await Promise.all([
-        fetch(`charts/piechart.php?startYear=${selectedYear}&endYear=${parseInt(selectedYear) + 1}&month=${selectedMonth}`),
-        fetch(`charts/productPieChart.php?startYear=${selectedYear}&endYear=${parseInt(selectedYear) + 1}&month=${selectedMonth}`),
-        fetch(`charts/barchartLowHigh.php?startYear=${selectedYear}&endYear=${parseInt(selectedYear) + 1}&month=${selectedMonth}`),
-        fetch(`charts/barchart.php?startYear=${selectedYear}&endYear=${parseInt(selectedYear) + 1}&month=${selectedMonth}`)
-      ]);
+        const [offenseResponse, productResponse, lowHighResponse, salesResponse] = await Promise.all([
+          fetch(`charts/piechart.php?startYear=${selectedYear}&endYear=${parseInt(selectedYear) + 1}&month=${selectedMonth}`),
+          fetch(`charts/productPieChart.php?startYear=${selectedYear}&endYear=${parseInt(selectedYear) + 1}&month=${selectedMonth}`),
+          fetch(`charts/barchartLowHigh.php?startYear=${selectedYear}&endYear=${parseInt(selectedYear) + 1}&month=${selectedMonth}`),
+          fetch(`charts/barchart.php?startYear=${selectedYear}&endYear=${parseInt(selectedYear) + 1}&month=${selectedMonth}`)
+        ]);
 
-      const offenseData = await offenseResponse.json();
-      const productData = await productResponse.json();
-      const lowHighData = await lowHighResponse.json();
-      const salesData = await salesResponse.json();
+        const offenseData = await offenseResponse.json();
+        const productData = await productResponse.json();
+        const lowHighData = await lowHighResponse.json();
+        const salesData = await salesResponse.json();
 
-      updateOffensePieChart(offenseData);
-      updateProductPieChart(productData);
-      updateBarChartSalesLowHigh(lowHighData);
-      updateBarChartSales(salesData);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  }
-
-function updateOffensePieChart(data) {
-  const existingChart = Chart.getChart('pieChartOffense');
-
-  if (existingChart) {
-    existingChart.destroy();
-  }
-
-  if (!data.data || !Array.isArray(data.data)) {
-    console.error('Invalid data format:', data);
-    return;
-  }
-
-  const colors = [
-    'rgba(255, 99, 132, 0.6)',
-    'rgba(54, 162, 235, 0.6)',
-    'rgba(255, 206, 86, 0.6)',
-    'rgba(75, 192, 192, 0.6)',
-    'rgba(153, 102, 255, 0.6)',
-    'rgba(255, 159, 64, 0.6)',
-    'rgba(255, 0, 255, 0.6)',
-    'rgba(0, 255, 0, 0.6)',
-    'rgba(128, 128, 128, 0.6)',
-    'rgba(0, 0, 255, 0.6)',
-    'rgba(255, 0, 0, 0.6)',
-    'rgba(0, 255, 255, 0.6)',
-    'rgba(255, 255, 0, 0.6)',
-    'rgba(128, 0, 128, 0.6)',
-    'rgba(0, 128, 128, 0.6)'
-  ];
-
-  new Chart(document.querySelector('#pieChartOffense'), {
-    type: 'pie',
-    data: {
-      labels: data.data.map(item => item.label),
-      datasets: [{
-        label: 'Total',
-        data: data.data.map(item => item.value),
-        backgroundColor: colors,
-        hoverOffset: 4
-      }]
-    },
-    options: {
-      plugins: {
-        legend: {
-          position: 'right',
-          align: 'start'
-        },
-        tooltip: {
-          callbacks: {
-            label: function(context) {
-              const label = context.label || '';
-              const value = context.raw || 0;
-              return `${label}: ${value}`;
-            }
-          }
-        }
+        updateOffensePieChart(offenseData);
+        updateProductPieChart(productData);
+        updateBarChartSalesLowHigh(lowHighData);
+        updateBarChartSales(salesData);
+      } catch (error) {
+        console.error('Error fetching data:', error);
       }
     }
-  });
-}
 
-function updateProductPieChart(data) {
-  const existingChartProduct = Chart.getChart('pieChartProduct');
+    function updateOffensePieChart(data) {
+      const existingChart = Chart.getChart('pieChartOffense');
 
-  if (existingChartProduct) {
-    existingChartProduct.destroy();
-  }
-
-  if (!data.data || !Array.isArray(data.data)) {
-    console.error('Invalid data format:', data);
-    return;
-  }
-
-  const colors = [
-    'rgba(255, 99, 132, 0.6)',
-    'rgba(54, 162, 235, 0.6)',
-    'rgba(255, 206, 86, 0.6)',
-    'rgba(75, 192, 192, 0.6)',
-    'rgba(153, 102, 255, 0.6)',
-    'rgba(255, 159, 64, 0.6)',
-    'rgba(255, 0, 255, 0.6)',
-    'rgba(0, 255, 0, 0.6)',
-    'rgba(128, 128, 128, 0.6)',
-    'rgba(0, 0, 255, 0.6)',
-    'rgba(255, 0, 0, 0.6)',
-    'rgba(0, 255, 255, 0.6)',
-    'rgba(255, 255, 0, 0.6)',
-    'rgba(128, 0, 128, 0.6)',
-    'rgba(0, 128, 128, 0.6)'
-  ];
-
-  new Chart(document.querySelector('#pieChartProduct'), {
-    type: 'pie',
-    data: {
-      labels: data.data.map(item => item.label),
-      datasets: [{
-        label: 'Products',
-        data: data.data.map(item => item.value),
-        backgroundColor: colors,
-        hoverOffset: 4
-      }]
-    },
-    options: {
-      plugins: {
-        legend: {
-          position: 'right',
-          align: 'start'
-        },
-        tooltip: {
-          callbacks: {
-            label: function(context) {
-              const label = context.label || '';
-              const value = context.raw || 0;
-              return `Total: ₱${value}`;
-            }
-          }
-        }
+      if (existingChart) {
+        existingChart.destroy();
       }
-    }
-  });
-}
 
-function updateBarChartSalesLowHigh(data) {
-  const existingChart = Chart.getChart('barChartSalesLowHigh');
-
-  if (existingChart) {
-    existingChart.destroy();
-  }
-
-  if (!data.data || !Array.isArray(data.data)) {
-    console.error('Invalid data format:', data);
-    return;
-  }
-
-  const labels = data.data.map(item => item.label);
-  const values = data.data.map(item => item.value);
-
-  const colors = [
-    'rgba(255, 99, 132, 0.6)',
-    'rgba(54, 162, 235, 0.6)',
-    'rgba(255, 206, 86, 0.6)',
-    'rgba(75, 192, 192, 0.6)',
-    'rgba(153, 102, 255, 0.6)',
-    'rgba(255, 159, 64, 0.6)',
-    'rgba(255, 0, 255, 0.6)',
-    'rgba(0, 255, 0, 0.6)',
-    'rgba(128, 128, 128, 0.6)',
-    'rgba(0, 0, 255, 0.6)',
-    'rgba(255, 0, 0, 0.6)',
-    'rgba(0, 255, 255, 0.6)',
-    'rgba(255, 255, 0, 0.6)',
-    'rgba(128, 0, 128, 0.6)',
-    'rgba(0, 128, 128, 0.6)'
-  ];
-
-  new Chart(document.querySelector('#barChartSalesLowHigh'), {
-    type: 'bar',
-    data: {
-      labels: labels,
-      datasets: [{
-        label: 'Total',
-        data: values,
-        backgroundColor: colors
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true,
-          title: {
-            display: true,
-            text: 'Sales (₱)',
-            font: {
-              weight: 'bold'
-            }
-          }
-        },
-        x: {
-          title: {
-            display: true,
-            text: 'Dishes',
-            font: {
-              weight: 'bold'
-            }
-          }
-        }
-      },
-      plugins: {
-        legend: {
-          display: false
-        }
+      if (!data.data || !Array.isArray(data.data)) {
+        console.error('Invalid data format:', data);
+        return;
       }
-    }
-  });
-}
 
-function updateBarChartSales(data) {
-  const existingChart = Chart.getChart('barChartSales');
+      const colors = [
+        'rgba(255, 99, 132, 0.6)',
+        'rgba(54, 162, 235, 0.6)',
+        'rgba(255, 206, 86, 0.6)',
+        'rgba(75, 192, 192, 0.6)',
+        'rgba(153, 102, 255, 0.6)',
+        'rgba(255, 159, 64, 0.6)',
+        'rgba(255, 0, 255, 0.6)',
+        'rgba(0, 255, 0, 0.6)',
+        'rgba(128, 128, 128, 0.6)',
+        'rgba(0, 0, 255, 0.6)',
+        'rgba(255, 0, 0, 0.6)',
+        'rgba(0, 255, 255, 0.6)',
+        'rgba(255, 255, 0, 0.6)',
+        'rgba(128, 0, 128, 0.6)',
+        'rgba(0, 128, 128, 0.6)'
+      ];
 
-  if (existingChart) {
-    existingChart.destroy();
-  }
-
-  if (!data.data || !Array.isArray(data.data)) {
-    console.error('Invalid data format:', data);
-    return;
-  }
-
-  const labels = data.data.map(item => item.label);
-  const values = data.data.map(item => item.value);
-
-  const colors = [
-    'rgba(255, 99, 132, 0.6)',
-    'rgba(54, 162, 235, 0.6)',
-    'rgba(255, 206, 86, 0.6)',
-    'rgba(75, 192, 192, 0.6)',
-    'rgba(153, 102, 255, 0.6)',
-    'rgba(255, 159, 64, 0.6)',
-    'rgba(255, 0, 255, 0.6)',
-    'rgba(0, 255, 0, 0.6)',
-    'rgba(128, 128, 128, 0.6)',
-    'rgba(0, 0, 255, 0.6)',
-    'rgba(255, 0, 0, 0.6)',
-    'rgba(0, 255, 255, 0.6)',
-    'rgba(255, 255, 0, 0.6)',
-    'rgba(128, 0, 128, 0.6)',
-    'rgba(0, 128, 128, 0.6)'
-  ];
-
-  new Chart(document.querySelector('#barChartSales'), {
-    type: 'bar',
-    data: {
-      labels: labels,
-      datasets: [{
-        label: 'Total',
-        data: values,
-        backgroundColor: colors
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true,
-          title: {
-            display: true,
-            text: 'Sales (₱)',
-            font: {
-              weight: 'bold'
-            }
-          }
+      new Chart(document.querySelector('#pieChartOffense'), {
+        type: 'pie',
+        data: {
+          labels: data.data.map(item => item.label),
+          datasets: [{
+            label: 'Total',
+            data: data.data.map(item => item.value),
+            backgroundColor: colors,
+            hoverOffset: 4
+          }]
         },
-        x: {
-          title: {
-            display: true,
-            text: 'Dishes',
-            font: {
-              weight: 'bold'
+        options: {
+          plugins: {
+            legend: {
+              position: 'right',
+              align: 'start'
+            },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  const label = context.label || '';
+                  const value = context.raw || 0;
+                  return `${label}: ${value}`;
+                }
+              }
             }
           }
         }
-      },
-      plugins: {
-        legend: {
-          display: false
-        }
-      }
+      });
     }
-  });
-}
 
-</script>
+    function updateProductPieChart(data) {
+      const existingChartProduct = Chart.getChart('pieChartProduct');
+
+      if (existingChartProduct) {
+        existingChartProduct.destroy();
+      }
+
+      if (!data.data || !Array.isArray(data.data)) {
+        console.error('Invalid data format:', data);
+        return;
+      }
+
+      const colors = [
+        'rgba(255, 99, 132, 0.6)',
+        'rgba(54, 162, 235, 0.6)',
+        'rgba(255, 206, 86, 0.6)',
+        'rgba(75, 192, 192, 0.6)',
+        'rgba(153, 102, 255, 0.6)',
+        'rgba(255, 159, 64, 0.6)',
+        'rgba(255, 0, 255, 0.6)',
+        'rgba(0, 255, 0, 0.6)',
+        'rgba(128, 128, 128, 0.6)',
+        'rgba(0, 0, 255, 0.6)',
+        'rgba(255, 0, 0, 0.6)',
+        'rgba(0, 255, 255, 0.6)',
+        'rgba(255, 255, 0, 0.6)',
+        'rgba(128, 0, 128, 0.6)',
+        'rgba(0, 128, 128, 0.6)'
+      ];
+
+      new Chart(document.querySelector('#pieChartProduct'), {
+        type: 'pie',
+        data: {
+          labels: data.data.map(item => item.label),
+          datasets: [{
+            label: 'Products',
+            data: data.data.map(item => item.value),
+            backgroundColor: colors,
+            hoverOffset: 4
+          }]
+        },
+        options: {
+          plugins: {
+            legend: {
+              position: 'right',
+              align: 'start'
+            },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  const label = context.label || '';
+                  const value = context.raw || 0;
+                  return `Total: ₱${value}`;
+                }
+              }
+            }
+          }
+        }
+      });
+    }
+
+    function updateBarChartSalesLowHigh(data) {
+      const existingChart = Chart.getChart('barChartSalesLowHigh');
+
+      if (existingChart) {
+        existingChart.destroy();
+      }
+
+      if (!data.data || !Array.isArray(data.data)) {
+        console.error('Invalid data format:', data);
+        return;
+      }
+
+      const labels = data.data.map(item => item.label);
+      const values = data.data.map(item => item.value);
+
+      const colors = [
+        'rgba(255, 99, 132, 0.6)',
+        'rgba(54, 162, 235, 0.6)',
+        'rgba(255, 206, 86, 0.6)',
+        'rgba(75, 192, 192, 0.6)',
+        'rgba(153, 102, 255, 0.6)',
+        'rgba(255, 159, 64, 0.6)',
+        'rgba(255, 0, 255, 0.6)',
+        'rgba(0, 255, 0, 0.6)',
+        'rgba(128, 128, 128, 0.6)',
+        'rgba(0, 0, 255, 0.6)',
+        'rgba(255, 0, 0, 0.6)',
+        'rgba(0, 255, 255, 0.6)',
+        'rgba(255, 255, 0, 0.6)',
+        'rgba(128, 0, 128, 0.6)',
+        'rgba(0, 128, 128, 0.6)'
+      ];
+
+      new Chart(document.querySelector('#barChartSalesLowHigh'), {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Total',
+            data: values,
+            backgroundColor: colors
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: 'Sales (₱)',
+                font: {
+                  weight: 'bold'
+                }
+              }
+            },
+            x: {
+              title: {
+                display: true,
+                text: 'Dishes',
+                font: {
+                  weight: 'bold'
+                }
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              display: false
+            }
+          }
+        }
+      });
+    }
+
+    function updateBarChartSales(data) {
+      const existingChart = Chart.getChart('barChartSales');
+
+      if (existingChart) {
+        existingChart.destroy();
+      }
+
+      if (!data.data || !Array.isArray(data.data)) {
+        console.error('Invalid data format:', data);
+        return;
+      }
+
+      const labels = data.data.map(item => item.label);
+      const values = data.data.map(item => item.value);
+
+      const colors = [
+        'rgba(255, 99, 132, 0.6)',
+        'rgba(54, 162, 235, 0.6)',
+        'rgba(255, 206, 86, 0.6)',
+        'rgba(75, 192, 192, 0.6)',
+        'rgba(153, 102, 255, 0.6)',
+        'rgba(255, 159, 64, 0.6)',
+        'rgba(255, 0, 255, 0.6)',
+        'rgba(0, 255, 0, 0.6)',
+        'rgba(128, 128, 128, 0.6)',
+        'rgba(0, 0, 255, 0.6)',
+        'rgba(255, 0, 0, 0.6)',
+        'rgba(0, 255, 255, 0.6)',
+        'rgba(255, 255, 0, 0.6)',
+        'rgba(128, 0, 128, 0.6)',
+        'rgba(0, 128, 128, 0.6)'
+      ];
+
+      new Chart(document.querySelector('#barChartSales'), {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Total',
+            data: values,
+            backgroundColor: colors
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: 'Sales (₱)',
+                font: {
+                  weight: 'bold'
+                }
+              }
+            },
+            x: {
+              title: {
+                display: true,
+                text: 'Dishes',
+                font: {
+                  weight: 'bold'
+                }
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              display: false
+            }
+          }
+        }
+      });
+    }
+  </script>
 
 
 
   <?php include 'includes/footer.php'; ?>
   <script src="assets/js/pieChartProduct.js"></script>
 
-
-  <!-- dashboard -->
   <script src="assets/js/dashboard.js"></script>
-
 </body>
 
 </html>
